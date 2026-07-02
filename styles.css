@@ -2469,57 +2469,56 @@ textarea {
     }
     
     .hero {
-        justify-content: center;
-        padding-left: 0;
-        text-align: center;
+        justify-content: flex-start;
+        padding-left: 5%;
+        text-align: left;
+    }
+    
+    .hero-bg {
+        background-position: right 10% center;
     }
     
     .hero-overlay {
-        background: radial-gradient(circle at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.85) 90%);
+        background: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.85) 100%);
     }
     
     .hero-content-wrapper {
-        align-items: center;
-        padding: 130px 20px 90px;
+        align-items: flex-start;
+        padding: 95px 15px 70px;
     }
     
     .hero-brand-container {
-        flex-direction: column;
+        display: flex;
+        flex-direction: row;
         align-items: center;
-        text-align: center;
+        text-align: left;
         gap: 15px;
         margin-bottom: 15px;
+        justify-content: flex-start;
+        width: 100%;
     }
     
     .hero-logo {
-        height: 130px;
-    }
-    
-    .hero-subtitle {
-        margin: 0 auto 40px;
-    }
-    
-    .hero-actions {
-        justify-content: center;
-    }
-    
-    .section-title {
-        font-size: 2rem;
+        height: 75px;
     }
     
     .hero-title {
-        font-size: 3rem;
-        letter-spacing: 5px;
+        font-size: 2.2rem;
+        letter-spacing: 2px;
+        text-align: left;
     }
     
     .hero-subtitle {
         font-size: 1.1rem;
+        margin: 0 0 25px 0;
+        text-align: left;
     }
     
     .hero-actions {
         flex-direction: column;
         gap: 15px;
-        align-items: center;
+        align-items: flex-start;
+        width: 100%;
     }
     
     .hero-actions .btn {
@@ -2761,7 +2760,7 @@ textarea {
 
 @media (max-width: 480px) {
     .hero-title {
-        font-size: 2.2rem;
+        font-size: 1.8rem;
         letter-spacing: 2px;
         white-space: normal;
     }
@@ -2788,4 +2787,61 @@ textarea {
     .wizard-actions button {
         width: 100%;
     }
+}
+
+/* ==========================================================================
+   Estéticas de Bordes Redondeados (Suavizado de Interfaz)
+   ========================================================================== */
+
+/* Botones con bordes redondeados (estilo píldora) */
+.btn, 
+.nav-btn, 
+.tab-btn, 
+.filter-btn, 
+.reviews-nav-btn, 
+.lightbox-nav, 
+.prev-btn, 
+.next-btn, 
+.submit-btn,
+.video-modal-close,
+.floating-agenda-btn,
+.floating-whatsapp-btn {
+    border-radius: 50px !important;
+}
+
+/* Recuadros, Tarjetas y Cajas de Texto con bordes suavizados */
+.service-card,
+.testimonial-card,
+.portfolio-item,
+.booking-wizard,
+.accordion-item,
+.faq .accordion-item,
+.feature-item i,
+.image-frame,
+.profile-photo,
+.dark-map-placeholder,
+.contact-map,
+.lightbox-content img,
+.video-modal-container {
+    border-radius: 18px !important;
+}
+
+/* Evitar que las esquinas de las imágenes o fondos se salgan de sus cajas redondeadas */
+.portfolio-item,
+.image-frame,
+.service-card,
+.booking-wizard,
+.contact-map,
+.dark-map-placeholder,
+.video-modal-container {
+    overflow: hidden !important;
+}
+
+/* Inputs y campos de formulario redondeados */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select,
+textarea {
+    border-radius: 10px !important;
 }
