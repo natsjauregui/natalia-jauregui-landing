@@ -1183,6 +1183,10 @@ button, input, select, textarea {
     border-top: 1px solid var(--border-color-light);
 }
 
+.booking-title {
+    font-size: clamp(1.4rem, 4.5vw, 2.5rem);
+}
+
 
 .booking-wizard {
     background-color: var(--bg-primary);
@@ -2769,6 +2773,7 @@ textarea {
         font-size: 1.8rem;
         letter-spacing: 2px;
         white-space: normal;
+        text-align: left;
     }
 
     .portfolio-grid {
