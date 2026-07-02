@@ -390,8 +390,9 @@ button, input, select, textarea {
 
 .hero-brand-container {
     display: flex;
-    align-items: center;
-    gap: 30px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
     margin-bottom: 20px;
     width: 100%;
 }
@@ -2494,8 +2495,8 @@ textarea {
     
     .hero-brand-container {
         display: flex;
-        flex-direction: row;
-        align-items: center;
+        flex-direction: column;
+        align-items: flex-start;
         text-align: left;
         gap: 15px;
         margin-bottom: 15px;
