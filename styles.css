@@ -2221,7 +2221,12 @@ textarea {
 }
 
 .footer-logo img {
-    height: 60px;
+    height: 140px;
+    transition: transform var(--transition-smooth);
+}
+
+.footer-logo img:hover {
+    transform: scale(1.05);
 }
 
 .footer-links {
