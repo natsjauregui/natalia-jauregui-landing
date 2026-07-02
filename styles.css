@@ -2484,7 +2484,7 @@ textarea {
     
     .hero-content-wrapper {
         align-items: flex-start;
-        padding: 95px 15px 70px;
+        padding: 160px 15px 70px;
     }
     
     .hero-brand-container {
@@ -2499,7 +2499,7 @@ textarea {
     }
     
     .hero-logo {
-        height: 75px;
+        height: 95px;
     }
     
     .hero-title {
