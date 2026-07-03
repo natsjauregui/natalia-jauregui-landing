@@ -237,8 +237,8 @@ button, input, select, textarea {
 .logo img {
     height: 140px;
     width: auto;
-    opacity: 0;
-    pointer-events: none;
+    opacity: 1;
+    pointer-events: auto;
     transition: height var(--transition-smooth), opacity var(--transition-fast);
 }
 
@@ -385,7 +385,7 @@ button, input, select, textarea {
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 130px 0 90px;
+    padding: 120px 0 90px;
 }
 
 .hero-brand-container {
@@ -2477,6 +2477,11 @@ textarea {
     .section {
         padding: 70px 0;
     }
+
+    .section-title {
+        font-size: clamp(1.2rem, 5.5vw, 1.62rem) !important;
+        line-height: 1.25 !important;
+    }
     
     .hero {
         justify-content: flex-start;
@@ -2494,7 +2499,10 @@ textarea {
     
     .hero-content-wrapper {
         align-items: flex-start;
-        padding: 160px 15px 70px;
+        justify-content: center;
+        gap: 20px;
+        padding: 80px 15px 30px;
+        height: 100%;
     }
     
     .hero-brand-container {
@@ -2657,6 +2665,11 @@ textarea {
         flex-direction: column;
         gap: 30px;
         text-align: center;
+    }
+
+    .footer-logo img {
+        height: 260px !important;
+        max-width: 90% !important;
     }
     
     .footer-links {
