@@ -385,7 +385,7 @@ button, input, select, textarea {
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 120px 0 90px;
+    padding: 210px 0 90px;
 }
 
 .hero-brand-container {
@@ -2479,7 +2479,7 @@ textarea {
     }
 
     .section-title {
-        font-size: clamp(1.2rem, 5.5vw, 1.62rem) !important;
+        font-size: clamp(1.15rem, 4.5vw, 1.48rem) !important;
         line-height: 1.25 !important;
     }
     
@@ -2668,8 +2668,9 @@ textarea {
     }
 
     .footer-logo img {
-        height: 260px !important;
-        max-width: 90% !important;
+        height: 320px !important;
+        max-width: 95% !important;
+        margin: 0 auto;
     }
     
     .footer-links {
@@ -2787,6 +2788,11 @@ textarea {
         letter-spacing: 2px;
         white-space: normal;
         text-align: left;
+    }
+
+    .section-title {
+        font-size: clamp(1.1rem, 5.2vw, 1.38rem) !important;
+        line-height: 1.25 !important;
     }
 
     .portfolio-grid {
