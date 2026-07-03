@@ -541,6 +541,23 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentStep = 1;
     let selectedFiles = []; // to hold reference files
     
+    // Manejo de indicativo de país personalizado ("Otro...")
+    const countryCodeSelect = document.getElementById('country-code');
+    const customCountryCodeInput = document.getElementById('custom-country-code');
+    if (countryCodeSelect && customCountryCodeInput) {
+        countryCodeSelect.addEventListener('change', function() {
+            if (this.value === 'other') {
+                customCountryCodeInput.style.display = 'block';
+                customCountryCodeInput.setAttribute('required', 'required');
+                customCountryCodeInput.focus();
+            } else {
+                customCountryCodeInput.style.display = 'none';
+                customCountryCodeInput.removeAttribute('required');
+                customCountryCodeInput.value = '';
+            }
+        });
+    }
+
     function updateStepIndicator() {
         steps.forEach((step, idx) => {
             const stepNum = idx + 1;
@@ -790,7 +807,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 clientName: document.getElementById('client-name').value,
                 clientInstagram: document.getElementById('client-instagram').value || 'No proporcionado',
                 clientEmail: document.getElementById('client-email').value,
-                clientPhone: document.getElementById('country-code').value + ' ' + document.getElementById('client-phone').value,
+                clientPhone: (document.getElementById('country-code').value === 'other' ? document.getElementById('custom-country-code').value : document.getElementById('country-code').value) + ' ' + document.getElementById('client-phone').value,
                 references: []
             };
 
