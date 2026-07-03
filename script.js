@@ -790,7 +790,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 clientName: document.getElementById('client-name').value,
                 clientInstagram: document.getElementById('client-instagram').value || 'No proporcionado',
                 clientEmail: document.getElementById('client-email').value,
-                clientPhone: document.getElementById('client-phone').value,
+                clientPhone: document.getElementById('country-code').value + ' ' + document.getElementById('client-phone').value,
                 references: []
             };
 

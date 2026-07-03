@@ -832,10 +832,11 @@
                             <label for="tattoo-style">Estilo de Tatuaje Preferido *</label>
                             <select id="tattoo-style" name="tattoo-style" required>
                                 <option value="" disabled selected>Selecciona un estilo...</option>
-                                <option value="realism">Realismo</option>
+                                <option value="anime">Anime / Manga</option>
                                 <option value="color">Color</option>
-                                <option value="shadows">Sombras</option>
-                                <option value="anime">Anime / Cómic</option>
+                                <option value="conceptual">Conceptual / De Autor</option>
+                                <option value="fineline">Fine Line / Línea Fina</option>
+                                <option value="shadows">Sombras / Black & Grey</option>
                                 <option value="other">Otro / Aún no lo sé</option>
                             </select>
                             <span class="error-msg">Por favor, selecciona un estilo.</span>
@@ -932,7 +933,23 @@
                             </div>
                             <div class="form-group">
                                 <label for="client-phone">Número de Teléfono / WhatsApp *</label>
-                                <input type="tel" id="client-phone" name="client-phone" placeholder="Ej: +57 300 123 4567" required>
+                                <div class="phone-input-group" style="display: flex; gap: 10px;">
+                                    <select id="country-code" name="country-code" style="width: 110px; flex-shrink: 0; background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary); padding: 10px;" required>
+                                        <option value="+57" selected>🇨🇴 +57</option>
+                                        <option value="+1">🇺🇸 +1</option>
+                                        <option value="+34">🇪🇸 +34</option>
+                                        <option value="+52">🇲🇽 +52</option>
+                                        <option value="+54">🇦🇷 +54</option>
+                                        <option value="+56">🇨🇱 +56</option>
+                                        <option value="+58">🇻🇪 +58</option>
+                                        <option value="+51">🇵🇪 +51</option>
+                                        <option value="+593">🇪🇨 +593</option>
+                                        <option value="+506">🇨🇷 +506</option>
+                                        <option value="+507">🇵🇦 +507</option>
+                                        <option value="+591">🇧🇴 +591</option>
+                                    </select>
+                                    <input type="tel" id="client-phone" name="client-phone" placeholder="300 123 4567" style="flex-grow: 1;" required>
+                                </div>
                                 <span class="error-msg">Ingresa un número de contacto válido.</span>
                             </div>
                         </div>
@@ -984,10 +1001,10 @@
                             <div class="success-icon" style="color: var(--accent); text-shadow: var(--gold-glow); font-size: 4.5rem; margin-bottom: 15px;"><i class="fa-solid fa-circle-check"></i></div>
                             <h3 style="font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 15px; letter-spacing: 1px; text-transform: uppercase;">¡Sesión agendada!</h3>
                             <p style="color: var(--text-primary); font-size: 1.05rem; line-height: 1.7; margin-bottom: 30px; text-align: center; max-width: 600px; margin-left: auto; margin-right: auto;">
-                                ¡Tu sesión de diseño ha sido agendada con éxito! Muy pronto me comunicaré directamente contigo para coordinar los detalles e iniciar el proceso de tu obra. ¡Gracias por confiar en mí para contar tu historia!
+                                ¡Tu sesión de diseño ha sido agendada con éxito! Muy pronto un asesor de mi equipo se comunicará directamente contigo para coordinar los detalles e iniciar el proceso de tu obra. ¡Gracias por confiar en mí para contar tu historia!
                             </p>
                             <div style="text-align: center;">
-                                <button type="button" class="btn btn-gold" id="btn-reset-wizard" style="min-width: 220px;">Comenzar otro diseño</button>
+                                <button type="button" class="btn btn-gold" id="btn-reset-wizard" style="min-width: 220px;">Agendar una nueva asesoría</button>
                             </div>
                         </div>
                     </div>
