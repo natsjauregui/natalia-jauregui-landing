@@ -1264,6 +1264,739 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    /* ==========================================================================
+       NATALIA JAUREGUI - GAMIFIED WIZARD LOGIC
+       ========================================================================== */
+
+    const STORIES_DB = {
+        "Vínculo de Acero": "Homenaje a la promesa inquebrantable entre hermanos, plasmado con saturación de color anime de autor.",
+        "Mirada Felina": "Símbolo de fuerza interior y elegancia, integrado en la fluidez del antebrazo con un contraste de color impecable.",
+        "Memoria y Tiempo": "Una reflexión sobre la impermanencia, adaptada a las líneas anatómicas y realizada en sombras sutiles.",
+        "Ramillete de Primavera": "Una celebración de nuevos comienzos, trazado con la delicadeza del estilo fine line y toques de color suaves.",
+        "Busto Clásico": "Una reinterpretación del arte del renacimiento, esculpida en la piel con transiciones suaves de negro y gris.",
+        "Guerrero de la Muerte": "Representación de la superación personal, realizada en sombras de alto contraste mediante una sesión libre de dolor.",
+        "Shaka de Virgo": "La búsqueda del equilibrio espiritual y el autodescubrimiento, plasmado con técnica de sombras de autor.",
+        "Amor Materno": "La unión perpetua y la protección incondicional, inmortalizadas en una composición de alto realismo a color.",
+        "Meditación y Cosmos": "Conexión con el universo y paz interior, diseñado siguiendo el flujo natural del muslo.",
+        "Geometría Lunar": "Símbolo de las fases de la vida y el cambio, estructurado con precisión milimétrica fine line.",
+        "Serpiente y Peonías": "Representación de la transformación y la renovación, fluyendo con la silueta natural del cuerpo.",
+        "Guerrero Samurai": "El honor y la disciplina en un formato de espalda completa, realizado bajo el protocolo de confort total.",
+        "Senshi": "Espíritu de lucha y lealtad de la infancia, recreado con colores vibrantes y sombreado tipo cel-shading.",
+        "El Heraldo": "Símbolo de libertad y adaptabilidad, diseñado para acompañar el movimiento natural del hombro.",
+        "Furia Salvaje": "Fuerza indomable y resiliencia, plasmada con sombras dramáticas y saturación profunda.",
+        "Dualidad": "El equilibrio entre fuerzas opuestas, compuesto como un flujo visual en el antebrazo.",
+        "Renacer": "Una promesa de superación tras la tormenta, trazada con la sutil delicadeza de la línea fina.",
+        "Espíritu Libre": "Un recordatorio de autonomía y exploración personal, adaptado perfectamente al contorno lateral.",
+        "Cicatrices de Guerra": "Cover-up diseñado para transformar marcas del pasado en un lienzo de superación y belleza.",
+        "Guardián del Templo": "Protección y guía espiritual, estructurado como una obra de autor en sombras.",
+        "Llama Eterna": "Pasión y memoria de un ser querido, plasmado con pigmentos saturados a color.",
+        "Eternidad": "El ciclo infinito de la vida y el amor, inmortalizado con una delicadeza anatómica única."
+    };
+
+    const SVG_TEMPLATES = {
+        neutral: `
+            <svg viewBox="0 0 300 350" class="avatar-svg" id="avatar-svg">
+                <g class="svg-avatar-view front-view">
+                    <circle cx="80" cy="40" r="14" class="zone-path" data-zone="cabeza" />
+                    <path d="M 56,70 Q 80,66 104,70" class="zone-path" data-zone="hombro" />
+                    <path d="M 64,78 L 96,78 L 92,125 L 68,125 Z" class="zone-path fill-zone" data-zone="pecho" />
+                    <path d="M 68,127 L 92,127 L 88,170 L 72,170 Z" class="zone-path fill-zone" data-zone="costillas" />
+                    <path d="M 52,70 C 46,110 40,150 36,190" class="zone-path" data-zone="brazo" />
+                    <path d="M 108,70 C 114,110 120,150 126,190" class="zone-path" data-zone="brazo" />
+                    <path d="M 72,175 C 70,220 68,265 66,310" class="zone-path" data-zone="pierna" />
+                    <path d="M 88,175 C 90,220 92,265 94,310" class="zone-path" data-zone="pierna" />
+                </g>
+                <g class="svg-avatar-view back-view">
+                    <circle cx="220" cy="40" r="14" class="zone-path" data-zone="cabeza" />
+                    <path d="M 196,70 Q 220,66 244,70" class="zone-path" data-zone="hombro" />
+                    <path d="M 204,78 L 236,78 L 230,170 L 210,170 Z" class="zone-path fill-zone" data-zone="espalda" />
+                    <path d="M 192,70 C 186,110 180,150 174,190" class="zone-path" data-zone="brazo" />
+                    <path d="M 248,70 C 254,110 260,150 266,190" class="zone-path" data-zone="brazo" />
+                    <path d="M 212,175 C 210,220 208,265 206,310" class="zone-path" data-zone="pierna" />
+                    <path d="M 228,175 C 230,220 232,265 234,310" class="zone-path" data-zone="pierna" />
+                </g>
+            </svg>`,
+        female: `
+            <svg viewBox="0 0 300 350" class="avatar-svg" id="avatar-svg">
+                <g class="svg-avatar-view front-view">
+                    <circle cx="80" cy="40" r="14" class="zone-path" data-zone="cabeza" />
+                    <path d="M 58,68 Q 80,65 102,68" class="zone-path" data-zone="hombro" />
+                    <path d="M 64,74 Q 80,74 96,74 Q 90,105 92,125 Q 94,140 88,170 L 72,170 Q 66,140 68,125 Q 70,105 64,74 Z" class="zone-path fill-zone" data-zone="pecho" />
+                    <path d="M 72,127 L 88,127 Q 92,145 88,170 L 72,170 Q 68,145 72,127 Z" class="zone-path fill-zone" data-zone="costillas" />
+                    <path d="M 55,68 C 48,110 42,150 38,190" class="zone-path" data-zone="brazo" />
+                    <path d="M 105,68 C 112,110 118,150 122,190" class="zone-path" data-zone="brazo" />
+                    <path d="M 72,175 C 70,220 68,265 66,310" class="zone-path" data-zone="pierna" />
+                    <path d="M 88,175 C 90,220 92,265 94,310" class="zone-path" data-zone="pierna" />
+                </g>
+                <g class="svg-avatar-view back-view">
+                    <circle cx="220" cy="40" r="14" class="zone-path" data-zone="cabeza" />
+                    <path d="M 198,68 Q 220,65 242,68" class="zone-path" data-zone="hombro" />
+                    <path d="M 204,74 Q 220,74 236,74 Q 230,105 232,125 Q 234,140 228,170 L 212,170 Q 206,140 208,125 Q 210,105 204,74 Z" class="zone-path fill-zone" data-zone="espalda" />
+                    <path d="M 195,68 C 188,110 182,150 178,190" class="zone-path" data-zone="brazo" />
+                    <path d="M 245,68 C 252,110 258,150 262,190" class="zone-path" data-zone="brazo" />
+                    <path d="M 212,175 C 210,220 208,265 206,310" class="zone-path" data-zone="pierna" />
+                    <path d="M 228,175 C 230,220 232,265 234,310" class="zone-path" data-zone="pierna" />
+                </g>
+            </svg>`,
+        male: `
+            <svg viewBox="0 0 300 350" class="avatar-svg" id="avatar-svg">
+                <g class="svg-avatar-view front-view">
+                    <circle cx="80" cy="40" r="14" class="zone-path" data-zone="cabeza" />
+                    <path d="M 52,70 Q 80,67 108,70" class="zone-path" data-zone="hombro" />
+                    <path d="M 58,74 L 102,74 L 95,130 L 65,130 Z" class="zone-path fill-zone" data-zone="pecho" />
+                    <path d="M 65,130 L 95,130 L 90,170 L 70,170 Z" class="zone-path fill-zone" data-zone="costillas" />
+                    <path d="M 48,70 C 42,110 36,150 32,190" class="zone-path" data-zone="brazo" />
+                    <path d="M 112,70 C 118,110 124,150 128,190" class="zone-path" data-zone="brazo" />
+                    <path d="M 70,175 C 68,220 66,265 64,310" class="zone-path" data-zone="pierna" />
+                    <path d="M 90,175 C 92,220 94,265 96,310" class="zone-path" data-zone="pierna" />
+                </g>
+                <g class="svg-avatar-view back-view">
+                    <circle cx="220" cy="40" r="14" class="zone-path" data-zone="cabeza" />
+                    <path d="M 192,70 Q 220,67 248,70" class="zone-path" data-zone="hombro" />
+                    <path d="M 198,74 L 242,74 L 235,170 L 205,170 Z" class="zone-path fill-zone" data-zone="espalda" />
+                    <path d="M 188,70 C 182,110 176,150 172,190" class="zone-path" data-zone="brazo" />
+                    <path d="M 252,70 C 258,110 264,150 268,190" class="zone-path" data-zone="brazo" />
+                    <path d="M 210,175 C 208,220 206,265 204,310" class="zone-path" data-zone="pierna" />
+                    <path d="M 230,175 C 232,220 234,265 236,310" class="zone-path" data-zone="pierna" />
+                </g>
+            </svg>`
+    };
+
+    // State Variables
+    const gameState = {
+        name: '',
+        phone: '',
+        email: '',
+        instagram: '',
+        gender: 'neutral',
+        contexture: 'delgada',
+        zone: '',
+        subzone: '',
+        size: 'pequeno',
+        painMode: 'sin-dolor',
+        style: '',
+        meaning: '',
+        references: []
+    };
+
+    let gameSelectedFiles = [];
+
+    // Local Storage checking
+    function checkGameCompleted() {
+        if (localStorage.getItem('natalia_tattoo_wizard_completed') === 'true') {
+            applyOptimizedLanding();
+        } else {
+            // Active welcome screen
+            const welcomeOverlay = document.getElementById('welcome-overlay');
+            if (welcomeOverlay) {
+                welcomeOverlay.style.display = 'flex';
+                document.body.classList.add('game-active');
+            }
+        }
+    }
+
+    // Apply Optimized Landing Page State
+    function applyOptimizedLanding() {
+        document.body.classList.add('gamified-completed');
+        document.body.classList.remove('game-active');
+        
+        const welcome = document.getElementById('welcome-overlay');
+        const game = document.getElementById('gamified-experience');
+        if (welcome) welcome.style.display = 'none';
+        if (game) game.style.display = 'none';
+
+        // 1. Update Hero Title
+        const heroTitle = document.querySelector('.hero-title');
+        if (heroTitle) {
+            heroTitle.innerHTML = 'Tu lienzo está configurado.<br>Conoce cómo transformamos tu historia en una obra irrepetible.';
+        }
+
+        // 2. Show status banner
+        const statusBanner = document.getElementById('status-banner');
+        if (statusBanner) {
+            statusBanner.style.display = 'block';
+        }
+
+        // 3. Inject stories in gallery
+        document.querySelectorAll('.portfolio-item').forEach(item => {
+            const titleEl = item.querySelector('.item-title');
+            if (titleEl) {
+                const title = titleEl.textContent.trim();
+                const storyText = STORIES_DB[title] || "Una obra de autor personalizada, estructurada en armonía con las líneas naturales del cuerpo.";
+                const detailsContainer = item.querySelector('.item-details');
+                
+                // Avoid duplicating story
+                if (detailsContainer && !detailsContainer.querySelector('.item-story')) {
+                    const storyParagraph = document.createElement('p');
+                    storyParagraph.className = 'item-story';
+                    storyParagraph.textContent = storyText;
+                    detailsContainer.appendChild(storyParagraph);
+                }
+            }
+        });
+
+        // 4. Hide original booking form and show WhatsApp share block
+        const originalBooking = document.getElementById('cotizar');
+        const shareBlock = document.getElementById('share-block');
+        if (shareBlock) {
+            shareBlock.style.display = 'block';
+            
+            // Setup whatsapp link
+            const whatsappLink = document.getElementById('btn-share-whatsapp');
+            if (whatsappLink) {
+                const pageUrl = window.location.origin + window.location.pathname;
+                const textMessage = `¡Hola! Acabo de iniciar el diseño de mi próximo tatuaje con Natalia Jauregui y me acordé de ti. Te paso el link para que vivas la experiencia y armes tu idea: ${pageUrl}`;
+                whatsappLink.setAttribute('href', `https://api.whatsapp.com/send?text=${encodeURIComponent(textMessage)}`);
+            }
+        }
+
+        // 5. Update VSL layout or status
+        const vslTag = document.querySelector('#artista .section-tag');
+        if (vslTag) {
+            vslTag.textContent = "Ficha Técnica en Proceso";
+        }
+        const vslTitle = document.querySelector('#artista .section-title');
+        if (vslTitle) {
+            vslTitle.textContent = "Tu lienzo está en mesa técnica.";
+        }
+    }
+
+    // Reset game and return to welcome overlay
+    function resetTattooWizard() {
+        localStorage.removeItem('natalia_tattoo_wizard_completed');
+        document.body.classList.remove('gamified-completed');
+        window.location.reload();
+    }
+
+    // Bind event listeners to restart buttons
+    const restartBtnBanner = document.getElementById('btn-restart-wizard');
+    if (restartBtnBanner) {
+        restartBtnBanner.addEventListener('click', resetTattooWizard);
+    }
+    const resetWizardBtnGame = document.getElementById('btn-reset-wizard');
+    if (resetWizardBtnGame) {
+        resetWizardBtnGame.addEventListener('click', resetTattooWizard);
+    }
+
+    // Bind Avatar SVG interactivity
+    function bindAvatarEvents() {
+        const svg = document.getElementById('avatar-svg');
+        if (!svg) return;
+
+        const zonePaths = svg.querySelectorAll('.zone-path');
+        zonePaths.forEach(path => {
+            // Click logic
+            path.addEventListener('click', () => {
+                const zone = path.getAttribute('data-zone');
+                if (!zone) return;
+
+                // Set zone state
+                gameState.zone = zone;
+
+                // Sync with SVG classes (visual highlight)
+                zonePaths.forEach(p => {
+                    if (p.getAttribute('data-zone') === zone) {
+                        p.classList.add('active');
+                    } else {
+                        p.classList.remove('active');
+                    }
+                });
+
+                // Sync with general zone button highlights in form
+                const zoneButtons = document.querySelectorAll('.opt-btn-zone');
+                zoneButtons.forEach(btn => {
+                    if (btn.getAttribute('data-val') === zone) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+
+                // Update Stats Card
+                const statZone = document.getElementById('stat-zone');
+                if (statZone) {
+                    statZone.textContent = zone.charAt(0).toUpperCase() + zone.slice(1);
+                }
+            });
+        });
+    }
+
+    // Swap SVG contours based on selected gender
+    function swapAvatarSilhouette(gender) {
+        const svgWrapper = document.getElementById('avatar-svg-wrapper');
+        if (!svgWrapper) return;
+
+        gameState.gender = gender;
+
+        // Render template
+        svgWrapper.innerHTML = SVG_TEMPLATES[gender] || SVG_TEMPLATES['neutral'];
+
+        // Update stats
+        const statSil = document.getElementById('stat-silhouette');
+        if (statSil) {
+            statSil.textContent = gender === 'neutral' ? 'Neutro' : (gender === 'female' ? 'Femenino' : 'Masculino');
+        }
+
+        // Re-bind events on new SVG elements
+        bindAvatarEvents();
+        
+        // If a zone was previously selected, re-highlight it
+        if (gameState.zone) {
+            const svg = document.getElementById('avatar-svg');
+            if (svg) {
+                svg.querySelectorAll('.zone-path').forEach(p => {
+                    if (p.getAttribute('data-zone') === gameState.zone) {
+                        p.classList.add('active');
+                    }
+                });
+            }
+        }
+    }
+
+    // Bind Phase 1 to 5 Navigation
+    const phaseNextBtns = document.querySelectorAll('.phase-next');
+    const phasePrevBtns = document.querySelectorAll('.phase-prev-btn');
+
+    function showPhase(phaseNum) {
+        // Toggle phase contents
+        document.querySelectorAll('.phase-card').forEach(card => {
+            card.classList.remove('active');
+            if (parseInt(card.getAttribute('data-phase')) === phaseNum) {
+                card.classList.add('active');
+            }
+        });
+
+        // Update indicator
+        const currentPhaseNum = document.getElementById('current-phase-num');
+        if (currentPhaseNum) currentPhaseNum.textContent = phaseNum;
+
+        // Stop all phase videos currently playing
+        document.querySelectorAll('.phase-video').forEach(video => {
+            video.pause();
+        });
+
+        // Zoom SVG reset or zoom trigger in Fase 3
+        const svg = document.getElementById('avatar-svg');
+        if (svg) {
+            // Remove zoom classes
+            svg.classList.remove('zoom-brazo', 'zoom-pierna', 'zoom-espalda', 'zoom-pecho', 'zoom-hombro', 'zoom-costillas');
+            
+            if (phaseNum === 3 && gameState.zone) {
+                // Apply specific zoom class
+                svg.classList.add(`zoom-${gameState.zone}`);
+            }
+        }
+
+        // Trigger video play for current phase if exists
+        const currentVideo = document.getElementById(`phase-video-${phaseNum === 5 ? 3 : (phaseNum === 4 ? 2 : phaseNum)}`);
+        if (currentVideo) {
+            currentVideo.currentTime = 0;
+            currentVideo.play().catch(err => console.log("Autoplay blocked for phase " + phaseNum));
+        }
+    }
+
+    // Form inputs change validation
+    function validatePhase(phaseNum) {
+        if (phaseNum === 1) {
+            const nameInput = document.getElementById('game-name');
+            const phoneInput = document.getElementById('game-phone');
+            const emailInput = document.getElementById('game-email');
+            const sexSelect = document.getElementById('game-sex');
+
+            let isValid = true;
+            
+            [nameInput, phoneInput, emailInput, sexSelect].forEach(input => {
+                if (!input || !input.value.trim()) {
+                    input.closest('.form-group-game').classList.add('error');
+                    isValid = false;
+                } else {
+                    input.closest('.form-group-game').classList.remove('error');
+                }
+            });
+
+            if (isValid) {
+                // Save states
+                gameState.name = nameInput.value.trim();
+                gameState.phone = phoneInput.value.trim();
+                gameState.email = emailInput.value.trim();
+                gameState.instagram = document.getElementById('game-instagram').value.trim();
+                gameState.gender = sexSelect.value;
+
+                // Sync stats card
+                document.getElementById('stat-name').textContent = gameState.name;
+                document.getElementById('stat-contact').textContent = gameState.instagram ? `${gameState.instagram} (${gameState.phone})` : gameState.phone;
+
+                // Swap SVG according to sex select
+                swapAvatarSilhouette(gameState.gender);
+                
+                // Sync tabs button active
+                document.querySelectorAll('.avatar-tab').forEach(tab => {
+                    if (tab.getAttribute('data-gender') === gameState.gender) {
+                        tab.classList.add('active');
+                    } else {
+                        tab.classList.remove('active');
+                    }
+                });
+            }
+
+            return isValid;
+        }
+
+        if (phaseNum === 2) {
+            if (!gameState.zone) {
+                alert("Por favor, selecciona una zona en el modelo anatómico haciendo clic en el avatar, o elige de las opciones disponibles.");
+                return false;
+            }
+            return true;
+        }
+
+        if (phaseNum === 3) {
+            const subzoneInput = document.getElementById('game-subzone');
+            if (!subzoneInput || !subzoneInput.value.trim()) {
+                subzoneInput.closest('.form-group-game').classList.add('error');
+                return false;
+            } else {
+                subzoneInput.closest('.form-group-game').classList.remove('error');
+                gameState.subzone = subzoneInput.value.trim();
+                document.getElementById('stat-subzone').textContent = gameState.subzone;
+                return true;
+            }
+        }
+
+        if (phaseNum === 4) {
+            const styleSelect = document.getElementById('game-style');
+            const meaningInput = document.getElementById('game-meaning');
+
+            let isValid = true;
+            [styleSelect, meaningInput].forEach(input => {
+                if (!input || !input.value.trim()) {
+                    input.closest('.form-group-game').classList.add('error');
+                    isValid = false;
+                } else {
+                    input.closest('.form-group-game').classList.remove('error');
+                }
+            });
+
+            if (isValid) {
+                gameState.style = styleSelect.value;
+                gameState.meaning = meaningInput.value.trim();
+                
+                // Sync stats
+                document.getElementById('stat-style').textContent = styleSelect.options[styleSelect.selectedIndex].text;
+            }
+
+            return isValid;
+        }
+
+        return true;
+    }
+
+    // Phase Next button listener
+    phaseNextBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const currentPhase = parseInt(btn.closest('.phase-card').getAttribute('data-phase'));
+            const targetPhase = parseInt(btn.getAttribute('data-target'));
+
+            if (validatePhase(currentPhase)) {
+                if (targetPhase === 5) {
+                    // Send Form data to backend Google Apps Script prior to Calendly schedule loading
+                    submitGamifiedFicha();
+                } else {
+                    showPhase(targetPhase);
+                }
+            }
+        });
+    });
+
+    // Phase Prev button listener
+    phasePrevBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetPhase = parseInt(btn.getAttribute('data-target'));
+            showPhase(targetPhase);
+        });
+    });
+
+    // Option selectors binding - Contexture (Fase 2)
+    const contextureBtns = document.querySelectorAll('.opt-btn-contexture');
+    contextureBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            contextureBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            gameState.contexture = btn.getAttribute('data-val');
+            document.getElementById('stat-contexture').textContent = btn.textContent.trim();
+        });
+    });
+    // Initialize default contexture
+    const activeContexture = document.querySelector('.opt-btn-contexture.active');
+    if (activeContexture) {
+        document.getElementById('stat-contexture').textContent = activeContexture.textContent.trim();
+    }
+
+    // Option selectors binding - General Zone buttons (Fase 2)
+    const zoneBtns = document.querySelectorAll('.opt-btn-zone');
+    zoneBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            zoneBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const zone = btn.getAttribute('data-val');
+            gameState.zone = zone;
+            document.getElementById('stat-zone').textContent = btn.textContent.trim();
+
+            // Highlight path in SVG
+            const svg = document.getElementById('avatar-svg');
+            if (svg) {
+                svg.querySelectorAll('.zone-path').forEach(path => {
+                    if (path.getAttribute('data-zone') === zone) {
+                        path.classList.add('active');
+                    } else {
+                        path.classList.remove('active');
+                    }
+                });
+            }
+        });
+    });
+
+    // Option selectors binding - Size (Fase 2)
+    const sizeBtns = document.querySelectorAll('.opt-btn-size');
+    sizeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            sizeBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            gameState.size = btn.getAttribute('data-val');
+            document.getElementById('stat-size').textContent = btn.textContent.trim();
+        });
+    });
+    // Initialize default size
+    const activeSize = document.querySelector('.opt-btn-size.active');
+    if (activeSize) {
+        document.getElementById('stat-size').textContent = activeSize.textContent.trim();
+    }
+
+    // Option selectors binding - Pain experience (Fase 2)
+    const painBtns = document.querySelectorAll('.opt-btn-pain');
+    painBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            painBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            gameState.painMode = btn.getAttribute('data-val');
+            document.getElementById('stat-pain').textContent = btn.querySelector('strong').textContent.trim();
+        });
+    });
+    // Initialize default pain
+    const activePain = document.querySelector('.opt-btn-pain.active');
+    if (activePain) {
+        document.getElementById('stat-pain').textContent = activePain.querySelector('strong').textContent.trim();
+    }
+
+    // Avatar tabs binding (Silhouettes switch)
+    const avatarTabBtns = document.querySelectorAll('.avatar-tab');
+    avatarTabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            avatarTabBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const gender = btn.getAttribute('data-gender');
+            
+            // Sync with select field in Fase 1
+            const sexSelect = document.getElementById('game-sex');
+            if (sexSelect) {
+                sexSelect.value = gender;
+            }
+            
+            swapAvatarSilhouette(gender);
+        });
+    });
+
+    // Tooltip video overlay binding (Fase 2)
+    const btnTooltip = document.getElementById('btn-tooltip-fase2');
+    const tooltipModal = document.getElementById('tooltip-video-modal');
+    const closeTooltipBtn = tooltipModal ? tooltipModal.querySelector('.close-tooltip-video') : null;
+    const tooltipPlayer = document.getElementById('phase-video-tooltip');
+
+    if (btnTooltip && tooltipModal) {
+        btnTooltip.addEventListener('click', () => {
+            tooltipModal.style.display = 'flex';
+            if (tooltipPlayer) {
+                tooltipPlayer.currentTime = 0;
+                tooltipPlayer.play().catch(e => console.log(e));
+            }
+        });
+    }
+    if (closeTooltipBtn && tooltipModal) {
+        closeTooltipBtn.addEventListener('click', () => {
+            tooltipModal.style.display = 'none';
+            if (tooltipPlayer) tooltipPlayer.pause();
+        });
+    }
+
+    // Game file upload feedback (Fase 4)
+    const gameFileInput = document.getElementById('game-refs');
+    const gameFileList = document.getElementById('game-file-list');
+
+    if (gameFileInput && gameFileList) {
+        gameFileInput.addEventListener('change', (e) => {
+            const files = Array.from(e.target.files);
+            
+            files.forEach(file => {
+                if (gameSelectedFiles.some(f => f.name === file.name && f.size === file.size)) return;
+                
+                gameSelectedFiles.push(file);
+                
+                const fileItem = document.createElement('div');
+                fileItem.className = 'game-file-item';
+                
+                const sizeKB = (file.size / 1024).toFixed(1);
+                
+                const spanInfo = document.createElement('span');
+                const icon = document.createElement('i');
+                icon.className = 'fa-regular fa-image';
+                spanInfo.appendChild(icon);
+                spanInfo.appendChild(document.createTextNode(` ${file.name} (${sizeKB} KB)`));
+                
+                const spanRemove = document.createElement('span');
+                spanRemove.className = 'game-file-item-remove';
+                spanRemove.setAttribute('data-name', file.name);
+                const trashIcon = document.createElement('i');
+                trashIcon.className = 'fa-solid fa-trash-can';
+                spanRemove.appendChild(trashIcon);
+                
+                fileItem.appendChild(spanInfo);
+                fileItem.appendChild(spanRemove);
+                
+                gameFileList.appendChild(fileItem);
+            });
+            
+            bindGameFileRemoveEvents();
+        });
+    }
+
+    function bindGameFileRemoveEvents() {
+        const removeBtns = gameFileList.querySelectorAll('.game-file-item-remove');
+        removeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const fileName = btn.getAttribute('data-name');
+                gameSelectedFiles = gameSelectedFiles.filter(f => f.name !== fileName);
+                btn.closest('.game-file-item').remove();
+            });
+        });
+    }
+
+    // Submit consolidated gamified ficha data to Google Sheets
+    function submitGamifiedFicha() {
+        const loadingOverlay = document.getElementById('game-wizard-status');
+        const successPanel = document.getElementById('game-success-panel');
+
+        if (loadingOverlay) loadingOverlay.style.display = 'flex';
+        if (successPanel) successPanel.style.display = 'none';
+
+        // Clear and initialize Calendly inline widget inside game
+        const container = document.getElementById('game-calendly-container');
+        if (container) {
+            container.innerHTML = '';
+        }
+
+        // Show Fase 5 container immediately so loading spinner is visible
+        showPhase(5);
+
+        // Prep data payload mapping gamification details to Apps Script schema
+        const payload = {
+            style: gameState.style,
+            description: `[FICHA DE CO-CREACIÓN GAMIFICADA]\n` +
+                         `• Silueta: ${gameState.gender.toUpperCase()}\n` +
+                         `• Contextura: ${gameState.contexture.toUpperCase()}\n` +
+                         `• Zona General: ${gameState.zone.toUpperCase()}\n` +
+                         `• Ubicación Detallada: ${gameState.subzone}\n` +
+                         `• Protocolo Experiencia: ${gameState.painMode === 'sin-dolor' ? 'SESIÓN SIN DOLOR' : 'MODO CLÁSICO'}\n` +
+                         `• Tamaño Aproximado: ${gameState.size === 'pequeno' ? 'Pequeño (<10cm)' : (gameState.size === 'mediano' ? 'Mediano (10-20cm)' : 'Grande/Manga')}\n\n` +
+                         `• Historia y Significado:\n${gameState.meaning}`,
+            placement: `${gameState.zone.toUpperCase()} - ${gameState.subzone}`,
+            size: gameState.size === 'pequeno' ? '< 10cm' : (gameState.size === 'mediano' ? '10-20cm' : 'Manga completa/Grande'),
+            color: gameState.style === 'shadows' ? 'black-grey' : 'color',
+            clientName: gameState.name,
+            clientInstagram: gameState.instagram || 'No proporcionado',
+            clientEmail: gameState.email,
+            clientPhone: gameState.phone,
+            references: []
+        };
+
+        // Convert files if exists
+        const filePromises = gameSelectedFiles.map(file => compressAndResizeImage(file));
+
+        Promise.all(filePromises)
+            .then(base64Files => {
+                payload.references = base64Files;
+
+                // Send request using text/plain to prevent CORS preflight OPTIONS blocking
+                return fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'text/plain;charset=utf-8'
+                    },
+                    body: JSON.stringify(payload)
+                });
+            })
+            .then(response => {
+                if (!response.ok) throw new Error("La respuesta del servidor no es correcta.");
+                return response.json();
+            })
+            .then(res => {
+                if (res.status === 'success') {
+                    if (loadingOverlay) loadingOverlay.style.display = 'none';
+                    if (successPanel) successPanel.style.display = 'block';
+
+                    // Initialize Calendly inline inside the game
+                    if (container) {
+                        Calendly.initInlineWidget({
+                            url: 'https://calendly.com/nats-jauregui/30min?hide_gdpr_banner=1&locale=es',
+                            parentElement: container,
+                            prefill: {
+                                name: gameState.name,
+                                email: gameState.email
+                            },
+                            locale: 'es',
+                            embed_locale: 'es'
+                        });
+                    }
+                } else {
+                    throw new Error(res.message || "Error al registrar la ficha en Google Sheets.");
+                }
+            })
+            .catch(err => {
+                console.error("Error al enviar la ficha técnica:", err);
+                alert("Hubo un inconveniente al enviar tu ficha técnica:\n\n" + err.message + "\n\nPor favor, contacta directamente con nuestro equipo por WhatsApp.");
+                
+                // Return to phase 4
+                showPhase(4);
+            });
+    }
+
+    // Welcome overlay button trigger
+    const btnEnterExperience = document.getElementById('btn-enter-experience');
+    const welcomeOverlay = document.getElementById('welcome-overlay');
+    const gamifiedExperience = document.getElementById('gamified-experience');
+
+    if (btnEnterExperience && welcomeOverlay && gamifiedExperience) {
+        btnEnterExperience.addEventListener('click', () => {
+            welcomeOverlay.style.display = 'none';
+            gamifiedExperience.style.display = 'flex';
+            document.body.classList.add('game-active');
+            
+            // Autoplay phase 1 video
+            const welcomeVideo = document.getElementById('phase-video-1');
+            if (welcomeVideo) {
+                welcomeVideo.play().catch(e => console.log("Autoplay blocked video 1"));
+            }
+        });
+    }
+
+    // Check complete state on load
+    checkGameCompleted();
+
+    // Initialize SVG interactive paths
+    bindAvatarEvents();
+
     // Clean up inline styles on resize to desktop
     window.addEventListener('resize', () => {
         if (window.innerWidth >= 768) {
@@ -1278,3 +2011,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+

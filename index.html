@@ -22,6 +22,342 @@
 </head>
 <body>
 
+    <!-- Status Banner for Post-Completion -->
+    <div class="status-banner" id="status-banner" style="display: none;">
+        <div class="status-banner-content">
+            <span class="status-badge"><i class="fa-solid fa-spinner fa-spin"></i> En revisión</span>
+            <span class="status-text">Ficha técnica en revisión por el equipo de Natalia</span>
+            <button id="btn-restart-wizard" class="btn-restart-text" aria-label="Modificar lienzo">[ Modificar mi lienzo ]</button>
+        </div>
+    </div>
+
+    <!-- Welcome Reception Panel -->
+    <div class="welcome-overlay" id="welcome-overlay">
+        <div class="welcome-bg"></div>
+        <div class="welcome-content">
+            <img src="images/logo.png" alt="NATALIA JAUREGUI Logo" class="welcome-logo">
+            <h1 class="welcome-title">Experiencia de Co-Creación</h1>
+            <p class="welcome-subtitle">Bienvenido a la puerta de entrada de tu próximo proyecto artístico. Diseñar una obra permanente en tu piel requiere un proceso intencional, libre de improvisación.</p>
+            <button class="btn btn-gold-filled" id="btn-enter-experience">Entrar a la experiencia <i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <!-- Gamified Experience Dashboard -->
+    <div class="gamified-experience" id="gamified-experience" style="display: none;">
+        <div class="gamified-container">
+            
+            <!-- Columna Izquierda: Visualizador (Avatar + Stats) -->
+            <div class="gamified-visualizer">
+                <div class="visualizer-header">
+                    <h3>Tu Lienzo de Autor</h3>
+                </div>
+                
+                <!-- Avatar SVG Contours -->
+                <div class="avatar-container">
+                    <div class="avatar-tabs">
+                        <button class="avatar-tab active" data-gender="neutral">Neutro</button>
+                        <button class="avatar-tab" data-gender="female">Femenino</button>
+                        <button class="avatar-tab" data-gender="male">Masculino</button>
+                    </div>
+                    <div class="avatar-svg-wrapper" id="avatar-svg-wrapper">
+                        <svg viewBox="0 0 300 350" class="avatar-svg" id="avatar-svg">
+                            <!-- FRONT VIEW -->
+                            <g class="svg-avatar-view front-view">
+                                <circle cx="80" cy="40" r="14" class="zone-path" data-zone="cabeza" />
+                                <path d="M 56,70 Q 80,66 104,70" class="zone-path" data-zone="hombro" />
+                                <path d="M 64,78 L 96,78 L 92,125 L 68,125 Z" class="zone-path fill-zone" data-zone="pecho" />
+                                <path d="M 68,127 L 92,127 L 88,170 L 72,170 Z" class="zone-path fill-zone" data-zone="costillas" />
+                                <path d="M 52,70 C 46,110 40,150 36,190" class="zone-path" data-zone="brazo" />
+                                <path d="M 108,70 C 114,110 120,150 126,190" class="zone-path" data-zone="brazo" />
+                                <path d="M 72,175 C 70,220 68,265 66,310" class="zone-path" data-zone="pierna" />
+                                <path d="M 88,175 C 90,220 92,265 94,310" class="zone-path" data-zone="pierna" />
+                            </g>
+                            <!-- BACK VIEW -->
+                            <g class="svg-avatar-view back-view">
+                                <circle cx="220" cy="40" r="14" class="zone-path" data-zone="cabeza" />
+                                <path d="M 196,70 Q 220,66 244,70" class="zone-path" data-zone="hombro" />
+                                <path d="M 204,78 L 236,78 L 230,170 L 210,170 Z" class="zone-path fill-zone" data-zone="espalda" />
+                                <path d="M 192,70 C 186,110 180,150 174,190" class="zone-path" data-zone="brazo" />
+                                <path d="M 248,70 C 254,110 260,150 266,190" class="zone-path" data-zone="brazo" />
+                                <path d="M 212,175 C 210,220 208,265 206,310" class="zone-path" data-zone="pierna" />
+                                <path d="M 228,175 C 230,220 232,265 234,310" class="zone-path" data-zone="pierna" />
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                
+                <!-- Stats Card (Ficha Técnica en tiempo real) -->
+                <div class="stats-card" id="stats-card">
+                    <h4 class="stats-card-title"><i class="fa-solid fa-id-card"></i> Ficha de Co-Creación</h4>
+                    <div class="stats-grid">
+                        <div class="stat-item"><span class="stat-label">Jugador:</span> <span class="stat-val" id="stat-name">-</span></div>
+                        <div class="stat-item"><span class="stat-label">Contacto:</span> <span class="stat-val" id="stat-contact">-</span></div>
+                        <div class="stat-item"><span class="stat-label">Silueta:</span> <span class="stat-val" id="stat-silhouette">Neutro</span></div>
+                        <div class="stat-item"><span class="stat-label">Complexión:</span> <span class="stat-val" id="stat-contexture">-</span></div>
+                        <div class="stat-item"><span class="stat-label">Zona:</span> <span class="stat-val" id="stat-zone" style="color: var(--accent); font-weight: bold;">-</span></div>
+                        <div class="stat-item"><span class="stat-label">Detalle:</span> <span class="stat-val" id="stat-subzone">-</span></div>
+                        <div class="stat-item"><span class="stat-label">Tamaño:</span> <span class="stat-val" id="stat-size">-</span></div>
+                        <div class="stat-item"><span class="stat-label">Protocolo:</span> <span class="stat-val" id="stat-pain">-</span></div>
+                        <div class="stat-item"><span class="stat-label">Estilo:</span> <span class="stat-val" id="stat-style">-</span></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Columna Derecha: Fases del Asistente -->
+            <div class="gamified-wizard">
+                <div class="wizard-header">
+                    <div class="wizard-logo">
+                        <img src="images/logo.png" alt="Logo Nats" style="max-height: 40px; width: auto;">
+                    </div>
+                    <div class="phase-indicator">Fase <span id="current-phase-num">1</span> de 5</div>
+                </div>
+                
+                <!-- Contenedores de cada fase -->
+                <div class="phase-contents">
+                    
+                    <!-- FASE 1: Creación de Perfil -->
+                    <div class="phase-card active" data-phase="1">
+                        <div class="video-container">
+                            <div class="video-placeholder-title"><i class="fa-solid fa-circle-play"></i> Video 1: Bienvenida e Introducción</div>
+                            <video class="phase-video" id="phase-video-1" playsinline controls poster="images/natalia-about-photo.jpg">
+                                <source src="images/video-bienvenida.mp4" type="video/mp4">
+                                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+                            </video>
+                            <div class="video-caption-box">
+                                <p><strong>Nats:</strong> "¡Hola! Qué emoción que estés aquí. Diseñar un tatuaje no es solo poner tinta en la piel, es crear una pieza que realmente hable de ti. Para comenzar con tu proyecto y poder darte una asesoría personalizada de primer nivel, lo primero que haremos será crear tu perfil técnico. Responde las siguientes preguntas y ¡vamos a darle vida a tu idea!"</p>
+                            </div>
+                        </div>
+                        
+                        <div class="phase-form">
+                            <h3 class="phase-title">Datos del Nuevo Jugador</h3>
+                            <div class="form-grid">
+                                <div class="form-group-game">
+                                    <label for="game-name">Nombre Completo *</label>
+                                    <input type="text" id="game-name" placeholder="Ej: Santiago Restrepo" required>
+                                </div>
+                                <div class="form-group-game">
+                                    <label for="game-phone">WhatsApp / Teléfono *</label>
+                                    <input type="tel" id="game-phone" placeholder="Ej: 300 123 4567" required>
+                                </div>
+                                <div class="form-group-game">
+                                    <label for="game-email">Correo Electrónico *</label>
+                                    <input type="email" id="game-email" placeholder="Ej: correo@ejemplo.com" required>
+                                </div>
+                                <div class="form-group-game">
+                                    <label for="game-instagram">Usuario de Instagram</label>
+                                    <input type="text" id="game-instagram" placeholder="Ej: @santiago_restrepo">
+                                </div>
+                                <div class="form-group-game">
+                                    <label for="game-sex">Sexo / Silueta del Lienzo *</label>
+                                    <select id="game-sex" required>
+                                        <option value="" disabled selected>Selecciona una opción...</option>
+                                        <option value="neutral">Neutro / Sin género específico</option>
+                                        <option value="female">Femenino</option>
+                                        <option value="male">Masculino</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-gold-filled phase-next" data-target="2" id="btn-phase1-next">Crear Perfil y Continuar <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                    
+                    <!-- FASE 2: El Lienzo (Personalización del Avatar) -->
+                    <div class="phase-card" data-phase="2">
+                        <div class="phase-instruction">
+                            <h3 class="phase-title">Personalización de tu Lienzo</h3>
+                            <p class="phase-subtitle">Define las variables anatómicas iniciales y el modo en que viviremos el proceso en tu piel.</p>
+                        </div>
+                        
+                        <!-- Tooltip Video Flotante -->
+                        <div class="tooltip-video-wrapper">
+                            <button class="btn-tooltip-video" id="btn-tooltip-fase2">
+                                <i class="fa-solid fa-circle-play"></i> Natalia explica el Lienzo
+                            </button>
+                            <div class="tooltip-video-modal" id="tooltip-video-modal" style="display: none;">
+                                <div class="tooltip-video-container">
+                                    <button class="close-tooltip-video">&times;</button>
+                                    <video id="phase-video-tooltip" playsinline controls poster="images/natalia-about-photo.jpg">
+                                        <source src="images/video-tooltip.mp4" type="video/mp4">
+                                        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+                                    </video>
+                                    <div class="video-caption-box">
+                                        <p><strong>Nats:</strong> "¡Llegó la hora de personalizar tu lienzo! Selecciona en el modelo la zona exacta y el tamaño que tienes en mente. Además, indícame si prefieres tu sesión en modo clásico o con protocolo sin dolor. ¡Haz clic y ajustemos cada detalle!"</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="phase-options">
+                            <div class="option-section">
+                                <label class="section-label-game">1. Altura y Contextura Aproximada</label>
+                                <div class="grid-options-contexture">
+                                    <button class="opt-btn-contexture active" data-val="delgada">Delgada</button>
+                                    <button class="opt-btn-contexture" data-val="atletica">Atlética</button>
+                                    <button class="opt-btn-contexture" data-val="promedio">Promedio</button>
+                                    <button class="opt-btn-contexture" data-val="robusta">Robusta</button>
+                                </div>
+                            </div>
+                            
+                            <div class="option-section">
+                                <label class="section-label-game">2. Zona General del Cuerpo (Haz clic en el avatar o selecciona abajo)</label>
+                                <div class="grid-options-zone">
+                                    <button class="opt-btn-zone" data-val="brazo">Brazo</button>
+                                    <button class="opt-btn-zone" data-val="pierna">Pierna</button>
+                                    <button class="opt-btn-zone" data-val="espalda">Espalda</button>
+                                    <button class="opt-btn-zone" data-val="pecho">Pecho / Torso</button>
+                                    <button class="opt-btn-zone" data-val="hombro">Hombro</button>
+                                    <button class="opt-btn-zone" data-val="costillas">Costillas</button>
+                                </div>
+                            </div>
+                            
+                            <div class="option-section">
+                                <label class="section-label-game">3. Tamaño Aproximado</label>
+                                <div class="grid-options-size">
+                                    <button class="opt-btn-size active" data-val="pequeno">Pequeño (< 10cm)</button>
+                                    <button class="opt-btn-size" data-val="mediano">Mediano (10 - 20cm)</button>
+                                    <button class="opt-btn-size" data-val="grande">Manga Completa / Grande</button>
+                                </div>
+                            </div>
+                            
+                            <div class="option-section">
+                                <label class="section-label-game">4. Experiencia y Confort</label>
+                                <div class="grid-options-pain">
+                                    <button class="opt-btn-pain active" data-val="sin-dolor">
+                                        <i class="fa-solid fa-feather-pointed"></i>
+                                        <div class="opt-text-wrap">
+                                            <strong>Sesión Sin Dolor</strong>
+                                            <span>Uso de crema anestésica y protocolo calmante.</span>
+                                        </div>
+                                    </button>
+                                    <button class="opt-btn-pain" data-val="clasico">
+                                        <i class="fa-solid fa-bolt"></i>
+                                        <div class="opt-text-wrap">
+                                            <strong>Modo Clásico</strong>
+                                            <span>Experiencia tradicional de tatuaje.</span>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="phase-actions-row">
+                            <button type="button" class="btn btn-outline phase-prev-btn" data-target="1"><i class="fa-solid fa-arrow-left"></i> Atrás</button>
+                            <button type="button" class="btn btn-gold-filled phase-next" data-target="3" id="btn-phase2-next">Continuar <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                    
+                    <!-- FASE 3: Precisión de Zona y Ficha Técnica -->
+                    <div class="phase-card" data-phase="3">
+                        <div class="phase-instruction">
+                            <h3 class="phase-title">Precisión Anatómica</h3>
+                            <p class="phase-subtitle">Enfocamos el visor en la zona seleccionada. Indica la ubicación milimétrica de tu pieza.</p>
+                        </div>
+                        
+                        <div class="phase-options">
+                            <div class="form-group-game">
+                                <label for="game-subzone">Ubicación Detallada de la Zona *</label>
+                                <input type="text" id="game-subzone" placeholder="Ej: Cara interna del antebrazo, parte superior del muslo..." required>
+                                <span class="input-hint">Especifica la cara (interna/externa) o altura exacta.</span>
+                            </div>
+                        </div>
+                        
+                        <div class="phase-actions-row">
+                            <button type="button" class="btn btn-outline phase-prev-btn" data-target="2"><i class="fa-solid fa-arrow-left"></i> Atrás</button>
+                            <button type="button" class="btn btn-gold-filled phase-next" data-target="4" id="btn-phase3-next">Fijar Zona y Definir Arte <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                    
+                    <!-- FASE 4: El Concepto (Misión y Significado) -->
+                    <div class="phase-card" data-phase="4">
+                        <div class="video-container">
+                            <div class="video-placeholder-title"><i class="fa-solid fa-circle-play"></i> Video 2: Inspiración y Concepto</div>
+                            <video class="phase-video" id="phase-video-2" playsinline controls poster="images/natalia-about-photo.jpg">
+                                <source src="images/video-concepto.mp4" type="video/mp4">
+                                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+                            </video>
+                            <div class="video-caption-box">
+                                <p><strong>Nats:</strong> "Esta es mi parte favorita. Detrás de cada gran tatuaje hay un significado, una historia o una vibra única. Cuéntame qué quieres expresar, qué estilo tienes en mente y sube tus referencias. Entre más detalles me dejes, mejor comprenderé tu idea."</p>
+                            </div>
+                        </div>
+                        
+                        <div class="phase-form">
+                            <h3 class="phase-title">Definiendo el Arte</h3>
+                            
+                            <div class="form-group-game">
+                                <label for="game-style">Estilo Artístico Preferido *</label>
+                                <select id="game-style" required>
+                                    <option value="" disabled selected>Selecciona un estilo...</option>
+                                    <option value="anime">Anime / Manga</option>
+                                    <option value="color">Color de alta saturación</option>
+                                    <option value="conceptual">Conceptual / De Autor</option>
+                                    <option value="fineline">Fine Line / Línea Fina</option>
+                                    <option value="shadows">Sombras / Black & Grey</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group-game">
+                                <label for="game-meaning">Significado / Historia *</label>
+                                <textarea id="game-meaning" rows="4" placeholder="¿Qué representa esta pieza para ti? Describe tu idea, los elementos clave o el mensaje..." required></textarea>
+                            </div>
+                            
+                            <div class="form-group-game">
+                                <label>Imágenes de Referencia (Opcional)</label>
+                                <div class="file-upload-game" id="game-file-upload">
+                                    <input type="file" id="game-refs" accept="image/*" multiple class="file-input-game" style="display: none;">
+                                    <div class="file-upload-trigger-game" onclick="document.getElementById('game-refs').click()">
+                                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                                        <span>Sube tus imágenes de referencia</span>
+                                        <p class="file-info">Formatos: JPG, PNG. Máx. 5MB c/u. Máx. 3 archivos.</p>
+                                    </div>
+                                </div>
+                                <div id="game-file-list" class="game-file-list"></div>
+                            </div>
+                            
+                            <div class="phase-actions-row">
+                                <button type="button" class="btn btn-outline phase-prev-btn" data-target="3"><i class="fa-solid fa-arrow-left"></i> Atrás</button>
+                                <button type="button" class="btn btn-gold-filled phase-next" data-target="5" id="btn-phase4-next">Enviar Ficha Técnica <i class="fa-solid fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- FASE 5: Misión Cumplida y Agendamiento -->
+                    <div class="phase-card" data-phase="5">
+                        <div class="wizard-game-status" id="game-wizard-status" style="display: none;">
+                            <div class="spinner"></div>
+                            <h3>Consolidando tu Ficha Técnica...</h3>
+                            <p>Subiendo tu lienzo de autor al sistema de Aura Tattoo Studio.</p>
+                        </div>
+                        
+                        <div id="game-success-panel">
+                            <div class="video-container">
+                                <div class="video-placeholder-title"><i class="fa-solid fa-circle-play"></i> Video 3: Misión Cumplida y Cierre</div>
+                                <video class="phase-video" id="phase-video-3" playsinline controls poster="images/natalia-about-photo.jpg">
+                                    <source src="images/video-cierre.mp4" type="video/mp4">
+                                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+                                </video>
+                                <div class="video-caption-box">
+                                    <p><strong>Nats:</strong> "¡Felicidades, tu solicitud ya está completa! Toda la información de tu diseño ya quedó registrada. Muy pronto mi equipo se comunicará contigo por WhatsApp para confirmar tu asesoría personalizada y afinar los últimos detalles. ¡Gracias por confiar en mi arte, nos vemos muy pronto!"</p>
+                                </div>
+                            </div>
+                            
+                            <div class="phase-form text-center">
+                                <div class="game-success-icon" style="font-size: 4rem; color: var(--accent); margin-bottom: 20px;"><i class="fa-solid fa-circle-check"></i></div>
+                                <h3 class="phase-title">¡Ficha Recibida con Éxito!</h3>
+                                <p class="phase-subtitle" style="margin-bottom: 30px;">Hemos creado tu perfil técnico y bloqueado tu lienzo en el sistema.</p>
+                                
+                                <div class="calendly-game-block" style="border-top: 1px solid var(--border-color); padding-top: 25px; text-align: left;">
+                                    <h4 style="font-family: var(--font-heading); color: var(--accent); font-size: 1.1rem; text-align: center; margin-bottom: 10px; text-transform: uppercase;">Paso Final: Agenda tu Asesoría Digital</h4>
+                                    <p style="font-size: 0.9rem; text-align: center; margin-bottom: 20px; color: var(--text-secondary);">Elige el día y la hora para conversar sobre los detalles de tu pieza:</p>
+                                    <div id="game-calendly-container" style="min-width: 300px; height: 600px; overflow: hidden; border: 1px solid var(--border-color); border-radius: 4px; background: white;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Header / Navigation -->
     <header class="header" id="header">
         <div class="header-container">
@@ -1035,6 +1371,19 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Recommendation Block (Las mejores historias se comparten) -->
+    <section class="share-section section" id="share-block" style="display: none;">
+        <div class="container container-sm text-center">
+            <span class="section-tag">El Lujo de Compartir</span>
+            <h2 class="section-title">Las mejores historias se comparten.</h2>
+            <div class="title-divider center"></div>
+            <p class="section-subtitle" style="margin-bottom: 35px;">Diseñar un tatuaje con significado es una experiencia que marca un antes y un después. Si conoces a alguien que también lleva tiempo queriendo convertir un recuerdo, una promesa o una idea en una obra única, puedes obsequiarle acceso directo a este proceso de co-creación.</p>
+            <a href="#" class="btn btn-gold-filled" id="btn-share-whatsapp" target="_blank">
+                <i class="fa-brands fa-whatsapp"></i> Compartir experiencia por WhatsApp
+            </a>
         </div>
     </section>
 

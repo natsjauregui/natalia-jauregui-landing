@@ -2875,3 +2875,767 @@ select,
 textarea {
     border-radius: 10px !important;
 }
+
+/* ==========================================================================
+   NATALIA JAUREGUI - GAMIFIED CO-CREATION STYLES
+   ========================================================================== */
+
+/* State Toggles (Body Completed State) */
+body.gamified-completed #welcome-overlay,
+body.gamified-completed #gamified-experience {
+    display: none !important;
+}
+
+body.gamified-completed #status-banner {
+    display: block !important;
+}
+
+body.gamified-completed #share-block {
+    display: block !important;
+}
+
+body.gamified-completed #cotizar {
+    display: none !important;
+}
+
+body.gamified-completed .portfolio-item .item-story {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    font-weight: 300;
+    opacity: 0.85;
+    border-top: 1px solid rgba(212, 165, 165, 0.15);
+    padding-top: 8px;
+}
+
+/* Body Scroll Lock */
+body.game-active {
+    overflow: hidden !important;
+}
+
+/* 1. Status Banner */
+.status-banner {
+    background: #0d0d0d;
+    border-bottom: 1px solid var(--accent);
+    padding: 12px 0;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.status-banner-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    font-size: 0.85rem;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 20px;
+    flex-wrap: wrap;
+}
+.status-badge {
+    background: rgba(212, 165, 165, 0.15);
+    color: var(--accent);
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid var(--accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+}
+.status-text {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+.btn-restart-text {
+    color: var(--accent);
+    text-decoration: underline;
+    font-weight: 600;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 0.85rem;
+    transition: color 0.3s ease;
+}
+.btn-restart-text:hover {
+    color: var(--accent-hover);
+}
+
+/* 2. Welcome Overlay */
+.welcome-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000000;
+}
+.welcome-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.95)), url('images/natalia-hero-bg.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.4;
+    filter: blur(4px);
+}
+.welcome-content {
+    position: relative;
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+    padding: 40px;
+    border: 1px solid var(--border-color);
+    background: rgba(18, 18, 18, 0.95);
+    border-radius: 18px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8), var(--gold-glow);
+    backdrop-filter: blur(10px);
+    animation: welcomeFadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.welcome-logo {
+    max-height: 80px;
+    margin: 0 auto 30px;
+    filter: drop-shadow(0 0 5px rgba(212, 165, 165, 0.4));
+}
+.welcome-title {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+.welcome-subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 35px;
+    font-weight: 300;
+}
+
+@keyframes welcomeFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 3. Gamified Experience Layout */
+.gamified-experience {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #090909;
+    z-index: 9998;
+    overflow-y: auto;
+    padding: 30px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.gamified-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 40px;
+    min-height: calc(100vh - 60px);
+}
+
+@media (max-width: 992px) {
+    .gamified-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+/* Left Column - Visualizer */
+.gamified-visualizer {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    height: fit-content;
+    position: sticky;
+    top: 20px;
+}
+.visualizer-header h3 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    text-align: center;
+    border-bottom: 1px solid var(--border-color-light);
+    padding-bottom: 15px;
+    margin-bottom: 0;
+}
+
+/* Avatar Container & SVG Styles */
+.avatar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+.avatar-tabs {
+    display: flex;
+    background: var(--bg-tertiary);
+    border-radius: 30px;
+    padding: 4px;
+    border: 1px solid var(--border-color-light);
+}
+.avatar-tab {
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--text-muted);
+}
+.avatar-tab.active {
+    background: var(--accent);
+    color: var(--bg-primary);
+}
+
+.avatar-svg-wrapper {
+    width: 100%;
+    max-width: 320px;
+    background: var(--bg-tertiary);
+    border-radius: 14px;
+    border: 1px solid var(--border-color-light);
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+.avatar-svg {
+    width: 100%;
+    height: auto;
+    max-height: 350px;
+    transition: transform 0.5s ease;
+}
+
+/* SVG Active/Hover Styles */
+.zone-path {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.12);
+    stroke-width: 10px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.zone-path.fill-zone {
+    fill: rgba(255, 255, 255, 0.02);
+    stroke-width: 4px;
+}
+.zone-path:hover {
+    stroke: rgba(212, 165, 165, 0.5);
+}
+.zone-path.active {
+    stroke: var(--accent) !important;
+    filter: drop-shadow(0 0 8px var(--accent));
+}
+.zone-path.fill-zone.active {
+    fill: rgba(212, 165, 165, 0.25) !important;
+    stroke: var(--accent) !important;
+}
+
+/* SVG Zooms */
+.avatar-svg.zoom-brazo { transform: scale(1.6) translate(10px, -20px); }
+.avatar-svg.zoom-pierna { transform: scale(1.6) translate(0, -90px); }
+.avatar-svg.zoom-espalda { transform: scale(1.8) translate(-65px, -10px); }
+.avatar-svg.zoom-pecho { transform: scale(1.8) translate(35px, -15px); }
+.avatar-svg.zoom-hombro { transform: scale(2) translate(30px, 15px); }
+.avatar-svg.zoom-costillas { transform: scale(1.9) translate(30px, -35px); }
+
+/* Stats Card */
+.stats-card {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 15px 20px;
+}
+.stats-card-title {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    font-size: 0.85rem;
+}
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.stat-label {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.stat-val {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Right Column - Wizard Phases */
+.gamified-wizard {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+.wizard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color-light);
+    padding-bottom: 20px;
+}
+.phase-indicator {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    color: var(--accent);
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.phase-contents {
+    position: relative;
+    width: 100%;
+}
+.phase-card {
+    display: none;
+    flex-direction: column;
+    gap: 25px;
+    animation: phaseFadeIn 0.5s ease forwards;
+}
+.phase-card.active {
+    display: flex;
+}
+
+@keyframes phaseFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.phase-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-primary);
+    margin-bottom: 5px;
+}
+.phase-subtitle {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-weight: 300;
+    margin-bottom: 0;
+}
+
+/* Video Containers inside Wizard */
+.video-container {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color-light);
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.video-placeholder-title {
+    padding: 10px 15px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-color-light);
+    background: rgba(255,255,255,0.02);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.phase-video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    background: #000;
+}
+.video-caption-box {
+    padding: 15px 20px;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    background: rgba(0,0,0,0.2);
+    font-style: italic;
+    border-top: 1px solid var(--border-color-light);
+}
+
+/* Forms inside game card */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+@media (max-width: 576px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+.form-group-game {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.form-group-game label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+.form-group-game input,
+.form-group-game select,
+.form-group-game textarea {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    padding: 12px 15px;
+    color: var(--text-primary);
+    width: 100%;
+    transition: all 0.3s ease;
+}
+.form-group-game input:focus,
+.form-group-game select:focus,
+.form-group-game textarea:focus {
+    border-color: var(--accent);
+    box-shadow: var(--gold-glow);
+}
+.form-group-game select option {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+.form-group-game.error label {
+    color: #ff6b6b;
+}
+.form-group-game.error input,
+.form-group-game.error select,
+.form-group-game.error textarea {
+    border-color: #ff6b6b;
+}
+.input-hint {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+/* Tooltip Video Floating Style */
+.tooltip-video-wrapper {
+    margin-bottom: 5px;
+}
+.btn-tooltip-video {
+    background: rgba(212, 165, 165, 0.1);
+    border: 1px dashed var(--accent);
+    color: var(--accent);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+.btn-tooltip-video:hover {
+    background: rgba(212, 165, 165, 0.2);
+    color: var(--accent-hover);
+}
+.tooltip-video-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.85);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tooltip-video-container {
+    position: relative;
+    max-width: 500px;
+    width: 90%;
+    background: var(--bg-secondary);
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--gold-glow);
+}
+.close-tooltip-video {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 10;
+}
+
+/* Phase Options buttons grid style */
+.option-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.section-label-game {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+.grid-options-contexture,
+.grid-options-zone,
+.grid-options-size {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 10px;
+}
+.opt-btn-contexture,
+.opt-btn-zone,
+.opt-btn-size {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color-light);
+    color: var(--text-secondary);
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 500;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+.opt-btn-contexture:hover,
+.opt-btn-zone:hover,
+.opt-btn-size:hover {
+    border-color: rgba(212, 165, 165, 0.4);
+    color: var(--text-primary);
+}
+.opt-btn-contexture.active,
+.opt-btn-zone.active,
+.opt-btn-size.active {
+    border-color: var(--accent);
+    background: rgba(212, 165, 165, 0.08);
+    color: var(--accent);
+    font-weight: 600;
+    box-shadow: var(--gold-glow);
+}
+
+.grid-options-pain {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+@media (max-width: 576px) {
+    .grid-options-pain {
+        grid-template-columns: 1fr;
+    }
+}
+.opt-btn-pain {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color-light);
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+.opt-btn-pain i {
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+    transition: color 0.3s ease;
+}
+.opt-btn-pain.active i {
+    color: var(--accent);
+}
+.opt-text-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.opt-text-wrap strong {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+}
+.opt-text-wrap span {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    line-height: 1.3;
+}
+.opt-btn-pain:hover {
+    border-color: rgba(212, 165, 165, 0.4);
+}
+.opt-btn-pain.active {
+    border-color: var(--accent);
+    background: rgba(212, 165, 165, 0.08);
+    box-shadow: var(--gold-glow);
+}
+
+.phase-actions-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    border-top: 1px solid var(--border-color-light);
+    padding-top: 20px;
+}
+
+/* File Upload game styles */
+.file-upload-game {
+    border: 2px dashed var(--border-color);
+    background: rgba(0,0,0,0.15);
+    border-radius: 10px;
+    padding: 25px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.file-upload-game:hover {
+    border-color: var(--accent);
+    background: rgba(212, 165, 165, 0.02);
+}
+.file-upload-trigger-game i {
+    font-size: 2.2rem;
+    color: var(--accent);
+    margin-bottom: 12px;
+}
+.file-upload-trigger-game span {
+    display: block;
+    font-size: 0.92rem;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+.game-file-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 15px;
+}
+.game-file-item {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color-light);
+    border-radius: 6px;
+    padding: 10px 15px;
+    font-size: 0.82rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.game-file-item-remove {
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+.game-file-item-remove:hover {
+    color: #ff6b6b;
+}
+
+/* Success status overlay inside Fase 5 */
+.wizard-game-status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+}
+.wizard-game-status .spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(212, 165, 165, 0.1);
+    border-radius: 50%;
+    border-top-color: var(--accent);
+    animation: spin 1s ease-in-out infinite;
+    margin-bottom: 20px;
+}
+.game-success-icon {
+    animation: successPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes successPop {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Portfolio Hover Stories adjustment */
+.portfolio-item .item-story {
+    display: none; /* Hidden by default, displayed via .gamified-completed */
+}
+
+/* Share Section Style */
+.share-section {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+.share-section .btn-gold-filled {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
