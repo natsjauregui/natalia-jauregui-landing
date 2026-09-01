@@ -3126,6 +3126,40 @@ body.game-active {
     }
 }
 
+@media (max-width: 768px) {
+    .welcome-content {
+        padding: 24px 16px;
+    }
+    .welcome-logo {
+        max-height: 70px;
+        margin-bottom: 18px;
+    }
+    .welcome-title {
+        font-size: clamp(24px, 6vw, 36px);
+        letter-spacing: 3px;
+        margin-bottom: 12px;
+    }
+    .welcome-statement {
+        font-size: 11px;
+        letter-spacing: 3px;
+        margin-bottom: 30px;
+    }
+    .btn-bugatti-cta {
+        padding: 14px 34px;
+        width: 100%;
+        max-width: 290px;
+    }
+    .btn-bugatti-cta .cta-label {
+        font-size: 12px;
+        letter-spacing: 3px;
+    }
+    .welcome-brand-footer {
+        font-size: 9px;
+        letter-spacing: 3px;
+        margin-top: 24px;
+    }
+}
+
 /* 3. Gamified Experience Layout */
 .gamified-experience {
     position: fixed;
