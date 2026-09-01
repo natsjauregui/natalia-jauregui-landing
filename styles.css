@@ -3019,9 +3019,9 @@ body.game-active {
 }
 
 .welcome-logo {
-    max-height: 86px;
+    max-height: 112px;
     margin-bottom: 24px;
-    filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.25));
+    filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.28));
 }
 
 .welcome-title {
@@ -3131,8 +3131,8 @@ body.game-active {
         padding: 24px 16px;
     }
     .welcome-logo {
-        max-height: 70px;
-        margin-bottom: 18px;
+        max-height: 92px;
+        margin-bottom: 20px;
     }
     .welcome-title {
         font-size: clamp(24px, 6vw, 36px);
