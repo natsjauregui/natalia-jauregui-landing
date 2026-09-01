@@ -1524,15 +1524,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Swap SVG contours based on selected gender
+    let currentMannequinView = 'front';
+
+    function updateLiveMannequin() {
+        const liveImg = document.getElementById('mannequin-live-view');
+        if (!liveImg) return;
+        const g = gameState.gender || 'male';
+        liveImg.src = `images/mannequins/mannequin-${g}-${currentMannequinView}.webp`;
+    }
+
+    // Swap 3D Mannequin based on selected gender
     function swapAvatarSilhouette(gender) {
-        const svgWrapper = document.getElementById('avatar-svg-wrapper');
-        if (!svgWrapper) return;
-
         gameState.gender = gender;
-
-        // Render template
-        svgWrapper.innerHTML = SVG_TEMPLATES[gender] || SVG_TEMPLATES['neutral'];
 
         // Update stats
         const statSil = document.getElementById('stat-silhouette');
@@ -1540,20 +1543,8 @@ document.addEventListener('DOMContentLoaded', () => {
             statSil.textContent = gender === 'neutral' ? 'No Binario / Neutro' : (gender === 'female' ? 'Femenino' : 'Masculino');
         }
 
-        // Re-bind events on new SVG elements
-        bindAvatarEvents();
-        
-        // If a zone was previously selected, re-highlight it
-        if (gameState.zone) {
-            const svg = document.getElementById('avatar-svg');
-            if (svg) {
-                svg.querySelectorAll('.zone-path').forEach(p => {
-                    if (p.getAttribute('data-zone') === gameState.zone) {
-                        p.classList.add('active');
-                    }
-                });
-            }
-        }
+        // Update 3D viewer
+        updateLiveMannequin();
     }
 
     // Bind Phase 1 to 5 Navigation
@@ -1778,22 +1769,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Avatar tabs binding (Silhouettes switch)
-    const avatarTabBtns = document.querySelectorAll('.avatar-tab');
-    avatarTabBtns.forEach(btn => {
+    // 360 Mannequin View Tabs Binding (Frente, Espalda, Perfiles)
+    const mannequinViewTabs = document.querySelectorAll('#mannequin-view-tabs .avatar-tab');
+    mannequinViewTabs.forEach(btn => {
         btn.addEventListener('click', () => {
-            avatarTabBtns.forEach(b => b.classList.remove('active'));
+            mannequinViewTabs.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             
-            const gender = btn.getAttribute('data-gender');
-            
-            // Sync with select field in Fase 1
-            const sexSelect = document.getElementById('game-sex');
-            if (sexSelect) {
-                sexSelect.value = gender;
-            }
-            
-            swapAvatarSilhouette(gender);
+            const view = btn.getAttribute('data-view') || 'front';
+            currentMannequinView = view;
+            updateLiveMannequin();
         });
     });
 

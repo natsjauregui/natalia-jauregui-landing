@@ -4005,3 +4005,36 @@ body.game-active {
     letter-spacing: 1px;
 }
 
+/* Visualizador Anatómico 3D de Alta Fidelidad (Tu Lienzo) */
+.mannequin-viewer-box {
+    width: 100%;
+    min-height: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.04) 0%, rgba(0, 0, 0, 0.5) 85%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 20px 15px;
+    margin-top: 14px;
+    overflow: hidden;
+}
+
+.mannequin-live-view {
+    max-height: 350px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 12px 25px rgba(0, 0, 0, 0.95));
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mannequin-zone-glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+}
+
