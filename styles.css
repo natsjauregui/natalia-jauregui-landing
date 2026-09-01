@@ -3501,29 +3501,35 @@ body.game-active {
 .silhouette-selection-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
+}
+
+.atelier-header-center {
+    text-align: center;
+    margin-bottom: 8px;
 }
 
 .atelier-step-title {
     font-family: var(--font-heading);
-    font-size: 1.25rem;
+    font-size: 1.45rem;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
+    letter-spacing: 2px;
     color: #FFFFFF;
-    margin-bottom: 2px;
+    margin-bottom: 6px;
 }
 
 .atelier-step-subtitle {
-    font-size: 0.88rem;
-    color: #9E9E9E;
-    line-height: 1.5;
-    margin-bottom: 12px;
+    font-size: 0.92rem;
+    color: #A0A0A0;
+    line-height: 1.6;
+    max-width: 620px;
+    margin: 0 auto;
 }
 
 .silhouette-cards-grid.three-columns {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    gap: 18px;
     margin-bottom: 24px;
 }
 
@@ -3536,8 +3542,8 @@ body.game-active {
 .silhouette-card {
     background: #141414;
     border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 16px;
-    padding: 20px 16px;
+    border-radius: 18px;
+    padding: 22px 18px 24px;
     cursor: pointer;
     position: relative;
     display: flex;
@@ -3549,8 +3555,8 @@ body.game-active {
 
 .silhouette-card .card-radio-indicator {
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: 14px;
+    right: 14px;
     width: 18px;
     height: 18px;
     border-radius: 50%;
@@ -3562,21 +3568,22 @@ body.game-active {
 
 .silhouette-img-wrapper {
     width: 100%;
-    height: 200px;
+    height: 290px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 14px;
-    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.04) 0%, transparent 70%);
-    border-radius: 12px;
-    padding: 8px;
+    margin-bottom: 16px;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, transparent 75%);
+    border-radius: 14px;
+    padding: 12px;
 }
 
 .silhouette-mannequin-img {
-    max-height: 100%;
+    height: 100%;
+    width: auto;
     max-width: 100%;
     object-fit: contain;
-    filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.8));
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.9));
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 

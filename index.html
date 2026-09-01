@@ -18,7 +18,7 @@
     <!-- Calendly Widget CSS -->
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css?v=107">
+    <link rel="stylesheet" href="styles.css?v=108">
 </head>
 <body>
 
@@ -129,36 +129,20 @@
                 <!-- Contenedores de cada fase -->
                 <div class="phase-contents">
                     
-                    <!-- PANTALLA 2 (Fase 1): Bienvenida al Atelier + Selector de Silueta 2D -->
+                    <!-- PANTALLA 2 (Fase 1): Selector de Lienzo Base (Siluetas 2D de Alta Fidelidad) -->
                     <div class="phase-card active" data-phase="1">
-                        <!-- Video 1: Placeholder Oscuro de Alta Gama con Guion Técnico -->
-                        <div class="atelier-video-box">
-                            <div class="video-production-badge">
-                                <span class="badge-pulse"></span>
-                                <span>VIDEO 1 // NATALIA JAUREGUI (EN PRODUCCIÓN)</span>
-                            </div>
-                            <div class="video-script-card">
-                                <div class="script-author">
-                                    <i class="fa-solid fa-feather-pointed"></i>
-                                    <span>GUION DIRECTIVO // FILOSOFÍA DE CO-CREACIÓN</span>
-                                </div>
-                                <blockquote class="script-quote">
-                                    "Hola. Si estás aquí, es porque comprendes que un tatuaje no es un dibujo decorativo colocado al azar; es una extensión de tu identidad y de tu anatomía. Mi nombre es Natalia Jauregui, y mi enfoque se basa en la conceptualización de autor, el flujo anatómico y la delicadeza narrativa. En los próximos minutos, no vamos a elegir un tatuaje de catálogo. Vamos a co-crear tu obra. Primero, definamos el lienzo sobre el que construiremos tu historia."
-                                </blockquote>
-                            </div>
-                        </div>
-
-                        <!-- Selector Anatómico de Silueta 2D -->
                         <div class="silhouette-selection-wrapper">
-                            <h3 class="atelier-step-title">1. Define tu Lienzo Base</h3>
-                            <p class="atelier-step-subtitle">Selecciona la silueta anatómica sobre la cual proyectaremos el flujo y proporción de tu diseño.</p>
+                            <div class="atelier-header-center">
+                                <h3 class="atelier-step-title">Define tu Lienzo Base</h3>
+                                <p class="atelier-step-subtitle">Selecciona la silueta anatómica sobre la cual proyectaremos el flujo, volumen y proporción de tu diseño de autor.</p>
+                            </div>
                             
                             <div class="silhouette-cards-grid three-columns">
                                 <!-- Opción 1: Masculino -->
                                 <div class="silhouette-card" data-gender="male" id="card-silhouette-male">
                                     <div class="card-radio-indicator"></div>
                                     <div class="silhouette-img-wrapper">
-                                        <img src="images/mannequins/select-male.webp" alt="Maniquí Masculino" class="silhouette-mannequin-img">
+                                        <img src="images/mannequins/mannequin-male-front.webp" alt="Maniquí Masculino Cuerpo Completo" class="silhouette-mannequin-img">
                                     </div>
                                     <h4 class="silhouette-name">Masculino</h4>
                                     <span class="silhouette-posture-tag">CONFIANZA</span>
@@ -169,7 +153,7 @@
                                 <div class="silhouette-card" data-gender="female" id="card-silhouette-female">
                                     <div class="card-radio-indicator"></div>
                                     <div class="silhouette-img-wrapper">
-                                        <img src="images/mannequins/select-female.webp" alt="Maniquí Femenino" class="silhouette-mannequin-img">
+                                        <img src="images/mannequins/mannequin-female-front.webp" alt="Maniquí Femenino Cuerpo Completo" class="silhouette-mannequin-img">
                                     </div>
                                     <h4 class="silhouette-name">Femenino</h4>
                                     <span class="silhouette-posture-tag">ELEGANCIA</span>
@@ -180,7 +164,7 @@
                                 <div class="silhouette-card" data-gender="neutral" id="card-silhouette-neutral">
                                     <div class="card-radio-indicator"></div>
                                     <div class="silhouette-img-wrapper">
-                                        <img src="images/mannequins/select-neutral.webp" alt="Maniquí Indefinido / No Binario" class="silhouette-mannequin-img">
+                                        <img src="images/mannequins/mannequin-neutral-front.webp" alt="Maniquí No Binario / Neutro Cuerpo Completo" class="silhouette-mannequin-img">
                                     </div>
                                     <h4 class="silhouette-name">No Binario / Neutro</h4>
                                     <span class="silhouette-posture-tag">EQUILIBRIO</span>
@@ -1647,6 +1631,6 @@
     <!-- Calendly Widget JS -->
     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
     <!-- Custom JS -->
-    <script src="script.js?v=107"></script>
+    <script src="script.js?v=108"></script>
 </body>
 </html>
