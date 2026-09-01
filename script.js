@@ -1381,15 +1381,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let gameSelectedFiles = [];
 
-    // Local Storage checking
+    // Local Storage checking & P1 display assurance
     function checkGameCompleted() {
-        if (localStorage.getItem('natalia_tattoo_wizard_completed') === 'true') {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('state') === 'completed' && localStorage.getItem('natalia_tattoo_wizard_completed') === 'true') {
             applyOptimizedLanding();
         } else {
-            // Active welcome screen
+            // Active welcome screen (P1)
             const welcomeOverlay = document.getElementById('welcome-overlay');
             if (welcomeOverlay) {
                 welcomeOverlay.style.display = 'flex';
+                welcomeOverlay.style.opacity = '1';
+                welcomeOverlay.style.transform = 'translateY(0)';
                 document.body.classList.add('game-active');
             }
         }
