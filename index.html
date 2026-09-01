@@ -18,7 +18,7 @@
     <!-- Calendly Widget CSS -->
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css?v=106">
+    <link rel="stylesheet" href="styles.css?v=107">
 </head>
 <body>
 
@@ -153,23 +153,38 @@
                             <h3 class="atelier-step-title">1. Define tu Lienzo Base</h3>
                             <p class="atelier-step-subtitle">Selecciona la silueta anatómica sobre la cual proyectaremos el flujo y proporción de tu diseño.</p>
                             
-                            <div class="silhouette-cards-grid">
+                            <div class="silhouette-cards-grid three-columns">
+                                <!-- Opción 1: Masculino -->
+                                <div class="silhouette-card" data-gender="male" id="card-silhouette-male">
+                                    <div class="card-radio-indicator"></div>
+                                    <div class="silhouette-img-wrapper">
+                                        <img src="images/mannequins/select-male.webp" alt="Maniquí Masculino" class="silhouette-mannequin-img">
+                                    </div>
+                                    <h4 class="silhouette-name">Masculino</h4>
+                                    <span class="silhouette-posture-tag">CONFIANZA</span>
+                                    <p class="silhouette-desc">Planos musculares definidos, hombros estructurados y porte de autoridad.</p>
+                                </div>
+
+                                <!-- Opción 2: Femenino -->
                                 <div class="silhouette-card" data-gender="female" id="card-silhouette-female">
                                     <div class="card-radio-indicator"></div>
-                                    <div class="silhouette-icon">
-                                        <i class="fa-solid fa-venus"></i>
+                                    <div class="silhouette-img-wrapper">
+                                        <img src="images/mannequins/select-female.webp" alt="Maniquí Femenino" class="silhouette-mannequin-img">
                                     </div>
-                                    <h4 class="silhouette-name">Silueta Femenina</h4>
+                                    <h4 class="silhouette-name">Femenino</h4>
+                                    <span class="silhouette-posture-tag">ELEGANCIA</span>
                                     <p class="silhouette-desc">Líneas anatómicas curvas, fluidez de contorno y proporciones orgánicas.</p>
                                 </div>
 
-                                <div class="silhouette-card" data-gender="male" id="card-silhouette-male">
+                                <!-- Opción 3: Indefinido / No Binario -->
+                                <div class="silhouette-card" data-gender="neutral" id="card-silhouette-neutral">
                                     <div class="card-radio-indicator"></div>
-                                    <div class="silhouette-icon">
-                                        <i class="fa-solid fa-mars"></i>
+                                    <div class="silhouette-img-wrapper">
+                                        <img src="images/mannequins/select-neutral.webp" alt="Maniquí Indefinido / No Binario" class="silhouette-mannequin-img">
                                     </div>
-                                    <h4 class="silhouette-name">Silueta Masculina</h4>
-                                    <p class="silhouette-desc">Líneas anatómicas estructuradas, hombros definidos y planos musculares marcados.</p>
+                                    <h4 class="silhouette-name">No Binario / Neutro</h4>
+                                    <span class="silhouette-posture-tag">EQUILIBRIO</span>
+                                    <p class="silhouette-desc">Proporciones neutras, armonía simétrica y balance anatómico sutil.</p>
                                 </div>
                             </div>
 
@@ -1632,6 +1647,6 @@
     <!-- Calendly Widget JS -->
     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
     <!-- Custom JS -->
-    <script src="script.js?v=106"></script>
+    <script src="script.js?v=107"></script>
 </body>
 </html>

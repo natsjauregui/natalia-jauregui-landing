@@ -1537,7 +1537,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update stats
         const statSil = document.getElementById('stat-silhouette');
         if (statSil) {
-            statSil.textContent = gender === 'neutral' ? 'Neutro' : (gender === 'female' ? 'Femenino' : 'Masculino');
+            statSil.textContent = gender === 'neutral' ? 'No Binario / Neutro' : (gender === 'female' ? 'Femenino' : 'Masculino');
         }
 
         // Re-bind events on new SVG elements
