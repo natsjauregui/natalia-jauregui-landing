@@ -3408,42 +3408,242 @@ body.game-active {
     margin-bottom: 0;
 }
 
-/* Video Containers inside Wizard */
-.video-container {
-    background: var(--bg-tertiary);
-    border: 1px solid var(--border-color-light);
-    border-radius: 14px;
-    overflow: hidden;
+/* Atelier Video Box & Script Placeholder (P2 / Screen 2) */
+.atelier-video-box {
+    background: #0E0E0E;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
     display: flex;
     flex-direction: column;
+    gap: 16px;
+    position: relative;
+    overflow: hidden;
 }
-.video-placeholder-title {
-    padding: 10px 15px;
-    font-size: 0.8rem;
-    text-transform: uppercase;
+
+.atelier-video-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+.video-production-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(212, 165, 165, 0.08);
+    border: 1px solid rgba(212, 165, 165, 0.25);
+    padding: 6px 14px;
+    border-radius: 30px;
+    width: fit-content;
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    color: var(--accent);
     font-weight: 600;
-    letter-spacing: 1px;
-    color: var(--text-secondary);
-    border-bottom: 1px solid var(--border-color-light);
-    background: rgba(255,255,255,0.02);
+}
+
+.badge-pulse {
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent);
+    animation: badgeBlink 1.8s infinite ease-in-out;
+}
+
+@keyframes badgeBlink {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.75); }
+}
+
+.video-script-card {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 18px 20px;
+}
+
+.script-author {
     display: flex;
     align-items: center;
     gap: 8px;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    color: #A0A0A0;
+    margin-bottom: 12px;
+    text-transform: uppercase;
 }
-.phase-video {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-    background: #000;
+
+.script-author i {
+    color: var(--accent);
 }
-.video-caption-box {
-    padding: 15px 20px;
-    font-size: 0.88rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
-    background: rgba(0,0,0,0.2);
+
+.script-quote {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: #F0F0F0;
+    line-height: 1.7;
     font-style: italic;
-    border-top: 1px solid var(--border-color-light);
+    font-weight: 300;
+    border-left: 2px solid var(--accent);
+    padding-left: 16px;
+    margin: 0;
+}
+
+/* Selector Anatómico de Silueta 2D */
+.silhouette-selection-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.atelier-step-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #FFFFFF;
+    margin-bottom: 2px;
+}
+
+.atelier-step-subtitle {
+    font-size: 0.88rem;
+    color: #9E9E9E;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.silhouette-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 600px) {
+    .silhouette-cards-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.silhouette-card {
+    background: #141414;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    padding: 24px 20px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.silhouette-card .card-radio-indicator {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.silhouette-card .silhouette-icon {
+    font-size: 2rem;
+    color: #888888;
+    margin-bottom: 14px;
+    transition: all 0.3s ease;
+}
+
+.silhouette-card .silhouette-name {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.silhouette-card .silhouette-desc {
+    font-size: 0.8rem;
+    color: #8E8E8E;
+    line-height: 1.45;
+    font-weight: 300;
+}
+
+.silhouette-card:hover {
+    border-color: rgba(212, 165, 165, 0.4);
+    transform: translateY(-3px);
+    background: #181818;
+}
+
+.silhouette-card.selected {
+    border-color: var(--accent);
+    background: linear-gradient(145deg, rgba(212, 165, 165, 0.12) 0%, rgba(18, 18, 18, 0.95) 100%);
+    box-shadow: 0 0 25px rgba(212, 165, 165, 0.2);
+    transform: translateY(-2px);
+}
+
+.silhouette-card.selected .card-radio-indicator {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+}
+
+.silhouette-card.selected .silhouette-icon {
+    color: var(--accent);
+    transform: scale(1.1);
+}
+
+.atelier-action-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.btn-atelier-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #D4A5A5 0%, #B88585 100%);
+    color: #0A0A0A;
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 15px 36px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(212, 165, 165, 0.25);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-atelier-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(212, 165, 165, 0.45);
+    background: linear-gradient(135deg, #E0B5B5 0%, #C49292 100%);
+}
+
+.btn-atelier-primary:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    box-shadow: none;
+    filter: grayscale(80%);
 }
 
 /* Forms inside game card */

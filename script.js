@@ -1601,48 +1601,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Form inputs change validation
     function validatePhase(phaseNum) {
         if (phaseNum === 1) {
-            const nameInput = document.getElementById('game-name');
-            const phoneInput = document.getElementById('game-phone');
-            const emailInput = document.getElementById('game-email');
-            const sexSelect = document.getElementById('game-sex');
-
-            let isValid = true;
-            
-            [nameInput, phoneInput, emailInput, sexSelect].forEach(input => {
-                if (!input || !input.value.trim()) {
-                    input.closest('.form-group-game').classList.add('error');
-                    isValid = false;
-                } else {
-                    input.closest('.form-group-game').classList.remove('error');
-                }
-            });
-
-            if (isValid) {
-                // Save states
-                gameState.name = nameInput.value.trim();
-                gameState.phone = phoneInput.value.trim();
-                gameState.email = emailInput.value.trim();
-                gameState.instagram = document.getElementById('game-instagram').value.trim();
-                gameState.gender = sexSelect.value;
-
-                // Sync stats card
-                document.getElementById('stat-name').textContent = gameState.name;
-                document.getElementById('stat-contact').textContent = gameState.instagram ? `${gameState.instagram} (${gameState.phone})` : gameState.phone;
-
-                // Swap SVG according to sex select
-                swapAvatarSilhouette(gameState.gender);
-                
-                // Sync tabs button active
-                document.querySelectorAll('.avatar-tab').forEach(tab => {
-                    if (tab.getAttribute('data-gender') === gameState.gender) {
-                        tab.classList.add('active');
-                    } else {
-                        tab.classList.remove('active');
-                    }
-                });
+            if (!gameState.gender) {
+                alert("Por favor, selecciona una silueta anatómica base para continuar.");
+                return false;
             }
-
-            return isValid;
+            return true;
         }
 
         if (phaseNum === 2) {
@@ -1791,6 +1754,29 @@ document.addEventListener('DOMContentLoaded', () => {
     if (activePain) {
         document.getElementById('stat-pain').textContent = activePain.querySelector('strong').textContent.trim();
     }
+
+    // Silhouette Selector Cards Binding (P2 / Fase 1)
+    const silhouetteCards = document.querySelectorAll('.silhouette-card');
+    const btnPhase1Next = document.getElementById('btn-phase1-next');
+
+    silhouetteCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const gender = card.getAttribute('data-gender');
+            if (!gender) return;
+
+            silhouetteCards.forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+
+            // Set state and swap silhouette
+            gameState.gender = gender;
+            swapAvatarSilhouette(gender);
+
+            // Enable next button
+            if (btnPhase1Next) {
+                btnPhase1Next.disabled = false;
+            }
+        });
+    });
 
     // Avatar tabs binding (Silhouettes switch)
     const avatarTabBtns = document.querySelectorAll('.avatar-tab');

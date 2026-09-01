@@ -18,7 +18,7 @@
     <!-- Calendly Widget CSS -->
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css?v=105">
+    <link rel="stylesheet" href="styles.css?v=106">
 </head>
 <body>
 
@@ -129,49 +129,56 @@
                 <!-- Contenedores de cada fase -->
                 <div class="phase-contents">
                     
-                    <!-- FASE 1: Creación de Perfil -->
+                    <!-- PANTALLA 2 (Fase 1): Bienvenida al Atelier + Selector de Silueta 2D -->
                     <div class="phase-card active" data-phase="1">
-                        <div class="video-container">
-                            <div class="video-placeholder-title"><i class="fa-solid fa-circle-play"></i> Video 1: Bienvenida e Introducción</div>
-                            <video class="phase-video" id="phase-video-1" playsinline controls poster="images/natalia-about-photo.jpg">
-                                <source src="images/video-bienvenida.mp4" type="video/mp4">
-                                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
-                            </video>
-                            <div class="video-caption-box">
-                                <p><strong>Nats:</strong> "¡Hola! Qué emoción que estés aquí. Diseñar un tatuaje no es solo poner tinta en la piel, es crear una pieza que realmente hable de ti. Para comenzar con tu proyecto y poder darte una asesoría personalizada de primer nivel, lo primero que haremos será crear tu perfil técnico. Responde las siguientes preguntas y ¡vamos a darle vida a tu idea!"</p>
+                        <!-- Video 1: Placeholder Oscuro de Alta Gama con Guion Técnico -->
+                        <div class="atelier-video-box">
+                            <div class="video-production-badge">
+                                <span class="badge-pulse"></span>
+                                <span>VIDEO 1 // NATALIA JAUREGUI (EN PRODUCCIÓN)</span>
+                            </div>
+                            <div class="video-script-card">
+                                <div class="script-author">
+                                    <i class="fa-solid fa-feather-pointed"></i>
+                                    <span>GUION DIRECTIVO // FILOSOFÍA DE CO-CREACIÓN</span>
+                                </div>
+                                <blockquote class="script-quote">
+                                    "Hola. Si estás aquí, es porque comprendes que un tatuaje no es un dibujo decorativo colocado al azar; es una extensión de tu identidad y de tu anatomía. Mi nombre es Natalia Jauregui, y mi enfoque se basa en la conceptualización de autor, el flujo anatómico y la delicadeza narrativa. En los próximos minutos, no vamos a elegir un tatuaje de catálogo. Vamos a co-crear tu obra. Primero, definamos el lienzo sobre el que construiremos tu historia."
+                                </blockquote>
                             </div>
                         </div>
-                        
-                        <div class="phase-form">
-                            <h3 class="phase-title">Datos del Nuevo Jugador</h3>
-                            <div class="form-grid">
-                                <div class="form-group-game">
-                                    <label for="game-name">Nombre Completo *</label>
-                                    <input type="text" id="game-name" placeholder="Ej: Santiago Restrepo" required>
+
+                        <!-- Selector Anatómico de Silueta 2D -->
+                        <div class="silhouette-selection-wrapper">
+                            <h3 class="atelier-step-title">1. Define tu Lienzo Base</h3>
+                            <p class="atelier-step-subtitle">Selecciona la silueta anatómica sobre la cual proyectaremos el flujo y proporción de tu diseño.</p>
+                            
+                            <div class="silhouette-cards-grid">
+                                <div class="silhouette-card" data-gender="female" id="card-silhouette-female">
+                                    <div class="card-radio-indicator"></div>
+                                    <div class="silhouette-icon">
+                                        <i class="fa-solid fa-venus"></i>
+                                    </div>
+                                    <h4 class="silhouette-name">Silueta Femenina</h4>
+                                    <p class="silhouette-desc">Líneas anatómicas curvas, fluidez de contorno y proporciones orgánicas.</p>
                                 </div>
-                                <div class="form-group-game">
-                                    <label for="game-phone">WhatsApp / Teléfono *</label>
-                                    <input type="tel" id="game-phone" placeholder="Ej: 300 123 4567" required>
-                                </div>
-                                <div class="form-group-game">
-                                    <label for="game-email">Correo Electrónico *</label>
-                                    <input type="email" id="game-email" placeholder="Ej: correo@ejemplo.com" required>
-                                </div>
-                                <div class="form-group-game">
-                                    <label for="game-instagram">Usuario de Instagram</label>
-                                    <input type="text" id="game-instagram" placeholder="Ej: @santiago_restrepo">
-                                </div>
-                                <div class="form-group-game">
-                                    <label for="game-sex">Sexo / Silueta del Lienzo *</label>
-                                    <select id="game-sex" required>
-                                        <option value="" disabled selected>Selecciona una opción...</option>
-                                        <option value="neutral">Neutro / Sin género específico</option>
-                                        <option value="female">Femenino</option>
-                                        <option value="male">Masculino</option>
-                                    </select>
+
+                                <div class="silhouette-card" data-gender="male" id="card-silhouette-male">
+                                    <div class="card-radio-indicator"></div>
+                                    <div class="silhouette-icon">
+                                        <i class="fa-solid fa-mars"></i>
+                                    </div>
+                                    <h4 class="silhouette-name">Silueta Masculina</h4>
+                                    <p class="silhouette-desc">Líneas anatómicas estructuradas, hombros definidos y planos musculares marcados.</p>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-gold-filled phase-next" data-target="2" id="btn-phase1-next">Crear Perfil y Continuar <i class="fa-solid fa-arrow-right"></i></button>
+
+                            <div class="atelier-action-footer">
+                                <button type="button" class="btn-atelier-primary" id="btn-phase1-next" disabled>
+                                    <span>Continuar a Selección Anatómica</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     
@@ -1625,6 +1632,6 @@
     <!-- Calendly Widget JS -->
     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
     <!-- Custom JS -->
-    <script src="script.js?v=105"></script>
+    <script src="script.js?v=106"></script>
 </body>
 </html>
