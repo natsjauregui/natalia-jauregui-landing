@@ -18,7 +18,7 @@
     <!-- Calendly Widget CSS -->
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css?v=114">
+    <link rel="stylesheet" href="styles.css?v=115">
 </head>
 <body>
 
@@ -62,15 +62,23 @@
             
             <!-- Contenedor Principal del Asistente (Centrado) -->
             <div class="gamified-wizard">
-                <div class="wizard-header">
-                    <div class="wizard-brand">
+                <div class="wizard-header-tiered">
+                    <!-- Fila 1: Marca Exclusiva (Logo ajustado a la altura del texto) -->
+                    <div class="wizard-brand-top">
                         <img src="images/logo.png" alt="Logo Natalia Jauregui" class="wizard-brand-logo">
                         <div class="wizard-brand-text">
                             <span class="wizard-brand-name">NATALIA JAUREGUI</span>
                             <span class="wizard-brand-sub">ARQUITECTURA CORPORAL</span>
                         </div>
                     </div>
-                    <div class="phase-indicator">Fase <span id="current-phase-num">1</span> // Lienzo Base</div>
+                    
+                    <!-- Línea de margen divisoria -->
+                    <div class="wizard-brand-divider"></div>
+
+                    <!-- Fila 2: Indicador de Fase debajo de la línea -->
+                    <div class="wizard-phase-bar">
+                        <span class="phase-indicator-tag">FASE <span id="current-phase-num">1</span> // LIENZO BASE</span>
+                    </div>
                 </div>
                 
                 <!-- Contenedores de cada fase -->
@@ -1578,6 +1586,6 @@
     <!-- Calendly Widget JS -->
     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
     <!-- Custom JS -->
-    <script src="script.js?v=114"></script>
+    <script src="script.js?v=115"></script>
 </body>
 </html>
