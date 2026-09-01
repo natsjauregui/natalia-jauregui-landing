@@ -1946,7 +1946,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    // Welcome overlay & Video Background (P1)
+    // Welcome overlay & Video Background (P1 -> P2 Transition)
     const btnEnterExperience = document.getElementById('btn-enter-experience');
     const welcomeOverlay = document.getElementById('welcome-overlay');
     const gamifiedExperience = document.getElementById('gamified-experience');
@@ -1957,30 +1957,35 @@ document.addEventListener('DOMContentLoaded', () => {
         heroBgVideo.play().catch(e => console.log("Hero background video autoplay:", e));
     }
 
-    if (btnEnterExperience && welcomeOverlay && gamifiedExperience) {
-        btnEnterExperience.addEventListener('click', () => {
+    function launchExperience(e) {
+        if (e) e.preventDefault();
+        console.log("Transición a Pantalla 2 (Lienzo Base) activada...");
+        if (welcomeOverlay) {
             welcomeOverlay.style.transition = 'opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
             welcomeOverlay.style.opacity = '0';
             welcomeOverlay.style.transform = 'translateY(-20px)';
             setTimeout(() => {
                 welcomeOverlay.style.display = 'none';
-                gamifiedExperience.style.display = 'flex';
-                document.body.classList.add('game-active');
-                
-                // Autoplay phase 1 video
-                const welcomeVideo = document.getElementById('phase-video-1');
-                if (welcomeVideo) {
-                    welcomeVideo.play().catch(e => console.log("Autoplay blocked video 1"));
-                }
             }, 400);
-        });
+        }
+        if (gamifiedExperience) {
+            gamifiedExperience.style.display = 'flex';
+            gamifiedExperience.style.opacity = '1';
+        }
+        document.body.classList.add('game-active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Check complete state on load
-    checkGameCompleted();
+    if (btnEnterExperience) {
+        btnEnterExperience.addEventListener('click', launchExperience);
+    }
 
-    // Initialize SVG interactive paths
-    bindAvatarEvents();
+    // Direct event delegation fallback
+    document.addEventListener('click', (e) => {
+        if (e.target.closest('#btn-enter-experience')) {
+            launchExperience(e);
+        }
+    });
 
     // Clean up inline styles on resize to desktop
     window.addEventListener('resize', () => {
