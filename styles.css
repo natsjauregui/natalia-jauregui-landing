@@ -3494,12 +3494,13 @@ body.game-active {
 .silhouette-selection-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 0px;
 }
 
 .atelier-header-center {
     text-align: center;
-    margin-bottom: 8px;
+    margin-top: 0px;
+    margin-bottom: 22px;
 }
 
 .atelier-step-title {
@@ -3508,6 +3509,7 @@ body.game-active {
     text-transform: uppercase;
     letter-spacing: 2px;
     color: #FFFFFF;
+    margin-top: 6px;
     margin-bottom: 6px;
 }
 
@@ -4037,7 +4039,7 @@ body.game-active {
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin-bottom: 24px;
+    margin-bottom: 0px;
 }
 
 .wizard-brand-top {
