@@ -1972,19 +1972,15 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    // Welcome overlay button trigger & Cursor Spotlight (P1)
+    // Welcome overlay & Video Background (P1)
     const btnEnterExperience = document.getElementById('btn-enter-experience');
     const welcomeOverlay = document.getElementById('welcome-overlay');
     const gamifiedExperience = document.getElementById('gamified-experience');
+    const heroBgVideo = document.querySelector('.welcome-video-bg');
 
-    if (welcomeOverlay) {
-        welcomeOverlay.addEventListener('mousemove', (e) => {
-            const rect = welcomeOverlay.getBoundingClientRect();
-            const x = ((e.clientX - rect.left) / rect.width) * 100;
-            const y = ((e.clientY - rect.top) / rect.height) * 100;
-            welcomeOverlay.style.setProperty('--mouse-x', `${x}%`);
-            welcomeOverlay.style.setProperty('--mouse-y', `${y}%`);
-        });
+    if (heroBgVideo) {
+        heroBgVideo.muted = true;
+        heroBgVideo.play().catch(e => console.log("Hero background video autoplay:", e));
     }
 
     if (btnEnterExperience && welcomeOverlay && gamifiedExperience) {
