@@ -3495,12 +3495,14 @@ body.game-active {
     display: flex;
     flex-direction: column;
     gap: 0px;
+    margin-top: 0px;
 }
 
 .atelier-header-center {
     text-align: center;
-    margin-top: 0px;
-    margin-bottom: 22px;
+    margin-top: 8px !important;
+    margin-bottom: 24px !important;
+    padding: 0 !important;
 }
 
 .atelier-step-title {
@@ -3509,16 +3511,18 @@ body.game-active {
     text-transform: uppercase;
     letter-spacing: 2px;
     color: #FFFFFF;
-    margin-top: 6px;
-    margin-bottom: 6px;
+    line-height: 1.15 !important;
+    margin: 0 0 8px 0 !important;
+    padding: 0 !important;
 }
 
 .atelier-step-subtitle {
     font-size: 0.92rem;
     color: #A0A0A0;
-    line-height: 1.6;
+    line-height: 1.5 !important;
     max-width: 620px;
-    margin: 0 auto;
+    margin: 0 auto !important;
+    padding: 0 !important;
 }
 
 .silhouette-cards-grid.three-columns {
@@ -4084,7 +4088,7 @@ body.game-active {
     width: 100%;
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12) 15%, rgba(212, 165, 165, 0.35) 50%, rgba(255, 255, 255, 0.12) 85%, transparent);
-    margin: 12px 0 10px;
+    margin: 8px 0 6px !important;
 }
 
 .wizard-phase-bar {
@@ -4092,6 +4096,8 @@ body.game-active {
     justify-content: center;
     align-items: center;
     width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .phase-indicator-tag {
@@ -4101,7 +4107,11 @@ body.game-active {
     color: var(--accent);
     text-transform: uppercase;
     font-weight: 600;
+    line-height: 1 !important;
+    margin: 0 !important;
+    padding: 0 !important;
     opacity: 0.95;
+    display: inline-block;
 }
 
 @media (max-width: 600px) {
