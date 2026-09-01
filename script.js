@@ -1972,22 +1972,36 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    // Welcome overlay button trigger
+    // Welcome overlay button trigger & Cursor Spotlight (P1)
     const btnEnterExperience = document.getElementById('btn-enter-experience');
     const welcomeOverlay = document.getElementById('welcome-overlay');
     const gamifiedExperience = document.getElementById('gamified-experience');
 
+    if (welcomeOverlay) {
+        welcomeOverlay.addEventListener('mousemove', (e) => {
+            const rect = welcomeOverlay.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            welcomeOverlay.style.setProperty('--mouse-x', `${x}%`);
+            welcomeOverlay.style.setProperty('--mouse-y', `${y}%`);
+        });
+    }
+
     if (btnEnterExperience && welcomeOverlay && gamifiedExperience) {
         btnEnterExperience.addEventListener('click', () => {
-            welcomeOverlay.style.display = 'none';
-            gamifiedExperience.style.display = 'flex';
-            document.body.classList.add('game-active');
-            
-            // Autoplay phase 1 video
-            const welcomeVideo = document.getElementById('phase-video-1');
-            if (welcomeVideo) {
-                welcomeVideo.play().catch(e => console.log("Autoplay blocked video 1"));
-            }
+            welcomeOverlay.style.opacity = '0';
+            welcomeOverlay.style.transition = 'opacity 0.4s ease';
+            setTimeout(() => {
+                welcomeOverlay.style.display = 'none';
+                gamifiedExperience.style.display = 'flex';
+                document.body.classList.add('game-active');
+                
+                // Autoplay phase 1 video
+                const welcomeVideo = document.getElementById('phase-video-1');
+                if (welcomeVideo) {
+                    welcomeVideo.play().catch(e => console.log("Autoplay blocked video 1"));
+                }
+            }, 350);
         });
     }
 
