@@ -1615,7 +1615,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 subzoneInput.closest('.form-group-game').classList.remove('error');
                 gameState.subzone = subzoneInput.value.trim();
-                document.getElementById('stat-subzone').textContent = gameState.subzone;
+                updateStat('stat-subzone', gameState.subzone);
                 return true;
             }
         }
@@ -1639,7 +1639,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 gameState.meaning = meaningInput.value.trim();
                 
                 // Sync stats
-                document.getElementById('stat-style').textContent = styleSelect.options[styleSelect.selectedIndex].text;
+                updateStat('stat-style', styleSelect.options[styleSelect.selectedIndex].text);
             }
 
             return isValid;
@@ -1673,6 +1673,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Helper to safely update stat elements if present in DOM
+    function updateStat(id, val) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = val;
+    }
+
     // Option selectors binding - Contexture (Fase 2)
     const contextureBtns = document.querySelectorAll('.opt-btn-contexture');
     contextureBtns.forEach(btn => {
@@ -1680,13 +1686,13 @@ document.addEventListener('DOMContentLoaded', () => {
             contextureBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             gameState.contexture = btn.getAttribute('data-val');
-            document.getElementById('stat-contexture').textContent = btn.textContent.trim();
+            updateStat('stat-contexture', btn.textContent.trim());
         });
     });
     // Initialize default contexture
     const activeContexture = document.querySelector('.opt-btn-contexture.active');
     if (activeContexture) {
-        document.getElementById('stat-contexture').textContent = activeContexture.textContent.trim();
+        updateStat('stat-contexture', activeContexture.textContent.trim());
     }
 
     // Option selectors binding - General Zone buttons (Fase 2)
@@ -1698,7 +1704,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const zone = btn.getAttribute('data-val');
             gameState.zone = zone;
-            document.getElementById('stat-zone').textContent = btn.textContent.trim();
+            updateStat('stat-zone', btn.textContent.trim());
 
             // Highlight path in SVG
             const svg = document.getElementById('avatar-svg');
@@ -1721,13 +1727,13 @@ document.addEventListener('DOMContentLoaded', () => {
             sizeBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             gameState.size = btn.getAttribute('data-val');
-            document.getElementById('stat-size').textContent = btn.textContent.trim();
+            updateStat('stat-size', btn.textContent.trim());
         });
     });
     // Initialize default size
     const activeSize = document.querySelector('.opt-btn-size.active');
     if (activeSize) {
-        document.getElementById('stat-size').textContent = activeSize.textContent.trim();
+        updateStat('stat-size', activeSize.textContent.trim());
     }
 
     // Option selectors binding - Pain experience (Fase 2)
@@ -1737,13 +1743,15 @@ document.addEventListener('DOMContentLoaded', () => {
             painBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             gameState.painMode = btn.getAttribute('data-val');
-            document.getElementById('stat-pain').textContent = btn.querySelector('strong').textContent.trim();
+            const strong = btn.querySelector('strong');
+            updateStat('stat-pain', strong ? strong.textContent.trim() : btn.textContent.trim());
         });
     });
     // Initialize default pain
     const activePain = document.querySelector('.opt-btn-pain.active');
     if (activePain) {
-        document.getElementById('stat-pain').textContent = activePain.querySelector('strong').textContent.trim();
+        const pStrong = activePain.querySelector('strong');
+        updateStat('stat-pain', pStrong ? pStrong.textContent.trim() : activePain.textContent.trim());
     }
 
     // Silhouette Selector Cards Binding (P2 / Fase 1)
