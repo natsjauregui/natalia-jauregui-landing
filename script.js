@@ -1989,8 +1989,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (btnEnterExperience && welcomeOverlay && gamifiedExperience) {
         btnEnterExperience.addEventListener('click', () => {
+            welcomeOverlay.style.transition = 'opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
             welcomeOverlay.style.opacity = '0';
-            welcomeOverlay.style.transition = 'opacity 0.4s ease';
+            welcomeOverlay.style.transform = 'translateY(-20px)';
             setTimeout(() => {
                 welcomeOverlay.style.display = 'none';
                 gamifiedExperience.style.display = 'flex';
@@ -2001,7 +2002,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (welcomeVideo) {
                     welcomeVideo.play().catch(e => console.log("Autoplay blocked video 1"));
                 }
-            }, 350);
+            }, 400);
         });
     }
 

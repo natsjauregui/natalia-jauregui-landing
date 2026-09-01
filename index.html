@@ -31,29 +31,25 @@
         </div>
     </div>
 
-    <!-- P1: Portal de Bienvenida (Hero Inmersivo) -->
+    <!-- P1: Portal de Bienvenida (Hero Inmersivo con Video de Fondo) -->
     <div class="welcome-overlay" id="welcome-overlay">
-        <div class="welcome-spotlight" id="welcome-spotlight"></div>
-        <div class="welcome-bg"></div>
+        <!-- Capa 0: Video Background Loop -->
+        <video class="welcome-video-bg" autoplay loop muted playsinline>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-hands-of-an-artist-drawing-a-sketch-41489-large.mp4" type="video/mp4">
+        </video>
+
+        <!-- Capa 1: Overlay de Contraste, Gradiente y Viñeta -->
+        <div class="welcome-overlay-contrast"></div>
+
+        <!-- Capa 2: Contenido y Tipografía High-End -->
         <div class="welcome-content">
-            <div class="welcome-badge">
-                <span class="badge-dot"></span>
-                <span class="badge-text">TATUAJE DE AUTOR // ARQUITECTURA CORPORAL</span>
-            </div>
+            <div class="welcome-badge">ATELIER PRIVADO // ARTE DE AUTOR</div>
             <img src="images/logo.png" alt="NATALIA JAUREGUI Logo" class="welcome-logo">
-            <h1 class="welcome-title">EXPERIENCIA <span class="gold-gradient-text">NATALIA JAUREGUI</span></h1>
-            <p class="welcome-subtitle">No es solo tinta en la piel. Es plasmar tu identidad en una obra irrepetible.</p>
-            <div class="welcome-actions">
-                <button class="btn btn-hero-gold" id="btn-enter-experience">
-                    <span class="btn-text">Vivir la Experiencia</span>
-                    <span class="btn-icon"><i class="fa-solid fa-arrow-right-long"></i></span>
-                </button>
-            </div>
-            <div class="welcome-footer-tags">
-                <span class="tag-item"><i class="fa-solid fa-shield-halved"></i> Proceso Libre de Improvisación</span>
-                <span class="tag-divider">•</span>
-                <span class="tag-item"><i class="fa-solid fa-wand-magic-sparkles"></i> Diseño Anatómico Exclusivo</span>
-            </div>
+            <h1 class="welcome-title">EXPERIENCIA NATALIA JAUREGUI</h1>
+            <p class="welcome-subtitle">No es solo tinta en la piel. Es transformar tu historia en una obra irrepetible.</p>
+            <button class="btn-hero-portal" id="btn-enter-experience">
+                Vivir la Experiencia
+            </button>
         </div>
     </div>
 
