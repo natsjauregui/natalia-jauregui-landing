@@ -3003,7 +3003,7 @@ body.game-active {
     pointer-events: none;
 }
 
-/* Capa 2: Contenido y Tipografía High-End (Maison Bugatti Aesthetic) */
+/* Capa 2: Contenido y Tipografía High-End (Ultra-Minimalismo Maison Bugatti) */
 .welcome-content {
     position: relative;
     z-index: 2;
@@ -3013,73 +3013,59 @@ body.game-active {
     align-items: center;
     text-align: center;
     padding: 30px 24px;
-    max-width: 820px;
+    max-width: 780px;
     width: 92%;
     animation: welcomeFadeIn 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.welcome-badge {
-    font-family: var(--font-heading);
-    font-size: 11px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: #9C9C9C;
-    margin-bottom: 22px;
-    font-weight: 500;
-}
-
 .welcome-logo {
-    max-height: 82px;
-    margin-bottom: 22px;
-    filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.2));
+    max-height: 86px;
+    margin-bottom: 24px;
+    filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.25));
 }
 
 .welcome-title {
     font-family: var(--font-heading);
-    font-size: clamp(28px, 4.5vw, 50px);
+    font-size: clamp(30px, 5vw, 54px);
     color: #FFFFFF;
-    letter-spacing: 3px;
+    letter-spacing: 4px;
     line-height: 1.15;
     text-transform: uppercase;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     font-weight: 600;
 }
 
 .welcome-statement {
     font-family: var(--font-heading);
-    font-size: clamp(11px, 1.6vw, 14px);
+    font-size: clamp(12px, 1.8vw, 15px);
     letter-spacing: 4.5px;
     text-transform: uppercase;
     color: #E2E2E2;
     font-weight: 500;
-    margin-bottom: 16px;
-}
-
-.welcome-subtitle {
-    font-family: var(--font-body);
-    font-size: 16px;
-    color: #A3A3A3;
-    max-width: 580px;
-    line-height: 1.65;
-    margin: 0 0 38px 0;
-    font-weight: 300;
+    margin-bottom: 40px;
+    max-width: 650px;
+    line-height: 1.5;
 }
 
 .welcome-cta-wrapper {
-    margin-bottom: 24px;
+    margin-bottom: 30px;
 }
 
-/* CTA Minimalista de Ultra-Lujo (Estilo Bugatti) */
+/* Botón CTA Resaltado de Ultra-Lujo (Estilo Bugatti Moderno) */
 .btn-bugatti-cta {
-    background: transparent;
-    border: none;
-    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    padding: 16px 44px;
+    border-radius: 50px;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     cursor: pointer;
     display: inline-flex;
     flex-direction: column;
     align-items: center;
     outline: none;
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 255, 255, 0.1);
 }
 
 .btn-bugatti-cta .cta-label {
@@ -3087,43 +3073,46 @@ body.game-active {
     font-size: 13px;
     letter-spacing: 4px;
     color: #FFFFFF;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
     transition: all 0.35s ease;
 }
 
 .btn-bugatti-cta .cta-underline {
-    width: 100%;
+    width: 50%;
     height: 1px;
     background: #FFFFFF;
-    margin-top: 8px;
+    margin-top: 6px;
     opacity: 0.85;
-    box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
     transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-bugatti-cta:hover {
-    transform: translateY(-2px);
+    transform: scale(1.05) translateY(-2px);
+    background: #FFFFFF;
+    border-color: #FFFFFF;
+    box-shadow: 0 15px 40px rgba(255, 255, 255, 0.35);
 }
 
 .btn-bugatti-cta:hover .cta-label {
-    letter-spacing: 5px;
-    text-shadow: 0 0 18px rgba(255, 255, 255, 0.7);
+    color: #050505;
+    letter-spacing: 4.5px;
 }
 
 .btn-bugatti-cta:hover .cta-underline {
-    transform: scaleX(1.15);
-    background: #FFFFFF;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
+    background: #050505;
+    width: 75%;
+    box-shadow: none;
 }
 
 .welcome-brand-footer {
     font-family: var(--font-heading);
     font-size: 10px;
-    letter-spacing: 4px;
-    color: rgba(255, 255, 255, 0.28);
+    letter-spacing: 4.5px;
+    color: rgba(255, 255, 255, 0.35);
     text-transform: uppercase;
-    margin-top: 30px;
+    margin-top: 36px;
 }
 
 @keyframes welcomeFadeIn {
