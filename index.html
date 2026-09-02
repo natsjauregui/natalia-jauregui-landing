@@ -18,7 +18,7 @@
     <!-- Calendly Widget CSS -->
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css?v=126">
+    <link rel="stylesheet" href="styles.css?v=127">
 </head>
 <body>
 
@@ -165,105 +165,263 @@
                                     <div class="mannequin-stage-wrapper">
                                         <img id="mannequin-360-img" src="images/mannequins/mannequin-male-front.webp" alt="Lienzo Anatómico 360°" class="mannequin-360-display">
                                         
-                                        <!-- SVG Overlay Anatómico Verde Esmeralda con Subzonas Específicas -->
+                                        <!-- SVG Overlay Anatómico Calibrado Verde Esmeralda -->
                                         <svg id="mannequin-anatomy-svg" class="mannequin-anatomy-svg" viewBox="0 0 400 800" preserveAspectRatio="none">
                                             <!-- Grupo de Zonas VISTA FRENTE -->
                                             <g class="anatomy-view-group" id="anatomy-view-front">
-                                                <!-- CUELLO / NUCA -->
-                                                <path class="anatomical-path" data-zone="cuello" data-subzones="Garganta / Frontal, Cuello Completo" d="M 190 110 C 190 98, 210 98, 210 110 L 214 142 C 214 148, 186 148, 186 142 Z" onclick="toggleZoneAccordion('cuello', 'Cuello / Nuca', 'front')"></path>
-                                                <path class="anatomical-path" data-zone="cuello" data-subzones="Lateral del Cuello, Detrás de la Oreja, Cuello Completo" d="M 178 112 L 188 112 L 184 142 L 174 140 Z" onclick="toggleZoneAccordion('cuello', 'Cuello / Nuca', 'front')"></path>
-                                                <path class="anatomical-path" data-zone="cuello" data-subzones="Lateral del Cuello, Detrás de la Oreja, Cuello Completo" d="M 222 112 L 212 112 L 216 142 L 226 140 Z" onclick="toggleZoneAccordion('cuello', 'Cuello / Nuca', 'front')"></path>
+                                                <!-- CABEZA (Zona Cabello) -->
+                                                <path class="anatomical-path" data-zone="cuello" data-subzones="Cabeza (Nacimiento del Cabello), Cuello Completo" d="M 175 68 C 175 58, 225 58, 225 68 C 228 85, 226 100, 224 105 L 176 105 C 174 100, 172 85, 175 68 Z" onclick="toggleZoneAccordion('cuello', 'Cuello / Cabeza', 'front')"></path>
+                                                
+                                                <!-- CUELLO / GARGANTA / LATERALES -->
+                                                <path class="anatomical-path" data-zone="cuello" data-subzones="Garganta / Frontal, Cuello Completo" d="M 188 112 C 188 108, 212 108, 212 112 L 216 142 C 216 148, 184 148, 184 142 Z" onclick="toggleZoneAccordion('cuello', 'Cuello / Cabeza', 'front')"></path>
+                                                <path class="anatomical-path" data-zone="cuello" data-subzones="Lateral del Cuello (Ambos), Lateral Cuello Izquierdo, Cuello Completo" d="M 174 112 L 188 112 L 184 142 L 172 140 Z" onclick="toggleZoneAccordion('cuello', 'Cuello / Cabeza', 'front')"></path>
+                                                <path class="anatomical-path" data-zone="cuello" data-subzones="Lateral del Cuello (Ambos), Lateral Cuello Derecho, Cuello Completo" d="M 226 112 L 212 112 L 216 142 L 228 140 Z" onclick="toggleZoneAccordion('cuello', 'Cuello / Cabeza', 'front')"></path>
 
-                                                <!-- HOMBRO / DELTOIDES -->
-                                                <path class="anatomical-path" data-zone="hombro" data-subzones="Deltoides Frontal, Hombro y Clavícula, Hombro Completo" d="M 135 152 C 148 145, 172 145, 175 190 L 148 195 Z" onclick="toggleZoneAccordion('hombro', 'Hombro / Deltoides', 'front')"></path>
-                                                <path class="anatomical-path" data-zone="hombro" data-subzones="Deltoides Frontal, Hombro y Clavícula, Hombro Completo" d="M 265 152 C 252 145, 228 145, 225 190 L 252 195 Z" onclick="toggleZoneAccordion('hombro', 'Hombro / Deltoides', 'front')"></path>
-                                                <path class="anatomical-path" data-zone="hombro" data-subzones="Deltoides Lateral / Cúpula, Hombro Completo" d="M 122 156 C 135 145, 148 150, 145 195 L 116 178 Z" onclick="toggleZoneAccordion('hombro', 'Hombro / Deltoides', 'front')"></path>
-                                                <path class="anatomical-path" data-zone="hombro" data-subzones="Deltoides Lateral / Cúpula, Hombro Completo" d="M 278 156 C 265 145, 252 150, 255 195 L 284 178 Z" onclick="toggleZoneAccordion('hombro', 'Hombro / Deltoides', 'front')"></path>
+                                                <!-- HOMBRO (Izquierdo / Derecho) -->
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Hombro Completo (Ambos), Hombro Izquierdo, Media Manga Superior, Media Manga Externa, Manga Completa" d="M 125 152 C 135 142, 168 142, 178 150 L 172 195 C 150 200, 128 195, 118 178 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'front')"></path>
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Hombro Completo (Ambos), Hombro Derecho, Media Manga Superior, Media Manga Externa, Manga Completa" d="M 275 152 C 265 142, 232 142, 222 150 L 228 195 C 250 200, 272 195, 282 178 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'front')"></path>
 
-                                                <!-- PECHO / TORSO -->
-                                                <path class="anatomical-path" data-zone="pecho" data-subzones="Pectoral (Izq. / Der.), Pecho Completo, Torso Completo" d="M 166 148 C 178 150, 196 152, 196 220 L 158 220 C 156 185, 160 155, 166 148 Z" onclick="toggleZoneAccordion('pecho', 'Pecho / Torso', 'front')"></path>
-                                                <path class="anatomical-path" data-zone="pecho" data-subzones="Pectoral (Izq. / Der.), Pecho Completo, Torso Completo" d="M 234 148 C 222 150, 204 152, 204 220 L 242 220 C 244 185, 240 155, 234 148 Z" onclick="toggleZoneAccordion('pecho', 'Pecho / Torso', 'front')"></path>
-                                                <path class="anatomical-path" data-zone="pecho" data-subzones="Esternón / Centro, Pecho Completo, Torso Completo" d="M 194 150 C 206 150, 206 150, 206 250 L 194 250 Z" onclick="toggleZoneAccordion('pecho', 'Pecho / Torso', 'front')"></path>
-                                                <path class="anatomical-path" data-zone="pecho" data-subzones="Abdomen / Vientre, Torso Completo" d="M 166 248 C 180 248, 220 248, 234 248 L 228 335 C 215 348, 185 348, 172 335 Z" onclick="toggleZoneAccordion('pecho', 'Pecho / Torso', 'front')"></path>
+                                                <!-- BÍCEPS (Interno Izq / Der) -->
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Bíceps (Ambos), Bíceps Izquierdo, Media Manga Superior, Media Manga Interna, Manga Completa" d="M 116 178 C 132 185, 134 225, 122 250 L 105 250 C 98 220, 102 185, 116 178 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'front')"></path>
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Bíceps (Ambos), Bíceps Derecho, Media Manga Superior, Media Manga Interna, Manga Completa" d="M 284 178 C 268 185, 266 225, 278 250 L 295 250 C 302 220, 298 185, 284 178 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'front')"></path>
 
-                                                <!-- COSTILLAS / COSTADO -->
-                                                <path class="anatomical-path" data-zone="costillas" data-subzones="Costillar Superior, Bajo Pecho / Rib Cage" d="M 146 220 C 158 220, 162 225, 162 270 L 140 270 Z" onclick="toggleZoneAccordion('costillas', 'Costillas / Costado', 'left')"></path>
-                                                <path class="anatomical-path" data-zone="costillas" data-subzones="Costillar Superior, Bajo Pecho / Rib Cage" d="M 254 220 C 242 220, 238 225, 238 270 L 260 270 Z" onclick="toggleZoneAccordion('costillas', 'Costillas / Costado', 'left')"></path>
-                                                <path class="anatomical-path" data-zone="costillas" data-subzones="Costado / Flanco Lateral, Cadera / Cresta Ilíaca" d="M 140 270 L 162 270 L 162 325 C 148 325, 140 300, 140 270 Z" onclick="toggleZoneAccordion('costillas', 'Costillas / Costado', 'left')"></path>
-                                                <path class="anatomical-path" data-zone="costillas" data-subzones="Costado / Flanco Lateral, Cadera / Cresta Ilíaca" d="M 260 270 L 238 270 L 238 325 C 252 325, 260 300, 260 270 Z" onclick="toggleZoneAccordion('costillas', 'Costillas / Costado', 'left')"></path>
+                                                <!-- TRÍCEPS (Externo Izq / Der) -->
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Tríceps (Ambos), Tríceps Izquierdo, Media Manga Superior, Media Manga Externa, Manga Completa" d="M 102 185 C 108 220, 105 250, 96 250 L 92 195 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'front')"></path>
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Tríceps (Ambos), Tríceps Derecho, Media Manga Superior, Media Manga Externa, Manga Completa" d="M 298 185 C 292 220, 295 250, 304 250 L 308 195 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'front')"></path>
 
-                                                <!-- BRAZO / MANGA -->
-                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Bíceps / Brazo Interno, Media Manga (Superior), Manga Completa" d="M 116 178 C 132 185, 134 225, 122 250 L 105 250 C 98 220, 102 185, 116 178 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'front')"></path>
-                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Bíceps / Brazo Interno, Media Manga (Superior), Manga Completa" d="M 284 178 C 268 185, 266 225, 278 250 L 295 250 C 302 220, 298 185, 284 178 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'front')"></path>
-                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Tríceps / Brazo Externo, Media Manga (Superior), Manga Completa" d="M 102 185 C 108 220, 105 250, 96 250 L 92 195 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'front')"></path>
-                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Tríceps / Brazo Externo, Media Manga (Superior), Manga Completa" d="M 298 185 C 292 220, 295 250, 304 250 L 308 195 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'front')"></path>
-                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Antebrazo Interno, Antebrazo Externo, Manga Completa" d="M 120 252 C 122 280, 115 330, 108 360 L 95 360 C 92 330, 95 280, 104 252 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'front')"></path>
-                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Antebrazo Interno, Antebrazo Externo, Manga Completa" d="M 280 252 C 278 280, 285 330, 292 360 L 305 360 C 308 330, 305 280, 296 252 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'front')"></path>
-                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Muñeca / Mano, Manga Completa" d="M 108 362 C 112 375, 110 395, 102 405 L 94 400 C 92 385, 95 370, 108 362 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'front')"></path>
-                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Muñeca / Mano, Manga Completa" d="M 292 362 C 288 375, 290 395, 298 405 L 306 400 C 308 385, 305 370, 292 362 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'front')"></path>
+                                                <!-- ANTEBRAZO INTERNO (Izq / Der) -->
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Antebrazo Interno (Ambos), Antebrazo Interno Izq., Media Manga Inferior, Media Manga Interna, Manga Completa" d="M 115 252 C 120 280, 114 330, 108 360 L 98 360 C 95 330, 98 280, 104 252 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'front')"></path>
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Antebrazo Interno (Ambos), Antebrazo Interno Der., Media Manga Inferior, Media Manga Interna, Manga Completa" d="M 285 252 C 280 280, 286 330, 292 360 L 302 360 C 305 330, 302 280, 296 252 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'front')"></path>
 
-                                                <!-- PIERNA / MUSLO -->
-                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Muslo Frontal, Muslo Lateral / Ext., Pierna Completa" d="M 152 355 C 172 355, 196 370, 196 405 L 190 540 C 185 550, 155 550, 148 540 L 138 405 C 138 375, 142 358, 152 355 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'front')"></path>
-                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Muslo Frontal, Muslo Lateral / Ext., Pierna Completa" d="M 248 355 C 228 355, 204 370, 204 405 L 210 540 C 215 550, 245 550, 252 540 L 262 405 C 262 375, 258 358, 248 355 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'front')"></path>
-                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Pantorrilla / Gemelo, Espinilla / Frontal, Pierna Completa" d="M 152 545 C 182 545, 186 645, 176 720 L 154 720 C 144 645, 144 545, 152 545 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'front')"></path>
-                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Pantorrilla / Gemelo, Espinilla / Frontal, Pierna Completa" d="M 248 545 C 218 545, 214 645, 224 720 L 246 720 C 256 645, 256 545, 248 545 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'front')"></path>
-                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Tobillo / Empeine, Pierna Completa" d="M 154 722 L 176 722 L 172 755 L 148 755 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'front')"></path>
-                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Tobillo / Empeine, Pierna Completa" d="M 246 722 L 224 722 L 228 755 L 252 755 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'front')"></path>
+                                                <!-- ANTEBRAZO EXTERNO (Izq / Der) -->
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Antebrazo Externo (Ambos), Antebrazo Externo Izq., Media Manga Inferior, Media Manga Externa, Manga Completa" d="M 104 252 L 98 360 L 92 360 C 88 330, 92 280, 98 252 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'front')"></path>
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Antebrazo Externo (Ambos), Antebrazo Externo Der., Media Manga Inferior, Media Manga Externa, Manga Completa" d="M 296 252 L 302 360 L 308 360 C 312 330, 308 280, 302 252 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'front')"></path>
+
+                                                <!-- MUÑECA / MANO (Izq / Der) -->
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Muñeca / Mano (Ambas), Muñeca / Mano Izquierda, Manga Completa" d="M 108 362 C 112 375, 110 395, 102 405 L 94 400 C 92 385, 95 370, 108 362 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'front')"></path>
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Muñeca / Mano (Ambas), Muñeca / Mano Derecha, Manga Completa" d="M 292 362 C 288 375, 290 395, 298 405 L 306 400 C 308 385, 305 370, 292 362 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'front')"></path>
+
+                                                <!-- PECTORAL (Izq / Der) -->
+                                                <path class="anatomical-path" data-zone="pecho" data-subzones="Pectoral (Ambos), Pectoral Izquierdo, Pecho Completo, Torso Completo (Pecho + Costillas + Abdomen)" d="M 166 148 C 178 150, 196 152, 196 220 L 158 220 C 156 185, 160 155, 166 148 Z" onclick="toggleZoneAccordion('pecho', 'Pecho / Torso', 'front')"></path>
+                                                <path class="anatomical-path" data-zone="pecho" data-subzones="Pectoral (Ambos), Pectoral Derecho, Pecho Completo, Torso Completo (Pecho + Costillas + Abdomen)" d="M 234 148 C 222 150, 204 152, 204 220 L 242 220 C 244 185, 240 155, 234 148 Z" onclick="toggleZoneAccordion('pecho', 'Pecho / Torso', 'front')"></path>
+
+                                                <!-- ESTERNÓN / CENTRO -->
+                                                <path class="anatomical-path" data-zone="pecho" data-subzones="Esternón / Centro del Pecho, Pecho Completo, Torso Completo (Pecho + Costillas + Abdomen)" d="M 194 150 C 206 150, 206 150, 206 250 L 194 250 Z" onclick="toggleZoneAccordion('pecho', 'Pecho / Torso', 'front')"></path>
+
+                                                <!-- COSTILLAS (Izq / Der / Rib Cage) -->
+                                                <path class="anatomical-path" data-zone="pecho" data-subzones="Costillas (Ambas), Costilla Izquierda, Bajo Pecho / Rib Cage, Torso Completo (Pecho + Costillas + Abdomen)" d="M 146 220 C 158 220, 162 225, 162 315 L 140 315 C 138 280, 140 240, 146 220 Z" onclick="toggleZoneAccordion('pecho', 'Pecho / Torso', 'left')"></path>
+                                                <path class="anatomical-path" data-zone="pecho" data-subzones="Costillas (Ambas), Costilla Derecha, Bajo Pecho / Rib Cage, Torso Completo (Pecho + Costillas + Abdomen)" d="M 254 220 C 242 220, 238 225, 238 315 L 260 315 C 262 280, 260 240, 254 220 Z" onclick="toggleZoneAccordion('pecho', 'Pecho / Torso', 'right')"></path>
+
+                                                <!-- ABDOMEN / VIENTRE -->
+                                                <path class="anatomical-path" data-zone="pecho" data-subzones="Abdomen / Vientre, Torso Completo (Pecho + Costillas + Abdomen)" d="M 166 248 C 180 248, 220 248, 234 248 L 228 335 C 215 348, 185 348, 172 335 Z" onclick="toggleZoneAccordion('pecho', 'Pecho / Torso', 'front')"></path>
+
+                                                <!-- MUSLO FRONTAL (Izq / Der) -->
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Muslo Frontal (Ambos), Muslo Frontal Izquierdo, Media Pierna Superior, Media Pierna Interna, Pierna Completa" d="M 152 355 C 172 355, 190 370, 190 405 L 186 515 L 152 515 C 144 480, 142 405, 152 355 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'front')"></path>
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Muslo Frontal (Ambos), Muslo Frontal Derecho, Media Pierna Superior, Media Pierna Interna, Pierna Completa" d="M 248 355 C 228 355, 210 370, 210 405 L 214 515 L 248 515 C 256 480, 258 405, 248 355 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'front')"></path>
+
+                                                <!-- MUSLO LATERAL-EXTERNO (Izq / Der) -->
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Muslo Lateral-Externo (Ambos), Muslo Lateral-Ext. Izq., Media Pierna Superior, Media Pierna Externa, Pierna Completa" d="M 136 365 C 146 365, 150 405, 148 515 L 136 510 C 130 450, 132 385, 136 365 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'front')"></path>
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Muslo Lateral-Externo (Ambos), Muslo Lateral-Ext. Der., Media Pierna Superior, Media Pierna Externa, Pierna Completa" d="M 264 365 C 254 365, 250 405, 252 515 L 264 510 C 270 450, 268 385, 264 365 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'front')"></path>
+
+                                                <!-- MUSLO LATERAL-INTERNO (Izq / Der) -->
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Muslo Lateral-Interno (Ambos), Muslo Lateral-Int. Izq., Media Pierna Superior, Media Pierna Interna, Pierna Completa" d="M 186 375 L 194 375 L 190 515 L 184 515 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'front')"></path>
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Muslo Lateral-Interno (Ambos), Muslo Lateral-Int. Der., Media Pierna Superior, Media Pierna Interna, Pierna Completa" d="M 214 375 L 206 375 L 210 515 L 216 515 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'front')"></path>
+
+                                                <!-- RODILLA (Izq / Der) -->
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Rodilla (Ambas), Rodilla Izquierda, Media Pierna Superior, Media Pierna Inferior, Pierna Completa" d="M 148 518 C 160 515, 185 515, 186 545 L 152 545 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'front')"></path>
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Rodilla (Ambas), Rodilla Derecha, Media Pierna Superior, Media Pierna Inferior, Pierna Completa" d="M 252 518 C 240 515, 215 515, 214 545 L 248 545 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'front')"></path>
+
+                                                <!-- ESPINILLA FRONTAL (Izq / Der) -->
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Espinilla Frontal (Ambas), Espinilla Izquierda, Media Pierna Inferior, Pierna Completa" d="M 154 548 C 168 548, 178 550, 175 640 L 168 718 L 154 718 C 150 650, 150 570, 154 548 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'front')"></path>
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Espinilla Frontal (Ambas), Espinilla Derecha, Media Pierna Inferior, Pierna Completa" d="M 246 548 C 232 548, 222 550, 225 640 L 232 718 L 246 718 C 250 650, 250 570, 246 548 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'front')"></path>
+
+                                                <!-- LATERAL EXTERNO PIERNA (Izq / Der) -->
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Lateral Externo Pierna (Ambos), Lateral Ext. Pierna Izq., Media Pierna Inferior, Media Pierna Externa, Pierna Completa" d="M 144 548 L 154 548 L 154 718 L 140 718 C 136 650, 138 570, 144 548 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'front')"></path>
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Lateral Externo Pierna (Ambos), Lateral Ext. Pierna Der., Media Pierna Inferior, Media Pierna Externa, Pierna Completa" d="M 256 548 L 246 548 L 246 718 L 260 718 C 264 650, 262 570, 256 548 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'front')"></path>
+
+                                                <!-- LATERAL INTERNO PIERNA (Izq / Der) -->
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Lateral Interno Pierna (Ambos), Lateral Int. Pierna Izq., Media Pierna Inferior, Media Pierna Interna, Pierna Completa" d="M 175 548 L 186 548 L 176 718 L 168 718 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'front')"></path>
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Lateral Interno Pierna (Ambos), Lateral Int. Pierna Der., Media Pierna Inferior, Media Pierna Interna, Pierna Completa" d="M 225 548 L 214 548 L 224 718 L 232 718 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'front')"></path>
+
+                                                <!-- GEMELO / PANTORRILLA (Izq / Der) -->
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Gemelo / Pantorrilla (Ambos), Gemelo Izquierdo, Media Pierna Inferior, Pierna Completa" d="M 140 550 C 136 600, 138 650, 146 715 L 142 715 C 134 650, 134 600, 140 550 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'front')"></path>
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Gemelo / Pantorrilla (Ambos), Gemelo Derecho, Media Pierna Inferior, Pierna Completa" d="M 260 550 C 264 600, 262 650, 254 715 L 258 715 C 266 650, 266 600, 260 550 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'front')"></path>
+
+                                                <!-- TOBILLO-EMPEINE / PIE (Izq / Der) -->
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Tobillo-Empeine / Pie (Ambos), Tobillo-Empeine Izquierdo, Pierna Completa" d="M 154 722 L 176 722 L 172 755 L 148 755 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'front')"></path>
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Tobillo-Empeine / Pie (Ambos), Tobillo-Empeine Derecho, Pierna Completa" d="M 246 722 L 224 722 L 228 755 L 252 755 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'front')"></path>
                                             </g>
 
                                             <!-- Grupo de Zonas VISTA ESPALDA -->
                                             <g class="anatomy-view-group" id="anatomy-view-back" style="display: none;">
-                                                <!-- CUELLO / NUCA -->
-                                                <path class="anatomical-path" data-zone="cuello" data-subzones="Nuca / Posterior, Cuello Completo" d="M 182 105 C 182 95, 218 95, 218 105 L 222 140 C 222 148, 178 148, 178 140 Z" onclick="toggleZoneAccordion('cuello', 'Cuello / Nuca', 'back')"></path>
+                                                <!-- CABEZA (Zona Cabello) -->
+                                                <path class="anatomical-path" data-zone="cuello" data-subzones="Cabeza (Nacimiento del Cabello), Cuello Completo" d="M 175 68 C 175 58, 225 58, 225 68 C 228 85, 226 100, 224 105 L 176 105 C 174 100, 172 85, 175 68 Z" onclick="toggleZoneAccordion('cuello', 'Cuello / Cabeza', 'back')"></path>
                                                 
-                                                <!-- HOMBRO / DELTOIDES POSTERIOR -->
-                                                <path class="anatomical-path" data-zone="hombro" data-subzones="Deltoides Posterior, Hombro Completo" d="M 125 152 C 135 140, 168 142, 178 150 L 172 195 C 150 200, 128 195, 118 178 Z" onclick="toggleZoneAccordion('hombro', 'Hombro / Deltoides', 'back')"></path>
-                                                <path class="anatomical-path" data-zone="hombro" data-subzones="Deltoides Posterior, Hombro Completo" d="M 275 152 C 265 140, 232 142, 222 150 L 228 195 C 250 200, 272 195, 282 178 Z" onclick="toggleZoneAccordion('hombro', 'Hombro / Deltoides', 'back')"></path>
+                                                <!-- NUCA / POSTERIOR -->
+                                                <path class="anatomical-path" data-zone="cuello" data-subzones="Nuca / Posterior, Cuello Completo" d="M 182 105 C 182 95, 218 95, 218 105 L 222 142 C 222 148, 178 148, 178 142 Z" onclick="toggleZoneAccordion('cuello', 'Cuello / Cabeza', 'back')"></path>
+                                                <path class="anatomical-path" data-zone="cuello" data-subzones="Lateral del Cuello (Ambos), Lateral Cuello Izquierdo, Cuello Completo" d="M 174 112 L 188 112 L 184 142 L 172 140 Z" onclick="toggleZoneAccordion('cuello', 'Cuello / Cabeza', 'back')"></path>
+                                                <path class="anatomical-path" data-zone="cuello" data-subzones="Lateral del Cuello (Ambos), Lateral Cuello Derecho, Cuello Completo" d="M 226 112 L 212 112 L 216 142 L 228 140 Z" onclick="toggleZoneAccordion('cuello', 'Cuello / Cabeza', 'back')"></path>
 
-                                                <!-- ESPALDA / COLUMNA -->
+                                                <!-- HOMBRO POSTERIOR (Deltoides Posterior) -->
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Hombro Completo (Ambos), Hombro Izquierdo, Media Manga Superior, Media Manga Externa, Manga Completa" d="M 125 152 C 135 142, 168 142, 178 150 L 172 195 C 150 200, 128 195, 118 178 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'back')"></path>
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Hombro Completo (Ambos), Hombro Derecho, Media Manga Superior, Media Manga Externa, Manga Completa" d="M 275 152 C 265 142, 232 142, 222 150 L 228 195 C 250 200, 272 195, 282 178 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'back')"></path>
+
+                                                <!-- TRÍCEPS POSTERIOR (Izq / Der) -->
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Tríceps (Ambos), Tríceps Izquierdo, Media Manga Superior, Media Manga Externa, Manga Completa" d="M 116 178 C 135 188, 135 238, 122 260 L 105 260 C 98 225, 102 188, 116 178 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'back')"></path>
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Tríceps (Ambos), Tríceps Derecho, Media Manga Superior, Media Manga Externa, Manga Completa" d="M 284 178 C 265 188, 265 238, 278 260 L 295 260 C 302 225, 298 188, 284 178 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'back')"></path>
+
+                                                <!-- ANTEBRAZO EXTERNO POSTERIOR (Izq / Der) -->
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Antebrazo Externo (Ambos), Antebrazo Externo Izq., Media Manga Inferior, Media Manga Externa, Manga Completa" d="M 120 262 C 122 280, 115 330, 108 360 L 95 360 C 92 330, 95 280, 104 262 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'back')"></path>
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Antebrazo Externo (Ambos), Antebrazo Externo Der., Media Manga Inferior, Media Manga Externa, Manga Completa" d="M 280 262 C 278 280, 285 330, 292 360 L 305 360 C 308 330, 305 280, 296 262 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'back')"></path>
+
+                                                <!-- MUÑECA / MANO POSTERIOR (Izq / Der) -->
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Muñeca / Mano (Ambas), Muñeca / Mano Izquierda, Manga Completa" d="M 108 362 C 112 375, 110 395, 102 405 L 94 400 C 92 385, 95 370, 108 362 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'back')"></path>
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Muñeca / Mano (Ambas), Muñeca / Mano Derecha, Manga Completa" d="M 292 362 C 288 375, 290 395, 298 405 L 306 400 C 308 385, 305 370, 292 362 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'back')"></path>
+
+                                                <!-- ESPALDA ALTA / TRAPECIO -->
                                                 <path class="anatomical-path" data-zone="espalda" data-subzones="Espalda Alta / Trapecio, Espalda Completa (Full Back)" d="M 160 142 C 180 145, 220 145, 240 142 L 235 200 C 215 205, 185 205, 165 200 Z" onclick="toggleZoneAccordion('espalda', 'Espalda / Columna', 'back')"></path>
-                                                <path class="anatomical-path" data-zone="espalda" data-subzones="Omóplato / Escápula, Espalda Completa (Full Back)" d="M 155 155 C 175 155, 190 160, 190 240 L 155 240 Z" onclick="toggleZoneAccordion('espalda', 'Espalda / Columna', 'back')"></path>
-                                                <path class="anatomical-path" data-zone="espalda" data-subzones="Omóplato / Escápula, Espalda Completa (Full Back)" d="M 245 155 C 225 155, 210 160, 210 240 L 245 240 Z" onclick="toggleZoneAccordion('espalda', 'Espalda / Columna', 'back')"></path>
-                                                <path class="anatomical-path" data-zone="espalda" data-subzones="Columna Vertebral, Espalda Completa (Full Back)" d="M 194 145 C 206 145, 206 145, 206 350 L 194 350 Z" onclick="toggleZoneAccordion('espalda', 'Espalda / Columna', 'back')"></path>
+
+                                                <!-- OMÓPLATO (Izq / Der) -->
+                                                <path class="anatomical-path" data-zone="espalda" data-subzones="Omóplato / Escápula (Ambos), Omóplato Izquierdo, Espalda Completa (Full Back)" d="M 155 155 C 175 155, 190 160, 190 240 L 155 240 Z" onclick="toggleZoneAccordion('espalda', 'Espalda / Columna', 'back')"></path>
+                                                <path class="anatomical-path" data-zone="espalda" data-subzones="Omóplato / Escápula (Ambos), Omóplato Derecho, Espalda Completa (Full Back)" d="M 245 155 C 225 155, 210 160, 210 240 L 245 240 Z" onclick="toggleZoneAccordion('espalda', 'Espalda / Columna', 'back')"></path>
+
+                                                <!-- COLUMNA VERTEBRAL (Línea Central) -->
+                                                <path class="anatomical-path" data-zone="espalda" data-subzones="Columna Vertebral (Línea Central), Espalda Completa (Full Back)" d="M 194 145 C 206 145, 206 145, 206 350 L 194 350 Z" onclick="toggleZoneAccordion('espalda', 'Espalda / Columna', 'back')"></path>
+
+                                                <!-- ESPALDA BAJA / LUMBAR -->
                                                 <path class="anatomical-path" data-zone="espalda" data-subzones="Espalda Baja / Lumbar, Espalda Completa (Full Back)" d="M 162 260 C 180 260, 220 260, 238 260 L 234 345 C 215 355, 185 355, 166 345 Z" onclick="toggleZoneAccordion('espalda', 'Espalda / Columna', 'back')"></path>
 
-                                                <!-- COSTILLAS / COSTADO POSTERIOR -->
-                                                <path class="anatomical-path" data-zone="costillas" data-subzones="Costillar Superior, Costado / Flanco Lateral" d="M 144 220 C 155 220, 158 225, 158 320 C 144 325, 136 300, 136 250 Z" onclick="toggleZoneAccordion('costillas', 'Costillas / Costado', 'left')"></path>
-                                                <path class="anatomical-path" data-zone="costillas" data-subzones="Costillar Superior, Costado / Flanco Lateral" d="M 256 220 C 245 220, 242 225, 242 320 C 256 325, 264 300, 264 250 Z" onclick="toggleZoneAccordion('costillas', 'Costillas / Costado', 'left')"></path>
+                                                <!-- COSTILLAS POSTERIORES (Izq / Der) -->
+                                                <path class="anatomical-path" data-zone="pecho" data-subzones="Costillas (Ambas), Costilla Izquierda, Torso Completo (Pecho + Costillas + Abdomen)" d="M 144 220 C 155 220, 158 225, 158 320 C 144 325, 136 300, 136 250 Z" onclick="toggleZoneAccordion('pecho', 'Pecho / Torso', 'left')"></path>
+                                                <path class="anatomical-path" data-zone="pecho" data-subzones="Costillas (Ambas), Costilla Derecha, Torso Completo (Pecho + Costillas + Abdomen)" d="M 256 220 C 245 220, 242 225, 242 320 C 256 325, 264 300, 264 250 Z" onclick="toggleZoneAccordion('pecho', 'Pecho / Torso', 'right')"></path>
 
-                                                <!-- BRAZOS / TRÍCEPS POSTERIOR -->
-                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Tríceps / Brazo Externo, Media Manga (Superior), Manga Completa" d="M 116 178 C 135 188, 135 238, 122 260 L 105 260 C 98 225, 102 188, 116 178 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'back')"></path>
-                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Tríceps / Brazo Externo, Media Manga (Superior), Manga Completa" d="M 284 178 C 265 188, 265 238, 278 260 L 295 260 C 302 225, 298 188, 284 178 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'back')"></path>
-                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Antebrazo Externo, Manga Completa" d="M 120 262 C 122 280, 115 330, 108 360 L 95 360 C 92 330, 95 280, 104 262 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'back')"></path>
-                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Antebrazo Externo, Manga Completa" d="M 280 262 C 278 280, 285 330, 292 360 L 305 360 C 308 330, 305 280, 296 262 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'back')"></path>
+                                                <!-- MUSLO TRASERO / GLÚTEO (Izq / Der) -->
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Muslo Trasero (Ambos), Muslo Trasero Izquierdo, Media Pierna Superior, Pierna Completa" d="M 150 350 C 172 350, 190 365, 190 405 L 186 515 L 148 515 C 138 480, 138 375, 150 350 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'back')"></path>
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Muslo Trasero (Ambos), Muslo Trasero Derecho, Media Pierna Superior, Pierna Completa" d="M 250 350 C 228 350, 210 365, 210 405 L 214 515 L 252 515 C 262 480, 262 375, 250 350 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'back')"></path>
 
-                                                <!-- PIERNAS / GLÚTEOS Y GEMELOS -->
-                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Muslo Frontal, Muslo Lateral / Ext., Pierna Completa" d="M 150 350 C 172 350, 196 365, 196 405 L 190 540 C 185 550, 155 550, 148 540 L 138 405 C 138 375, 142 355, 150 350 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'back')"></path>
-                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Muslo Frontal, Muslo Lateral / Ext., Pierna Completa" d="M 250 350 C 228 350, 204 365, 204 405 L 210 540 C 215 550, 245 550, 252 540 L 262 405 C 262 375, 258 355, 250 350 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'back')"></path>
-                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Pantorrilla / Gemelo, Pierna Completa" d="M 150 545 C 180 545, 186 645, 176 720 L 154 720 C 144 645, 144 545, 150 545 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'back')"></path>
-                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Pantorrilla / Gemelo, Pierna Completa" d="M 250 545 C 220 545, 214 645, 224 720 L 246 720 C 256 645, 256 545, 250 545 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'back')"></path>
+                                                <!-- MUSLO LATERAL-EXTERNO POSTERIOR (Izq / Der) -->
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Muslo Lateral-Externo (Ambos), Muslo Lateral-Ext. Izq., Media Pierna Superior, Media Pierna Externa, Pierna Completa" d="M 136 365 C 146 365, 150 405, 148 515 L 136 510 C 130 450, 132 385, 136 365 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'back')"></path>
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Muslo Lateral-Externo (Ambos), Muslo Lateral-Ext. Der., Media Pierna Superior, Media Pierna Externa, Pierna Completa" d="M 264 365 C 254 365, 250 405, 252 515 L 264 510 C 270 450, 268 385, 264 365 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'back')"></path>
+
+                                                <!-- GEMELO / PANTORRILLA POSTERIOR (Izq / Der) -->
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Gemelo / Pantorrilla (Ambos), Gemelo Izquierdo, Media Pierna Inferior, Pierna Completa" d="M 150 545 C 180 545, 186 645, 176 720 L 154 720 C 144 645, 144 545, 150 545 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'back')"></path>
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Gemelo / Pantorrilla (Ambos), Gemelo Derecho, Media Pierna Inferior, Pierna Completa" d="M 250 545 C 220 545, 214 645, 224 720 L 246 720 C 256 645, 256 545, 250 545 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'back')"></path>
+
+                                                <!-- TOBILLO-EMPEINE / PIE POSTERIOR (Izq / Der) -->
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Tobillo-Empeine / Pie (Ambos), Tobillo-Empeine Izquierdo, Pierna Completa" d="M 154 722 L 176 722 L 172 755 L 148 755 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'back')"></path>
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Tobillo-Empeine / Pie (Ambos), Tobillo-Empeine Derecho, Pierna Completa" d="M 246 722 L 224 722 L 228 755 L 252 755 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'back')"></path>
                                             </g>
 
                                             <!-- Grupo de Zonas VISTA PERFIL IZQUIERDO -->
                                             <g class="anatomy-view-group" id="anatomy-view-left" style="display: none;">
-                                                <path class="anatomical-path" data-zone="cuello" data-subzones="Lateral del Cuello, Nuca / Posterior, Garganta / Frontal, Cuello Completo" d="M 188 108 C 198 102, 216 108, 216 138 L 188 138 Z" onclick="toggleZoneAccordion('cuello', 'Cuello / Nuca', 'left')"></path>
-                                                <path class="anatomical-path" data-zone="hombro" data-subzones="Deltoides Lateral / Cúpula, Deltoides Frontal, Deltoides Posterior, Hombro y Clavícula, Hombro Completo" d="M 182 148 C 212 148, 226 162, 222 198 L 182 198 Z" onclick="toggleZoneAccordion('hombro', 'Hombro / Deltoides', 'left')"></path>
-                                                <path class="anatomical-path" data-zone="pecho" data-subzones="Pectoral (Izq. / Der.), Esternón / Centro, Pecho Completo, Torso Completo" d="M 206 168 C 236 178, 236 242, 206 248 Z" onclick="toggleZoneAccordion('pecho', 'Pecho / Torso', 'left')"></path>
-                                                <path class="anatomical-path" data-zone="espalda" data-subzones="Omóplato / Escápula, Espalda Alta / Trapecio, Columna Vertebral, Espalda Baja / Lumbar, Espalda Completa (Full Back)" d="M 162 162 C 182 162, 182 262, 162 262 Z" onclick="toggleZoneAccordion('espalda', 'Espalda / Columna', 'left')"></path>
-                                                <path class="anatomical-path" data-zone="costillas" data-subzones="Costillar Superior, Costado / Flanco Lateral, Bajo Pecho / Rib Cage, Cadera / Cresta Ilíaca" d="M 176 222 C 216 222, 216 322, 176 322 Z" onclick="toggleZoneAccordion('costillas', 'Costillas / Costado', 'left')"></path>
-                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Antebrazo Interno, Antebrazo Externo, Bíceps / Brazo Interno, Tríceps / Brazo Externo, Media Manga (Superior), Manga Completa, Muñeca / Mano" d="M 176 192 C 216 192, 216 362, 176 362 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'left')"></path>
-                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Muslo Frontal, Muslo Lateral / Ext., Pantorrilla / Gemelo, Espinilla / Frontal, Tobillo / Empeine, Pierna Completa" d="M 162 362 C 228 362, 228 732, 162 732 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'left')"></path>
+                                                <!-- CABEZA -->
+                                                <path class="anatomical-path" data-zone="cuello" data-subzones="Cabeza (Nacimiento del Cabello), Cuello Completo" d="M 170 70 C 170 60, 227 60, 227 85 C 227 105, 215 115, 195 115 L 175 105 Z" onclick="toggleZoneAccordion('cuello', 'Cuello / Cabeza', 'left')"></path>
+                                                
+                                                <!-- CUELLO -->
+                                                <path class="anatomical-path" data-zone="cuello" data-subzones="Lateral del Cuello (Ambos), Lateral Cuello Izquierdo, Garganta / Frontal, Nuca / Posterior, Cuello Completo" d="M 187 115 C 195 110, 225 115, 231 144 L 187 144 Z" onclick="toggleZoneAccordion('cuello', 'Cuello / Cabeza', 'left')"></path>
+
+                                                <!-- HOMBRO IZQUIERDO -->
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Hombro Completo (Ambos), Hombro Izquierdo, Media Manga Superior, Media Manga Externa, Manga Completa" d="M 183 148 C 215 145, 244 158, 240 198 L 183 198 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'left')"></path>
+
+                                                <!-- BÍCEPS / TRÍCEPS IZQUIERDO -->
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Bíceps (Ambos), Bíceps Izquierdo, Media Manga Superior, Media Manga Interna, Manga Completa" d="M 180 198 C 190 198, 205 200, 205 260 L 180 260 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'left')"></path>
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Tríceps (Ambos), Tríceps Izquierdo, Media Manga Superior, Media Manga Externa, Manga Completa" d="M 205 198 C 225 198, 242 205, 240 260 L 205 260 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'left')"></path>
+
+                                                <!-- ANTEBRAZO INTERNO / EXTERNO IZQUIERDO -->
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Antebrazo Interno (Ambos), Antebrazo Interno Izq., Media Manga Inferior, Media Manga Interna, Manga Completa" d="M 180 260 C 190 260, 205 260, 205 355 L 180 355 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'left')"></path>
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Antebrazo Externo (Ambos), Antebrazo Externo Izq., Media Manga Inferior, Media Manga Externa, Manga Completa" d="M 205 260 C 220 260, 238 260, 235 355 L 205 355 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'left')"></path>
+
+                                                <!-- MUÑECA / MANO IZQUIERDA -->
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Muñeca / Mano (Ambas), Muñeca / Mano Izquierda, Manga Completa" d="M 180 355 L 235 355 L 225 405 L 180 400 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'left')"></path>
+
+                                                <!-- PECTORAL IZQUIERDO -->
+                                                <path class="anatomical-path" data-zone="pecho" data-subzones="Pectoral (Ambos), Pectoral Izquierdo, Pecho Completo, Torso Completo (Pecho + Costillas + Abdomen)" d="M 165 170 C 185 170, 195 180, 195 240 L 165 240 Z" onclick="toggleZoneAccordion('pecho', 'Pecho / Torso', 'left')"></path>
+
+                                                <!-- COSTILLA IZQUIERDA -->
+                                                <path class="anatomical-path" data-zone="pecho" data-subzones="Costillas (Ambas), Costilla Izquierda, Bajo Pecho / Rib Cage, Torso Completo (Pecho + Costillas + Abdomen)" d="M 175 220 C 215 220, 225 240, 225 325 L 175 325 Z" onclick="toggleZoneAccordion('pecho', 'Pecho / Torso', 'left')"></path>
+
+                                                <!-- ABDOMEN -->
+                                                <path class="anatomical-path" data-zone="pecho" data-subzones="Abdomen / Vientre, Torso Completo (Pecho + Costillas + Abdomen)" d="M 166 240 C 185 240, 195 245, 195 340 L 166 340 Z" onclick="toggleZoneAccordion('pecho', 'Pecho / Torso', 'left')"></path>
+
+                                                <!-- ESPALDA PERFIL (Omóplato / Lumbar) -->
+                                                <path class="anatomical-path" data-zone="espalda" data-subzones="Omóplato / Escápula (Ambos), Omóplato Izquierdo, Espalda Alta / Trapecio, Columna Vertebral (Línea Central), Espalda Completa (Full Back)" d="M 215 160 C 235 160, 244 170, 244 260 L 215 260 Z" onclick="toggleZoneAccordion('espalda', 'Espalda / Columna', 'left')"></path>
+                                                <path class="anatomical-path" data-zone="espalda" data-subzones="Espalda Baja / Lumbar, Espalda Completa (Full Back)" d="M 210 260 C 230 260, 238 270, 238 350 L 210 350 Z" onclick="toggleZoneAccordion('espalda', 'Espalda / Columna', 'left')"></path>
+
+                                                <!-- MUSLO (Frontal / Lateral / Trasero) -->
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Muslo Frontal (Ambos), Muslo Frontal Izquierdo, Media Pierna Superior, Pierna Completa" d="M 169 380 C 175 380, 195 385, 195 515 L 169 515 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'left')"></path>
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Muslo Lateral-Externo (Ambos), Muslo Lateral-Ext. Izq., Media Pierna Superior, Media Pierna Externa, Pierna Completa" d="M 190 380 C 205 380, 220 385, 220 515 L 190 515 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'left')"></path>
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Muslo Trasero (Ambos), Muslo Trasero Izquierdo, Media Pierna Superior, Pierna Completa" d="M 215 380 C 228 380, 235 390, 235 515 L 215 515 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'left')"></path>
+
+                                                <!-- RODILLA IZQUIERDA -->
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Rodilla (Ambas), Rodilla Izquierda, Media Pierna Superior, Media Pierna Inferior, Pierna Completa" d="M 175 515 C 185 515, 205 515, 205 545 L 175 545 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'left')"></path>
+
+                                                <!-- ESPINILLA FRONTAL IZQUIERDA -->
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Espinilla Frontal (Ambas), Espinilla Izquierda, Media Pierna Inferior, Pierna Completa" d="M 180 545 C 184 570, 184 650, 187 720 L 204 720 C 200 650, 198 570, 200 545 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'left')"></path>
+
+                                                <!-- LATERAL PIERNA IZQUIERDA -->
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Lateral Externo Pierna (Ambos), Lateral Ext. Pierna Izq., Media Pierna Inferior, Media Pierna Externa, Pierna Completa" d="M 195 545 L 215 545 L 215 720 L 195 720 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'left')"></path>
+
+                                                <!-- GEMELO / PANTORRILLA IZQUIERDA -->
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Gemelo / Pantorrilla (Ambos), Gemelo Izquierdo, Media Pierna Inferior, Pierna Completa" d="M 204 545 C 210 570, 238 600, 242 645 L 236 720 C 220 720, 208 680, 204 545 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'left')"></path>
+
+                                                <!-- TOBILLO-EMPEINE / PIE IZQUIERDO -->
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Tobillo-Empeine / Pie (Ambos), Tobillo-Empeine Izquierdo, Pierna Completa" d="M 180 720 L 236 720 L 230 755 L 175 755 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'left')"></path>
                                             </g>
 
                                             <!-- Grupo de Zonas VISTA PERFIL DERECHO -->
                                             <g class="anatomy-view-group" id="anatomy-view-right" style="display: none;">
-                                                <path class="anatomical-path" data-zone="cuello" data-subzones="Lateral del Cuello, Nuca / Posterior, Garganta / Frontal, Cuello Completo" d="M 184 108 C 204 102, 212 108, 212 138 L 184 138 Z" onclick="toggleZoneAccordion('cuello', 'Cuello / Nuca', 'right')"></path>
-                                                <path class="anatomical-path" data-zone="hombro" data-subzones="Deltoides Lateral / Cúpula, Deltoides Frontal, Deltoides Posterior, Hombro y Clavícula, Hombro Completo" d="M 178 148 C 218 148, 222 162, 218 198 L 178 198 Z" onclick="toggleZoneAccordion('hombro', 'Hombro / Deltoides', 'right')"></path>
-                                                <path class="anatomical-path" data-zone="pecho" data-subzones="Pectoral (Izq. / Der.), Esternón / Centro, Pecho Completo, Torso Completo" d="M 164 168 C 194 178, 194 242, 164 248 Z" onclick="toggleZoneAccordion('pecho', 'Pecho / Torso', 'right')"></path>
-                                                <path class="anatomical-path" data-zone="espalda" data-subzones="Omóplato / Escápula, Espalda Alta / Trapecio, Columna Vertebral, Espalda Baja / Lumbar, Espalda Completa (Full Back)" d="M 218 162 C 238 162, 238 262, 218 262 Z" onclick="toggleZoneAccordion('espalda', 'Espalda / Columna', 'right')"></path>
-                                                <path class="anatomical-path" data-zone="costillas" data-subzones="Costillar Superior, Costado / Flanco Lateral, Bajo Pecho / Rib Cage, Cadera / Cresta Ilíaca" d="M 184 222 C 224 222, 224 322, 184 322 Z" onclick="toggleZoneAccordion('costillas', 'Costillas / Costado', 'right')"></path>
-                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Antebrazo Interno, Antebrazo Externo, Bíceps / Brazo Interno, Tríceps / Brazo Externo, Media Manga (Superior), Manga Completa, Muñeca / Mano" d="M 184 192 C 224 192, 224 362, 184 362 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'right')"></path>
-                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Muslo Frontal, Muslo Lateral / Ext., Pantorrilla / Gemelo, Espinilla / Frontal, Tobillo / Empeine, Pierna Completa" d="M 172 362 C 238 362, 238 732, 172 732 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'right')"></path>
+                                                <!-- CABEZA -->
+                                                <path class="anatomical-path" data-zone="cuello" data-subzones="Cabeza (Nacimiento del Cabello), Cuello Completo" d="M 174 70 C 174 60, 231 60, 231 85 C 231 105, 219 115, 199 115 L 179 105 Z" onclick="toggleZoneAccordion('cuello', 'Cuello / Cabeza', 'right')"></path>
+                                                
+                                                <!-- CUELLO -->
+                                                <path class="anatomical-path" data-zone="cuello" data-subzones="Lateral del Cuello (Ambos), Lateral Cuello Derecho, Garganta / Frontal, Nuca / Posterior, Cuello Completo" d="M 169 115 C 175 110, 205 115, 212 144 L 169 144 Z" onclick="toggleZoneAccordion('cuello', 'Cuello / Cabeza', 'right')"></path>
+
+                                                <!-- HOMBRO DERECHO -->
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Hombro Completo (Ambos), Hombro Derecho, Media Manga Superior, Media Manga Externa, Manga Completa" d="M 157 148 C 185 145, 217 158, 217 198 L 157 198 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'right')"></path>
+
+                                                <!-- BÍCEPS / TRÍCEPS DERECHO -->
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Bíceps (Ambos), Bíceps Derecho, Media Manga Superior, Media Manga Interna, Manga Completa" d="M 195 198 C 205 198, 220 200, 220 260 L 195 260 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'right')"></path>
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Tríceps (Ambos), Tríceps Derecho, Media Manga Superior, Media Manga Externa, Manga Completa" d="M 158 198 C 175 198, 195 205, 195 260 L 158 260 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'right')"></path>
+
+                                                <!-- ANTEBRAZO INTERNO / EXTERNO DERECHO -->
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Antebrazo Interno (Ambos), Antebrazo Interno Der., Media Manga Inferior, Media Manga Interna, Manga Completa" d="M 195 260 C 205 260, 220 260, 220 355 L 195 355 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'right')"></path>
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Antebrazo Externo (Ambos), Antebrazo Externo Der., Media Manga Inferior, Media Manga Externa, Manga Completa" d="M 162 260 C 178 260, 195 260, 195 355 L 162 355 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'right')"></path>
+
+                                                <!-- MUÑECA / MANO DERECHA -->
+                                                <path class="anatomical-path" data-zone="brazo" data-subzones="Muñeca / Mano (Ambas), Muñeca / Mano Derecha, Manga Completa" d="M 165 355 L 220 355 L 220 400 L 175 405 Z" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'right')"></path>
+
+                                                <!-- PECTORAL DERECHO -->
+                                                <path class="anatomical-path" data-zone="pecho" data-subzones="Pectoral (Ambos), Pectoral Derecho, Pecho Completo, Torso Completo (Pecho + Costillas + Abdomen)" d="M 195 170 C 215 170, 234 180, 234 240 L 195 240 Z" onclick="toggleZoneAccordion('pecho', 'Pecho / Torso', 'right')"></path>
+
+                                                <!-- COSTILLA DERECHA -->
+                                                <path class="anatomical-path" data-zone="pecho" data-subzones="Costillas (Ambas), Costilla Derecha, Bajo Pecho / Rib Cage, Torso Completo (Pecho + Costillas + Abdomen)" d="M 175 220 C 215 220, 225 240, 225 325 L 175 325 Z" onclick="toggleZoneAccordion('pecho', 'Pecho / Torso', 'right')"></path>
+
+                                                <!-- ABDOMEN -->
+                                                <path class="anatomical-path" data-zone="pecho" data-subzones="Abdomen / Vientre, Torso Completo (Pecho + Costillas + Abdomen)" d="M 195 240 C 215 240, 234 245, 234 340 L 195 340 Z" onclick="toggleZoneAccordion('pecho', 'Pecho / Torso', 'right')"></path>
+
+                                                <!-- ESPALDA PERFIL (Omóplato / Lumbar) -->
+                                                <path class="anatomical-path" data-zone="espalda" data-subzones="Omóplato / Escápula (Ambos), Omóplato Derecho, Espalda Alta / Trapecio, Columna Vertebral (Línea Central), Espalda Completa (Full Back)" d="M 155 160 C 175 160, 185 170, 185 260 L 155 260 Z" onclick="toggleZoneAccordion('espalda', 'Espalda / Columna', 'right')"></path>
+                                                <path class="anatomical-path" data-zone="espalda" data-subzones="Espalda Baja / Lumbar, Espalda Completa (Full Back)" d="M 162 260 C 180 260, 190 270, 190 350 L 162 350 Z" onclick="toggleZoneAccordion('espalda', 'Espalda / Columna', 'right')"></path>
+
+                                                <!-- MUSLO (Frontal / Lateral / Trasero) -->
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Muslo Frontal (Ambos), Muslo Frontal Derecho, Media Pierna Superior, Pierna Completa" d="M 205 380 C 215 380, 231 385, 231 515 L 205 515 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'right')"></path>
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Muslo Lateral-Externo (Ambos), Muslo Lateral-Ext. Der., Media Pierna Superior, Media Pierna Externa, Pierna Completa" d="M 180 380 C 195 380, 210 385, 210 515 L 180 515 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'right')"></path>
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Muslo Trasero (Ambos), Muslo Trasero Derecho, Media Pierna Superior, Pierna Completa" d="M 165 380 C 175 380, 185 390, 185 515 L 165 515 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'right')"></path>
+
+                                                <!-- RODILLA DERECHA -->
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Rodilla (Ambas), Rodilla Derecha, Media Pierna Superior, Media Pierna Inferior, Pierna Completa" d="M 195 515 C 205 515, 225 515, 225 545 L 195 545 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'right')"></path>
+
+                                                <!-- ESPINILLA FRONTAL DERECHA -->
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Espinilla Frontal (Ambas), Espinilla Derecha, Media Pierna Inferior, Pierna Completa" d="M 196 545 C 198 570, 202 650, 213 720 L 196 720 C 198 650, 196 570, 196 545 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'right')"></path>
+
+                                                <!-- LATERAL PIERNA DERECHA -->
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Lateral Externo Pierna (Ambos), Lateral Ext. Pierna Der., Media Pierna Inferior, Media Pierna Externa, Pierna Completa" d="M 185 545 L 205 545 L 205 720 L 185 720 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'right')"></path>
+
+                                                <!-- GEMELO / PANTORRILLA DERECHA -->
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Gemelo / Pantorrilla (Ambos), Gemelo Derecho, Media Pierna Inferior, Pierna Completa" d="M 158 545 C 162 570, 160 600, 196 645 L 196 720 C 175 720, 162 680, 158 545 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'right')"></path>
+
+                                                <!-- TOBILLO-EMPEINE / PIE DERECHO -->
+                                                <path class="anatomical-path" data-zone="pierna" data-subzones="Tobillo-Empeine / Pie (Ambos), Tobillo-Empeine Derecho, Pierna Completa" d="M 165 720 L 220 720 L 225 755 L 170 755 Z" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'right')"></path>
                                             </g>
                                         </svg>
                                     </div>
@@ -283,15 +441,14 @@
                                 </div>
 
                                 <div class="zone-accordion-list" id="zone-accordion-list">
-                                    
-                                    <!-- 1. Brazo / Manga -->
+                                    <!-- Brazo / Manga -->
                                     <div class="zone-accordion-item" data-zone="brazo" id="zone-item-brazo">
                                         <div class="zone-accordion-header" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'front')">
                                             <div class="zone-header-left">
                                                 <span class="zone-indicator"></span>
                                                 <div class="zone-text-group">
                                                     <span class="zone-main-title">Brazo / Manga</span>
-                                                    <span class="zone-sub-caption">Fluidez, dinamismo y anatomía en movimiento</span>
+                                                    <span class="zone-sub-caption">Hombro, bíceps, tríceps, antebrazo y composiciones de manga</span>
                                                 </div>
                                             </div>
                                             <div class="zone-header-right">
@@ -301,26 +458,75 @@
                                         </div>
                                         <div class="zone-suboptions-drawer">
                                             <span class="suboptions-instruction">Selecciona la sub-zona específica:</span>
-                                            <div class="subzone-chips-grid">
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Antebrazo Interno')">Antebrazo Interno</button>
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Antebrazo Externo')">Antebrazo Externo</button>
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Bíceps / Brazo Interno')">Bíceps / Brazo Interno</button>
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Tríceps / Brazo Externo')">Tríceps / Brazo Externo</button>
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Media Manga (Superior)')">Media Manga Superior</button>
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Manga Completa')">Manga Completa</button>
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Muñeca / Mano')">Muñeca / Mano</button>
+                                            <div class="subzone-group-block">
+                                                <span class="subzone-group-title">Hombro / Deltoides</span>
+                                                <div class="subzone-chips-grid">
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Hombro Completo (Ambos)')">Hombro Completo (Ambos)</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Hombro Izquierdo')">Hombro Izquierdo</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Hombro Derecho')">Hombro Derecho</button>
+                                                </div>
+                                            </div>
+                                            <div class="subzone-group-block">
+                                                <span class="subzone-group-title">Bíceps (Interno)</span>
+                                                <div class="subzone-chips-grid">
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Bíceps (Ambos)')">Bíceps (Ambos)</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Bíceps Izquierdo')">Bíceps Izquierdo</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Bíceps Derecho')">Bíceps Derecho</button>
+                                                </div>
+                                            </div>
+                                            <div class="subzone-group-block">
+                                                <span class="subzone-group-title">Tríceps (Externo)</span>
+                                                <div class="subzone-chips-grid">
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Tríceps (Ambos)')">Tríceps (Ambos)</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Tríceps Izquierdo')">Tríceps Izquierdo</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Tríceps Derecho')">Tríceps Derecho</button>
+                                                </div>
+                                            </div>
+                                            <div class="subzone-group-block">
+                                                <span class="subzone-group-title">Antebrazo Interno</span>
+                                                <div class="subzone-chips-grid">
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Antebrazo Interno (Ambos)')">Antebrazo Interno (Ambos)</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Antebrazo Interno Izq.')">Antebrazo Interno Izq.</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Antebrazo Interno Der.')">Antebrazo Interno Der.</button>
+                                                </div>
+                                            </div>
+                                            <div class="subzone-group-block">
+                                                <span class="subzone-group-title">Antebrazo Externo</span>
+                                                <div class="subzone-chips-grid">
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Antebrazo Externo (Ambos)')">Antebrazo Externo (Ambos)</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Antebrazo Externo Izq.')">Antebrazo Externo Izq.</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Antebrazo Externo Der.')">Antebrazo Externo Der.</button>
+                                                </div>
+                                            </div>
+                                            <div class="subzone-group-block">
+                                                <span class="subzone-group-title">Composiciones de Manga</span>
+                                                <div class="subzone-chips-grid">
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Media Manga Superior')">Media Manga Superior</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Media Manga Inferior')">Media Manga Inferior</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Media Manga Externa')">Media Manga Externa</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Media Manga Interna')">Media Manga Interna</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Manga Completa')">Manga Completa</button>
+                                                </div>
+                                            </div>
+                                            <div class="subzone-group-block">
+                                                <span class="subzone-group-title">Muñeca / Mano</span>
+                                                <div class="subzone-chips-grid">
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Muñeca / Mano (Ambas)')">Muñeca / Mano (Ambas)</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Muñeca / Mano Izquierda')">Muñeca / Mano Izquierda</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Muñeca / Mano Derecha')">Muñeca / Mano Derecha</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- 2. Pierna / Muslo -->
+                                    <!-- Pierna / Muslo -->
                                     <div class="zone-accordion-item" data-zone="pierna" id="zone-item-pierna">
                                         <div class="zone-accordion-header" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'front')">
                                             <div class="zone-header-left">
                                                 <span class="zone-indicator"></span>
                                                 <div class="zone-text-group">
                                                     <span class="zone-main-title">Pierna / Muslo</span>
-                                                    <span class="zone-sub-caption">Volumen, solidez y gran superficie de autor</span>
+                                                    <span class="zone-sub-caption">Muslo en 4 cuadrantes, rodilla, espinilla, gemelo y pierna completa</span>
                                                 </div>
                                             </div>
                                             <div class="zone-header-right">
@@ -330,25 +536,77 @@
                                         </div>
                                         <div class="zone-suboptions-drawer">
                                             <span class="suboptions-instruction">Selecciona la sub-zona específica:</span>
-                                            <div class="subzone-chips-grid">
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Muslo Frontal')">Muslo Frontal</button>
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Muslo Lateral / Ext.')">Muslo Lateral / Ext.</button>
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Pantorrilla / Gemelo')">Pantorrilla / Gemelo</button>
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Espinilla / Frontal')">Espinilla / Frontal</button>
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Tobillo / Empeine')">Tobillo / Empeine</button>
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Pierna Completa')">Pierna Completa</button>
+                                            <div class="subzone-group-block">
+                                                <span class="subzone-group-title">Muslo (Cuadrantes)</span>
+                                                <div class="subzone-chips-grid">
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Muslo Frontal (Ambos)')">Muslo Frontal (Ambos)</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Muslo Frontal Izquierdo')">Muslo Frontal Izquierdo</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Muslo Frontal Derecho')">Muslo Frontal Derecho</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Muslo Lateral-Externo (Ambos)')">Muslo Lateral-Externo (Ambos)</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Muslo Lateral-Ext. Izq.')">Muslo Lateral-Ext. Izq.</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Muslo Lateral-Ext. Der.')">Muslo Lateral-Ext. Der.</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Muslo Trasero (Ambos)')">Muslo Trasero (Ambos)</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Muslo Trasero Izquierdo')">Muslo Trasero Izquierdo</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Muslo Trasero Derecho')">Muslo Trasero Derecho</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Muslo Lateral-Interno (Ambos)')">Muslo Lateral-Interno (Ambos)</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Muslo Lateral-Int. Izq.')">Muslo Lateral-Int. Izq.</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Muslo Lateral-Int. Der.')">Muslo Lateral-Int. Der.</button>
+                                                </div>
+                                            </div>
+                                            <div class="subzone-group-block">
+                                                <span class="subzone-group-title">Rodilla</span>
+                                                <div class="subzone-chips-grid">
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Rodilla (Ambas)')">Rodilla (Ambas)</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Rodilla Izquierda')">Rodilla Izquierda</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Rodilla Derecha')">Rodilla Derecha</button>
+                                                </div>
+                                            </div>
+                                            <div class="subzone-group-block">
+                                                <span class="subzone-group-title">Parte Inferior (Rodilla a Tobillo)</span>
+                                                <div class="subzone-chips-grid">
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Espinilla Frontal (Ambas)')">Espinilla Frontal (Ambas)</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Espinilla Izquierda')">Espinilla Izquierda</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Espinilla Derecha')">Espinilla Derecha</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Lateral Externo Pierna (Ambos)')">Lateral Externo Pierna (Ambos)</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Lateral Ext. Pierna Izq.')">Lateral Ext. Pierna Izq.</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Lateral Ext. Pierna Der.')">Lateral Ext. Pierna Der.</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Lateral Interno Pierna (Ambos)')">Lateral Interno Pierna (Ambos)</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Lateral Int. Pierna Izq.')">Lateral Int. Pierna Izq.</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Lateral Int. Pierna Der.')">Lateral Int. Pierna Der.</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Gemelo / Pantorrilla (Ambos)')">Gemelo / Pantorrilla (Ambos)</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Gemelo Izquierdo')">Gemelo Izquierdo</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Gemelo Derecho')">Gemelo Derecho</button>
+                                                </div>
+                                            </div>
+                                            <div class="subzone-group-block">
+                                                <span class="subzone-group-title">Composiciones de Pierna</span>
+                                                <div class="subzone-chips-grid">
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Media Pierna Superior')">Media Pierna Superior</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Media Pierna Inferior')">Media Pierna Inferior</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Media Pierna Externa')">Media Pierna Externa</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Media Pierna Interna')">Media Pierna Interna</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Pierna Completa')">Pierna Completa</button>
+                                                </div>
+                                            </div>
+                                            <div class="subzone-group-block">
+                                                <span class="subzone-group-title">Pie / Tobillo-Empeine</span>
+                                                <div class="subzone-chips-grid">
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Tobillo-Empeine / Pie (Ambos)')">Tobillo-Empeine / Pie (Ambos)</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Tobillo-Empeine Izquierdo')">Tobillo-Empeine Izquierdo</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Tobillo-Empeine Derecho')">Tobillo-Empeine Derecho</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- 3. Espalda / Columna -->
+                                    <!-- Espalda / Columna -->
                                     <div class="zone-accordion-item" data-zone="espalda" id="zone-item-espalda">
                                         <div class="zone-accordion-header" onclick="toggleZoneAccordion('espalda', 'Espalda / Columna', 'back')">
                                             <div class="zone-header-left">
                                                 <span class="zone-indicator"></span>
                                                 <div class="zone-text-group">
                                                     <span class="zone-main-title">Espalda / Columna</span>
-                                                    <span class="zone-sub-caption">Composición monumental y arquitectura simétrica</span>
+                                                    <span class="zone-sub-caption">Composición monumental, omóplatos, columna vertebral y lumbar</span>
                                                 </div>
                                             </div>
                                             <div class="zone-header-right">
@@ -358,24 +616,34 @@
                                         </div>
                                         <div class="zone-suboptions-drawer">
                                             <span class="suboptions-instruction">Selecciona la sub-zona específica:</span>
-                                            <div class="subzone-chips-grid">
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('espalda', 'Espalda / Columna', 'Columna Vertebral')">Columna Vertebral</button>
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('espalda', 'Espalda / Columna', 'Omóplato / Escápula')">Omóplato / Escápula</button>
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('espalda', 'Espalda / Columna', 'Espalda Alta / Trapecio')">Espalda Alta / Trapecio</button>
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('espalda', 'Espalda / Columna', 'Espalda Baja / Lumbar')">Espalda Baja / Lumbar</button>
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('espalda', 'Espalda / Columna', 'Espalda Completa (Full Back)')">Espalda Completa</button>
+                                            <div class="subzone-group-block">
+                                                <span class="subzone-group-title">Estructura Central y Omóplatos</span>
+                                                <div class="subzone-chips-grid">
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('espalda', 'Espalda / Columna', 'Columna Vertebral (Línea Central)')">Columna Vertebral (Línea Central)</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('espalda', 'Espalda / Columna', 'Omóplato / Escápula (Ambos)')">Omóplato / Escápula (Ambos)</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('espalda', 'Espalda / Columna', 'Omóplato Izquierdo')">Omóplato Izquierdo</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('espalda', 'Espalda / Columna', 'Omóplato Derecho')">Omóplato Derecho</button>
+                                                </div>
+                                            </div>
+                                            <div class="subzone-group-block">
+                                                <span class="subzone-group-title">Planos de Espalda</span>
+                                                <div class="subzone-chips-grid">
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('espalda', 'Espalda / Columna', 'Espalda Alta / Trapecio')">Espalda Alta / Trapecio</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('espalda', 'Espalda / Columna', 'Espalda Baja / Lumbar')">Espalda Baja / Lumbar</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('espalda', 'Espalda / Columna', 'Espalda Completa (Full Back)')">Espalda Completa (Full Back)</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- 4. Pecho / Torso -->
+                                    <!-- Pecho / Torso -->
                                     <div class="zone-accordion-item" data-zone="pecho" id="zone-item-pecho">
                                         <div class="zone-accordion-header" onclick="toggleZoneAccordion('pecho', 'Pecho / Torso', 'front')">
                                             <div class="zone-header-left">
                                                 <span class="zone-indicator"></span>
                                                 <div class="zone-text-group">
                                                     <span class="zone-main-title">Pecho / Torso</span>
-                                                    <span class="zone-sub-caption">Impacto visual central y resonancia emocional</span>
+                                                    <span class="zone-sub-caption">Pectorales, esternón, costillas izquierda/derecha y abdomen</span>
                                                 </div>
                                             </div>
                                             <div class="zone-header-right">
@@ -385,76 +653,43 @@
                                         </div>
                                         <div class="zone-suboptions-drawer">
                                             <span class="suboptions-instruction">Selecciona la sub-zona específica:</span>
-                                            <div class="subzone-chips-grid">
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('pecho', 'Pecho / Torso', 'Pectoral (Izq. / Der.)')">Pectoral (Izq./Der.)</button>
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('pecho', 'Pecho / Torso', 'Esternón / Centro')">Esternón / Centro</button>
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('pecho', 'Pecho / Torso', 'Pecho Completo')">Pecho Completo</button>
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('pecho', 'Pecho / Torso', 'Abdomen / Vientre')">Abdomen / Vientre</button>
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('pecho', 'Pecho / Torso', 'Torso Completo')">Torso Completo</button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- 5. Hombro / Deltoides -->
-                                    <div class="zone-accordion-item" data-zone="hombro" id="zone-item-hombro">
-                                        <div class="zone-accordion-header" onclick="toggleZoneAccordion('hombro', 'Hombro / Deltoides', 'front')">
-                                            <div class="zone-header-left">
-                                                <span class="zone-indicator"></span>
-                                                <div class="zone-text-group">
-                                                    <span class="zone-main-title">Hombro / Deltoides</span>
-                                                    <span class="zone-sub-caption">Estructura muscular de porte y presencia</span>
+                                            <div class="subzone-group-block">
+                                                <span class="subzone-group-title">Pectoral y Esternón</span>
+                                                <div class="subzone-chips-grid">
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pecho', 'Pecho / Torso', 'Pectoral (Ambos)')">Pectoral (Ambos)</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pecho', 'Pecho / Torso', 'Pectoral Izquierdo')">Pectoral Izquierdo</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pecho', 'Pecho / Torso', 'Pectoral Derecho')">Pectoral Derecho</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pecho', 'Pecho / Torso', 'Esternón / Centro del Pecho')">Esternón / Centro del Pecho</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pecho', 'Pecho / Torso', 'Pecho Completo')">Pecho Completo</button>
                                                 </div>
                                             </div>
-                                            <div class="zone-header-right">
-                                                <span class="zone-selected-tag" id="tag-subzone-hombro"></span>
-                                                <i class="fa-solid fa-chevron-down zone-chevron"></i>
-                                            </div>
-                                        </div>
-                                        <div class="zone-suboptions-drawer">
-                                            <span class="suboptions-instruction">Selecciona la sub-zona específica:</span>
-                                            <div class="subzone-chips-grid">
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('hombro', 'Hombro / Deltoides', 'Deltoides Frontal')">Deltoides Frontal</button>
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('hombro', 'Hombro / Deltoides', 'Deltoides Lateral / Cúpula')">Deltoides Lateral</button>
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('hombro', 'Hombro / Deltoides', 'Deltoides Posterior')">Deltoides Posterior</button>
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('hombro', 'Hombro / Deltoides', 'Hombro y Clavícula')">Hombro y Clavícula</button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- 6. Costillas / Costado -->
-                                    <div class="zone-accordion-item" data-zone="costillas" id="zone-item-costillas">
-                                        <div class="zone-accordion-header" onclick="toggleZoneAccordion('costillas', 'Costillas / Costado', 'left')">
-                                            <div class="zone-header-left">
-                                                <span class="zone-indicator"></span>
-                                                <div class="zone-text-group">
-                                                    <span class="zone-main-title">Costillas / Costado</span>
-                                                    <span class="zone-sub-caption">Curvatura orgánica de alta sensualidad y discreción</span>
+                                            <div class="subzone-group-block">
+                                                <span class="subzone-group-title">Costillas y Flancos</span>
+                                                <div class="subzone-chips-grid">
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pecho', 'Pecho / Torso', 'Costillas (Ambas)')">Costillas (Ambas)</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pecho', 'Pecho / Torso', 'Costilla Izquierda')">Costilla Izquierda</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pecho', 'Pecho / Torso', 'Costilla Derecha')">Costilla Derecha</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pecho', 'Pecho / Torso', 'Bajo Pecho / Rib Cage')">Bajo Pecho / Rib Cage</button>
                                                 </div>
                                             </div>
-                                            <div class="zone-header-right">
-                                                <span class="zone-selected-tag" id="tag-subzone-costillas"></span>
-                                                <i class="fa-solid fa-chevron-down zone-chevron"></i>
-                                            </div>
-                                        </div>
-                                        <div class="zone-suboptions-drawer">
-                                            <span class="suboptions-instruction">Selecciona la sub-zona específica:</span>
-                                            <div class="subzone-chips-grid">
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('costillas', 'Costillas / Costado', 'Costillar Superior')">Costillar Superior</button>
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('costillas', 'Costillas / Costado', 'Costado / Flanco Lateral')">Costado / Flanco Lateral</button>
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('costillas', 'Costillas / Costado', 'Bajo Pecho / Rib Cage')">Bajo Pecho / Rib Cage</button>
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('costillas', 'Costillas / Costado', 'Cadera / Cresta Ilíaca')">Cadera / Cresta Ilíaca</button>
+                                            <div class="subzone-group-block">
+                                                <span class="subzone-group-title">Abdomen y Torso Completo</span>
+                                                <div class="subzone-chips-grid">
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pecho', 'Pecho / Torso', 'Abdomen / Vientre')">Abdomen / Vientre</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('pecho', 'Pecho / Torso', 'Torso Completo (Pecho + Costillas + Abdomen)')">Torso Completo (Pecho + Costillas + Abdomen)</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- 7. Cuello / Nuca -->
+                                    <!-- Cuello / Cabeza -->
                                     <div class="zone-accordion-item" data-zone="cuello" id="zone-item-cuello">
-                                        <div class="zone-accordion-header" onclick="toggleZoneAccordion('cuello', 'Cuello / Nuca', 'back')">
+                                        <div class="zone-accordion-header" onclick="toggleZoneAccordion('cuello', 'Cuello / Cabeza', 'front')">
                                             <div class="zone-header-left">
                                                 <span class="zone-indicator"></span>
                                                 <div class="zone-text-group">
-                                                    <span class="zone-main-title">Cuello / Nuca</span>
-                                                    <span class="zone-sub-caption">Elegancia minimalista de máxima visibilidad</span>
+                                                    <span class="zone-main-title">Cuello / Cabeza</span>
+                                                    <span class="zone-sub-caption">Garganta, laterales, nuca posterior y nacimiento del cabello</span>
                                                 </div>
                                             </div>
                                             <div class="zone-header-right">
@@ -464,14 +699,26 @@
                                         </div>
                                         <div class="zone-suboptions-drawer">
                                             <span class="suboptions-instruction">Selecciona la sub-zona específica:</span>
-                                            <div class="subzone-chips-grid">
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('cuello', 'Cuello / Nuca', 'Nuca / Posterior')">Nuca / Posterior</button>
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('cuello', 'Cuello / Nuca', 'Lateral del Cuello')">Lateral del Cuello</button>
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('cuello', 'Cuello / Nuca', 'Garganta / Frontal')">Garganta / Frontal</button>
-                                                <button type="button" class="subzone-chip" onclick="selectSubzone('cuello', 'Cuello / Nuca', 'Detrás de la Oreja')">Detrás de la Oreja</button>
+                                            <div class="subzone-group-block">
+                                                <span class="subzone-group-title">Cuello y Garganta</span>
+                                                <div class="subzone-chips-grid">
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('cuello', 'Cuello / Cabeza', 'Garganta / Frontal')">Garganta / Frontal</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('cuello', 'Cuello / Cabeza', 'Lateral del Cuello (Ambos)')">Lateral del Cuello (Ambos)</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('cuello', 'Cuello / Cabeza', 'Lateral Cuello Izquierdo')">Lateral Cuello Izquierdo</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('cuello', 'Cuello / Cabeza', 'Lateral Cuello Derecho')">Lateral Cuello Derecho</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('cuello', 'Cuello / Cabeza', 'Nuca / Posterior')">Nuca / Posterior</button>
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('cuello', 'Cuello / Cabeza', 'Cuello Completo')">Cuello Completo</button>
+                                                </div>
+                                            </div>
+                                            <div class="subzone-group-block">
+                                                <span class="subzone-group-title">Cabeza</span>
+                                                <div class="subzone-chips-grid">
+                                                    <button type="button" class="subzone-chip" onclick="selectSubzone('cuello', 'Cuello / Cabeza', 'Cabeza (Nacimiento del Cabello)')">Cabeza (Nacimiento del Cabello)</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+
 
                                 </div>
 
@@ -1894,6 +2141,6 @@
     <!-- Calendly Widget JS -->
     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
     <!-- Custom JS -->
-    <script src="script.js?v=126"></script>
+    <script src="script.js?v=127"></script>
 </body>
 </html>

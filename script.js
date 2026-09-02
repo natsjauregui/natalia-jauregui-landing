@@ -1847,12 +1847,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Update stage badge with zone + subzone
-        const mannequinBadge = document.getElementById('mannequin-badge');
-        const badgeZoneName = document.getElementById('badge-zone-name');
-        if (mannequinBadge && badgeZoneName) {
-            mannequinBadge.classList.add('has-zone');
-            badgeZoneName.textContent = `${zoneName} // ${subzone}`;
+        // Auto-rotate if subzone is best viewed from another perspective
+        const subLower = subzone.toLowerCase();
+        if ((subLower.includes('trasero') || subLower.includes('nuca') || subLower.includes('espalda') || subLower.includes('omóplato') || subLower.includes('columna') || subLower.includes('lumbar')) && gameState.view === 'front') {
+            changeMannequinView('back');
+        } else if ((subLower.includes('frontal') || subLower.includes('pectoral') || subLower.includes('garganta') || subLower.includes('abdomen') || subLower.includes('espinilla')) && gameState.view === 'back') {
+            changeMannequinView('front');
+        } else if ((subLower.includes('costilla izquierda') || subLower.includes('lateral ext. pierna izq.') || subLower.includes('antebrazo externo izq.')) && gameState.view === 'right') {
+            changeMannequinView('left');
+        } else if ((subLower.includes('costilla derecha') || subLower.includes('lateral ext. pierna der.') || subLower.includes('antebrazo externo der.')) && gameState.view === 'left') {
+            changeMannequinView('right');
         }
 
         // Update Confirmation Panel Data
