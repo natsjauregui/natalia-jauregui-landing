@@ -1668,6 +1668,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateAnatomicalHighlight() {
         const v = gameState.view || 'front';
         const activeZone = gameState.zone;
+        const activeSubzone = gameState.subzone;
 
         // 1. Mostrar solo el grupo SVG de la perspectiva activa
         document.querySelectorAll('.anatomy-view-group').forEach(group => {
@@ -1678,10 +1679,29 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // 2. Iluminar en verde esmeralda los paths de la zona activa
+        // 2. Iluminación inteligente:
+        // - Si hay sub-zona seleccionada: ilumina SOLO los paths que correspondan a esa subzona
+        // - Si solo hay zona principal (sin subzona): ilumina TODOS los paths de la zona principal
         document.querySelectorAll('.anatomical-path').forEach(path => {
-            if (activeZone && path.getAttribute('data-zone') === activeZone) {
-                path.classList.add('active');
+            const pathZone = path.getAttribute('data-zone');
+            const pathSubzones = path.getAttribute('data-subzones') || '';
+
+            if (activeZone && pathZone === activeZone) {
+                if (activeSubzone) {
+                    // Verificación de coincidencia de subzona (o pieza completa)
+                    const subzonesList = pathSubzones.split(',').map(s => s.trim().toLowerCase());
+                    const currentSubLower = activeSubzone.trim().toLowerCase();
+                    const isDirectMatch = subzonesList.some(s => s.includes(currentSubLower) || currentSubLower.includes(s));
+
+                    if (isDirectMatch) {
+                        path.classList.add('active');
+                    } else {
+                        path.classList.remove('active');
+                    }
+                } else {
+                    // Si no hay subzona específica aún, iluminar toda la zona principal
+                    path.classList.add('active');
+                }
             } else {
                 path.classList.remove('active');
             }
@@ -1739,6 +1759,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if (targetItem) {
             targetItem.classList.add('open');
             targetItem.classList.add('active');
+        }
+
+        // Si cambia de zona principal, reiniciar subzona para que se ilumine toda la zona nueva
+        if (gameState.zone !== zone) {
+            gameState.subzone = null;
+            const summaryDivider = document.getElementById('summary-divider');
+            const summarySubZone = document.getElementById('summary-sub-zone');
+            if (summaryDivider) summaryDivider.style.display = 'none';
+            if (summarySubZone) {
+                summarySubZone.textContent = 'Elige una sub-zona';
+                summarySubZone.style.color = '#888888';
+            }
         }
 
         gameState.zone = zone;
