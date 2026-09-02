@@ -1662,7 +1662,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-            // ==========================================================================
+                // ==========================================================================
     // PANTALLA 3 (FASE 2): CONFIGURADOR ANATÓMICO TOUCH-TO-ZOOM CON ENFOQUE CENTRADO
     // ==========================================================================
 
@@ -2101,23 +2101,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 120);
     }
 
-    // Centrado Matemático Absoluto del Zoom en la Región Enfocada
+    // Zoom Proporcional y Estable sobre el Wrapper del Maniquí
     function applyCameraZoom() {
+        const wrapper = document.getElementById('mannequin-stage-wrapper') || document.querySelector('.touch-zoom-stage .mannequin-stage-wrapper');
         const cameraRig = document.getElementById('mannequin-camera-rig');
-        if (!cameraRig) return;
+        
+        if (!wrapper) return;
+        
         const regionKey = gameState.focusedRegion;
         if (!regionKey || !ZONE_DATA[regionKey]) {
-            cameraRig.style.transform = 'scale(1) translate(0px, 0px)';
+            wrapper.style.transformOrigin = '50% 50%';
+            wrapper.style.transform = 'scale(1) translate(0px, 0px)';
+            if (cameraRig) cameraRig.style.transform = 'none';
             return;
         }
+        
         const v = gameState.view || 'front';
-        const centerConfig = ZONE_DATA[regionKey].center[v] || { cx: 200, cy: 400, scale: 2.0 };
+        const centerConfig = ZONE_DATA[regionKey].center[v] || { cx: 200, cy: 400, scale: 1.85 };
         
-        // Desplazamiento exacto para posicionar (cx, cy) en el centro del visor
-        const dxPercent = ((200 - centerConfig.cx) / 400) * 100;
-        const dyPercent = ((400 - centerConfig.cy) / 800) * 100;
+        // Coordenadas relativas exactas (0% a 100%) dentro del lienzo 400x800
+        const originX = (centerConfig.cx / 400) * 100;
+        const originY = (centerConfig.cy / 800) * 100;
+        const scale = centerConfig.scale || 1.85;
         
-        cameraRig.style.transform = 'scale(' + centerConfig.scale + ') translate(' + dxPercent.toFixed(1) + '%, ' + dyPercent.toFixed(1) + '%)';
+        // Suave desplazamiento hacia el centro visual del escenario para máxima visibilidad
+        const shiftX = (50 - originX) * 0.4;
+        const shiftY = (50 - originY) * 0.3;
+        
+        wrapper.style.transformOrigin = originX.toFixed(1) + '% ' + originY.toFixed(1) + '%';
+        wrapper.style.transform = 'scale(' + scale + ') translate(' + shiftX.toFixed(1) + '%, ' + shiftY.toFixed(1) + '%)';
+        if (cameraRig) cameraRig.style.transform = 'none';
     }
 
     // Global 360 Perspective Switcher
@@ -2211,8 +2224,14 @@ document.addEventListener('DOMContentLoaded', () => {
         gameState.zone = null;
         gameState.subzone = null;
 
+        const wrapper = document.getElementById('mannequin-stage-wrapper') || document.querySelector('.touch-zoom-stage .mannequin-stage-wrapper');
+        if (wrapper) {
+            wrapper.style.transformOrigin = '50% 50%';
+            wrapper.style.transform = 'scale(1) translate(0px, 0px)';
+        }
+        
         const cameraRig = document.getElementById('mannequin-camera-rig');
-        if (cameraRig) cameraRig.style.transform = 'scale(1) translate(0px, 0px)';
+        if (cameraRig) cameraRig.style.transform = 'none';
 
         const btnReset = document.getElementById('btn-reset-zoom');
         if (btnReset) btnReset.style.display = 'none';
