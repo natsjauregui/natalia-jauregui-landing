@@ -1663,8 +1663,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ==========================================================================
-    // PANTALLA 3 (FASE 2): CONFIGURADOR ANATÓMICO 360°
+    // PANTALLA 3 (FASE 2): CONFIGURADOR ANATÓMICO 360° CON ILUMINACIÓN EN VIVO
     // ==========================================================================
+    function updateAnatomicalHighlight() {
+        const v = gameState.view || 'front';
+        const activeZone = gameState.zone;
+
+        // 1. Mostrar solo el grupo SVG de la perspectiva activa
+        document.querySelectorAll('.anatomy-view-group').forEach(group => {
+            if (group.id === `anatomy-view-${v}`) {
+                group.style.display = 'block';
+            } else {
+                group.style.display = 'none';
+            }
+        });
+
+        // 2. Iluminar en verde esmeralda los paths de la zona activa
+        document.querySelectorAll('.anatomical-path').forEach(path => {
+            if (activeZone && path.getAttribute('data-zone') === activeZone) {
+                path.classList.add('active');
+            } else {
+                path.classList.remove('active');
+            }
+        });
+    }
+    window.updateAnatomicalHighlight = updateAnatomicalHighlight;
+
     function update360MannequinView() {
         const mannequinImg = document.getElementById('mannequin-360-img');
         if (!mannequinImg) return;
@@ -1677,6 +1701,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mannequinImg.src = `images/mannequins/mannequin-${g}-${v}.webp`;
             mannequinImg.style.opacity = '1';
             mannequinImg.style.transform = 'scale(1)';
+            updateAnatomicalHighlight();
         }, 120);
     }
 
@@ -1701,7 +1726,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const allItems = document.querySelectorAll('.zone-accordion-item');
         const targetItem = document.getElementById(`zone-item-${zone}`);
-        const wasOpen = targetItem && targetItem.classList.contains('open');
 
         // Close other accordion items
         allItems.forEach(item => {
@@ -1723,6 +1747,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Auto-rotate view if defaultView given
         if (defaultView && gameState.view !== defaultView) {
             changeMannequinView(defaultView);
+        } else {
+            updateAnatomicalHighlight();
         }
 
         // Update confirmation main zone title if no subzone selected yet
@@ -1808,6 +1834,9 @@ document.addEventListener('DOMContentLoaded', () => {
             summarySubZone.textContent = subzone;
             summarySubZone.style.color = '#00FF88';
         }
+
+        // Update highlight on mannequin
+        updateAnatomicalHighlight();
 
         // Enable Confirmation & Continue button
         const btnPhase2Next = document.getElementById('btn-phase2-next');

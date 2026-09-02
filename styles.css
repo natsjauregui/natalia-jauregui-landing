@@ -4233,7 +4233,7 @@ body.game-active {
     box-shadow: 0 2px 10px rgba(255, 255, 255, 0.25);
 }
 
-/* Escenario del Maniquí con Iluminación Radial */
+/* Escenario del Maniquí con Iluminación Radial y Overlay Holográfico */
 .mannequin-360-stage {
     position: relative;
     width: 100%;
@@ -4250,13 +4250,73 @@ body.game-active {
     box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8), 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-.mannequin-360-display {
+.mannequin-stage-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
     max-height: 440px;
     width: auto;
-    max-width: 90%;
+}
+
+.mannequin-360-display {
+    max-height: 440px;
+    height: 100%;
+    width: auto;
     object-fit: contain;
     filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.95));
     transition: opacity 0.25s ease, transform 0.25s ease;
+    display: block;
+}
+
+/* Overlay SVG Anatómico Interactivo */
+.mannequin-anatomy-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: auto;
+    z-index: 5;
+}
+
+.anatomical-path {
+    fill: transparent;
+    stroke: transparent;
+    stroke-width: 1.5px;
+    cursor: pointer;
+    transition: fill 0.3s cubic-bezier(0.16, 1, 0.3, 1), stroke 0.3s ease, filter 0.3s ease;
+}
+
+.anatomical-path:hover {
+    fill: rgba(0, 255, 136, 0.20);
+    stroke: rgba(0, 255, 136, 0.6);
+    filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.6));
+}
+
+/* Iluminación Esmeralda Activa en el Modelo */
+.anatomical-path.active {
+    fill: rgba(0, 255, 136, 0.42) !important;
+    stroke: #00FF88 !important;
+    stroke-width: 2.2px !important;
+    filter: drop-shadow(0 0 15px #00FF88) drop-shadow(0 0 30px rgba(0, 255, 136, 0.8)) !important;
+    animation: pulseMannequinZone 2s infinite ease-in-out;
+}
+
+@keyframes pulseMannequinZone {
+    0% {
+        fill-opacity: 0.35;
+        filter: drop-shadow(0 0 10px #00FF88) drop-shadow(0 0 20px rgba(0, 255, 136, 0.6));
+    }
+    50% {
+        fill-opacity: 0.65;
+        filter: drop-shadow(0 0 20px #00FF88) drop-shadow(0 0 40px rgba(0, 255, 136, 0.95));
+    }
+    100% {
+        fill-opacity: 0.35;
+        filter: drop-shadow(0 0 10px #00FF88) drop-shadow(0 0 20px rgba(0, 255, 136, 0.6));
+    }
 }
 
 /* Insignia Flotante Verde Esmeralda */
