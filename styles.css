@@ -4979,450 +4979,352 @@ body.game-active {
 
 
 /* ==========================================================================
-   P3: SELECCIÓN ANATÓMICA // CONFIGURADOR DIRECTO DE ALTO VALOR (NATALIA JAUREGUI)
+   P3: SELECCIÓN ANATÓMICA RADICALMENTE LIMPIA Y ELEGANTE (NATALIA JAUREGUI)
    ========================================================================== */
 
 /* Prevención global de desborde horizontal */
-html, body {
-    overflow-x: hidden !important;
+html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-card {
     max-width: 100vw !important;
-}
-
-.gamified-experience {
     overflow-x: hidden !important;
-    max-width: 100vw !important;
     box-sizing: border-box !important;
 }
 
 .gamified-container {
-    max-width: 1120px;
+    max-width: 1080px;
     width: 100%;
     margin: 0 auto;
-    box-sizing: border-box;
-    padding: 0 12px;
+    padding: 0 14px;
 }
 
-.phase-card {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-}
-
-/* 1. Barra Selectora de Macro-Zonas (Top) */
-.macro-zones-selector-bar {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
-    margin-bottom: 22px;
+/* 1. Paso 1: Selector de Macro-Zonas (Pills Horizontales Fluidos) */
+.clean-macro-selector-wrapper {
+    margin-bottom: 20px;
     width: 100%;
     box-sizing: border-box;
 }
 
-.macro-zone-card {
-    background: #111111;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 12px 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-    text-align: left;
-    outline: none;
-}
-
-.macro-zone-card:hover {
-    border-color: rgba(0, 255, 136, 0.4);
-    background: rgba(0, 255, 136, 0.04);
-    transform: translateY(-2px);
-}
-
-.macro-zone-card.active {
-    border-color: #00FF88;
-    background: rgba(0, 255, 136, 0.1);
-    box-shadow: 0 4px 20px rgba(0, 255, 136, 0.22);
-    transform: translateY(-2px);
-}
-
-.macro-card-icon {
-    width: 34px;
-    height: 34px;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.05);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.95rem;
-    color: #A0A0A0;
-    flex-shrink: 0;
-    transition: all 0.25s ease;
-}
-
-.macro-zone-card.active .macro-card-icon {
-    background: #00FF88;
-    color: #050505;
-    box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
-}
-
-.macro-card-info {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    overflow: hidden;
-}
-
-.macro-card-title {
-    font-family: var(--font-heading);
-    font-size: 0.78rem;
-    letter-spacing: 1.2px;
-    color: #FFFFFF;
-    font-weight: 700;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.macro-card-hint {
-    font-size: 0.65rem;
-    color: #777777;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.macro-zone-card.active .macro-card-hint {
-    color: #B0B0B0;
-}
-
-/* 2. Grid Principal: Escenario 360° + HUD de Subzonas */
-.direct-luxury-layout {
-    display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    gap: 22px;
-    align-items: stretch;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-@media (max-width: 950px) {
-    .direct-luxury-layout {
-        grid-template-columns: 1fr;
-        gap: 18px;
-    }
-}
-
-/* Escenario del Maniquí */
-.mannequin-360-stage.direct-stage {
-    position: relative;
-    width: 100%;
-    max-width: 100%;
-    height: 540px;
-    min-height: 500px;
-    background: radial-gradient(circle at 50% 45%, rgba(0, 255, 136, 0.04) 0%, rgba(8, 8, 8, 0.95) 85%);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.75);
-    box-sizing: border-box;
-}
-
-.mannequin-stage-wrapper {
-    position: relative;
-    height: 96%;
-    max-height: 510px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    aspect-ratio: 400 / 800;
-}
-
-.mannequin-360-display {
-    height: 100%;
-    width: auto;
-    max-height: 100%;
-    object-fit: contain;
-    filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.95));
-    transition: opacity 0.22s ease, transform 0.22s ease;
-    user-select: none;
-    -webkit-user-drag: none;
-}
-
-/* Barra de Perspectiva 360° */
-.view-rotation-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 12px;
-}
-
-.rotation-label {
-    font-family: var(--font-heading);
-    font-size: 0.68rem;
-    letter-spacing: 2px;
-    color: #777777;
-    text-transform: uppercase;
-    font-weight: 600;
-}
-
-.view-tabs-group {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    background: rgba(18, 18, 18, 0.95);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    padding: 4px 6px;
-    border-radius: 24px;
-}
-
-.view-tab-btn {
-    padding: 6px 14px;
-    font-size: 0.72rem;
-    font-family: var(--font-heading);
-    letter-spacing: 1px;
-    color: #888888;
-    border-radius: 18px;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    background: transparent;
-    border: none;
-}
-
-.view-tab-btn:hover {
-    color: #FFFFFF;
-}
-
-.view-tab-btn.active {
-    background: #FFFFFF;
-    color: #000000;
-    font-weight: 700;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-}
-
-/* Insignia Flotante Verde Esmeralda */
-.mannequin-zone-badge {
-    position: absolute;
-    bottom: 14px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(10, 10, 10, 0.9);
-    border: 1px solid rgba(0, 255, 136, 0.35);
-    padding: 6px 18px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    z-index: 10;
-    pointer-events: none;
-    white-space: nowrap;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-}
-
-.badge-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #00FF88;
-    box-shadow: 0 0 8px #00FF88;
-}
-
-.badge-text {
-    font-family: var(--font-heading);
-    font-size: 0.70rem;
-    letter-spacing: 1.5px;
-    color: #FFFFFF;
-    text-transform: uppercase;
-    font-weight: 600;
-}
-
-/* 3. Columna de Sub-Zonas y Tamaño (Luxury HUD) */
-.luxury-hud-col {
-    background: #0D0D0D;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    padding: 22px 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    min-height: 500px;
-    box-sizing: border-box;
-}
-
-.hud-region-header {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    padding-bottom: 12px;
-    margin-bottom: 12px;
-}
-
-.hud-region-tag {
+.clean-section-tag {
+    display: block;
     font-family: var(--font-heading);
     font-size: 0.62rem;
     letter-spacing: 2px;
     color: #00FF88;
     text-transform: uppercase;
     font-weight: 600;
+    margin-bottom: 8px;
 }
 
-.hud-region-title {
+.clean-macro-pills-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 100%;
+}
+
+.clean-macro-pill {
+    background: #111111;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #CCCCCC;
     font-family: var(--font-heading);
-    font-size: 1.25rem;
-    letter-spacing: 1.5px;
-    color: #FFFFFF;
+    font-size: 0.80rem;
+    letter-spacing: 1.2px;
     text-transform: uppercase;
-    margin: 4px 0 2px 0;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    outline: none;
+    flex: 1 1 auto;
+    text-align: center;
+    min-width: 100px;
 }
 
-.hud-region-subtitle {
-    font-size: 0.75rem;
-    color: #8E8E8E;
-    line-height: 1.4;
+.clean-macro-pill:hover {
+    border-color: rgba(0, 255, 136, 0.4);
+    color: #FFFFFF;
+    background: rgba(0, 255, 136, 0.05);
 }
 
-.hud-subzones-grid {
+.clean-macro-pill.active {
+    background: #00FF88;
+    border-color: #00FF88;
+    color: #050505;
+    font-weight: 700;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.35);
+}
+
+/* 2. Grid Principal (Visor Maniquí + Controles) */
+.clean-anatomical-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: stretch;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media (max-width: 800px) {
+    .clean-anatomical-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}
+
+/* Columna del Visor */
+.clean-stage-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.clean-view-nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: #141414;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 4px;
+    border-radius: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.clean-view-btn {
+    flex: 1 1 0;
+    padding: 7px 4px;
+    font-size: 0.70rem;
+    font-family: var(--font-heading);
+    letter-spacing: 0.8px;
+    color: #888888;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: transparent;
+    border: none;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.clean-view-btn:hover {
+    color: #FFFFFF;
+}
+
+.clean-view-btn.active {
+    background: #FFFFFF;
+    color: #000000;
+    font-weight: 700;
+}
+
+.clean-mannequin-box {
+    position: relative;
+    width: 100%;
+    height: 440px;
+    background: radial-gradient(circle at 50% 45%, rgba(0, 255, 136, 0.03) 0%, rgba(8, 8, 8, 0.95) 85%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+}
+
+.clean-mannequin-img {
+    height: 94%;
+    width: auto;
+    max-height: 410px;
+    object-fit: contain;
+    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.95));
+    transition: opacity 0.2s ease;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.clean-zone-badge {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(10, 10, 10, 0.9);
+    border: 1px solid rgba(0, 255, 136, 0.35);
+    padding: 5px 16px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
     gap: 8px;
-    max-height: 240px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 5;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+/* Columna de Controles */
+.clean-controls-col {
+    background: #0D0D0D;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 18px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.clean-subzones-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    max-height: 220px;
     overflow-y: auto;
     padding-right: 4px;
 }
 
-.hud-subzones-grid::-webkit-scrollbar {
+.clean-subzones-flex::-webkit-scrollbar {
     width: 4px;
 }
-.hud-subzones-grid::-webkit-scrollbar-thumb {
+.clean-subzones-flex::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.15);
     border-radius: 4px;
 }
 
-.subzone-card-item {
+.clean-subzone-chip {
     background: #141414;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 10px 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    text-align: left;
+    color: #D4D4D4;
+    font-family: var(--font-heading);
+    font-size: 0.74rem;
+    letter-spacing: 0.5px;
+    padding: 8px 14px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.2s ease;
     outline: none;
 }
 
-.subzone-card-item:hover {
-    border-color: rgba(0, 255, 136, 0.45);
+.clean-subzone-chip:hover {
+    border-color: rgba(0, 255, 136, 0.4);
     background: rgba(0, 255, 136, 0.05);
-    transform: translateY(-1px);
-}
-
-.subzone-card-item.selected {
-    border-color: #00FF88 !important;
-    background: rgba(0, 255, 136, 0.14) !important;
-    box-shadow: 0 0 15px rgba(0, 255, 136, 0.25);
-    transform: translateY(-1px);
-}
-
-.subzone-item-name {
-    font-family: var(--font-heading);
-    font-size: 0.78rem;
-    letter-spacing: 0.8px;
     color: #FFFFFF;
+}
+
+.clean-subzone-chip.selected {
+    border-color: #00FF88 !important;
+    background: rgba(0, 255, 136, 0.15) !important;
+    color: #00FF88 !important;
     font-weight: 600;
 }
 
-.subzone-card-item.selected .subzone-item-name {
-    color: #00FF88;
+/* Paso 3: Escala */
+.clean-scale-pills-row {
+    display: flex;
+    gap: 8px;
+    width: 100%;
 }
 
-.subzone-item-desc {
-    font-size: 0.65rem;
+.clean-scale-pill {
+    flex: 1 1 0;
+    background: #141414;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 10px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    outline: none;
+}
+
+.clean-scale-pill strong {
+    font-family: var(--font-heading);
+    font-size: 0.74rem;
+    color: #FFFFFF;
+}
+
+.clean-scale-pill span {
+    font-size: 0.62rem;
     color: #777777;
 }
 
-.subzone-card-item.selected .subzone-item-desc {
-    color: #C0C0C0;
+.clean-scale-pill:hover {
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
-/* ==========================================================================
-   ADAPTACIÓN RESPONSIVA OPTIMIZADA (MÓVILES Y TABLETAS)
-   ========================================================================== */
+.clean-scale-pill.active {
+    border-color: #00FF88;
+    background: rgba(0, 255, 136, 0.1);
+}
 
-@media (max-width: 860px) {
-    .macro-zones-selector-bar {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-    }
+.clean-scale-pill.active strong {
+    color: #00FF88;
+}
+
+/* Resumen Inferior */
+.clean-summary-bar {
+    background: #111111;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin-top: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.clean-summary-text {
+    font-size: 0.82rem;
+    font-family: var(--font-heading);
+    letter-spacing: 1px;
+}
+
+.clean-summary-label {
+    color: #777777;
+    font-size: 0.70rem;
+    margin-right: 6px;
+}
+
+.clean-summary-val {
+    color: #FFFFFF;
+}
+
+.clean-summary-sub {
+    color: #00FF88;
+}
+
+.clean-actions-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 @media (max-width: 600px) {
-    .macro-zones-selector-bar {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 6px;
-    }
-
-    .macro-zone-card {
-        padding: 9px 8px;
-        gap: 8px;
-    }
-
-    .macro-card-icon {
-        width: 28px;
-        height: 28px;
-        font-size: 0.82rem;
-    }
-
-    .macro-card-title {
-        font-size: 0.72rem;
-    }
-
-    .macro-card-hint {
-        font-size: 0.58rem;
-    }
-
-    .view-rotation-nav {
+    .clean-summary-bar {
         flex-direction: column;
         align-items: stretch;
-        gap: 6px;
     }
 
-    .rotation-label {
-        display: none;
-    }
-
-    .view-tabs-group {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
+    .clean-actions-row {
+        flex-direction: column-reverse;
         width: 100%;
-        padding: 3px;
-        gap: 2px;
     }
 
-    .view-tab-btn {
-        padding: 7px 2px;
-        font-size: 0.65rem;
-        text-align: center;
-        letter-spacing: 0.5px;
+    .clean-actions-row button {
+        width: 100%;
+        justify-content: center;
     }
 
-    .mannequin-360-stage.direct-stage {
-        height: 380px;
-        min-height: 350px;
+    .clean-mannequin-box {
+        height: 350px;
     }
 
-    .luxury-hud-col {
-        min-height: auto;
-        padding: 16px 14px;
-    }
-
-    .hud-subzones-grid {
-        grid-template-columns: 1fr;
-        max-height: 200px;
+    .clean-scale-pills-row {
+        flex-direction: column;
     }
 }

@@ -143,121 +143,73 @@
                                         <!-- PANTALLA 3 (Fase 2): Selección Anatómica // Touch-to-Zoom de Autor -->
                                         <!-- PANTALLA 3 (Fase 2): Selección Anatómica // Touch-to-Zoom de Autor -->
                                         <!-- PANTALLA 3 (Fase 2): Selección Anatómica // Experiencia Visual de Autor -->
+                                        <!-- PANTALLA 3 (Fase 2): Selección Anatómica Minimalista de Ultra-Lujo -->
                     <div class="phase-card" data-phase="2">
                         <div class="atelier-header-center">
                             <h3 class="atelier-step-title">SELECCIÓN ANATÓMICA</h3>
-                            <p class="atelier-step-subtitle">Elige la zona principal de tu cuerpo donde sueñas tu diseño de autor para explorar su perspectiva 360° y sus sub-planos anatómicos.</p>
+                            <p class="atelier-step-subtitle">Define el plano anatómico donde proyectaremos la arquitectura y flujo de tu obra de autor.</p>
                         </div>
 
-                        <!-- 1. Barra Selectora de Macro-Zonas (5 Regiones Directas) -->
-                        <div class="macro-zones-selector-bar">
-                            <button type="button" class="macro-zone-card active" data-macro="brazo" onclick="selectMacroZone('brazo')">
-                                <div class="macro-card-icon"><i class="fa-solid fa-hand-back-fist"></i></div>
-                                <div class="macro-card-info">
-                                    <span class="macro-card-title">BRAZOS</span>
-                                    <span class="macro-card-hint">Mangas, hombro, bíceps</span>
-                                </div>
-                            </button>
-
-                            <button type="button" class="macro-zone-card" data-macro="pierna" onclick="selectMacroZone('pierna')">
-                                <div class="macro-card-icon"><i class="fa-solid fa-person-walking"></i></div>
-                                <div class="macro-card-info">
-                                    <span class="macro-card-title">PIERNAS</span>
-                                    <span class="macro-card-hint">Muslo, rodilla, espinilla</span>
-                                </div>
-                            </button>
-
-                            <button type="button" class="macro-zone-card" data-macro="pecho" onclick="selectMacroZone('pecho')">
-                                <div class="macro-card-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                                <div class="macro-card-info">
-                                    <span class="macro-card-title">PECHO / TORSO</span>
-                                    <span class="macro-card-hint">Pectoral, costillas, abdomen</span>
-                                </div>
-                            </button>
-
-                            <button type="button" class="macro-zone-card" data-macro="espalda" onclick="selectMacroZone('espalda')">
-                                <div class="macro-card-icon"><i class="fa-solid fa-gem"></i></div>
-                                <div class="macro-card-info">
-                                    <span class="macro-card-title">ESPALDA</span>
-                                    <span class="macro-card-hint">Columna, omóplatos, lumbar</span>
-                                </div>
-                            </button>
-
-                            <button type="button" class="macro-zone-card" data-macro="cuello" onclick="selectMacroZone('cuello')">
-                                <div class="macro-card-icon"><i class="fa-solid fa-crown"></i></div>
-                                <div class="macro-card-info">
-                                    <span class="macro-card-title">CUELLO</span>
-                                    <span class="macro-card-hint">Garganta, laterales, nuca</span>
-                                </div>
-                            </button>
+                        <!-- Paso 1: Selector de Zona Principal (Pills Minimalistas) -->
+                        <div class="clean-macro-selector-wrapper">
+                            <span class="clean-section-tag">PASO 1 // ZONA CORPORAL</span>
+                            <div class="clean-macro-pills-row">
+                                <button type="button" class="clean-macro-pill active" data-macro="brazo" onclick="selectMacroZone('brazo')">Brazos</button>
+                                <button type="button" class="clean-macro-pill" data-macro="pierna" onclick="selectMacroZone('pierna')">Piernas</button>
+                                <button type="button" class="clean-macro-pill" data-macro="pecho" onclick="selectMacroZone('pecho')">Pecho / Torso</button>
+                                <button type="button" class="clean-macro-pill" data-macro="espalda" onclick="selectMacroZone('espalda')">Espalda</button>
+                                <button type="button" class="clean-macro-pill" data-macro="cuello" onclick="selectMacroZone('cuello')">Cuello</button>
+                            </div>
                         </div>
 
-                        <!-- 2. Grid Anatómico: Visor 360° + Panel de Subzonas y Escala -->
-                        <div class="anatomical-configurator-grid direct-luxury-layout">
+                        <!-- Escenario 360° + Ficha de Sub-zonas -->
+                        <div class="clean-anatomical-grid">
                             
-                            <!-- Columna 1: Escenario Visual 360° en Alta Definición -->
-                            <div class="anatomical-viewer-col">
-                                <!-- Selector de Perspectiva 360° -->
-                                <div class="view-rotation-nav">
-                                    <span class="rotation-label"><i class="fa-solid fa-arrows-rotate"></i> PERSPECTIVA</span>
-                                    <div class="view-tabs-group">
-                                        <button type="button" class="view-tab-btn active" data-view="front" onclick="changeMannequinView('front')">Frente</button>
-                                        <button type="button" class="view-tab-btn" data-view="back" onclick="changeMannequinView('back')">Espalda</button>
-                                        <button type="button" class="view-tab-btn" data-view="left" onclick="changeMannequinView('left')">Perfil Izq.</button>
-                                        <button type="button" class="view-tab-btn" data-view="right" onclick="changeMannequinView('right')">Perfil Der.</button>
-                                    </div>
+                            <!-- Visor Maniquí 360° -->
+                            <div class="clean-stage-col">
+                                <div class="clean-view-nav">
+                                    <button type="button" class="clean-view-btn active" data-view="front" onclick="changeMannequinView('front')">Frente</button>
+                                    <button type="button" class="clean-view-btn" data-view="back" onclick="changeMannequinView('back')">Espalda</button>
+                                    <button type="button" class="clean-view-btn" data-view="left" onclick="changeMannequinView('left')">Perfil Izq.</button>
+                                    <button type="button" class="clean-view-btn" data-view="right" onclick="changeMannequinView('right')">Perfil Der.</button>
                                 </div>
 
-                                <!-- Escenario del Maniquí Limpio y Amplio -->
-                                <div class="mannequin-360-stage direct-stage" id="mannequin-stage-box">
-                                    <div class="mannequin-stage-wrapper" id="mannequin-stage-wrapper">
-                                        <img id="mannequin-360-img" src="images/mannequins/mannequin-male-front.webp" alt="Lienzo Anatómico 360°" class="mannequin-360-display">
-                                    </div>
-
-                                    <!-- Aura Suave de Enfoque Anatómico -->
-                                    <div class="mannequin-focus-glow" id="mannequin-focus-glow"></div>
-
-                                    <!-- Insignia Flotante Verde Esmeralda -->
-                                    <div class="mannequin-zone-badge" id="mannequin-zone-badge">
+                                <div class="clean-mannequin-box">
+                                    <img id="mannequin-360-img" src="images/mannequins/mannequin-male-front.webp" alt="Lienzo Anatómico 360°" class="clean-mannequin-img">
+                                    
+                                    <div class="clean-zone-badge" id="clean-zone-badge">
                                         <span class="badge-dot"></span>
                                         <span class="badge-text" id="badge-zone-text">ZONA: BRAZOS</span>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Columna 2: Ficha Técnica de Sub-Zonas y Tamaño -->
-                            <div class="anatomical-controls-col luxury-hud-col" id="luxury-hud-col">
+                            <!-- Panel Lateral de Subzonas y Escala -->
+                            <div class="clean-controls-col">
                                 
-                                <!-- Encabezado de la Zona Seleccionada -->
-                                <div class="hud-region-header">
-                                    <div class="hud-region-tag">PASO 1 // SUB-ZONA DE PRECISIÓN</div>
-                                    <h4 class="hud-region-title" id="hud-region-title">Brazos</h4>
-                                    <p class="hud-region-subtitle" id="hud-region-subtitle">Selecciona el plano anatómico específico donde deseas colocar tu tatuaje:</p>
-                                </div>
-
-                                <!-- Cuadrícula de Chips de Subzonas -->
-                                <div class="hud-subzones-grid" id="hud-subzones-container">
-                                    <!-- Inyectado dinámicamente según la macro-zona activa -->
-                                </div>
-
-                                <!-- Paso 2: Tamaño del Proyecto -->
-                                <div class="atelier-control-group project-scale-box" style="margin-top: 14px;">
-                                    <div class="atelier-control-label">
-                                        <span class="label-step">2</span>
-                                        <span>TAMAÑO DEL PROYECTO</span>
+                                <!-- Paso 2: Sub-zona -->
+                                <div class="clean-control-block">
+                                    <span class="clean-section-tag">PASO 2 // SUB-ZONA ESPECÍFICA</span>
+                                    <div class="clean-subzones-flex" id="clean-subzones-container">
+                                        <!-- Inyectado dinámicamente -->
                                     </div>
-                                    <div class="scale-options-grid">
-                                        <button type="button" class="scale-option-btn active" data-scale="pequeno" onclick="selectScale('pequeno')">
-                                            <span class="scale-title">Pequeño</span>
-                                            <span class="scale-measure">Detalle / &lt; 12 cm</span>
+                                </div>
+
+                                <!-- Paso 3: Tamaño del Proyecto -->
+                                <div class="clean-control-block" style="margin-top: 14px;">
+                                    <span class="clean-section-tag">PASO 3 // TAMAÑO DEL PROYECTO</span>
+                                    <div class="clean-scale-pills-row">
+                                        <button type="button" class="clean-scale-pill active" data-scale="pequeno" onclick="selectScale('pequeno')">
+                                            <strong>Pequeño</strong>
+                                            <span>&lt; 12 cm</span>
                                         </button>
-                                        <button type="button" class="scale-option-btn" data-scale="mediano" onclick="selectScale('mediano')">
-                                            <span class="scale-title">Mediano</span>
-                                            <span class="scale-measure">Media Zona / 15–25 cm</span>
+                                        <button type="button" class="clean-scale-pill" data-scale="mediano" onclick="selectScale('mediano')">
+                                            <strong>Mediano</strong>
+                                            <span>15–25 cm</span>
                                         </button>
-                                        <button type="button" class="scale-option-btn" data-scale="grande" onclick="selectScale('grande')">
-                                            <span class="scale-title">Grande</span>
-                                            <span class="scale-measure">Zona Completa / Cobertura</span>
+                                        <button type="button" class="clean-scale-pill" data-scale="grande" onclick="selectScale('grande')">
+                                            <strong>Gran Formato</strong>
+                                            <span>Zona Completa</span>
                                         </button>
                                     </div>
                                 </div>
@@ -265,30 +217,22 @@
                             </div>
                         </div>
 
-                        <!-- Zona de Confirmación y Resumen Inferior -->
-                        <div class="anatomical-confirmation-panel" id="anatomical-confirmation-panel">
-                            <div class="confirmation-summary-card">
-                                <div class="confirmation-icon-box">
-                                    <i class="fa-solid fa-crosshairs"></i>
-                                </div>
-                                <div class="confirmation-info-group">
-                                    <span class="confirmation-badge-title">COORDENADA SELECCIONADA</span>
-                                    <div class="confirmation-data-row">
-                                        <strong class="confirm-zone-main" id="summary-main-zone">Brazos</strong>
-                                        <span class="confirm-divider" id="summary-divider" style="display: none;">//</span>
-                                        <span class="confirm-zone-sub" id="summary-sub-zone">Elige una sub-zona</span>
-                                    </div>
-                                </div>
+                        <!-- Resumen y Navegación -->
+                        <div class="clean-summary-bar">
+                            <div class="clean-summary-text">
+                                <span class="clean-summary-label">COORDENADA:</span>
+                                <strong class="clean-summary-val" id="summary-main-zone">Brazos</strong>
+                                <span id="summary-divider" style="color: #666; margin: 0 4px; display: none;">//</span>
+                                <span class="clean-summary-sub" id="summary-sub-zone">Elige una sub-zona</span>
                             </div>
 
-                            <!-- Botones de Acción -->
-                            <div class="atelier-action-footer split-actions" style="margin-top: 14px; padding-top: 14px;">
+                            <div class="clean-actions-row">
                                 <button type="button" class="btn-atelier-secondary" id="btn-phase2-prev" onclick="showPhase(1)">
                                     <i class="fa-solid fa-arrow-left"></i>
-                                    <span>Volver a Lienzo Base</span>
+                                    <span>Lienzo Base</span>
                                 </button>
                                 <button type="button" class="btn-atelier-primary" id="btn-phase2-next" onclick="showPhase(3)" disabled>
-                                    <span>Confirmar y Continuar a Estilos de Tatuaje</span>
+                                    <span>Continuar a Estilos</span>
                                     <i class="fa-solid fa-arrow-right"></i>
                                 </button>
                             </div>
