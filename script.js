@@ -1547,9 +1547,14 @@ document.addEventListener('DOMContentLoaded', () => {
         updateLiveMannequin();
     }
 
-    // Bind Phase 1 to 5 Navigation
-    const phaseNextBtns = document.querySelectorAll('.phase-next');
-    const phasePrevBtns = document.querySelectorAll('.phase-prev-btn');
+    // Phase titles dictionary for tiered header
+    const phaseHeaderTitles = {
+        1: "FASE 1 // LIENZO BASE",
+        2: "FASE 2 // COORDENADA ANATÓMICA",
+        3: "FASE 3 // ATELIER DE ESTILOS",
+        4: "FASE 4 // PROTOCOLO DE CONFORT",
+        5: "FASE 5 // OFICIALIZAR FICHA"
+    };
 
     function showPhase(phaseNum) {
         // Toggle phase contents
@@ -1560,33 +1565,23 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Update indicator
-        const currentPhaseNum = document.getElementById('current-phase-num');
-        if (currentPhaseNum) currentPhaseNum.textContent = phaseNum;
+        // Update tiered header indicator
+        const phaseIndicatorTag = document.querySelector('.phase-indicator-tag');
+        if (phaseIndicatorTag) {
+            phaseIndicatorTag.innerHTML = phaseHeaderTitles[phaseNum] || `FASE ${phaseNum} // ATELIER`;
+        }
+
+        // Update current 360 viewer if entering Phase 2
+        if (phaseNum === 2) {
+            update360MannequinView();
+        }
 
         // Stop all phase videos currently playing
         document.querySelectorAll('.phase-video').forEach(video => {
             video.pause();
         });
 
-        // Zoom SVG reset or zoom trigger in Fase 3
-        const svg = document.getElementById('avatar-svg');
-        if (svg) {
-            // Remove zoom classes
-            svg.classList.remove('zoom-brazo', 'zoom-pierna', 'zoom-espalda', 'zoom-pecho', 'zoom-hombro', 'zoom-costillas');
-            
-            if (phaseNum === 3 && gameState.zone) {
-                // Apply specific zoom class
-                svg.classList.add(`zoom-${gameState.zone}`);
-            }
-        }
-
-        // Trigger video play for current phase if exists
-        const currentVideo = document.getElementById(`phase-video-${phaseNum === 5 ? 3 : (phaseNum === 4 ? 2 : phaseNum)}`);
-        if (currentVideo) {
-            currentVideo.currentTime = 0;
-            currentVideo.play().catch(err => console.log("Autoplay blocked for phase " + phaseNum));
-        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     // Form inputs change validation
@@ -1770,45 +1765,117 @@ document.addEventListener('DOMContentLoaded', () => {
             gameState.gender = gender;
             swapAvatarSilhouette(gender);
 
-            // Enable next button
+            // Enable next button in Screen 2
             if (btnPhase1Next) {
                 btnPhase1Next.disabled = false;
             }
         });
     });
 
-    // 360 Mannequin View Tabs Binding (Frente, Espalda, Perfiles)
-    const mannequinViewTabs = document.querySelectorAll('#mannequin-view-tabs .avatar-tab');
-    mannequinViewTabs.forEach(btn => {
+    if (btnPhase1Next) {
+        btnPhase1Next.addEventListener('click', () => {
+            showPhase(2);
+        });
+    }
+
+    // ==========================================================================
+    // PANTALLA 3 (FASE 2): CONFIGURADOR ANATÓMICO 360°
+    // ==========================================================================
+    function update360MannequinView() {
+        const mannequinImg = document.getElementById('mannequin-360-img');
+        if (!mannequinImg) return;
+        const g = gameState.gender || 'male';
+        const v = gameState.view || 'front';
+        
+        mannequinImg.style.opacity = '0.25';
+        mannequinImg.style.transform = 'scale(0.97)';
+        setTimeout(() => {
+            mannequinImg.src = `images/mannequins/mannequin-${g}-${v}.webp`;
+            mannequinImg.style.opacity = '1';
+            mannequinImg.style.transform = 'scale(1)';
+        }, 120);
+    }
+
+    // View Rotation Tabs Binding (Frente, Espalda, Perfiles)
+    const viewTabBtns = document.querySelectorAll('.view-tab-btn');
+    viewTabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            mannequinViewTabs.forEach(b => b.classList.remove('active'));
+            viewTabBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            
-            const view = btn.getAttribute('data-view') || 'front';
-            currentMannequinView = view;
-            updateLiveMannequin();
+            gameState.view = btn.getAttribute('data-view') || 'front';
+            update360MannequinView();
         });
     });
 
-    // Tooltip video overlay binding (Fase 2)
-    const btnTooltip = document.getElementById('btn-tooltip-fase2');
-    const tooltipModal = document.getElementById('tooltip-video-modal');
-    const closeTooltipBtn = tooltipModal ? tooltipModal.querySelector('.close-tooltip-video') : null;
-    const tooltipPlayer = document.getElementById('phase-video-tooltip');
+    // 7 Emerald Zones Selection Binding
+    const emeraldZoneCards = document.querySelectorAll('.emerald-zone-card');
+    const mannequinBadge = document.getElementById('mannequin-badge');
+    const badgeZoneName = document.getElementById('badge-zone-name');
+    const btnPhase2Next = document.getElementById('btn-phase2-next');
 
-    if (btnTooltip && tooltipModal) {
-        btnTooltip.addEventListener('click', () => {
-            tooltipModal.style.display = 'flex';
-            if (tooltipPlayer) {
-                tooltipPlayer.currentTime = 0;
-                tooltipPlayer.play().catch(e => console.log(e));
+    emeraldZoneCards.forEach(card => {
+        card.addEventListener('click', () => {
+            emeraldZoneCards.forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+
+            const zone = card.getAttribute('data-zone');
+            const zoneName = card.getAttribute('data-zone-name');
+            const defaultView = card.getAttribute('data-default-view');
+
+            gameState.zone = zone;
+            gameState.zoneName = zoneName;
+
+            // Update floating badge on stage
+            if (mannequinBadge && badgeZoneName) {
+                mannequinBadge.classList.add('has-zone');
+                badgeZoneName.textContent = zoneName;
+            }
+
+            // Auto-rotate to recommended view if different
+            if (defaultView && gameState.view !== defaultView) {
+                gameState.view = defaultView;
+                viewTabBtns.forEach(b => {
+                    if (b.getAttribute('data-view') === defaultView) {
+                        b.classList.add('active');
+                    } else {
+                        b.classList.remove('active');
+                    }
+                });
+                update360MannequinView();
+            }
+
+            // Enable continue button
+            if (btnPhase2Next) {
+                btnPhase2Next.disabled = false;
             }
         });
+    });
+
+    // Scale options binding
+    const scaleOptionBtns = document.querySelectorAll('.scale-option-btn');
+    scaleOptionBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            scaleOptionBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            gameState.scale = btn.getAttribute('data-scale');
+        });
+    });
+
+    // Navigation buttons for Phase 2
+    const btnPhase2Prev = document.getElementById('btn-phase2-prev');
+    if (btnPhase2Prev) {
+        btnPhase2Prev.addEventListener('click', () => {
+            showPhase(1);
+        });
     }
-    if (closeTooltipBtn && tooltipModal) {
-        closeTooltipBtn.addEventListener('click', () => {
-            tooltipModal.style.display = 'none';
-            if (tooltipPlayer) tooltipPlayer.pause();
+
+    if (btnPhase2Next) {
+        btnPhase2Next.addEventListener('click', () => {
+            const subzoneInput = document.getElementById('game-subzone-input');
+            if (subzoneInput) {
+                gameState.subzone = subzoneInput.value.trim();
+            }
+            showPhase(3);
         });
     }
 

@@ -18,7 +18,7 @@
     <!-- Calendly Widget CSS -->
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css?v=119">
+    <link rel="stylesheet" href="styles.css?v=120">
 </head>
 <body>
 
@@ -139,88 +139,141 @@
                         </div>
                     </div>
                     
-                    <!-- FASE 2: El Lienzo (Personalización del Avatar) -->
+                    <!-- PANTALLA 3 (Fase 2): Selección Anatómica // Configurador 360° -->
                     <div class="phase-card" data-phase="2">
-                        <div class="phase-instruction">
-                            <h3 class="phase-title">Personalización de tu Lienzo</h3>
-                            <p class="phase-subtitle">Define las variables anatómicas iniciales y el modo en que viviremos el proceso en tu piel.</p>
+                        <div class="atelier-header-center">
+                            <h3 class="atelier-step-title">SELECCIÓN ANATÓMICA</h3>
+                            <p class="atelier-step-subtitle">Gira el lienzo corporal 360° y selecciona la zona sobre la cual proyectaremos el flujo, volumen y proporción de tu obra de autor.</p>
                         </div>
-                        
-                        <!-- Tooltip Video Flotante -->
-                        <div class="tooltip-video-wrapper">
-                            <button class="btn-tooltip-video" id="btn-tooltip-fase2">
-                                <i class="fa-solid fa-circle-play"></i> Natalia explica el Lienzo
-                            </button>
-                            <div class="tooltip-video-modal" id="tooltip-video-modal" style="display: none;">
-                                <div class="tooltip-video-container">
-                                    <button class="close-tooltip-video">&times;</button>
-                                    <video id="phase-video-tooltip" playsinline controls poster="images/natalia-about-photo.jpg">
-                                        <source src="images/video-tooltip.mp4" type="video/mp4">
-                                        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
-                                    </video>
-                                    <div class="video-caption-box">
-                                        <p><strong>Nats:</strong> "¡Llegó la hora de personalizar tu lienzo! Selecciona en el modelo la zona exacta y el tamaño que tienes en mente. Además, indícame si prefieres tu sesión en modo clásico o con protocolo sin dolor. ¡Haz clic y ajustemos cada detalle!"</p>
+
+                        <div class="anatomical-configurator-grid">
+                            <!-- Columna 1: Visualizador 360° de Autor -->
+                            <div class="anatomical-viewer-col">
+                                <!-- Selector de Planos de Rotación -->
+                                <div class="view-rotation-nav">
+                                    <span class="rotation-label"><i class="fa-solid fa-arrows-rotate"></i> PERSPECTIVA</span>
+                                    <div class="view-tabs-group">
+                                        <button type="button" class="view-tab-btn active" data-view="front">Frente</button>
+                                        <button type="button" class="view-tab-btn" data-view="back">Espalda</button>
+                                        <button type="button" class="view-tab-btn" data-view="left">Perfil Izq.</button>
+                                        <button type="button" class="view-tab-btn" data-view="right">Perfil Der.</button>
+                                    </div>
+                                </div>
+
+                                <!-- Escenario del Maniquí con Iluminación Radial -->
+                                <div class="mannequin-360-stage">
+                                    <img id="mannequin-360-img" src="images/mannequins/mannequin-male-front.webp" alt="Lienzo Anatómico 360°" class="mannequin-360-display">
+                                    <div class="mannequin-zone-badge" id="mannequin-badge">
+                                        <span class="badge-dot"></span>
+                                        <span class="badge-text" id="badge-zone-name">Selecciona una zona</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Columna 2: Parámetros y Zonas Corporales -->
+                            <div class="anatomical-controls-col">
+                                <!-- 1. Zona Principal (7 Zonas) -->
+                                <div class="atelier-control-group">
+                                    <label class="atelier-control-label">
+                                        <span class="label-step">1</span>
+                                        <span>ZONA CORPORAL PRINCIPAL</span>
+                                    </label>
+                                    <div class="emerald-zones-grid">
+                                        <button type="button" class="emerald-zone-card" data-zone="brazo" data-zone-name="Brazo / Manga" data-default-view="front">
+                                            <div class="zone-card-header">
+                                                <span class="zone-name">Brazo / Manga</span>
+                                                <span class="zone-indicator"></span>
+                                            </div>
+                                            <span class="zone-desc">Fluidez, dinamismo y anatomía en movimiento</span>
+                                        </button>
+                                        <button type="button" class="emerald-zone-card" data-zone="pierna" data-zone-name="Pierna / Muslo" data-default-view="front">
+                                            <div class="zone-card-header">
+                                                <span class="zone-name">Pierna / Muslo</span>
+                                                <span class="zone-indicator"></span>
+                                            </div>
+                                            <span class="zone-desc">Volumen, solidez y gran superficie de autor</span>
+                                        </button>
+                                        <button type="button" class="emerald-zone-card" data-zone="espalda" data-zone-name="Espalda / Columna" data-default-view="back">
+                                            <div class="zone-card-header">
+                                                <span class="zone-name">Espalda / Columna</span>
+                                                <span class="zone-indicator"></span>
+                                            </div>
+                                            <span class="zone-desc">Composición monumental y arquitectura simétrica</span>
+                                        </button>
+                                        <button type="button" class="emerald-zone-card" data-zone="pecho" data-zone-name="Pecho / Torso" data-default-view="front">
+                                            <div class="zone-card-header">
+                                                <span class="zone-name">Pecho / Torso</span>
+                                                <span class="zone-indicator"></span>
+                                            </div>
+                                            <span class="zone-desc">Impacto visual central y resonancia emocional</span>
+                                        </button>
+                                        <button type="button" class="emerald-zone-card" data-zone="hombro" data-zone-name="Hombro / Deltoides" data-default-view="front">
+                                            <div class="zone-card-header">
+                                                <span class="zone-name">Hombro / Deltoides</span>
+                                                <span class="zone-indicator"></span>
+                                            </div>
+                                            <span class="zone-desc">Estructura muscular de porte y presencia</span>
+                                        </button>
+                                        <button type="button" class="emerald-zone-card" data-zone="costillas" data-zone-name="Costillas / Costado" data-default-view="left">
+                                            <div class="zone-card-header">
+                                                <span class="zone-name">Costillas / Costado</span>
+                                                <span class="zone-indicator"></span>
+                                            </div>
+                                            <span class="zone-desc">Curvatura orgánica de alta sensualidad y discreción</span>
+                                        </button>
+                                        <button type="button" class="emerald-zone-card" data-zone="cuello" data-zone-name="Cuello / Nuca" data-default-view="back">
+                                            <div class="zone-card-header">
+                                                <span class="zone-name">Cuello / Nuca</span>
+                                                <span class="zone-indicator"></span>
+                                            </div>
+                                            <span class="zone-desc">Elegancia minimalista de máxima visibilidad</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- 2. Especificación Detallada (Subzona) -->
+                                <div class="atelier-control-group">
+                                    <label class="atelier-control-label" for="game-subzone-input">
+                                        <span class="label-step">2</span>
+                                        <span>UBICACIÓN ESPECÍFICA (OPCIONAL)</span>
+                                    </label>
+                                    <input type="text" id="game-subzone-input" class="atelier-input-text" placeholder="Ej: Cara interna del antebrazo, omóplato derecho, muslo exterior...">
+                                </div>
+
+                                <!-- 3. Escala y Proporción -->
+                                <div class="atelier-control-group">
+                                    <label class="atelier-control-label">
+                                        <span class="label-step">3</span>
+                                        <span>ESCALA Y PROPORCIÓN DEL PROYECTO</span>
+                                    </label>
+                                    <div class="scale-options-grid">
+                                        <button type="button" class="scale-option-btn active" data-scale="focal">
+                                            <span class="scale-title">Pieza Focal</span>
+                                            <span class="scale-measure">&lt; 12 cm</span>
+                                        </button>
+                                        <button type="button" class="scale-option-btn" data-scale="media">
+                                            <span class="scale-title">Composición Media</span>
+                                            <span class="scale-measure">12 - 25 cm</span>
+                                        </button>
+                                        <button type="button" class="scale-option-btn" data-scale="integral">
+                                            <span class="scale-title">Proyecto Integral</span>
+                                            <span class="scale-measure">&gt; 25 cm / Manga</span>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
-                        <div class="phase-options">
-                            <div class="option-section">
-                                <label class="section-label-game">1. Altura y Contextura Aproximada</label>
-                                <div class="grid-options-contexture">
-                                    <button class="opt-btn-contexture active" data-val="delgada">Delgada</button>
-                                    <button class="opt-btn-contexture" data-val="atletica">Atlética</button>
-                                    <button class="opt-btn-contexture" data-val="promedio">Promedio</button>
-                                    <button class="opt-btn-contexture" data-val="robusta">Robusta</button>
-                                </div>
-                            </div>
-                            
-                            <div class="option-section">
-                                <label class="section-label-game">2. Zona General del Cuerpo (Haz clic en el avatar o selecciona abajo)</label>
-                                <div class="grid-options-zone">
-                                    <button class="opt-btn-zone" data-val="brazo">Brazo</button>
-                                    <button class="opt-btn-zone" data-val="pierna">Pierna</button>
-                                    <button class="opt-btn-zone" data-val="espalda">Espalda</button>
-                                    <button class="opt-btn-zone" data-val="pecho">Pecho / Torso</button>
-                                    <button class="opt-btn-zone" data-val="hombro">Hombro</button>
-                                    <button class="opt-btn-zone" data-val="costillas">Costillas</button>
-                                </div>
-                            </div>
-                            
-                            <div class="option-section">
-                                <label class="section-label-game">3. Tamaño Aproximado</label>
-                                <div class="grid-options-size">
-                                    <button class="opt-btn-size active" data-val="pequeno">Pequeño (< 10cm)</button>
-                                    <button class="opt-btn-size" data-val="mediano">Mediano (10 - 20cm)</button>
-                                    <button class="opt-btn-size" data-val="grande">Manga Completa / Grande</button>
-                                </div>
-                            </div>
-                            
-                            <div class="option-section">
-                                <label class="section-label-game">4. Experiencia y Confort</label>
-                                <div class="grid-options-pain">
-                                    <button class="opt-btn-pain active" data-val="sin-dolor">
-                                        <i class="fa-solid fa-feather-pointed"></i>
-                                        <div class="opt-text-wrap">
-                                            <strong>Sesión Sin Dolor</strong>
-                                            <span>Uso de crema anestésica y protocolo calmante.</span>
-                                        </div>
-                                    </button>
-                                    <button class="opt-btn-pain" data-val="clasico">
-                                        <i class="fa-solid fa-bolt"></i>
-                                        <div class="opt-text-wrap">
-                                            <strong>Modo Clásico</strong>
-                                            <span>Experiencia tradicional de tatuaje.</span>
-                                        </div>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="phase-actions-row">
-                            <button type="button" class="btn btn-outline phase-prev-btn" data-target="1"><i class="fa-solid fa-arrow-left"></i> Atrás</button>
-                            <button type="button" class="btn btn-gold-filled phase-next" data-target="3" id="btn-phase2-next">Continuar <i class="fa-solid fa-arrow-right"></i></button>
+
+                        <!-- Footer de Navegación de Fase -->
+                        <div class="atelier-action-footer split-actions">
+                            <button type="button" class="btn-atelier-secondary" id="btn-phase2-prev">
+                                <i class="fa-solid fa-arrow-left"></i>
+                                <span>Volver a Lienzo Base</span>
+                            </button>
+                            <button type="button" class="btn-atelier-primary" id="btn-phase2-next" disabled>
+                                <span>Continuar a Estilos de Autor</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
                         </div>
                     </div>
                     
@@ -1589,6 +1642,6 @@
     <!-- Calendly Widget JS -->
     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
     <!-- Custom JS -->
-    <script src="script.js?v=119"></script>
+    <script src="script.js?v=120"></script>
 </body>
 </html>

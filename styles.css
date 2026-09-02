@@ -4154,3 +4154,393 @@ body.game-active {
     }
 }
 
+/* ==========================================================================
+   PANTALLA 3: CONFIGURADOR ANATÓMICO 360° DE AUTOR (FASE 2)
+   ========================================================================== */
+
+.anatomical-configurator-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 32px;
+    align-items: start;
+    margin-top: 10px;
+}
+
+@media (max-width: 950px) {
+    .anatomical-configurator-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}
+
+/* --- Columna 1: Visualizador 360° --- */
+.anatomical-viewer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.view-rotation-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #111111;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 30px;
+    padding: 4px 6px;
+}
+
+.rotation-label {
+    font-family: var(--font-heading);
+    font-size: 0.68rem;
+    letter-spacing: 2px;
+    color: var(--accent);
+    font-weight: 600;
+    padding-left: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.view-tabs-group {
+    display: flex;
+    gap: 4px;
+}
+
+.view-tab-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: #A0A0A0;
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    font-weight: 500;
+}
+
+.view-tab-btn:hover {
+    color: #FFFFFF;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.view-tab-btn.active {
+    background: #FFFFFF;
+    color: #0A0A0A;
+    font-weight: 700;
+    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.25);
+}
+
+/* Escenario del Maniquí con Iluminación Radial */
+.mannequin-360-stage {
+    position: relative;
+    width: 100%;
+    min-height: 480px;
+    height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.04) 0%, rgba(10, 10, 10, 0.95) 85%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 22px;
+    padding: 20px 15px;
+    overflow: hidden;
+    box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8), 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.mannequin-360-display {
+    max-height: 440px;
+    width: auto;
+    max-width: 90%;
+    object-fit: contain;
+    filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.95));
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* Insignia Flotante Verde Esmeralda */
+.mannequin-zone-badge {
+    position: absolute;
+    bottom: 16px;
+    background: rgba(10, 10, 10, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    padding: 7px 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    transition: all 0.3s ease;
+}
+
+.mannequin-zone-badge.has-zone {
+    border-color: #00FF88;
+    background: rgba(0, 255, 136, 0.1);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.35);
+}
+
+.badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #666666;
+    transition: all 0.3s ease;
+}
+
+.mannequin-zone-badge.has-zone .badge-dot {
+    background: #00FF88;
+    box-shadow: 0 0 10px #00FF88;
+    animation: pulseEmerald 1.8s infinite;
+}
+
+@keyframes pulseEmerald {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.3); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.badge-text {
+    font-family: var(--font-heading);
+    font-size: 0.74rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+/* --- Columna 2: Controles y Zonas --- */
+.anatomical-controls-col {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.atelier-control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.atelier-control-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-heading);
+    font-size: 0.80rem;
+    letter-spacing: 2px;
+    color: #D4A5A5;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.label-step {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background: rgba(212, 165, 165, 0.15);
+    border: 1px solid rgba(212, 165, 165, 0.4);
+    border-radius: 50%;
+    font-size: 0.68rem;
+    color: #FFFFFF;
+}
+
+/* Grid de las 7 Zonas Esmeralda */
+.emerald-zones-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+@media (max-width: 600px) {
+    .emerald-zones-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.emerald-zone-card {
+    background: #141414;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 12px 14px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.emerald-zone-card:hover {
+    border-color: rgba(0, 255, 136, 0.45);
+    background: rgba(0, 255, 136, 0.03);
+    transform: translateY(-2px);
+}
+
+.emerald-zone-card.selected {
+    border-color: #00FF88 !important;
+    background: rgba(0, 255, 136, 0.08) !important;
+    box-shadow: 0 0 25px rgba(0, 255, 136, 0.35), inset 0 0 12px rgba(0, 255, 136, 0.1) !important;
+    transform: translateY(-2px);
+}
+
+.zone-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.zone-name {
+    font-family: var(--font-heading);
+    font-size: 0.88rem;
+    letter-spacing: 1.5px;
+    color: #FFFFFF;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.emerald-zone-card.selected .zone-name {
+    color: #00FF88;
+}
+
+.zone-indicator {
+    width: 12px;
+    height: 12px;
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    transition: all 0.25s ease;
+}
+
+.emerald-zone-card.selected .zone-indicator {
+    border-color: #00FF88;
+    background: #00FF88;
+    box-shadow: 0 0 10px #00FF88;
+}
+
+.zone-desc {
+    font-size: 0.72rem;
+    color: #888888;
+    line-height: 1.35;
+    font-weight: 400;
+}
+
+.emerald-zone-card.selected .zone-desc {
+    color: #C0C0C0;
+}
+
+/* Input de Subzona */
+.atelier-input-text {
+    width: 100%;
+    background: #111111;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    padding: 12px 16px;
+    color: #FFFFFF;
+    font-size: 0.88rem;
+    outline: none;
+    transition: all 0.25s ease;
+    font-family: var(--font-body);
+}
+
+.atelier-input-text:focus {
+    border-color: #D4A5A5;
+    box-shadow: 0 0 15px rgba(212, 165, 165, 0.25);
+    background: #141414;
+}
+
+.atelier-input-text::placeholder {
+    color: #555555;
+    font-size: 0.82rem;
+}
+
+/* Opciones de Escala */
+.scale-options-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+@media (max-width: 600px) {
+    .scale-options-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.scale-option-btn {
+    background: #111111;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.scale-option-btn:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.scale-option-btn.active {
+    border-color: #D4A5A5;
+    background: rgba(212, 165, 165, 0.1);
+    box-shadow: 0 0 15px rgba(212, 165, 165, 0.25);
+}
+
+.scale-title {
+    font-family: var(--font-heading);
+    font-size: 0.80rem;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+.scale-measure {
+    font-size: 0.68rem;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+}
+
+/* Footer de Acciones con Botón Volver y Continuar */
+.atelier-action-footer.split-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.btn-atelier-secondary {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #A0A0A0;
+    font-family: var(--font-heading);
+    font-size: 0.80rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 12px 22px;
+    border-radius: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.25s ease;
+}
+
+.btn-atelier-secondary:hover {
+    color: #FFFFFF;
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.05);
+}
+
