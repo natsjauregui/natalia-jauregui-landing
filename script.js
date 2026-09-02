@@ -1695,40 +1695,127 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     window.changeMannequinView = changeMannequinView;
 
-    // Global Emerald Zone Selector
-    function selectZone(zone, zoneName, defaultView) {
+    // Global Zone Accordion Toggle & 360 View Sync
+    function toggleZoneAccordion(zone, zoneName, defaultView) {
         if (!zone) return;
-        gameState.zone = zone;
-        gameState.zoneName = zoneName;
 
-        document.querySelectorAll('.emerald-zone-card').forEach(card => {
-            if (card.getAttribute('data-zone') === zone) {
-                card.classList.add('selected');
-            } else {
-                card.classList.remove('selected');
+        const allItems = document.querySelectorAll('.zone-accordion-item');
+        const targetItem = document.getElementById(`zone-item-${zone}`);
+        const wasOpen = targetItem && targetItem.classList.contains('open');
+
+        // Close other accordion items
+        allItems.forEach(item => {
+            if (item !== targetItem) {
+                item.classList.remove('open');
+                item.classList.remove('active');
             }
         });
 
-        // Update floating badge on stage
-        const mannequinBadge = document.getElementById('mannequin-badge');
-        const badgeZoneName = document.getElementById('badge-zone-name');
-        if (mannequinBadge && badgeZoneName) {
-            mannequinBadge.classList.add('has-zone');
-            badgeZoneName.textContent = zoneName;
+        // Toggle target item
+        if (targetItem) {
+            targetItem.classList.add('open');
+            targetItem.classList.add('active');
         }
+
+        gameState.zone = zone;
+        gameState.zoneName = zoneName;
 
         // Auto-rotate view if defaultView given
         if (defaultView && gameState.view !== defaultView) {
             changeMannequinView(defaultView);
         }
 
-        // Enable continue button
+        // Update confirmation main zone title if no subzone selected yet
+        const summaryMainZone = document.getElementById('summary-main-zone');
+        if (summaryMainZone) {
+            summaryMainZone.textContent = zoneName;
+        }
+
+        // Update stage badge
+        const mannequinBadge = document.getElementById('mannequin-badge');
+        const badgeZoneName = document.getElementById('badge-zone-name');
+        if (mannequinBadge && badgeZoneName) {
+            mannequinBadge.classList.add('has-zone');
+            if (gameState.subzone) {
+                badgeZoneName.textContent = `${zoneName} // ${gameState.subzone}`;
+            } else {
+                badgeZoneName.textContent = zoneName;
+            }
+        }
+    }
+    window.toggleZoneAccordion = toggleZoneAccordion;
+
+    // Global Subzone Selection Handler
+    function selectSubzone(zone, zoneName, subzone) {
+        if (!zone || !subzone) return;
+
+        gameState.zone = zone;
+        gameState.zoneName = zoneName;
+        gameState.subzone = subzone;
+
+        // Ensure accordion item is open & marked as active
+        const allItems = document.querySelectorAll('.zone-accordion-item');
+        const targetItem = document.getElementById(`zone-item-${zone}`);
+
+        allItems.forEach(item => {
+            if (item !== targetItem) {
+                item.classList.remove('open');
+                item.classList.remove('active');
+                item.classList.remove('has-selected-subzone');
+                const tag = item.querySelector('.zone-selected-tag');
+                if (tag) tag.style.display = 'none';
+            }
+        });
+
+        if (targetItem) {
+            targetItem.classList.add('open');
+            targetItem.classList.add('active');
+            targetItem.classList.add('has-selected-subzone');
+
+            // Update header tag
+            const tag = document.getElementById(`tag-subzone-${zone}`);
+            if (tag) {
+                tag.textContent = subzone;
+                tag.style.display = 'inline-block';
+            }
+        }
+
+        // Highlight selected subzone chip
+        document.querySelectorAll('.subzone-chip').forEach(chip => {
+            if (chip.textContent.trim() === subzone.trim() || chip.getAttribute('onclick')?.includes(subzone)) {
+                chip.classList.add('selected');
+            } else {
+                chip.classList.remove('selected');
+            }
+        });
+
+        // Update stage badge with zone + subzone
+        const mannequinBadge = document.getElementById('mannequin-badge');
+        const badgeZoneName = document.getElementById('badge-zone-name');
+        if (mannequinBadge && badgeZoneName) {
+            mannequinBadge.classList.add('has-zone');
+            badgeZoneName.textContent = `${zoneName} // ${subzone}`;
+        }
+
+        // Update Confirmation Panel Data
+        const summaryMainZone = document.getElementById('summary-main-zone');
+        const summaryDivider = document.getElementById('summary-divider');
+        const summarySubZone = document.getElementById('summary-sub-zone');
+
+        if (summaryMainZone) summaryMainZone.textContent = zoneName;
+        if (summaryDivider) summaryDivider.style.display = 'inline';
+        if (summarySubZone) {
+            summarySubZone.textContent = subzone;
+            summarySubZone.style.color = '#00FF88';
+        }
+
+        // Enable Confirmation & Continue button
         const btnPhase2Next = document.getElementById('btn-phase2-next');
         if (btnPhase2Next) {
             btnPhase2Next.disabled = false;
         }
     }
-    window.selectZone = selectZone;
+    window.selectSubzone = selectSubzone;
 
     // Global Scale Selector
     function selectScale(scale) {
@@ -1743,26 +1830,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     window.selectScale = selectScale;
-
-    // View Rotation Tabs Binding (Frente, Espalda, Perfiles)
-    const viewTabBtns = document.querySelectorAll('.view-tab-btn');
-    viewTabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const view = btn.getAttribute('data-view') || 'front';
-            changeMannequinView(view);
-        });
-    });
-
-    // 7 Emerald Zones Selection Binding
-    const emeraldZoneCards = document.querySelectorAll('.emerald-zone-card');
-    emeraldZoneCards.forEach(card => {
-        card.addEventListener('click', () => {
-            const zone = card.getAttribute('data-zone');
-            const zoneName = card.getAttribute('data-zone-name');
-            const defaultView = card.getAttribute('data-default-view');
-            selectZone(zone, zoneName, defaultView);
-        });
-    });
 
     // Scale options binding
     const scaleOptionBtns = document.querySelectorAll('.scale-option-btn');
@@ -1784,10 +1851,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnPhase2Next = document.getElementById('btn-phase2-next');
     if (btnPhase2Next) {
         btnPhase2Next.addEventListener('click', () => {
-            const subzoneInput = document.getElementById('game-subzone-input');
-            if (subzoneInput) {
-                gameState.subzone = subzoneInput.value.trim();
-            }
             showPhase(3);
         });
     }

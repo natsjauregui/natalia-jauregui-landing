@@ -18,7 +18,7 @@
     <!-- Calendly Widget CSS -->
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css?v=123">
+    <link rel="stylesheet" href="styles.css?v=124">
 </head>
 <body>
 
@@ -139,11 +139,11 @@
                         </div>
                     </div>
                     
-                    <!-- PANTALLA 3 (Fase 2): Selección Anatómica // Configurador 360° -->
+                    <!-- PANTALLA 3 (Fase 2): Selección Anatómica // Configurador 360° con Subzonas -->
                     <div class="phase-card" data-phase="2">
                         <div class="atelier-header-center">
                             <h3 class="atelier-step-title">SELECCIÓN ANATÓMICA</h3>
-                            <p class="atelier-step-subtitle">Gira el lienzo corporal 360° y selecciona la zona sobre la cual proyectaremos el flujo, volumen y proporción de tu obra de autor.</p>
+                            <p class="atelier-step-subtitle">Gira el lienzo corporal 360°, despliega tu zona de interés y elige el área precisa para proyectar el flujo y volumen de tu obra.</p>
                         </div>
 
                         <div class="anatomical-configurator-grid">
@@ -170,82 +170,212 @@
                                 </div>
                             </div>
 
-                            <!-- Columna 2: Parámetros y Zonas Corporales -->
+                            <!-- Columna 2: Listado de 7 Zonas con Subzonas Desplegables -->
                             <div class="anatomical-controls-col">
-                                <!-- 1. Zona Principal (7 Zonas) -->
-                                <div class="atelier-control-group">
-                                    <label class="atelier-control-label">
-                                        <span class="label-step">1</span>
-                                        <span>ZONA CORPORAL PRINCIPAL</span>
-                                    </label>
-                                    <div class="emerald-zones-grid">
-                                        <button type="button" class="emerald-zone-card" data-zone="brazo" data-zone-name="Brazo / Manga" data-default-view="front" onclick="selectZone('brazo', 'Brazo / Manga', 'front')">
-                                            <div class="zone-card-header">
-                                                <span class="zone-name">Brazo / Manga</span>
+                                <div class="atelier-control-label">
+                                    <span class="label-step">1</span>
+                                    <span>ZONAS CORPORALES Y SUB-ÁREAS</span>
+                                </div>
+
+                                <div class="zone-accordion-list" id="zone-accordion-list">
+                                    
+                                    <!-- 1. Brazo / Manga -->
+                                    <div class="zone-accordion-item" data-zone="brazo" id="zone-item-brazo">
+                                        <div class="zone-accordion-header" onclick="toggleZoneAccordion('brazo', 'Brazo / Manga', 'front')">
+                                            <div class="zone-header-left">
                                                 <span class="zone-indicator"></span>
+                                                <div class="zone-text-group">
+                                                    <span class="zone-main-title">Brazo / Manga</span>
+                                                    <span class="zone-sub-caption">Fluidez, dinamismo y anatomía en movimiento</span>
+                                                </div>
                                             </div>
-                                            <span class="zone-desc">Fluidez, dinamismo y anatomía en movimiento</span>
-                                        </button>
-                                        <button type="button" class="emerald-zone-card" data-zone="pierna" data-zone-name="Pierna / Muslo" data-default-view="front" onclick="selectZone('pierna', 'Pierna / Muslo', 'front')">
-                                            <div class="zone-card-header">
-                                                <span class="zone-name">Pierna / Muslo</span>
-                                                <span class="zone-indicator"></span>
+                                            <div class="zone-header-right">
+                                                <span class="zone-selected-tag" id="tag-subzone-brazo"></span>
+                                                <i class="fa-solid fa-chevron-down zone-chevron"></i>
                                             </div>
-                                            <span class="zone-desc">Volumen, solidez y gran superficie de autor</span>
-                                        </button>
-                                        <button type="button" class="emerald-zone-card" data-zone="espalda" data-zone-name="Espalda / Columna" data-default-view="back" onclick="selectZone('espalda', 'Espalda / Columna', 'back')">
-                                            <div class="zone-card-header">
-                                                <span class="zone-name">Espalda / Columna</span>
-                                                <span class="zone-indicator"></span>
+                                        </div>
+                                        <div class="zone-suboptions-drawer">
+                                            <span class="suboptions-instruction">Selecciona la sub-zona específica:</span>
+                                            <div class="subzone-chips-grid">
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Antebrazo Interno')">Antebrazo Interno</button>
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Antebrazo Externo')">Antebrazo Externo</button>
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Bíceps / Brazo Interno')">Bíceps / Brazo Interno</button>
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Tríceps / Brazo Externo')">Tríceps / Brazo Externo</button>
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Media Manga (Superior)')">Media Manga Superior</button>
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Manga Completa')">Manga Completa</button>
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('brazo', 'Brazo / Manga', 'Muñeca / Mano')">Muñeca / Mano</button>
                                             </div>
-                                            <span class="zone-desc">Composición monumental y arquitectura simétrica</span>
-                                        </button>
-                                        <button type="button" class="emerald-zone-card" data-zone="pecho" data-zone-name="Pecho / Torso" data-default-view="front" onclick="selectZone('pecho', 'Pecho / Torso', 'front')">
-                                            <div class="zone-card-header">
-                                                <span class="zone-name">Pecho / Torso</span>
-                                                <span class="zone-indicator"></span>
-                                            </div>
-                                            <span class="zone-desc">Impacto visual central y resonancia emocional</span>
-                                        </button>
-                                        <button type="button" class="emerald-zone-card" data-zone="hombro" data-zone-name="Hombro / Deltoides" data-default-view="front" onclick="selectZone('hombro', 'Hombro / Deltoides', 'front')">
-                                            <div class="zone-card-header">
-                                                <span class="zone-name">Hombro / Deltoides</span>
-                                                <span class="zone-indicator"></span>
-                                            </div>
-                                            <span class="zone-desc">Estructura muscular de porte y presencia</span>
-                                        </button>
-                                        <button type="button" class="emerald-zone-card" data-zone="costillas" data-zone-name="Costillas / Costado" data-default-view="left" onclick="selectZone('costillas', 'Costillas / Costado', 'left')">
-                                            <div class="zone-card-header">
-                                                <span class="zone-name">Costillas / Costado</span>
-                                                <span class="zone-indicator"></span>
-                                            </div>
-                                            <span class="zone-desc">Curvatura orgánica de alta sensualidad y discreción</span>
-                                        </button>
-                                        <button type="button" class="emerald-zone-card" data-zone="cuello" data-zone-name="Cuello / Nuca" data-default-view="back" onclick="selectZone('cuello', 'Cuello / Nuca', 'back')">
-                                            <div class="zone-card-header">
-                                                <span class="zone-name">Cuello / Nuca</span>
-                                                <span class="zone-indicator"></span>
-                                            </div>
-                                            <span class="zone-desc">Elegancia minimalista de máxima visibilidad</span>
-                                        </button>
+                                        </div>
                                     </div>
+
+                                    <!-- 2. Pierna / Muslo -->
+                                    <div class="zone-accordion-item" data-zone="pierna" id="zone-item-pierna">
+                                        <div class="zone-accordion-header" onclick="toggleZoneAccordion('pierna', 'Pierna / Muslo', 'front')">
+                                            <div class="zone-header-left">
+                                                <span class="zone-indicator"></span>
+                                                <div class="zone-text-group">
+                                                    <span class="zone-main-title">Pierna / Muslo</span>
+                                                    <span class="zone-sub-caption">Volumen, solidez y gran superficie de autor</span>
+                                                </div>
+                                            </div>
+                                            <div class="zone-header-right">
+                                                <span class="zone-selected-tag" id="tag-subzone-pierna"></span>
+                                                <i class="fa-solid fa-chevron-down zone-chevron"></i>
+                                            </div>
+                                        </div>
+                                        <div class="zone-suboptions-drawer">
+                                            <span class="suboptions-instruction">Selecciona la sub-zona específica:</span>
+                                            <div class="subzone-chips-grid">
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Muslo Frontal')">Muslo Frontal</button>
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Muslo Lateral / Ext.')">Muslo Lateral / Ext.</button>
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Pantorrilla / Gemelo')">Pantorrilla / Gemelo</button>
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Espinilla / Frontal')">Espinilla / Frontal</button>
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Tobillo / Empeine')">Tobillo / Empeine</button>
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('pierna', 'Pierna / Muslo', 'Pierna Completa')">Pierna Completa</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 3. Espalda / Columna -->
+                                    <div class="zone-accordion-item" data-zone="espalda" id="zone-item-espalda">
+                                        <div class="zone-accordion-header" onclick="toggleZoneAccordion('espalda', 'Espalda / Columna', 'back')">
+                                            <div class="zone-header-left">
+                                                <span class="zone-indicator"></span>
+                                                <div class="zone-text-group">
+                                                    <span class="zone-main-title">Espalda / Columna</span>
+                                                    <span class="zone-sub-caption">Composición monumental y arquitectura simétrica</span>
+                                                </div>
+                                            </div>
+                                            <div class="zone-header-right">
+                                                <span class="zone-selected-tag" id="tag-subzone-espalda"></span>
+                                                <i class="fa-solid fa-chevron-down zone-chevron"></i>
+                                            </div>
+                                        </div>
+                                        <div class="zone-suboptions-drawer">
+                                            <span class="suboptions-instruction">Selecciona la sub-zona específica:</span>
+                                            <div class="subzone-chips-grid">
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('espalda', 'Espalda / Columna', 'Columna Vertebral')">Columna Vertebral</button>
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('espalda', 'Espalda / Columna', 'Omóplato / Escápula')">Omóplato / Escápula</button>
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('espalda', 'Espalda / Columna', 'Espalda Alta / Trapecio')">Espalda Alta / Trapecio</button>
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('espalda', 'Espalda / Columna', 'Espalda Baja / Lumbar')">Espalda Baja / Lumbar</button>
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('espalda', 'Espalda / Columna', 'Espalda Completa (Full Back)')">Espalda Completa</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 4. Pecho / Torso -->
+                                    <div class="zone-accordion-item" data-zone="pecho" id="zone-item-pecho">
+                                        <div class="zone-accordion-header" onclick="toggleZoneAccordion('pecho', 'Pecho / Torso', 'front')">
+                                            <div class="zone-header-left">
+                                                <span class="zone-indicator"></span>
+                                                <div class="zone-text-group">
+                                                    <span class="zone-main-title">Pecho / Torso</span>
+                                                    <span class="zone-sub-caption">Impacto visual central y resonancia emocional</span>
+                                                </div>
+                                            </div>
+                                            <div class="zone-header-right">
+                                                <span class="zone-selected-tag" id="tag-subzone-pecho"></span>
+                                                <i class="fa-solid fa-chevron-down zone-chevron"></i>
+                                            </div>
+                                        </div>
+                                        <div class="zone-suboptions-drawer">
+                                            <span class="suboptions-instruction">Selecciona la sub-zona específica:</span>
+                                            <div class="subzone-chips-grid">
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('pecho', 'Pecho / Torso', 'Pectoral (Izq. / Der.)')">Pectoral (Izq./Der.)</button>
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('pecho', 'Pecho / Torso', 'Esternón / Centro')">Esternón / Centro</button>
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('pecho', 'Pecho / Torso', 'Pecho Completo')">Pecho Completo</button>
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('pecho', 'Pecho / Torso', 'Abdomen / Vientre')">Abdomen / Vientre</button>
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('pecho', 'Pecho / Torso', 'Torso Completo')">Torso Completo</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 5. Hombro / Deltoides -->
+                                    <div class="zone-accordion-item" data-zone="hombro" id="zone-item-hombro">
+                                        <div class="zone-accordion-header" onclick="toggleZoneAccordion('hombro', 'Hombro / Deltoides', 'front')">
+                                            <div class="zone-header-left">
+                                                <span class="zone-indicator"></span>
+                                                <div class="zone-text-group">
+                                                    <span class="zone-main-title">Hombro / Deltoides</span>
+                                                    <span class="zone-sub-caption">Estructura muscular de porte y presencia</span>
+                                                </div>
+                                            </div>
+                                            <div class="zone-header-right">
+                                                <span class="zone-selected-tag" id="tag-subzone-hombro"></span>
+                                                <i class="fa-solid fa-chevron-down zone-chevron"></i>
+                                            </div>
+                                        </div>
+                                        <div class="zone-suboptions-drawer">
+                                            <span class="suboptions-instruction">Selecciona la sub-zona específica:</span>
+                                            <div class="subzone-chips-grid">
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('hombro', 'Hombro / Deltoides', 'Deltoides Frontal')">Deltoides Frontal</button>
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('hombro', 'Hombro / Deltoides', 'Deltoides Lateral / Cúpula')">Deltoides Lateral</button>
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('hombro', 'Hombro / Deltoides', 'Deltoides Posterior')">Deltoides Posterior</button>
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('hombro', 'Hombro / Deltoides', 'Hombro y Clavícula')">Hombro y Clavícula</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 6. Costillas / Costado -->
+                                    <div class="zone-accordion-item" data-zone="costillas" id="zone-item-costillas">
+                                        <div class="zone-accordion-header" onclick="toggleZoneAccordion('costillas', 'Costillas / Costado', 'left')">
+                                            <div class="zone-header-left">
+                                                <span class="zone-indicator"></span>
+                                                <div class="zone-text-group">
+                                                    <span class="zone-main-title">Costillas / Costado</span>
+                                                    <span class="zone-sub-caption">Curvatura orgánica de alta sensualidad y discreción</span>
+                                                </div>
+                                            </div>
+                                            <div class="zone-header-right">
+                                                <span class="zone-selected-tag" id="tag-subzone-costillas"></span>
+                                                <i class="fa-solid fa-chevron-down zone-chevron"></i>
+                                            </div>
+                                        </div>
+                                        <div class="zone-suboptions-drawer">
+                                            <span class="suboptions-instruction">Selecciona la sub-zona específica:</span>
+                                            <div class="subzone-chips-grid">
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('costillas', 'Costillas / Costado', 'Costillar Superior')">Costillar Superior</button>
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('costillas', 'Costillas / Costado', 'Costado / Flanco Lateral')">Costado / Flanco Lateral</button>
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('costillas', 'Costillas / Costado', 'Bajo Pecho / Rib Cage')">Bajo Pecho / Rib Cage</button>
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('costillas', 'Costillas / Costado', 'Cadera / Cresta Ilíaca')">Cadera / Cresta Ilíaca</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 7. Cuello / Nuca -->
+                                    <div class="zone-accordion-item" data-zone="cuello" id="zone-item-cuello">
+                                        <div class="zone-accordion-header" onclick="toggleZoneAccordion('cuello', 'Cuello / Nuca', 'back')">
+                                            <div class="zone-header-left">
+                                                <span class="zone-indicator"></span>
+                                                <div class="zone-text-group">
+                                                    <span class="zone-main-title">Cuello / Nuca</span>
+                                                    <span class="zone-sub-caption">Elegancia minimalista de máxima visibilidad</span>
+                                                </div>
+                                            </div>
+                                            <div class="zone-header-right">
+                                                <span class="zone-selected-tag" id="tag-subzone-cuello"></span>
+                                                <i class="fa-solid fa-chevron-down zone-chevron"></i>
+                                            </div>
+                                        </div>
+                                        <div class="zone-suboptions-drawer">
+                                            <span class="suboptions-instruction">Selecciona la sub-zona específica:</span>
+                                            <div class="subzone-chips-grid">
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('cuello', 'Cuello / Nuca', 'Nuca / Posterior')">Nuca / Posterior</button>
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('cuello', 'Cuello / Nuca', 'Lateral del Cuello')">Lateral del Cuello</button>
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('cuello', 'Cuello / Nuca', 'Garganta / Frontal')">Garganta / Frontal</button>
+                                                <button type="button" class="subzone-chip" onclick="selectSubzone('cuello', 'Cuello / Nuca', 'Detrás de la Oreja')">Detrás de la Oreja</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
 
-                                <!-- 2. Especificación Detallada (Subzona) -->
-                                <div class="atelier-control-group">
-                                    <label class="atelier-control-label" for="game-subzone-input">
+                                <!-- 2. Escala y Proporción (Compacto) -->
+                                <div class="atelier-control-group" style="margin-top: 10px;">
+                                    <div class="atelier-control-label">
                                         <span class="label-step">2</span>
-                                        <span>UBICACIÓN ESPECÍFICA (OPCIONAL)</span>
-                                    </label>
-                                    <input type="text" id="game-subzone-input" class="atelier-input-text" placeholder="Ej: Cara interna del antebrazo, omóplato derecho, muslo exterior...">
-                                </div>
-
-                                <!-- 3. Escala y Proporción -->
-                                <div class="atelier-control-group">
-                                    <label class="atelier-control-label">
-                                        <span class="label-step">3</span>
-                                        <span>ESCALA Y PROPORCIÓN DEL PROYECTO</span>
-                                    </label>
+                                        <span>PROPORCIÓN APROXIMADA</span>
+                                    </div>
                                     <div class="scale-options-grid">
                                         <button type="button" class="scale-option-btn active" data-scale="focal" onclick="selectScale('focal')">
                                             <span class="scale-title">Pieza Focal</span>
@@ -264,16 +394,33 @@
                             </div>
                         </div>
 
-                        <!-- Footer de Navegación de Fase -->
-                        <div class="atelier-action-footer split-actions">
-                            <button type="button" class="btn-atelier-secondary" id="btn-phase2-prev" onclick="showPhase(1)">
-                                <i class="fa-solid fa-arrow-left"></i>
-                                <span>Volver a Lienzo Base</span>
-                            </button>
-                            <button type="button" class="btn-atelier-primary" id="btn-phase2-next" onclick="showPhase(3)" disabled>
-                                <span>Continuar a Estilos de Autor</span>
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </button>
+                        <!-- Zona de Confirmación y Resumen Inferior -->
+                        <div class="anatomical-confirmation-panel" id="anatomical-confirmation-panel">
+                            <div class="confirmation-summary-card">
+                                <div class="confirmation-icon-box">
+                                    <i class="fa-solid fa-crosshairs"></i>
+                                </div>
+                                <div class="confirmation-info-group">
+                                    <span class="confirmation-badge-title">COORDENADA SELECCIONADA</span>
+                                    <div class="confirmation-data-row">
+                                        <strong class="confirm-zone-main" id="summary-main-zone">Zona no seleccionada</strong>
+                                        <span class="confirm-divider" id="summary-divider" style="display: none;">//</span>
+                                        <span class="confirm-zone-sub" id="summary-sub-zone">Elige una sub-zona</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Botones de Acción -->
+                            <div class="atelier-action-footer split-actions" style="margin-top: 14px; padding-top: 14px;">
+                                <button type="button" class="btn-atelier-secondary" id="btn-phase2-prev" onclick="showPhase(1)">
+                                    <i class="fa-solid fa-arrow-left"></i>
+                                    <span>Volver a Lienzo Base</span>
+                                </button>
+                                <button type="button" class="btn-atelier-primary" id="btn-phase2-next" onclick="showPhase(3)" disabled>
+                                    <span>Confirmar y Continuar a Estilos de Tatuaje</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     
@@ -1642,6 +1789,6 @@
     <!-- Calendly Widget JS -->
     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
     <!-- Custom JS -->
-    <script src="script.js?v=123"></script>
+    <script src="script.js?v=124"></script>
 </body>
 </html>

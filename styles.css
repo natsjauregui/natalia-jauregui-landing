@@ -4348,115 +4348,193 @@ body.game-active {
     color: #FFFFFF;
 }
 
-/* Grid de las 7 Zonas Esmeralda */
-.emerald-zones-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-}
+/* ==========================================================================
+   ACORDEÓN DE 7 ZONAS Y SUBZONAS DE AUTOR
+   ========================================================================== */
 
-@media (max-width: 600px) {
-    .emerald-zones-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-.emerald-zone-card {
-    background: #141414;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 12px 14px;
-    text-align: left;
-    cursor: pointer;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+.zone-accordion-list {
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    position: relative;
-    overflow: hidden;
-}
-
-.emerald-zone-card:hover {
-    border-color: rgba(0, 255, 136, 0.45);
-    background: rgba(0, 255, 136, 0.03);
-    transform: translateY(-2px);
-}
-
-.emerald-zone-card.selected {
-    border-color: #00FF88 !important;
-    background: rgba(0, 255, 136, 0.08) !important;
-    box-shadow: 0 0 25px rgba(0, 255, 136, 0.35), inset 0 0 12px rgba(0, 255, 136, 0.1) !important;
-    transform: translateY(-2px);
-}
-
-.zone-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    gap: 8px;
     width: 100%;
 }
 
-.zone-name {
-    font-family: var(--font-heading);
-    font-size: 0.88rem;
-    letter-spacing: 1.5px;
-    color: #FFFFFF;
-    font-weight: 600;
-    text-transform: uppercase;
+.zone-accordion-item {
+    background: #131313;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.emerald-zone-card.selected .zone-name {
-    color: #00FF88;
+.zone-accordion-item:hover {
+    border-color: rgba(0, 255, 136, 0.35);
+    background: #171717;
+}
+
+.zone-accordion-item.active {
+    border-color: rgba(0, 255, 136, 0.6);
+    background: rgba(0, 255, 136, 0.03);
+}
+
+.zone-accordion-item.has-selected-subzone {
+    border-color: #00FF88 !important;
+    background: rgba(0, 255, 136, 0.06) !important;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.2), inset 0 0 10px rgba(0, 255, 136, 0.04);
+}
+
+/* Cabecera del Acordeón */
+.zone-accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s ease;
+}
+
+.zone-header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .zone-indicator {
     width: 12px;
     height: 12px;
-    border: 1.5px solid rgba(255, 255, 255, 0.25);
     border-radius: 50%;
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
     transition: all 0.25s ease;
+    flex-shrink: 0;
 }
 
-.emerald-zone-card.selected .zone-indicator {
+.zone-accordion-item.active .zone-indicator,
+.zone-accordion-item.has-selected-subzone .zone-indicator {
     border-color: #00FF88;
     background: #00FF88;
     box-shadow: 0 0 10px #00FF88;
 }
 
-.zone-desc {
-    font-size: 0.72rem;
-    color: #888888;
-    line-height: 1.35;
-    font-weight: 400;
+.zone-text-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    text-align: left;
 }
 
-.emerald-zone-card.selected .zone-desc {
-    color: #C0C0C0;
-}
-
-/* Input de Subzona */
-.atelier-input-text {
-    width: 100%;
-    background: #111111;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 10px;
-    padding: 12px 16px;
-    color: #FFFFFF;
+.zone-main-title {
+    font-family: var(--font-heading);
     font-size: 0.88rem;
-    outline: none;
-    transition: all 0.25s ease;
+    letter-spacing: 1.2px;
+    color: #FFFFFF;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.zone-accordion-item.has-selected-subzone .zone-main-title {
+    color: #00FF88;
+}
+
+.zone-sub-caption {
+    font-size: 0.70rem;
+    color: #888888;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.zone-header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.zone-selected-tag {
+    font-family: var(--font-heading);
+    font-size: 0.68rem;
+    letter-spacing: 1px;
+    color: #00FF88;
+    background: rgba(0, 255, 136, 0.12);
+    border: 1px solid rgba(0, 255, 136, 0.35);
+    padding: 3px 8px;
+    border-radius: 12px;
+    display: none;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.zone-chevron {
+    font-size: 0.75rem;
+    color: #777777;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease;
+}
+
+.zone-accordion-item.open .zone-chevron {
+    transform: rotate(180deg);
+    color: #00FF88;
+}
+
+/* Gaveta Desplegable de Subzonas */
+.zone-suboptions-drawer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s ease;
+    padding: 0 16px;
+    background: rgba(0, 0, 0, 0.35);
+    border-top: 1px solid transparent;
+}
+
+.zone-accordion-item.open .zone-suboptions-drawer {
+    max-height: 380px;
+    padding: 12px 16px 16px;
+    border-top-color: rgba(255, 255, 255, 0.06);
+}
+
+.suboptions-instruction {
+    font-family: var(--font-heading);
+    font-size: 0.68rem;
+    letter-spacing: 1.5px;
+    color: #D4A5A5;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: block;
+    font-weight: 600;
+}
+
+.subzone-chips-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.subzone-chip {
+    background: #181818;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    padding: 7px 14px;
+    font-size: 0.76rem;
+    color: #D0D0D0;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     font-family: var(--font-body);
+    outline: none;
+    letter-spacing: 0.3px;
 }
 
-.atelier-input-text:focus {
-    border-color: #D4A5A5;
-    box-shadow: 0 0 15px rgba(212, 165, 165, 0.25);
-    background: #141414;
+.subzone-chip:hover {
+    border-color: rgba(0, 255, 136, 0.45);
+    color: #FFFFFF;
+    background: rgba(0, 255, 136, 0.05);
+    transform: translateY(-1px);
 }
 
-.atelier-input-text::placeholder {
-    color: #555555;
-    font-size: 0.82rem;
+.subzone-chip.selected {
+    border-color: #00FF88 !important;
+    background: rgba(0, 255, 136, 0.18) !important;
+    color: #FFFFFF !important;
+    font-weight: 600;
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.35);
+    transform: translateY(-1px);
 }
 
 /* Opciones de Escala */
@@ -4510,15 +4588,94 @@ body.game-active {
     letter-spacing: 0.5px;
 }
 
+/* ==========================================================================
+   PANEL DE CONFIRMACIÓN ANATÓMICA INFERIOR
+   ========================================================================== */
+
+.anatomical-confirmation-panel {
+    margin-top: 24px;
+    padding: 18px 22px;
+    background: #101010;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+}
+
+.confirmation-summary-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.confirmation-icon-box {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid rgba(0, 255, 136, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #00FF88;
+    font-size: 1rem;
+    box-shadow: 0 0 18px rgba(0, 255, 136, 0.2);
+    flex-shrink: 0;
+}
+
+.confirmation-info-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    text-align: left;
+}
+
+.confirmation-badge-title {
+    font-family: var(--font-heading);
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    color: #D4A5A5;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.confirmation-data-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.confirm-zone-main {
+    font-family: var(--font-heading);
+    font-size: 0.94rem;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.confirm-divider {
+    color: #666666;
+    font-size: 0.85rem;
+}
+
+.confirm-zone-sub {
+    font-family: var(--font-heading);
+    font-size: 0.88rem;
+    letter-spacing: 1px;
+    color: #00FF88;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
 /* Footer de Acciones con Botón Volver y Continuar */
 .atelier-action-footer.split-actions {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin-top: 24px;
-    padding-top: 18px;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .btn-atelier-secondary {
