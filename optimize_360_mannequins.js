@@ -8,14 +8,14 @@ const genders = ['male', 'female', 'neutral'];
 const views = ['front', 'back', 'left', 'right'];
 
 async function process360() {
-  console.log("=== INICIANDO OPTIMIZACIÓN DE VISTAS 360° OFICIALES ===");
+  console.log("=== RE-ESCALANDO VISTAS 360° PARA LLENAR EL MARCO (GRANDE Y NÍTIDO) ===");
 
   for (const gender of genders) {
-    console.log(`\n--- Procesando Silueta: ${gender.toUpperCase()} ---`);
+    console.log(`\n--- Silueta: ${gender.toUpperCase()} ---`);
     
-    // Altura objetivo uniforme para todas las vistas del mismo género
-    const TARGET_HEIGHT = 1200;
+    // Exact 1:2 ratio matching 400x800 canvas
     const TARGET_WIDTH = 800;
+    const TARGET_HEIGHT = 1600;
 
     for (const view of views) {
       const filenamePng = `mannequin-${gender}-${view}.png`;
@@ -28,23 +28,20 @@ async function process360() {
         continue;
       }
 
-      const meta = await sharp(inPath).metadata();
-      const inSizeKb = (fs.statSync(inPath).size / 1024).toFixed(1);
-
-      // Trim transparent pixels, resize preserving aspect ratio, center on transparent canvas
+      // Trim all transparent borders
       const trimmedBuffer = await sharp(inPath)
         .trim({ threshold: 5 })
         .toBuffer();
 
       const trimmedMeta = await sharp(trimmedBuffer).metadata();
 
-      // Escalado uniforme para que la altura de la figura sea de 1050px aprox
-      const figureHeight = 1050;
+      // Scale figure to 1480px height inside 1600px canvas (fills 92.5% vertically)
+      const figureHeight = 1480;
       const resizedFigure = await sharp(trimmedBuffer)
-        .resize({ height: figureHeight, fit: 'inside' })
+        .resize({ height: figureHeight, width: 760, fit: 'inside' })
         .toBuffer();
 
-      // Centrar en un lienzo de 800x1200 transparente
+      // Composite onto 800x1600 transparent canvas
       const finalBuffer = await sharp({
         create: {
           width: TARGET_WIDTH,
@@ -54,16 +51,16 @@ async function process360() {
         }
       })
       .composite([{ input: resizedFigure, gravity: 'center' }])
-      .webp({ quality: 92, effort: 6 })
+      .webp({ quality: 94, effort: 6 })
       .toBuffer();
 
       fs.writeFileSync(outPath, finalBuffer);
       const outSizeKb = (finalBuffer.length / 1024).toFixed(1);
-      console.log(`  -> ${filenameWebp}: ${outSizeKb} KB (Original: ${inSizeKb} KB, Trim: ${trimmedMeta.width}x${trimmedMeta.height} -> Canvas 800x1200)`);
+      console.log(`  -> ${filenameWebp}: ${outSizeKb} KB (Trim: ${trimmedMeta.width}x${trimmedMeta.height} -> Canvas 800x1600, Figure: ${figureHeight}px)`);
     }
   }
 
-  console.log("\n=== TODAS LAS VISTAS 360° OPTIMIZADAS EXITOSAMENTE ===");
+  console.log("\n=== TODAS LAS VISTAS 360° RE-ESCALADAS CON ÉXITO ===");
 }
 
 process360().catch(console.error);

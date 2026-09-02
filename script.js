@@ -1662,427 +1662,247 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-                // ==========================================================================
-    // PANTALLA 3 (FASE 2): CONFIGURADOR ANATÓMICO TOUCH-TO-ZOOM CON ENFOQUE CENTRADO
+                    // ==========================================================================
+    // PANTALLA 3 (FASE 2): CONFIGURADOR ANATÓMICO DIRECTO & ELEGANTE DE AUTOR
     // ==========================================================================
 
-    const ZONE_DATA = {
-  "brazo-der": {
-    "name": "Brazo Derecho",
-    "mainZone": "brazo",
-    "autoView": "front",
-    "center": {
-      "front": {
-        "cx": 120,
-        "cy": 260,
-        "scale": 2
-      },
-      "back": {
-        "cx": 280,
-        "cy": 260,
-        "scale": 2
-      },
-      "left": {
-        "cx": 200,
-        "cy": 260,
-        "scale": 1.9
-      },
-      "right": {
-        "cx": 200,
-        "cy": 260,
-        "scale": 2
-      }
-    },
+    const MACRO_ZONES = {
+  "brazo": {
+    "id": "brazo",
+    "name": "Brazos",
+    "icon": "fa-hand-back-fist",
+    "desc": "Hombro, bíceps, antebrazo y mangas completas",
+    "defaultView": "front",
     "subzones": [
-      "Hombro Derecho",
-      "Bíceps Derecho",
-      "Tríceps Derecho",
-      "Antebrazo Interno Der.",
-      "Antebrazo Externo Der.",
-      "Media Manga Superior",
-      "Media Manga Inferior",
-      "Media Manga Externa Der.",
-      "Media Manga Interna Der.",
-      "Manga Completa",
-      "Muñeca / Mano Derecha"
+      {
+        "id": "media-manga-sup",
+        "name": "Media Manga Superior",
+        "desc": "Hombro hasta codo"
+      },
+      {
+        "id": "media-manga-inf",
+        "name": "Media Manga Inferior",
+        "desc": "Codo hasta muñeca"
+      },
+      {
+        "id": "manga-completa",
+        "name": "Manga Completa",
+        "desc": "Hombro a muñeca (Full Sleeve)"
+      },
+      {
+        "id": "hombro-der",
+        "name": "Hombro Derecho",
+        "desc": "Deltoides y acromion"
+      },
+      {
+        "id": "hombro-izq",
+        "name": "Hombro Izquierdo",
+        "desc": "Deltoides y acromion"
+      },
+      {
+        "id": "biceps",
+        "name": "Bíceps (Interno / Frontal)",
+        "desc": "Cara anterior del brazo"
+      },
+      {
+        "id": "triceps",
+        "name": "Tríceps (Posterior)",
+        "desc": "Cara posterior del brazo"
+      },
+      {
+        "id": "antebrazo-int",
+        "name": "Antebrazo Interno",
+        "desc": "Plano frontal suave"
+      },
+      {
+        "id": "antebrazo-ext",
+        "name": "Antebrazo Externo",
+        "desc": "Plano lateral visible"
+      },
+      {
+        "id": "mano",
+        "name": "Muñeca / Mano",
+        "desc": "Dorso y articulación"
+      }
     ]
   },
-  "brazo-izq": {
-    "name": "Brazo Izquierdo",
-    "mainZone": "brazo",
-    "autoView": "front",
-    "center": {
-      "front": {
-        "cx": 280,
-        "cy": 260,
-        "scale": 2
-      },
-      "back": {
-        "cx": 120,
-        "cy": 260,
-        "scale": 2
-      },
-      "left": {
-        "cx": 200,
-        "cy": 260,
-        "scale": 2
-      },
-      "right": {
-        "cx": 200,
-        "cy": 260,
-        "scale": 1.9
-      }
-    },
+  "pierna": {
+    "id": "pierna",
+    "name": "Piernas",
+    "icon": "fa-person-walking",
+    "desc": "Muslo, rodilla, espinilla, gemelos y pierna entera",
+    "defaultView": "front",
     "subzones": [
-      "Hombro Izquierdo",
-      "Bíceps Izquierdo",
-      "Tríceps Izquierdo",
-      "Antebrazo Interno Izq.",
-      "Antebrazo Externo Izq.",
-      "Media Manga Superior",
-      "Media Manga Inferior",
-      "Media Manga Externa Izq.",
-      "Media Manga Interna Izq.",
-      "Manga Completa",
-      "Muñeca / Mano Izquierda"
+      {
+        "id": "muslo-frontal",
+        "name": "Muslo Frontal (Cuádriceps)",
+        "desc": "Zona amplia de autor"
+      },
+      {
+        "id": "muslo-lateral",
+        "name": "Muslo Lateral-Externo",
+        "desc": "Línea de cadera y volumen"
+      },
+      {
+        "id": "muslo-trasero",
+        "name": "Muslo Trasero (Isquiotibial)",
+        "desc": "Plano posterior superior"
+      },
+      {
+        "id": "rodilla",
+        "name": "Rodilla",
+        "desc": "Composición focal"
+      },
+      {
+        "id": "espinilla",
+        "name": "Espinilla (Frontal)",
+        "desc": "Eje vertical de la pierna"
+      },
+      {
+        "id": "gemelo",
+        "name": "Gemelo / Pantorrilla",
+        "desc": "Volumen curvo posterior"
+      },
+      {
+        "id": "media-pierna-sup",
+        "name": "Media Pierna Superior",
+        "desc": "Muslo completo"
+      },
+      {
+        "id": "media-pierna-inf",
+        "name": "Media Pierna Inferior",
+        "desc": "Rodilla a tobillo"
+      },
+      {
+        "id": "pierna-completa",
+        "name": "Pierna Completa (Full Leg)",
+        "desc": "Cobertura integral de autor"
+      },
+      {
+        "id": "tobillo-pie",
+        "name": "Tobillo-Empeine / Pie",
+        "desc": "Terminación anatómica"
+      }
     ]
   },
   "pecho": {
-    "name": "Pecho / Pectoral",
-    "mainZone": "pecho",
-    "autoView": "front",
-    "center": {
-      "front": {
-        "cx": 200,
-        "cy": 185,
-        "scale": 2.2
-      },
-      "back": {
-        "cx": 200,
-        "cy": 185,
-        "scale": 2.2
-      },
-      "left": {
-        "cx": 175,
-        "cy": 185,
-        "scale": 2.1
-      },
-      "right": {
-        "cx": 225,
-        "cy": 185,
-        "scale": 2.1
-      }
-    },
+    "id": "pecho",
+    "name": "Pecho & Torso",
+    "icon": "fa-shield-halved",
+    "desc": "Pectorales, costillas laterales y abdomen",
+    "defaultView": "front",
     "subzones": [
-      "Pectoral (Ambos)",
-      "Pectoral Izquierdo",
-      "Pectoral Derecho",
-      "Pecho Completo",
-      "Torso Completo (Pecho + Costillas + Abdomen)"
-    ]
-  },
-  "costilla-der": {
-    "name": "Costilla Derecha",
-    "mainZone": "pecho",
-    "autoView": "right",
-    "center": {
-      "front": {
-        "cx": 155,
-        "cy": 270,
-        "scale": 2.2
+      {
+        "id": "pectoral-der",
+        "name": "Pectoral Derecho",
+        "desc": "Plano muscular derecho"
       },
-      "back": {
-        "cx": 245,
-        "cy": 270,
-        "scale": 2.2
+      {
+        "id": "pectoral-izq",
+        "name": "Pectoral Izquierdo",
+        "desc": "Plano muscular izquierdo"
       },
-      "left": {
-        "cx": 200,
-        "cy": 270,
-        "scale": 2.1
+      {
+        "id": "pectoral-ambos",
+        "name": "Pecho Completo (Ambos Pectorales)",
+        "desc": "Composición simétrica frontal"
       },
-      "right": {
-        "cx": 200,
-        "cy": 270,
-        "scale": 2.2
+      {
+        "id": "costilla-der",
+        "name": "Costilla Derecha",
+        "desc": "Flujo lateral orgánico"
+      },
+      {
+        "id": "costilla-izq",
+        "name": "Costilla Izquierda",
+        "desc": "Flujo lateral orgánico"
+      },
+      {
+        "id": "abdomen",
+        "name": "Abdomen / Vientre",
+        "desc": "Centro anatómico frontal"
+      },
+      {
+        "id": "torso-completo",
+        "name": "Torso Completo (Pecho + Costillas + Abdomen)",
+        "desc": "Gran formato integral"
       }
-    },
-    "subzones": [
-      "Costilla Derecha",
-      "Costillas (Ambas)",
-      "Abdomen / Vientre",
-      "Torso Completo (Pecho + Costillas + Abdomen)"
-    ]
-  },
-  "costilla-izq": {
-    "name": "Costilla Izquierda",
-    "mainZone": "pecho",
-    "autoView": "left",
-    "center": {
-      "front": {
-        "cx": 245,
-        "cy": 270,
-        "scale": 2.2
-      },
-      "back": {
-        "cx": 155,
-        "cy": 270,
-        "scale": 2.2
-      },
-      "left": {
-        "cx": 200,
-        "cy": 270,
-        "scale": 2.2
-      },
-      "right": {
-        "cx": 200,
-        "cy": 270,
-        "scale": 2.1
-      }
-    },
-    "subzones": [
-      "Costilla Izquierda",
-      "Costillas (Ambas)",
-      "Abdomen / Vientre",
-      "Torso Completo (Pecho + Costillas + Abdomen)"
-    ]
-  },
-  "abdomen": {
-    "name": "Abdomen / Vientre",
-    "mainZone": "pecho",
-    "autoView": "front",
-    "center": {
-      "front": {
-        "cx": 200,
-        "cy": 280,
-        "scale": 2.2
-      },
-      "back": {
-        "cx": 200,
-        "cy": 280,
-        "scale": 2.2
-      },
-      "left": {
-        "cx": 180,
-        "cy": 280,
-        "scale": 2.1
-      },
-      "right": {
-        "cx": 220,
-        "cy": 280,
-        "scale": 2.1
-      }
-    },
-    "subzones": [
-      "Abdomen / Vientre",
-      "Torso Completo (Pecho + Costillas + Abdomen)"
     ]
   },
   "espalda": {
-    "name": "Espalda / Columna",
-    "mainZone": "espalda",
-    "autoView": "back",
-    "center": {
-      "front": {
-        "cx": 200,
-        "cy": 240,
-        "scale": 2.1
-      },
-      "back": {
-        "cx": 200,
-        "cy": 240,
-        "scale": 2.1
-      },
-      "left": {
-        "cx": 220,
-        "cy": 240,
-        "scale": 2
-      },
-      "right": {
-        "cx": 180,
-        "cy": 240,
-        "scale": 2
-      }
-    },
+    "id": "espalda",
+    "name": "Espalda & Columna",
+    "icon": "fa-gem",
+    "desc": "Trapecio, omóplatos, columna lumbar y full back",
+    "defaultView": "back",
     "subzones": [
-      "Columna Vertebral (Línea Central)",
-      "Omóplato / Escápula (Ambos)",
-      "Omóplato Izquierdo",
-      "Omóplato Derecho",
-      "Espalda Alta / Trapecio",
-      "Espalda Baja / Lumbar",
-      "Espalda Completa (Full Back)"
-    ]
-  },
-  "pierna-der": {
-    "name": "Pierna Derecha",
-    "mainZone": "pierna",
-    "autoView": "front",
-    "center": {
-      "front": {
-        "cx": 155,
-        "cy": 530,
-        "scale": 1.85
+      {
+        "id": "espalda-alta",
+        "name": "Espalda Alta / Trapecio",
+        "desc": "Hombros y zona cervical"
       },
-      "back": {
-        "cx": 245,
-        "cy": 530,
-        "scale": 1.85
+      {
+        "id": "omoplato-der",
+        "name": "Omóplato Derecho (Escápula)",
+        "desc": "Plano dorsal superior"
       },
-      "left": {
-        "cx": 200,
-        "cy": 530,
-        "scale": 1.8
+      {
+        "id": "omoplato-izq",
+        "name": "Omóplato Izquierdo (Escápula)",
+        "desc": "Plano dorsal superior"
       },
-      "right": {
-        "cx": 200,
-        "cy": 530,
-        "scale": 1.85
+      {
+        "id": "columna-central",
+        "name": "Columna Vertebral (Línea Central)",
+        "desc": "Eje vertical simétrico de autor"
+      },
+      {
+        "id": "espalda-baja",
+        "name": "Espalda Baja / Lumbar",
+        "desc": "Base dorsal y cadera posterior"
+      },
+      {
+        "id": "full-back",
+        "name": "Espalda Completa (Full Back)",
+        "desc": "La máxima obra de arquitectura corporal"
       }
-    },
-    "subzones": [
-      "Muslo Frontal Derecho",
-      "Muslo Lateral-Ext. Der.",
-      "Muslo Trasero Derecho",
-      "Muslo Lateral-Int. Der.",
-      "Rodilla Derecha",
-      "Espinilla Derecha",
-      "Lateral Ext. Pierna Der.",
-      "Lateral Int. Pierna Der.",
-      "Gemelo Derecho",
-      "Media Pierna Superior",
-      "Media Pierna Inferior",
-      "Media Pierna Externa Der.",
-      "Media Pierna Interna Der.",
-      "Pierna Completa",
-      "Tobillo-Empeine Derecho"
-    ]
-  },
-  "pierna-izq": {
-    "name": "Pierna Izquierda",
-    "mainZone": "pierna",
-    "autoView": "front",
-    "center": {
-      "front": {
-        "cx": 245,
-        "cy": 530,
-        "scale": 1.85
-      },
-      "back": {
-        "cx": 155,
-        "cy": 530,
-        "scale": 1.85
-      },
-      "left": {
-        "cx": 200,
-        "cy": 530,
-        "scale": 1.85
-      },
-      "right": {
-        "cx": 200,
-        "cy": 530,
-        "scale": 1.8
-      }
-    },
-    "subzones": [
-      "Muslo Frontal Izquierdo",
-      "Muslo Lateral-Ext. Izq.",
-      "Muslo Trasero Izquierdo",
-      "Muslo Lateral-Int. Izq.",
-      "Rodilla Izquierda",
-      "Espinilla Izquierda",
-      "Lateral Ext. Pierna Izq.",
-      "Lateral Int. Pierna Izq.",
-      "Gemelo Izquierdo",
-      "Media Pierna Superior",
-      "Media Pierna Inferior",
-      "Media Pierna Externa Izq.",
-      "Media Pierna Interna Izq.",
-      "Pierna Completa",
-      "Tobillo-Empeine Izquierdo"
     ]
   },
   "cuello": {
-    "name": "Cuello / Cabeza",
-    "mainZone": "cuello",
-    "autoView": "front",
-    "center": {
-      "front": {
-        "cx": 200,
-        "cy": 110,
-        "scale": 2.4
-      },
-      "back": {
-        "cx": 200,
-        "cy": 110,
-        "scale": 2.4
-      },
-      "left": {
-        "cx": 200,
-        "cy": 110,
-        "scale": 2.3
-      },
-      "right": {
-        "cx": 200,
-        "cy": 110,
-        "scale": 2.3
-      }
-    },
+    "id": "cuello",
+    "name": "Cuello & Cabeza",
+    "icon": "fa-crown",
+    "desc": "Garganta frontal, laterales, nuca y nacimiento",
+    "defaultView": "front",
     "subzones": [
-      "Garganta / Frontal",
-      "Lateral del Cuello (Ambos)",
-      "Lateral Cuello Izquierdo",
-      "Lateral Cuello Derecho",
-      "Nuca / Posterior",
-      "Cuello Completo",
-      "Cabeza (Nacimiento del Cabello)"
+      {
+        "id": "garganta",
+        "name": "Garganta / Frontal",
+        "desc": "Impacto y elegancia frontal"
+      },
+      {
+        "id": "cuello-der",
+        "name": "Lateral Cuello Derecho",
+        "desc": "Perfil cervical dinámico"
+      },
+      {
+        "id": "cuello-izq",
+        "name": "Lateral Cuello Izquierdo",
+        "desc": "Perfil cervical dinámico"
+      },
+      {
+        "id": "nuca",
+        "name": "Nuca / Posterior",
+        "desc": "Base occipital y nacimiento"
+      },
+      {
+        "id": "cuello-completo",
+        "name": "Cuello Completo (360°)",
+        "desc": "Envoltura cervical de autor"
+      }
     ]
   }
 };
-
-    function updateAnatomicalHighlight() {
-        const v = gameState.view || 'front';
-        const activeRegion = gameState.focusedRegion;
-        const activeZone = gameState.zone;
-        const activeSubzone = gameState.subzone;
-
-        // 1. Mostrar solo el grupo SVG de la perspectiva activa
-        document.querySelectorAll('.anatomy-view-group').forEach(group => {
-            if (group.id === ('anatomy-view-' + v)) {
-                group.style.display = 'block';
-            } else {
-                group.style.display = 'none';
-            }
-        });
-
-        // 2. Iluminación inteligente por región y subzona
-        document.querySelectorAll('.anatomical-path').forEach(path => {
-            const pathRegion = path.getAttribute('data-region');
-            const pathZone = path.getAttribute('data-zone');
-            const pathSubzones = path.getAttribute('data-subzones') || '';
-
-            const matchesRegion = activeRegion ? (pathRegion === activeRegion) : (pathZone === activeZone);
-
-            if (matchesRegion) {
-                if (activeSubzone) {
-                    const subzonesList = pathSubzones.split(',').map(s => s.trim().toLowerCase());
-                    const currentSubLower = activeSubzone.trim().toLowerCase();
-                    const isDirectMatch = subzonesList.some(s => s.includes(currentSubLower) || currentSubLower.includes(s));
-
-                    if (isDirectMatch) {
-                        path.classList.add('active');
-                    } else {
-                        path.classList.remove('active');
-                    }
-                } else {
-                    path.classList.add('active');
-                }
-            } else {
-                path.classList.remove('active');
-            }
-        });
-    }
-    window.updateAnatomicalHighlight = updateAnatomicalHighlight;
 
     function update360MannequinView() {
         const mannequinImg = document.getElementById('mannequin-360-img');
@@ -2090,47 +1910,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const g = gameState.gender || 'male';
         const v = gameState.view || 'front';
         
-        mannequinImg.style.opacity = '0.25';
-        mannequinImg.style.transform = 'scale(0.97)';
+        mannequinImg.style.opacity = '0.3';
+        mannequinImg.style.transform = 'scale(0.98)';
         setTimeout(() => {
             mannequinImg.src = 'images/mannequins/mannequin-' + g + '-' + v + '.webp';
             mannequinImg.style.opacity = '1';
             mannequinImg.style.transform = 'scale(1)';
-            updateAnatomicalHighlight();
-            applyCameraZoom();
-        }, 120);
-    }
-
-    // Zoom Proporcional y Estable sobre el Wrapper del Maniquí
-    function applyCameraZoom() {
-        const wrapper = document.getElementById('mannequin-stage-wrapper') || document.querySelector('.touch-zoom-stage .mannequin-stage-wrapper');
-        const cameraRig = document.getElementById('mannequin-camera-rig');
-        
-        if (!wrapper) return;
-        
-        const regionKey = gameState.focusedRegion;
-        if (!regionKey || !ZONE_DATA[regionKey]) {
-            wrapper.style.transformOrigin = '50% 50%';
-            wrapper.style.transform = 'scale(1) translate(0px, 0px)';
-            if (cameraRig) cameraRig.style.transform = 'none';
-            return;
-        }
-        
-        const v = gameState.view || 'front';
-        const centerConfig = ZONE_DATA[regionKey].center[v] || { cx: 200, cy: 400, scale: 1.85 };
-        
-        // Coordenadas relativas exactas (0% a 100%) dentro del lienzo 400x800
-        const originX = (centerConfig.cx / 400) * 100;
-        const originY = (centerConfig.cy / 800) * 100;
-        const scale = centerConfig.scale || 1.85;
-        
-        // Suave desplazamiento hacia el centro visual del escenario para máxima visibilidad
-        const shiftX = (50 - originX) * 0.4;
-        const shiftY = (50 - originY) * 0.3;
-        
-        wrapper.style.transformOrigin = originX.toFixed(1) + '% ' + originY.toFixed(1) + '%';
-        wrapper.style.transform = 'scale(' + scale + ') translate(' + shiftX.toFixed(1) + '%, ' + shiftY.toFixed(1) + '%)';
-        if (cameraRig) cameraRig.style.transform = 'none';
+        }, 100);
     }
 
     // Global 360 Perspective Switcher
@@ -2148,61 +1934,59 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     window.changeMannequinView = changeMannequinView;
 
-    // Direct Touch-to-Zoom Handler
-    function focusAnatomicalZone(regionKey, event) {
-        if (event && event.stopPropagation) event.stopPropagation();
-        if (!regionKey || !ZONE_DATA[regionKey]) return;
+    // Direct Macro Zone Selector (Brazos, Piernas, Pecho, Espalda, Cuello)
+    function selectMacroZone(macroKey) {
+        if (!macroKey || !MACRO_ZONES[macroKey]) return;
+        const data = MACRO_ZONES[macroKey];
 
-        const data = ZONE_DATA[regionKey];
-        gameState.focusedRegion = regionKey;
-        gameState.zone = data.mainZone;
+        gameState.focusedMacro = macroKey;
+        gameState.zone = macroKey;
         gameState.zoneName = data.name;
         gameState.subzone = null;
 
-        console.log('Enfocando zona anatómica: ' + data.name + ' (Perspectiva actual: ' + gameState.view + ')');
+        // 1. Highlight active macro card button
+        document.querySelectorAll('.macro-zone-card').forEach(btn => {
+            if (btn.getAttribute('data-macro') === macroKey) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
 
-        // Auto-switch perspective if needed
-        if (data.autoView && gameState.view !== data.autoView) {
-            changeMannequinView(data.autoView);
+        // 2. Auto-rotate mannequin to the best perspective if needed
+        if (data.defaultView && gameState.view !== data.defaultView) {
+            changeMannequinView(data.defaultView);
         } else {
-            applyCameraZoom();
-            updateAnatomicalHighlight();
+            update360MannequinView();
         }
 
-        // Show Reset Zoom button
-        const btnReset = document.getElementById('btn-reset-zoom');
-        if (btnReset) btnReset.style.display = 'inline-flex';
+        // 3. Update HUD Titles
+        const hudTitle = document.getElementById('hud-region-title');
+        const hudSubtitle = document.getElementById('hud-region-subtitle');
+        if (hudTitle) hudTitle.textContent = data.name;
+        if (hudSubtitle) hudSubtitle.textContent = 'Selecciona el plano anatómico específico donde deseas colocar tu tatuaje:';
 
-        // Toggle HUD states
-        const hudEmpty = document.getElementById('hud-empty-state');
-        const hudActive = document.getElementById('hud-active-panel');
-        const hudFocusedName = document.getElementById('hud-focused-name');
-        const hudChipsContainer = document.getElementById('hud-chips-container');
+        // 4. Update Badge
+        const badgeZoneText = document.getElementById('badge-zone-text');
+        if (badgeZoneText) {
+            badgeZoneText.textContent = 'ZONA: ' + data.name.toUpperCase();
+        }
 
-        if (hudEmpty) hudEmpty.style.display = 'none';
-        if (hudActive) hudActive.style.display = 'flex';
-        if (hudFocusedName) hudFocusedName.textContent = data.name;
-
-        // Render subzone chips
-        if (hudChipsContainer) {
-            hudChipsContainer.innerHTML = '';
-            data.subzones.forEach(sub => {
+        // 5. Render sub-zone chips
+        const hudContainer = document.getElementById('hud-subzones-container');
+        if (hudContainer) {
+            hudContainer.innerHTML = '';
+            data.subzones.forEach((sub, idx) => {
                 const btn = document.createElement('button');
                 btn.type = 'button';
-                btn.className = 'subzone-chip-touch';
-                btn.textContent = sub;
-                btn.onclick = () => selectTouchSubzone(regionKey, sub);
-                hudChipsContainer.appendChild(btn);
+                btn.className = 'subzone-card-item' + (idx === 0 ? ' auto-highlight' : '');
+                btn.innerHTML = '<span class="subzone-item-name">' + sub.name + '</span><span class="subzone-item-desc">' + sub.desc + '</span>';
+                btn.onclick = () => selectLuxurySubzone(macroKey, sub.name);
+                hudContainer.appendChild(btn);
             });
         }
 
-        // Update badge
-        const badgeZoneText = document.getElementById('badge-zone-text');
-        if (badgeZoneText) {
-            badgeZoneText.textContent = 'ENFOCADO: ' + data.name.toUpperCase();
-        }
-
-        // Update confirmation main zone title
+        // 6. Update Confirmation Summary
         const summaryMainZone = document.getElementById('summary-main-zone');
         const summaryDivider = document.getElementById('summary-divider');
         const summarySubZone = document.getElementById('summary-sub-zone');
@@ -2215,75 +1999,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const btnPhase2Next = document.getElementById('btn-phase2-next');
         if (btnPhase2Next) btnPhase2Next.disabled = true;
-    }
-    window.focusAnatomicalZone = focusAnatomicalZone;
 
-    // Reset Zoom Handler
-    function resetAnatomicalZoom() {
-        gameState.focusedRegion = null;
-        gameState.zone = null;
-        gameState.subzone = null;
-
-        const wrapper = document.getElementById('mannequin-stage-wrapper') || document.querySelector('.touch-zoom-stage .mannequin-stage-wrapper');
-        if (wrapper) {
-            wrapper.style.transformOrigin = '50% 50%';
-            wrapper.style.transform = 'scale(1) translate(0px, 0px)';
+        // Auto-select first subzone for frictionless onboarding
+        if (data.subzones && data.subzones.length > 0) {
+            selectLuxurySubzone(macroKey, data.subzones[0].name);
         }
-        
-        const cameraRig = document.getElementById('mannequin-camera-rig');
-        if (cameraRig) cameraRig.style.transform = 'none';
-
-        const btnReset = document.getElementById('btn-reset-zoom');
-        if (btnReset) btnReset.style.display = 'none';
-
-        const hudEmpty = document.getElementById('hud-empty-state');
-        const hudActive = document.getElementById('hud-active-panel');
-        if (hudEmpty) hudEmpty.style.display = 'flex';
-        if (hudActive) hudActive.style.display = 'none';
-
-        const badgeZoneText = document.getElementById('badge-zone-text');
-        if (badgeZoneText) badgeZoneText.textContent = 'TOCA EL MANIQUÍ PARA ENFOCAR';
-
-        const summaryMainZone = document.getElementById('summary-main-zone');
-        const summaryDivider = document.getElementById('summary-divider');
-        const summarySubZone = document.getElementById('summary-sub-zone');
-        if (summaryMainZone) summaryMainZone.textContent = 'Toca el maniquí para elegir';
-        if (summaryDivider) summaryDivider.style.display = 'none';
-        if (summarySubZone) {
-            summarySubZone.textContent = 'Esperando selección';
-            summarySubZone.style.color = '#888888';
-        }
-
-        updateAnatomicalHighlight();
-
-        const btnPhase2Next = document.getElementById('btn-phase2-next');
-        if (btnPhase2Next) btnPhase2Next.disabled = true;
     }
-    window.resetAnatomicalZoom = resetAnatomicalZoom;
+    window.selectMacroZone = selectMacroZone;
 
-    // Select Touch Subzone
-    function selectTouchSubzone(regionKey, subzone) {
-        if (!regionKey || !subzone) return;
-        const data = ZONE_DATA[regionKey];
+    // Direct Subzone Selector
+    function selectLuxurySubzone(macroKey, subzoneName) {
+        if (!macroKey || !subzoneName) return;
+        const data = MACRO_ZONES[macroKey];
 
-        gameState.focusedRegion = regionKey;
-        gameState.zone = data.mainZone;
+        gameState.focusedMacro = macroKey;
+        gameState.zone = macroKey;
         gameState.zoneName = data.name;
-        gameState.subzone = subzone;
+        gameState.subzone = subzoneName;
 
-        document.querySelectorAll('.subzone-chip-touch').forEach(chip => {
-            if (chip.textContent.trim() === subzone.trim()) {
+        // Highlight selected chip
+        document.querySelectorAll('.subzone-card-item').forEach(chip => {
+            const nameEl = chip.querySelector('.subzone-item-name');
+            if (nameEl && nameEl.textContent.trim() === subzoneName.trim()) {
                 chip.classList.add('selected');
+                chip.classList.remove('auto-highlight');
             } else {
                 chip.classList.remove('selected');
+                chip.classList.remove('auto-highlight');
             }
         });
 
+        // Update Badge
         const badgeZoneText = document.getElementById('badge-zone-text');
         if (badgeZoneText) {
-            badgeZoneText.textContent = data.name.toUpperCase() + ' // ' + subzone.toUpperCase();
+            badgeZoneText.textContent = data.name.toUpperCase() + ' // ' + subzoneName.toUpperCase();
         }
 
+        // Update Confirmation Summary
         const summaryMainZone = document.getElementById('summary-main-zone');
         const summaryDivider = document.getElementById('summary-divider');
         const summarySubZone = document.getElementById('summary-sub-zone');
@@ -2291,26 +2043,32 @@ document.addEventListener('DOMContentLoaded', () => {
         if (summaryMainZone) summaryMainZone.textContent = data.name;
         if (summaryDivider) summaryDivider.style.display = 'inline';
         if (summarySubZone) {
-            summarySubZone.textContent = subzone;
+            summarySubZone.textContent = subzoneName;
             summarySubZone.style.color = '#00FF88';
         }
 
-        // Auto-rotate if subzone benefits from specific angle
-        const subLower = subzone.toLowerCase();
-        if (subLower.includes('trasero') || subLower.includes('nuca') || subLower.includes('espalda') || subLower.includes('omóplato') || subLower.includes('columna') || subLower.includes('lumbar') || subLower.includes('full back')) {
+        // Auto-rotate perspective if subzone hints at a specific angle
+        const subLower = subzoneName.toLowerCase();
+        if (subLower.includes('trasero') || subLower.includes('posterior') || subLower.includes('tríceps') || subLower.includes('nuca') || subLower.includes('espalda') || subLower.includes('omóplato') || subLower.includes('columna') || subLower.includes('lumbar') || subLower.includes('full back') || subLower.includes('gemelo')) {
             if (gameState.view !== 'back') changeMannequinView('back');
-        } else if (subLower.includes('costilla izquierda') || (regionKey === 'pierna-izq' && (subLower.includes('lateral ext') || subLower.includes('media pierna externa'))) || (regionKey === 'brazo-izq' && (subLower.includes('externo') || subLower.includes('externa')))) {
+        } else if (subLower.includes('costilla izq') || subLower.includes('lateral izq')) {
             if (gameState.view !== 'left') changeMannequinView('left');
-        } else if (subLower.includes('costilla derecha') || (regionKey === 'pierna-der' && (subLower.includes('lateral ext') || subLower.includes('media pierna externa'))) || (regionKey === 'brazo-der' && (subLower.includes('externo') || subLower.includes('externa')))) {
+        } else if (subLower.includes('costilla der') || subLower.includes('lateral der')) {
             if (gameState.view !== 'right') changeMannequinView('right');
         }
 
-        updateAnatomicalHighlight();
-
+        // Enable continue button
         const btnPhase2Next = document.getElementById('btn-phase2-next');
         if (btnPhase2Next) btnPhase2Next.disabled = false;
     }
-    window.selectTouchSubzone = selectTouchSubzone;
+    window.selectLuxurySubzone = selectLuxurySubzone;
+
+    // Initialize default macro selection on load
+    setTimeout(() => {
+        if (!gameState.zone) {
+            selectMacroZone('brazo');
+        }
+    }, 200);
 
     // Global Scale Selector
     function selectScale(scale) {
