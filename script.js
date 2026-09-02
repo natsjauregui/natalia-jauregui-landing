@@ -1662,223 +1662,383 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-        // ==========================================================================
-    // PANTALLA 3 (FASE 2): CONFIGURADOR ANATÓMICO TOUCH-TO-ZOOM CON ILUMINACIÓN
+            // ==========================================================================
+    // PANTALLA 3 (FASE 2): CONFIGURADOR ANATÓMICO TOUCH-TO-ZOOM CON ENFOQUE CENTRADO
     // ==========================================================================
 
     const ZONE_DATA = {
-        'brazo-izq': {
-            name: 'Brazo Izquierdo',
-            mainZone: 'brazo',
-            autoView: 'front',
-            zoom: {
-                front: 'scale(1.9) translate(18%, -12%)',
-                back: 'scale(1.9) translate(18%, -12%)',
-                left: 'scale(1.8) translate(0%, -12%)',
-                right: 'scale(1.8) translate(0%, -12%)'
-            },
-            subzones: [
-                'Hombro Izquierdo',
-                'Bíceps Izquierdo',
-                'Tríceps Izquierdo',
-                'Antebrazo Interno Izq.',
-                'Antebrazo Externo Izq.',
-                'Media Manga Superior',
-                'Media Manga Inferior',
-                'Media Manga Externa Izq.',
-                'Media Manga Interna Izq.',
-                'Manga Completa',
-                'Muñeca / Mano Izquierda'
-            ]
-        },
-        'brazo-der': {
-            name: 'Brazo Derecho',
-            mainZone: 'brazo',
-            autoView: 'front',
-            zoom: {
-                front: 'scale(1.9) translate(-18%, -12%)',
-                back: 'scale(1.9) translate(-18%, -12%)',
-                left: 'scale(1.8) translate(0%, -12%)',
-                right: 'scale(1.8) translate(0%, -12%)'
-            },
-            subzones: [
-                'Hombro Derecho',
-                'Bíceps Derecho',
-                'Tríceps Derecho',
-                'Antebrazo Interno Der.',
-                'Antebrazo Externo Der.',
-                'Media Manga Superior',
-                'Media Manga Inferior',
-                'Media Manga Externa Der.',
-                'Media Manga Interna Der.',
-                'Manga Completa',
-                'Muñeca / Mano Derecha'
-            ]
-        },
-        'pecho': {
-            name: 'Pecho / Pectoral',
-            mainZone: 'pecho',
-            autoView: 'front',
-            zoom: {
-                front: 'scale(2.0) translate(0%, -16%)',
-                back: 'scale(2.0) translate(0%, -16%)',
-                left: 'scale(1.9) translate(12%, -16%)',
-                right: 'scale(1.9) translate(-12%, -16%)'
-            },
-            subzones: [
-                'Pectoral (Ambos)',
-                'Pectoral Izquierdo',
-                'Pectoral Derecho',
-                'Pecho Completo',
-                'Torso Completo (Pecho + Costillas + Abdomen)'
-            ]
-        },
-        'costilla-izq': {
-            name: 'Costilla Izquierda',
-            mainZone: 'pecho',
-            autoView: 'left',
-            zoom: {
-                front: 'scale(2.0) translate(14%, -8%)',
-                back: 'scale(2.0) translate(14%, -8%)',
-                left: 'scale(1.9) translate(0%, -8%)',
-                right: 'scale(1.9) translate(0%, -8%)'
-            },
-            subzones: [
-                'Costilla Izquierda',
-                'Costillas (Ambas)',
-                'Abdomen / Vientre',
-                'Torso Completo (Pecho + Costillas + Abdomen)'
-            ]
-        },
-        'costilla-der': {
-            name: 'Costilla Derecha',
-            mainZone: 'pecho',
-            autoView: 'right',
-            zoom: {
-                front: 'scale(2.0) translate(-14%, -8%)',
-                back: 'scale(2.0) translate(-14%, -8%)',
-                left: 'scale(1.9) translate(0%, -8%)',
-                right: 'scale(1.9) translate(0%, -8%)'
-            },
-            subzones: [
-                'Costilla Derecha',
-                'Costillas (Ambas)',
-                'Abdomen / Vientre',
-                'Torso Completo (Pecho + Costillas + Abdomen)'
-            ]
-        },
-        'abdomen': {
-            name: 'Abdomen / Vientre',
-            mainZone: 'pecho',
-            autoView: 'front',
-            zoom: {
-                front: 'scale(2.0) translate(0%, -5%)',
-                back: 'scale(2.0) translate(0%, -5%)',
-                left: 'scale(1.9) translate(10%, -5%)',
-                right: 'scale(1.9) translate(-10%, -5%)'
-            },
-            subzones: [
-                'Abdomen / Vientre',
-                'Torso Completo (Pecho + Costillas + Abdomen)'
-            ]
-        },
-        'espalda': {
-            name: 'Espalda / Columna',
-            mainZone: 'espalda',
-            autoView: 'back',
-            zoom: {
-                front: 'scale(2.0) translate(0%, -14%)',
-                back: 'scale(2.0) translate(0%, -14%)',
-                left: 'scale(1.9) translate(-12%, -14%)',
-                right: 'scale(1.9) translate(12%, -14%)'
-            },
-            subzones: [
-                'Columna Vertebral (Línea Central)',
-                'Omóplato / Escápula (Ambos)',
-                'Omóplato Izquierdo',
-                'Omóplato Derecho',
-                'Espalda Alta / Trapecio',
-                'Espalda Baja / Lumbar',
-                'Espalda Completa (Full Back)'
-            ]
-        },
-        'pierna-izq': {
-            name: 'Pierna Izquierda',
-            mainZone: 'pierna',
-            autoView: 'front',
-            zoom: {
-                front: 'scale(1.8) translate(14%, 24%)',
-                back: 'scale(1.8) translate(14%, 24%)',
-                left: 'scale(1.7) translate(0%, 24%)',
-                right: 'scale(1.7) translate(0%, 24%)'
-            },
-            subzones: [
-                'Muslo Frontal Izquierdo',
-                'Muslo Lateral-Ext. Izq.',
-                'Muslo Trasero Izquierdo',
-                'Muslo Lateral-Int. Izq.',
-                'Rodilla Izquierda',
-                'Espinilla Izquierda',
-                'Lateral Ext. Pierna Izq.',
-                'Lateral Int. Pierna Izq.',
-                'Gemelo Izquierdo',
-                'Media Pierna Superior',
-                'Media Pierna Inferior',
-                'Media Pierna Externa Izq.',
-                'Media Pierna Interna Izq.',
-                'Pierna Completa',
-                'Tobillo-Empeine Izquierdo'
-            ]
-        },
-        'pierna-der': {
-            name: 'Pierna Derecha',
-            mainZone: 'pierna',
-            autoView: 'front',
-            zoom: {
-                front: 'scale(1.8) translate(-14%, 24%)',
-                back: 'scale(1.8) translate(-14%, 24%)',
-                left: 'scale(1.7) translate(0%, 24%)',
-                right: 'scale(1.7) translate(0%, 24%)'
-            },
-            subzones: [
-                'Muslo Frontal Derecho',
-                'Muslo Lateral-Ext. Der.',
-                'Muslo Trasero Derecho',
-                'Muslo Lateral-Int. Der.',
-                'Rodilla Derecha',
-                'Espinilla Derecha',
-                'Lateral Ext. Pierna Der.',
-                'Lateral Int. Pierna Der.',
-                'Gemelo Derecho',
-                'Media Pierna Superior',
-                'Media Pierna Inferior',
-                'Media Pierna Externa Der.',
-                'Media Pierna Interna Der.',
-                'Pierna Completa',
-                'Tobillo-Empeine Derecho'
-            ]
-        },
-        'cuello': {
-            name: 'Cuello / Cabeza',
-            mainZone: 'cuello',
-            autoView: 'front',
-            zoom: {
-                front: 'scale(2.2) translate(0%, -30%)',
-                back: 'scale(2.2) translate(0%, -30%)',
-                left: 'scale(2.1) translate(0%, -30%)',
-                right: 'scale(2.1) translate(0%, -30%)'
-            },
-            subzones: [
-                'Garganta / Frontal',
-                'Lateral del Cuello (Ambos)',
-                'Lateral Cuello Izquierdo',
-                'Lateral Cuello Derecho',
-                'Nuca / Posterior',
-                'Cuello Completo',
-                'Cabeza (Nacimiento del Cabello)'
-            ]
-        }
-    };
+  "brazo-der": {
+    "name": "Brazo Derecho",
+    "mainZone": "brazo",
+    "autoView": "front",
+    "center": {
+      "front": {
+        "cx": 120,
+        "cy": 260,
+        "scale": 2
+      },
+      "back": {
+        "cx": 280,
+        "cy": 260,
+        "scale": 2
+      },
+      "left": {
+        "cx": 200,
+        "cy": 260,
+        "scale": 1.9
+      },
+      "right": {
+        "cx": 200,
+        "cy": 260,
+        "scale": 2
+      }
+    },
+    "subzones": [
+      "Hombro Derecho",
+      "Bíceps Derecho",
+      "Tríceps Derecho",
+      "Antebrazo Interno Der.",
+      "Antebrazo Externo Der.",
+      "Media Manga Superior",
+      "Media Manga Inferior",
+      "Media Manga Externa Der.",
+      "Media Manga Interna Der.",
+      "Manga Completa",
+      "Muñeca / Mano Derecha"
+    ]
+  },
+  "brazo-izq": {
+    "name": "Brazo Izquierdo",
+    "mainZone": "brazo",
+    "autoView": "front",
+    "center": {
+      "front": {
+        "cx": 280,
+        "cy": 260,
+        "scale": 2
+      },
+      "back": {
+        "cx": 120,
+        "cy": 260,
+        "scale": 2
+      },
+      "left": {
+        "cx": 200,
+        "cy": 260,
+        "scale": 2
+      },
+      "right": {
+        "cx": 200,
+        "cy": 260,
+        "scale": 1.9
+      }
+    },
+    "subzones": [
+      "Hombro Izquierdo",
+      "Bíceps Izquierdo",
+      "Tríceps Izquierdo",
+      "Antebrazo Interno Izq.",
+      "Antebrazo Externo Izq.",
+      "Media Manga Superior",
+      "Media Manga Inferior",
+      "Media Manga Externa Izq.",
+      "Media Manga Interna Izq.",
+      "Manga Completa",
+      "Muñeca / Mano Izquierda"
+    ]
+  },
+  "pecho": {
+    "name": "Pecho / Pectoral",
+    "mainZone": "pecho",
+    "autoView": "front",
+    "center": {
+      "front": {
+        "cx": 200,
+        "cy": 185,
+        "scale": 2.2
+      },
+      "back": {
+        "cx": 200,
+        "cy": 185,
+        "scale": 2.2
+      },
+      "left": {
+        "cx": 175,
+        "cy": 185,
+        "scale": 2.1
+      },
+      "right": {
+        "cx": 225,
+        "cy": 185,
+        "scale": 2.1
+      }
+    },
+    "subzones": [
+      "Pectoral (Ambos)",
+      "Pectoral Izquierdo",
+      "Pectoral Derecho",
+      "Pecho Completo",
+      "Torso Completo (Pecho + Costillas + Abdomen)"
+    ]
+  },
+  "costilla-der": {
+    "name": "Costilla Derecha",
+    "mainZone": "pecho",
+    "autoView": "right",
+    "center": {
+      "front": {
+        "cx": 155,
+        "cy": 270,
+        "scale": 2.2
+      },
+      "back": {
+        "cx": 245,
+        "cy": 270,
+        "scale": 2.2
+      },
+      "left": {
+        "cx": 200,
+        "cy": 270,
+        "scale": 2.1
+      },
+      "right": {
+        "cx": 200,
+        "cy": 270,
+        "scale": 2.2
+      }
+    },
+    "subzones": [
+      "Costilla Derecha",
+      "Costillas (Ambas)",
+      "Abdomen / Vientre",
+      "Torso Completo (Pecho + Costillas + Abdomen)"
+    ]
+  },
+  "costilla-izq": {
+    "name": "Costilla Izquierda",
+    "mainZone": "pecho",
+    "autoView": "left",
+    "center": {
+      "front": {
+        "cx": 245,
+        "cy": 270,
+        "scale": 2.2
+      },
+      "back": {
+        "cx": 155,
+        "cy": 270,
+        "scale": 2.2
+      },
+      "left": {
+        "cx": 200,
+        "cy": 270,
+        "scale": 2.2
+      },
+      "right": {
+        "cx": 200,
+        "cy": 270,
+        "scale": 2.1
+      }
+    },
+    "subzones": [
+      "Costilla Izquierda",
+      "Costillas (Ambas)",
+      "Abdomen / Vientre",
+      "Torso Completo (Pecho + Costillas + Abdomen)"
+    ]
+  },
+  "abdomen": {
+    "name": "Abdomen / Vientre",
+    "mainZone": "pecho",
+    "autoView": "front",
+    "center": {
+      "front": {
+        "cx": 200,
+        "cy": 280,
+        "scale": 2.2
+      },
+      "back": {
+        "cx": 200,
+        "cy": 280,
+        "scale": 2.2
+      },
+      "left": {
+        "cx": 180,
+        "cy": 280,
+        "scale": 2.1
+      },
+      "right": {
+        "cx": 220,
+        "cy": 280,
+        "scale": 2.1
+      }
+    },
+    "subzones": [
+      "Abdomen / Vientre",
+      "Torso Completo (Pecho + Costillas + Abdomen)"
+    ]
+  },
+  "espalda": {
+    "name": "Espalda / Columna",
+    "mainZone": "espalda",
+    "autoView": "back",
+    "center": {
+      "front": {
+        "cx": 200,
+        "cy": 240,
+        "scale": 2.1
+      },
+      "back": {
+        "cx": 200,
+        "cy": 240,
+        "scale": 2.1
+      },
+      "left": {
+        "cx": 220,
+        "cy": 240,
+        "scale": 2
+      },
+      "right": {
+        "cx": 180,
+        "cy": 240,
+        "scale": 2
+      }
+    },
+    "subzones": [
+      "Columna Vertebral (Línea Central)",
+      "Omóplato / Escápula (Ambos)",
+      "Omóplato Izquierdo",
+      "Omóplato Derecho",
+      "Espalda Alta / Trapecio",
+      "Espalda Baja / Lumbar",
+      "Espalda Completa (Full Back)"
+    ]
+  },
+  "pierna-der": {
+    "name": "Pierna Derecha",
+    "mainZone": "pierna",
+    "autoView": "front",
+    "center": {
+      "front": {
+        "cx": 155,
+        "cy": 530,
+        "scale": 1.85
+      },
+      "back": {
+        "cx": 245,
+        "cy": 530,
+        "scale": 1.85
+      },
+      "left": {
+        "cx": 200,
+        "cy": 530,
+        "scale": 1.8
+      },
+      "right": {
+        "cx": 200,
+        "cy": 530,
+        "scale": 1.85
+      }
+    },
+    "subzones": [
+      "Muslo Frontal Derecho",
+      "Muslo Lateral-Ext. Der.",
+      "Muslo Trasero Derecho",
+      "Muslo Lateral-Int. Der.",
+      "Rodilla Derecha",
+      "Espinilla Derecha",
+      "Lateral Ext. Pierna Der.",
+      "Lateral Int. Pierna Der.",
+      "Gemelo Derecho",
+      "Media Pierna Superior",
+      "Media Pierna Inferior",
+      "Media Pierna Externa Der.",
+      "Media Pierna Interna Der.",
+      "Pierna Completa",
+      "Tobillo-Empeine Derecho"
+    ]
+  },
+  "pierna-izq": {
+    "name": "Pierna Izquierda",
+    "mainZone": "pierna",
+    "autoView": "front",
+    "center": {
+      "front": {
+        "cx": 245,
+        "cy": 530,
+        "scale": 1.85
+      },
+      "back": {
+        "cx": 155,
+        "cy": 530,
+        "scale": 1.85
+      },
+      "left": {
+        "cx": 200,
+        "cy": 530,
+        "scale": 1.85
+      },
+      "right": {
+        "cx": 200,
+        "cy": 530,
+        "scale": 1.8
+      }
+    },
+    "subzones": [
+      "Muslo Frontal Izquierdo",
+      "Muslo Lateral-Ext. Izq.",
+      "Muslo Trasero Izquierdo",
+      "Muslo Lateral-Int. Izq.",
+      "Rodilla Izquierda",
+      "Espinilla Izquierda",
+      "Lateral Ext. Pierna Izq.",
+      "Lateral Int. Pierna Izq.",
+      "Gemelo Izquierdo",
+      "Media Pierna Superior",
+      "Media Pierna Inferior",
+      "Media Pierna Externa Izq.",
+      "Media Pierna Interna Izq.",
+      "Pierna Completa",
+      "Tobillo-Empeine Izquierdo"
+    ]
+  },
+  "cuello": {
+    "name": "Cuello / Cabeza",
+    "mainZone": "cuello",
+    "autoView": "front",
+    "center": {
+      "front": {
+        "cx": 200,
+        "cy": 110,
+        "scale": 2.4
+      },
+      "back": {
+        "cx": 200,
+        "cy": 110,
+        "scale": 2.4
+      },
+      "left": {
+        "cx": 200,
+        "cy": 110,
+        "scale": 2.3
+      },
+      "right": {
+        "cx": 200,
+        "cy": 110,
+        "scale": 2.3
+      }
+    },
+    "subzones": [
+      "Garganta / Frontal",
+      "Lateral del Cuello (Ambos)",
+      "Lateral Cuello Izquierdo",
+      "Lateral Cuello Derecho",
+      "Nuca / Posterior",
+      "Cuello Completo",
+      "Cabeza (Nacimiento del Cabello)"
+    ]
+  }
+};
 
     function updateAnatomicalHighlight() {
         const v = gameState.view || 'front';
@@ -1888,14 +2048,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 1. Mostrar solo el grupo SVG de la perspectiva activa
         document.querySelectorAll('.anatomy-view-group').forEach(group => {
-            if (group.id === `anatomy-view-${v}`) {
+            if (group.id === ('anatomy-view-' + v)) {
                 group.style.display = 'block';
             } else {
                 group.style.display = 'none';
             }
         });
 
-        // 2. Iluminación inteligente:
+        // 2. Iluminación inteligente por región y subzona
         document.querySelectorAll('.anatomical-path').forEach(path => {
             const pathRegion = path.getAttribute('data-region');
             const pathZone = path.getAttribute('data-zone');
@@ -1933,7 +2093,7 @@ document.addEventListener('DOMContentLoaded', () => {
         mannequinImg.style.opacity = '0.25';
         mannequinImg.style.transform = 'scale(0.97)';
         setTimeout(() => {
-            mannequinImg.src = `images/mannequins/mannequin-${g}-${v}.webp`;
+            mannequinImg.src = 'images/mannequins/mannequin-' + g + '-' + v + '.webp';
             mannequinImg.style.opacity = '1';
             mannequinImg.style.transform = 'scale(1)';
             updateAnatomicalHighlight();
@@ -1941,17 +2101,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 120);
     }
 
+    // Centrado Matemático Absoluto del Zoom en la Región Enfocada
     function applyCameraZoom() {
         const cameraRig = document.getElementById('mannequin-camera-rig');
         if (!cameraRig) return;
         const regionKey = gameState.focusedRegion;
         if (!regionKey || !ZONE_DATA[regionKey]) {
-            cameraRig.style.transform = 'scale(1) translate(0, 0)';
+            cameraRig.style.transform = 'scale(1) translate(0px, 0px)';
             return;
         }
         const v = gameState.view || 'front';
-        const zoomTransform = ZONE_DATA[regionKey].zoom[v] || 'scale(1.8) translate(0, 0)';
-        cameraRig.style.transform = zoomTransform;
+        const centerConfig = ZONE_DATA[regionKey].center[v] || { cx: 200, cy: 400, scale: 2.0 };
+        
+        // Desplazamiento exacto para posicionar (cx, cy) en el centro del visor
+        const dxPercent = ((200 - centerConfig.cx) / 400) * 100;
+        const dyPercent = ((400 - centerConfig.cy) / 800) * 100;
+        
+        cameraRig.style.transform = 'scale(' + centerConfig.scale + ') translate(' + dxPercent.toFixed(1) + '%, ' + dyPercent.toFixed(1) + '%)';
     }
 
     // Global 360 Perspective Switcher
@@ -1980,9 +2146,9 @@ document.addEventListener('DOMContentLoaded', () => {
         gameState.zoneName = data.name;
         gameState.subzone = null;
 
-        console.log(`Enfocando zona anatómica: ${data.name}`);
+        console.log('Enfocando zona anatómica: ' + data.name + ' (Perspectiva actual: ' + gameState.view + ')');
 
-        // Auto-switch perspective if requested region is better seen in another view
+        // Auto-switch perspective if needed
         if (data.autoView && gameState.view !== data.autoView) {
             changeMannequinView(data.autoView);
         } else {
@@ -2020,7 +2186,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update badge
         const badgeZoneText = document.getElementById('badge-zone-text');
         if (badgeZoneText) {
-            badgeZoneText.textContent = `ENFOCADO: ${data.name.toUpperCase()}`;
+            badgeZoneText.textContent = 'ENFOCADO: ' + data.name.toUpperCase();
         }
 
         // Update confirmation main zone title
@@ -2034,20 +2200,19 @@ document.addEventListener('DOMContentLoaded', () => {
             summarySubZone.style.color = '#888888';
         }
 
-        // Disable continue button until subzone is selected
         const btnPhase2Next = document.getElementById('btn-phase2-next');
         if (btnPhase2Next) btnPhase2Next.disabled = true;
     }
     window.focusAnatomicalZone = focusAnatomicalZone;
 
-    // Reset Zoom / View Full Body Handler
+    // Reset Zoom Handler
     function resetAnatomicalZoom() {
         gameState.focusedRegion = null;
         gameState.zone = null;
         gameState.subzone = null;
 
         const cameraRig = document.getElementById('mannequin-camera-rig');
-        if (cameraRig) cameraRig.style.transform = 'scale(1) translate(0, 0)';
+        if (cameraRig) cameraRig.style.transform = 'scale(1) translate(0px, 0px)';
 
         const btnReset = document.getElementById('btn-reset-zoom');
         if (btnReset) btnReset.style.display = 'none';
@@ -2087,7 +2252,6 @@ document.addEventListener('DOMContentLoaded', () => {
         gameState.zoneName = data.name;
         gameState.subzone = subzone;
 
-        // Highlight selected chip
         document.querySelectorAll('.subzone-chip-touch').forEach(chip => {
             if (chip.textContent.trim() === subzone.trim()) {
                 chip.classList.add('selected');
@@ -2096,13 +2260,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Update badge
         const badgeZoneText = document.getElementById('badge-zone-text');
         if (badgeZoneText) {
-            badgeZoneText.textContent = `${data.name.toUpperCase()} // ${subzone.toUpperCase()}`;
+            badgeZoneText.textContent = data.name.toUpperCase() + ' // ' + subzone.toUpperCase();
         }
 
-        // Update confirmation panel
         const summaryMainZone = document.getElementById('summary-main-zone');
         const summaryDivider = document.getElementById('summary-divider');
         const summarySubZone = document.getElementById('summary-sub-zone');
@@ -2118,16 +2280,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const subLower = subzone.toLowerCase();
         if (subLower.includes('trasero') || subLower.includes('nuca') || subLower.includes('espalda') || subLower.includes('omóplato') || subLower.includes('columna') || subLower.includes('lumbar') || subLower.includes('full back')) {
             if (gameState.view !== 'back') changeMannequinView('back');
-        } else if (subLower.includes('costilla izquierda') || subLower.includes('lateral ext. pierna izq.') || subLower.includes('antebrazo externo izq.') || subLower.includes('hombro izquierdo') || subLower.includes('media manga externa izq.')) {
+        } else if (subLower.includes('costilla izquierda') || (regionKey === 'pierna-izq' && (subLower.includes('lateral ext') || subLower.includes('media pierna externa'))) || (regionKey === 'brazo-izq' && (subLower.includes('externo') || subLower.includes('externa')))) {
             if (gameState.view !== 'left') changeMannequinView('left');
-        } else if (subLower.includes('costilla derecha') || subLower.includes('lateral ext. pierna der.') || subLower.includes('antebrazo externo der.') || subLower.includes('hombro derecho') || subLower.includes('media manga externa der.')) {
+        } else if (subLower.includes('costilla derecha') || (regionKey === 'pierna-der' && (subLower.includes('lateral ext') || subLower.includes('media pierna externa'))) || (regionKey === 'brazo-der' && (subLower.includes('externo') || subLower.includes('externa')))) {
             if (gameState.view !== 'right') changeMannequinView('right');
         }
 
-        // Update SVG highlight
         updateAnatomicalHighlight();
 
-        // Enable continue button
         const btnPhase2Next = document.getElementById('btn-phase2-next');
         if (btnPhase2Next) btnPhase2Next.disabled = false;
     }
