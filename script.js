@@ -202,6 +202,38 @@ const GOOGLE_REVIEWS_DB = [
     }
 ];
 
+// Global Launch Experience Handler (Immediate Execution & Bulletproof)
+function launchExperience(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    console.log("Transición a Pantalla 2 (Lienzo Base) activada...");
+    
+    const welcomeOverlay = document.getElementById('welcome-overlay');
+    const gamifiedExperience = document.getElementById('gamified-experience');
+    
+    if (welcomeOverlay) {
+        welcomeOverlay.style.transition = 'opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+        welcomeOverlay.style.opacity = '0';
+        welcomeOverlay.style.transform = 'translateY(-20px)';
+        setTimeout(() => {
+            welcomeOverlay.style.display = 'none';
+        }, 400);
+    }
+    if (gamifiedExperience) {
+        gamifiedExperience.style.display = 'flex';
+        gamifiedExperience.style.opacity = '1';
+    }
+    document.body.classList.add('game-active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+window.launchExperience = launchExperience;
+
+// Global direct click listener on document level
+document.addEventListener('click', (e) => {
+    if (e.target && e.target.closest('#btn-enter-experience')) {
+        launchExperience(e);
+    }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     let revealObserver;
 
@@ -484,7 +516,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
-        if (!lightbox.classList.contains('active')) return;
+        if (!lightbox || !lightbox.classList.contains('active')) return;
         
         if (e.key === 'Escape') closeLightbox();
         if (e.key === 'ArrowRight') navigateLightbox('next');
@@ -521,11 +553,11 @@ document.addEventListener('DOMContentLoaded', () => {
        5. Multi-step Booking Form (Wizard)
        ========================================== */
 
-
     const bookingWizard = document.querySelector('.booking-wizard');
     const bookingForm = document.getElementById('booking-form');
-    const steps = document.querySelectorAll('.wizard-steps .step');
-    const wizardContents = document.querySelectorAll('.wizard-content');
+    if (bookingForm) {
+        const steps = document.querySelectorAll('.wizard-steps .step');
+        const wizardContents = document.querySelectorAll('.wizard-content');
     const nextBtns = document.querySelectorAll('.next-step');
     const prevBtns = document.querySelectorAll('.prev-step');
     const fileInput = document.getElementById('tattoo-refs');
@@ -929,6 +961,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (successFinalView) successFinalView.style.display = 'none';
         });
     }
+    } // End if (bookingForm)
 
 
     /* ==========================================
