@@ -18,7 +18,7 @@
     <!-- Calendly Widget CSS -->
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css?v=128">
+    <link rel="stylesheet" href="styles.css?v=129">
 </head>
 <body>
 
@@ -31,31 +31,38 @@
         </div>
     </div>
 
-    <!-- P1: Portal de Bienvenida (Hero Inmersivo - Minimalismo de Ultra-Lujo) -->
+    <!-- P1: Portal de Bienvenida (Hero Cinematográfico de Alta Costura & Ultra-Lujo) -->
     <div class="welcome-overlay" id="welcome-overlay">
-        <!-- Capa 0: Video Background Loop -->
-        <video class="welcome-video-bg" autoplay loop muted playsinline preload="auto">
+        <!-- Capa 0: Video Background -->
+        <video class="welcome-video-bg" autoplay loop muted playsinline preload="metadata" aria-hidden="true">
             <source src="images/video-bienvenida.mp4" type="video/mp4">
         </video>
 
-        <!-- Capa 1: Overlay de Contraste, Gradiente y Viñeta -->
+        <!-- Capa 1: Overlay Cinematográfico con Gradiente Vertical de 3 Zonas -->
         <div class="welcome-overlay-contrast"></div>
 
-        <!-- Capa 2: Contenido Ultra-Minimalista High-End -->
+        <!-- Logo / Isotipo Superior Discreto -->
+        <div class="welcome-logo-wrapper">
+            <img src="images/logo.png" alt="NATALIA JAUREGUI Isotipo" class="welcome-logo">
+        </div>
+
+        <!-- Capa 2: Contenido Editorial y Jerarquía Principal -->
         <div class="welcome-content">
-            <img src="images/logo.png" alt="NATALIA JAUREGUI Logo" class="welcome-logo">
+            <span class="welcome-eyebrow">BIENVENIDA A MI UNIVERSO</span>
             <h1 class="welcome-title">NATALIA JAUREGUI</h1>
-            <div class="welcome-statement">
-                <span class="statement-main">UNA HISTORIA DE PROPORCIÓN ÉPICA</span>
-                <span class="statement-sub">ARQUITECTURA CORPORAL.</span>
-            </div>
+            <span class="welcome-concept">ARQUITECTURA CORPORAL</span>
+            
             <div class="welcome-cta-wrapper">
-                <button class="btn-bugatti-cta" id="btn-enter-experience" onclick="launchExperience(event)">
-                    <span class="cta-label">VIVIR LA EXPERIENCIA</span>
-                    <span class="cta-underline"></span>
+                <button class="btn-editorial-cta" id="btn-enter-experience" onclick="launchExperience(event)">
+                    <span>VIVIR LA EXPERIENCIA</span>
                 </button>
             </div>
-            <div class="welcome-brand-footer">NATALIA JAUREGUI // ARQUITECTURA CORPORAL</div>
+        </div>
+
+        <!-- Capa 3: Indicador Editorial de Fase / Progreso -->
+        <div class="welcome-nav-indicator">
+            <span class="nav-step-index">01 / 07</span>
+            <div class="nav-indicator-line"></div>
         </div>
     </div>
 
@@ -2144,6 +2151,6 @@
     <!-- Calendly Widget JS -->
     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
     <!-- Custom JS -->
-    <script src="script.js?v=128"></script>
+    <script src="script.js?v=129"></script>
 </body>
 </html>
