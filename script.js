@@ -1849,14 +1849,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Auto-rotate if subzone is best viewed from another perspective
         const subLower = subzone.toLowerCase();
-        if ((subLower.includes('trasero') || subLower.includes('nuca') || subLower.includes('espalda') || subLower.includes('omóplato') || subLower.includes('columna') || subLower.includes('lumbar')) && gameState.view === 'front') {
-            changeMannequinView('back');
-        } else if ((subLower.includes('frontal') || subLower.includes('pectoral') || subLower.includes('garganta') || subLower.includes('abdomen') || subLower.includes('espinilla')) && gameState.view === 'back') {
-            changeMannequinView('front');
-        } else if ((subLower.includes('costilla izquierda') || subLower.includes('lateral ext. pierna izq.') || subLower.includes('antebrazo externo izq.')) && gameState.view === 'right') {
-            changeMannequinView('left');
-        } else if ((subLower.includes('costilla derecha') || subLower.includes('lateral ext. pierna der.') || subLower.includes('antebrazo externo der.')) && gameState.view === 'left') {
-            changeMannequinView('right');
+        
+        // 1. Vista Posterior (back)
+        if (subLower.includes('trasero') || subLower.includes('nuca') || subLower.includes('espalda') || subLower.includes('omóplato') || subLower.includes('columna') || subLower.includes('lumbar') || subLower.includes('glúteo') || subLower.includes('full back')) {
+            if (gameState.view !== 'back') changeMannequinView('back');
+        }
+        // 2. Vista Perfil Izquierdo (left)
+        else if (subLower.includes('costilla izquierda') || subLower.includes('lateral ext. pierna izq.') || subLower.includes('lateral-ext. izq.') || subLower.includes('antebrazo externo izq.') || subLower.includes('hombro izquierdo') || subLower.includes('media manga externa izq.') || subLower.includes('media pierna externa izq.') || subLower.includes('lateral int. pierna izq.')) {
+            if (gameState.view !== 'left') changeMannequinView('left');
+        }
+        // 3. Vista Perfil Derecho (right)
+        else if (subLower.includes('costilla derecha') || subLower.includes('lateral ext. pierna der.') || subLower.includes('lateral-ext. der.') || subLower.includes('antebrazo externo der.') || subLower.includes('hombro derecho') || subLower.includes('media manga externa der.') || subLower.includes('media pierna externa der.') || subLower.includes('lateral int. pierna der.')) {
+            if (gameState.view !== 'right') changeMannequinView('right');
+        }
+        // 4. Vista Frontal (front)
+        else if (subLower.includes('frontal') || subLower.includes('pectoral') || subLower.includes('garganta') || subLower.includes('abdomen') || subLower.includes('espinilla') || subLower.includes('bíceps') || subLower.includes('rodilla') || subLower.includes('pie') || subLower.includes('cabeza') || subLower.includes('ambos') || subLower.includes('ambas') || subLower.includes('completo') || subLower.includes('completa')) {
+            if (gameState.view !== 'front' && !subLower.includes('espalda') && !subLower.includes('nuca') && !subLower.includes('omóplato') && !subLower.includes('columna') && !subLower.includes('lumbar')) {
+                changeMannequinView('front');
+            }
         }
 
         // Update Confirmation Panel Data
