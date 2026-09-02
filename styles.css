@@ -4797,16 +4797,14 @@ body.game-active {
 
 @media (max-width: 768px) {
     /* Contenedores con márgenes seguros y sin desborde */
-    .experience-stage-wrapper,
+    .gamified-experience,
+    .gamified-container,
+    .gamified-wizard,
     .phase-card,
-    .wizard-container,
     .wizard-header-tiered {
         width: 100% !important;
         max-width: 100vw !important;
         box-sizing: border-box !important;
-        padding-left: 14px !important;
-        padding-right: 14px !important;
-        overflow-x: hidden !important;
     }
 
     .atelier-step-subtitle {
