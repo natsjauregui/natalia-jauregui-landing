@@ -18,7 +18,7 @@
     <!-- Calendly Widget CSS -->
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css?v=122">
+    <link rel="stylesheet" href="styles.css?v=123">
 </head>
 <body>
 
@@ -97,7 +97,7 @@
                             
                             <div class="silhouette-cards-grid three-columns">
                                 <!-- Opción 1: Masculino -->
-                                <div class="silhouette-card" data-gender="male" id="card-silhouette-male">
+                                <div class="silhouette-card" data-gender="male" id="card-silhouette-male" onclick="selectSilhouette('male')">
                                     <div class="card-radio-indicator"></div>
                                     <div class="silhouette-img-wrapper">
                                         <img src="images/mannequins/select-male.webp" alt="Maniquí Masculino Postura Confianza" class="silhouette-mannequin-img">
@@ -108,7 +108,7 @@
                                 </div>
 
                                 <!-- Opción 2: Femenino -->
-                                <div class="silhouette-card" data-gender="female" id="card-silhouette-female">
+                                <div class="silhouette-card" data-gender="female" id="card-silhouette-female" onclick="selectSilhouette('female')">
                                     <div class="card-radio-indicator"></div>
                                     <div class="silhouette-img-wrapper">
                                         <img src="images/mannequins/select-female.webp" alt="Maniquí Femenino Postura Elegancia" class="silhouette-mannequin-img">
@@ -119,7 +119,7 @@
                                 </div>
 
                                 <!-- Opción 3: Neutro -->
-                                <div class="silhouette-card" data-gender="neutral" id="card-silhouette-neutral">
+                                <div class="silhouette-card" data-gender="neutral" id="card-silhouette-neutral" onclick="selectSilhouette('neutral')">
                                     <div class="card-radio-indicator"></div>
                                     <div class="silhouette-img-wrapper">
                                         <img src="images/mannequins/select-neutral.webp" alt="Maniquí Neutro Postura Equilibrio" class="silhouette-mannequin-img">
@@ -131,7 +131,7 @@
                             </div>
 
                             <div class="atelier-action-footer">
-                                <button type="button" class="btn-atelier-primary" id="btn-phase1-next" disabled>
+                                <button type="button" class="btn-atelier-primary" id="btn-phase1-next" onclick="showPhase(2)" disabled>
                                     <span>Continuar a Selección Anatómica</span>
                                     <i class="fa-solid fa-arrow-right"></i>
                                 </button>
@@ -153,10 +153,10 @@
                                 <div class="view-rotation-nav">
                                     <span class="rotation-label"><i class="fa-solid fa-arrows-rotate"></i> PERSPECTIVA</span>
                                     <div class="view-tabs-group">
-                                        <button type="button" class="view-tab-btn active" data-view="front">Frente</button>
-                                        <button type="button" class="view-tab-btn" data-view="back">Espalda</button>
-                                        <button type="button" class="view-tab-btn" data-view="left">Perfil Izq.</button>
-                                        <button type="button" class="view-tab-btn" data-view="right">Perfil Der.</button>
+                                        <button type="button" class="view-tab-btn active" data-view="front" onclick="changeMannequinView('front')">Frente</button>
+                                        <button type="button" class="view-tab-btn" data-view="back" onclick="changeMannequinView('back')">Espalda</button>
+                                        <button type="button" class="view-tab-btn" data-view="left" onclick="changeMannequinView('left')">Perfil Izq.</button>
+                                        <button type="button" class="view-tab-btn" data-view="right" onclick="changeMannequinView('right')">Perfil Der.</button>
                                     </div>
                                 </div>
 
@@ -179,49 +179,49 @@
                                         <span>ZONA CORPORAL PRINCIPAL</span>
                                     </label>
                                     <div class="emerald-zones-grid">
-                                        <button type="button" class="emerald-zone-card" data-zone="brazo" data-zone-name="Brazo / Manga" data-default-view="front">
+                                        <button type="button" class="emerald-zone-card" data-zone="brazo" data-zone-name="Brazo / Manga" data-default-view="front" onclick="selectZone('brazo', 'Brazo / Manga', 'front')">
                                             <div class="zone-card-header">
                                                 <span class="zone-name">Brazo / Manga</span>
                                                 <span class="zone-indicator"></span>
                                             </div>
                                             <span class="zone-desc">Fluidez, dinamismo y anatomía en movimiento</span>
                                         </button>
-                                        <button type="button" class="emerald-zone-card" data-zone="pierna" data-zone-name="Pierna / Muslo" data-default-view="front">
+                                        <button type="button" class="emerald-zone-card" data-zone="pierna" data-zone-name="Pierna / Muslo" data-default-view="front" onclick="selectZone('pierna', 'Pierna / Muslo', 'front')">
                                             <div class="zone-card-header">
                                                 <span class="zone-name">Pierna / Muslo</span>
                                                 <span class="zone-indicator"></span>
                                             </div>
                                             <span class="zone-desc">Volumen, solidez y gran superficie de autor</span>
                                         </button>
-                                        <button type="button" class="emerald-zone-card" data-zone="espalda" data-zone-name="Espalda / Columna" data-default-view="back">
+                                        <button type="button" class="emerald-zone-card" data-zone="espalda" data-zone-name="Espalda / Columna" data-default-view="back" onclick="selectZone('espalda', 'Espalda / Columna', 'back')">
                                             <div class="zone-card-header">
                                                 <span class="zone-name">Espalda / Columna</span>
                                                 <span class="zone-indicator"></span>
                                             </div>
                                             <span class="zone-desc">Composición monumental y arquitectura simétrica</span>
                                         </button>
-                                        <button type="button" class="emerald-zone-card" data-zone="pecho" data-zone-name="Pecho / Torso" data-default-view="front">
+                                        <button type="button" class="emerald-zone-card" data-zone="pecho" data-zone-name="Pecho / Torso" data-default-view="front" onclick="selectZone('pecho', 'Pecho / Torso', 'front')">
                                             <div class="zone-card-header">
                                                 <span class="zone-name">Pecho / Torso</span>
                                                 <span class="zone-indicator"></span>
                                             </div>
                                             <span class="zone-desc">Impacto visual central y resonancia emocional</span>
                                         </button>
-                                        <button type="button" class="emerald-zone-card" data-zone="hombro" data-zone-name="Hombro / Deltoides" data-default-view="front">
+                                        <button type="button" class="emerald-zone-card" data-zone="hombro" data-zone-name="Hombro / Deltoides" data-default-view="front" onclick="selectZone('hombro', 'Hombro / Deltoides', 'front')">
                                             <div class="zone-card-header">
                                                 <span class="zone-name">Hombro / Deltoides</span>
                                                 <span class="zone-indicator"></span>
                                             </div>
                                             <span class="zone-desc">Estructura muscular de porte y presencia</span>
                                         </button>
-                                        <button type="button" class="emerald-zone-card" data-zone="costillas" data-zone-name="Costillas / Costado" data-default-view="left">
+                                        <button type="button" class="emerald-zone-card" data-zone="costillas" data-zone-name="Costillas / Costado" data-default-view="left" onclick="selectZone('costillas', 'Costillas / Costado', 'left')">
                                             <div class="zone-card-header">
                                                 <span class="zone-name">Costillas / Costado</span>
                                                 <span class="zone-indicator"></span>
                                             </div>
                                             <span class="zone-desc">Curvatura orgánica de alta sensualidad y discreción</span>
                                         </button>
-                                        <button type="button" class="emerald-zone-card" data-zone="cuello" data-zone-name="Cuello / Nuca" data-default-view="back">
+                                        <button type="button" class="emerald-zone-card" data-zone="cuello" data-zone-name="Cuello / Nuca" data-default-view="back" onclick="selectZone('cuello', 'Cuello / Nuca', 'back')">
                                             <div class="zone-card-header">
                                                 <span class="zone-name">Cuello / Nuca</span>
                                                 <span class="zone-indicator"></span>
@@ -247,15 +247,15 @@
                                         <span>ESCALA Y PROPORCIÓN DEL PROYECTO</span>
                                     </label>
                                     <div class="scale-options-grid">
-                                        <button type="button" class="scale-option-btn active" data-scale="focal">
+                                        <button type="button" class="scale-option-btn active" data-scale="focal" onclick="selectScale('focal')">
                                             <span class="scale-title">Pieza Focal</span>
                                             <span class="scale-measure">&lt; 12 cm</span>
                                         </button>
-                                        <button type="button" class="scale-option-btn" data-scale="media">
+                                        <button type="button" class="scale-option-btn" data-scale="media" onclick="selectScale('media')">
                                             <span class="scale-title">Composición Media</span>
                                             <span class="scale-measure">12 - 25 cm</span>
                                         </button>
-                                        <button type="button" class="scale-option-btn" data-scale="integral">
+                                        <button type="button" class="scale-option-btn" data-scale="integral" onclick="selectScale('integral')">
                                             <span class="scale-title">Proyecto Integral</span>
                                             <span class="scale-measure">&gt; 25 cm / Manga</span>
                                         </button>
@@ -266,11 +266,11 @@
 
                         <!-- Footer de Navegación de Fase -->
                         <div class="atelier-action-footer split-actions">
-                            <button type="button" class="btn-atelier-secondary" id="btn-phase2-prev">
+                            <button type="button" class="btn-atelier-secondary" id="btn-phase2-prev" onclick="showPhase(1)">
                                 <i class="fa-solid fa-arrow-left"></i>
                                 <span>Volver a Lienzo Base</span>
                             </button>
-                            <button type="button" class="btn-atelier-primary" id="btn-phase2-next" disabled>
+                            <button type="button" class="btn-atelier-primary" id="btn-phase2-next" onclick="showPhase(3)" disabled>
                                 <span>Continuar a Estilos de Autor</span>
                                 <i class="fa-solid fa-arrow-right"></i>
                             </button>
@@ -1642,6 +1642,6 @@
     <!-- Calendly Widget JS -->
     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
     <!-- Custom JS -->
-    <script src="script.js?v=122"></script>
+    <script src="script.js?v=123"></script>
 </body>
 </html>

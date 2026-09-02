@@ -1616,90 +1616,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
-    // Form inputs change validation
-    function validatePhase(phaseNum) {
-        if (phaseNum === 1) {
-            if (!gameState.gender) {
-                alert("Por favor, selecciona una silueta anatómica base para continuar.");
-                return false;
-            }
-            return true;
-        }
-
-        if (phaseNum === 2) {
-            if (!gameState.zone) {
-                alert("Por favor, selecciona una zona en el modelo anatómico haciendo clic en el avatar, o elige de las opciones disponibles.");
-                return false;
-            }
-            return true;
-        }
-
-        if (phaseNum === 3) {
-            const subzoneInput = document.getElementById('game-subzone');
-            if (!subzoneInput || !subzoneInput.value.trim()) {
-                subzoneInput.closest('.form-group-game').classList.add('error');
-                return false;
-            } else {
-                subzoneInput.closest('.form-group-game').classList.remove('error');
-                gameState.subzone = subzoneInput.value.trim();
-                updateStat('stat-subzone', gameState.subzone);
-                return true;
-            }
-        }
-
-        if (phaseNum === 4) {
-            const styleSelect = document.getElementById('game-style');
-            const meaningInput = document.getElementById('game-meaning');
-
-            let isValid = true;
-            [styleSelect, meaningInput].forEach(input => {
-                if (!input || !input.value.trim()) {
-                    input.closest('.form-group-game').classList.add('error');
-                    isValid = false;
-                } else {
-                    input.closest('.form-group-game').classList.remove('error');
-                }
-            });
-
-            if (isValid) {
-                gameState.style = styleSelect.value;
-                gameState.meaning = meaningInput.value.trim();
-                
-                // Sync stats
-                updateStat('stat-style', styleSelect.options[styleSelect.selectedIndex].text);
-            }
-
-            return isValid;
-        }
-
-        return true;
-    }
-
-    // Phase Next button listener
-    phaseNextBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const currentPhase = parseInt(btn.closest('.phase-card').getAttribute('data-phase'));
-            const targetPhase = parseInt(btn.getAttribute('data-target'));
-
-            if (validatePhase(currentPhase)) {
-                if (targetPhase === 5) {
-                    // Send Form data to backend Google Apps Script prior to Calendly schedule loading
-                    submitGamifiedFicha();
-                } else {
-                    showPhase(targetPhase);
-                }
-            }
-        });
-    });
-
-    // Phase Prev button listener
-    phasePrevBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const targetPhase = parseInt(btn.getAttribute('data-target'));
-            showPhase(targetPhase);
-        });
-    });
+    window.showPhase = showPhase;
 
     // Helper to safely update stat elements if present in DOM
     function updateStat(id, val) {
@@ -1707,29 +1624,38 @@ document.addEventListener('DOMContentLoaded', () => {
         if (el) el.textContent = val;
     }
 
-    // Silhouette Selector Cards Binding (P2 / Fase 1)
-    const silhouetteCards = document.querySelectorAll('.silhouette-card');
-    const btnPhase1Next = document.getElementById('btn-phase1-next');
+    // Direct Silhouette Selection Handler (Global & Local)
+    function selectSilhouette(gender) {
+        if (!gender) return;
+        gameState.gender = gender;
+        
+        document.querySelectorAll('.silhouette-card').forEach(card => {
+            if (card.getAttribute('data-gender') === gender) {
+                card.classList.add('selected');
+            } else {
+                card.classList.remove('selected');
+            }
+        });
 
+        const btnPhase1Next = document.getElementById('btn-phase1-next');
+        if (btnPhase1Next) {
+            btnPhase1Next.disabled = false;
+        }
+
+        swapAvatarSilhouette(gender);
+    }
+    window.selectSilhouette = selectSilhouette;
+
+    // Silhouette Selector Cards Binding
+    const silhouetteCards = document.querySelectorAll('.silhouette-card');
     silhouetteCards.forEach(card => {
         card.addEventListener('click', () => {
             const gender = card.getAttribute('data-gender');
-            if (!gender) return;
-
-            silhouetteCards.forEach(c => c.classList.remove('selected'));
-            card.classList.add('selected');
-
-            // Set state and swap silhouette
-            gameState.gender = gender;
-            swapAvatarSilhouette(gender);
-
-            // Enable next button in Screen 2
-            if (btnPhase1Next) {
-                btnPhase1Next.disabled = false;
-            }
+            selectSilhouette(gender);
         });
     });
 
+    const btnPhase1Next = document.getElementById('btn-phase1-next');
     if (btnPhase1Next) {
         btnPhase1Next.addEventListener('click', () => {
             showPhase(2);
@@ -1754,58 +1680,87 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 120);
     }
 
+    // Global 360 Perspective Switcher
+    function changeMannequinView(view) {
+        if (!view) return;
+        gameState.view = view;
+        document.querySelectorAll('.view-tab-btn').forEach(b => {
+            if (b.getAttribute('data-view') === view) {
+                b.classList.add('active');
+            } else {
+                b.classList.remove('active');
+            }
+        });
+        update360MannequinView();
+    }
+    window.changeMannequinView = changeMannequinView;
+
+    // Global Emerald Zone Selector
+    function selectZone(zone, zoneName, defaultView) {
+        if (!zone) return;
+        gameState.zone = zone;
+        gameState.zoneName = zoneName;
+
+        document.querySelectorAll('.emerald-zone-card').forEach(card => {
+            if (card.getAttribute('data-zone') === zone) {
+                card.classList.add('selected');
+            } else {
+                card.classList.remove('selected');
+            }
+        });
+
+        // Update floating badge on stage
+        const mannequinBadge = document.getElementById('mannequin-badge');
+        const badgeZoneName = document.getElementById('badge-zone-name');
+        if (mannequinBadge && badgeZoneName) {
+            mannequinBadge.classList.add('has-zone');
+            badgeZoneName.textContent = zoneName;
+        }
+
+        // Auto-rotate view if defaultView given
+        if (defaultView && gameState.view !== defaultView) {
+            changeMannequinView(defaultView);
+        }
+
+        // Enable continue button
+        const btnPhase2Next = document.getElementById('btn-phase2-next');
+        if (btnPhase2Next) {
+            btnPhase2Next.disabled = false;
+        }
+    }
+    window.selectZone = selectZone;
+
+    // Global Scale Selector
+    function selectScale(scale) {
+        if (!scale) return;
+        gameState.scale = scale;
+        document.querySelectorAll('.scale-option-btn').forEach(btn => {
+            if (btn.getAttribute('data-scale') === scale) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+    }
+    window.selectScale = selectScale;
+
     // View Rotation Tabs Binding (Frente, Espalda, Perfiles)
     const viewTabBtns = document.querySelectorAll('.view-tab-btn');
     viewTabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            viewTabBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            gameState.view = btn.getAttribute('data-view') || 'front';
-            update360MannequinView();
+            const view = btn.getAttribute('data-view') || 'front';
+            changeMannequinView(view);
         });
     });
 
     // 7 Emerald Zones Selection Binding
     const emeraldZoneCards = document.querySelectorAll('.emerald-zone-card');
-    const mannequinBadge = document.getElementById('mannequin-badge');
-    const badgeZoneName = document.getElementById('badge-zone-name');
-    const btnPhase2Next = document.getElementById('btn-phase2-next');
-
     emeraldZoneCards.forEach(card => {
         card.addEventListener('click', () => {
-            emeraldZoneCards.forEach(c => c.classList.remove('selected'));
-            card.classList.add('selected');
-
             const zone = card.getAttribute('data-zone');
             const zoneName = card.getAttribute('data-zone-name');
             const defaultView = card.getAttribute('data-default-view');
-
-            gameState.zone = zone;
-            gameState.zoneName = zoneName;
-
-            // Update floating badge on stage
-            if (mannequinBadge && badgeZoneName) {
-                mannequinBadge.classList.add('has-zone');
-                badgeZoneName.textContent = zoneName;
-            }
-
-            // Auto-rotate to recommended view if different
-            if (defaultView && gameState.view !== defaultView) {
-                gameState.view = defaultView;
-                viewTabBtns.forEach(b => {
-                    if (b.getAttribute('data-view') === defaultView) {
-                        b.classList.add('active');
-                    } else {
-                        b.classList.remove('active');
-                    }
-                });
-                update360MannequinView();
-            }
-
-            // Enable continue button
-            if (btnPhase2Next) {
-                btnPhase2Next.disabled = false;
-            }
+            selectZone(zone, zoneName, defaultView);
         });
     });
 
@@ -1813,9 +1768,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const scaleOptionBtns = document.querySelectorAll('.scale-option-btn');
     scaleOptionBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            scaleOptionBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            gameState.scale = btn.getAttribute('data-scale');
+            const scale = btn.getAttribute('data-scale');
+            selectScale(scale);
         });
     });
 
@@ -1827,6 +1781,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    const btnPhase2Next = document.getElementById('btn-phase2-next');
     if (btnPhase2Next) {
         btnPhase2Next.addEventListener('click', () => {
             const subzoneInput = document.getElementById('game-subzone-input');
