@@ -2967,22 +2967,17 @@ body.game-active {
 
 /* 2. P1: Portal de Bienvenida (Hero Inmersivo - Estilo Bugatti / Ultra-Lujo) */
 .welcome-overlay {
-.welcome-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100svh;
-    min-height: 100svh;
-    background: #0A0908;
+    height: 100vh;
     z-index: 9999;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: #050505;
     overflow: hidden;
-    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-    box-sizing: border-box;
 }
 
 /* Capa 0: Video Background */
@@ -2993,213 +2988,194 @@ body.game-active {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center center;
     z-index: 0;
-    transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity: 0.85;
+    filter: brightness(0.72) contrast(1.15) saturate(0.85);
 }
 
-.welcome-overlay.entering-threshold .welcome-video-bg {
-    transform: scale(1.04);
-}
-
-/* Capa 1: Overlay Cinematográfico con Gradiente Vertical de 3 Zonas */
+/* Capa 1: Overlay de Contraste, Gradiente y Viñeta Cinematográfica */
 .welcome-overlay-contrast {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.35) 50%, rgba(0, 0, 0, 0.80) 100%);
+    background: radial-gradient(circle at center, rgba(5, 5, 5, 0.25) 0%, rgba(5, 5, 5, 0.85) 100%),
+                linear-gradient(180deg, rgba(5, 5, 5, 0.35) 0%, rgba(5, 5, 5, 0.75) 100%);
     z-index: 1;
     pointer-events: none;
-    transition: background 0.8s ease;
 }
 
-.welcome-overlay.entering-threshold .welcome-overlay-contrast {
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.70) 50%, rgba(0, 0, 0, 0.95) 100%);
-}
-
-/* Logo / Isotipo Superior Discreto */
-.welcome-logo-wrapper {
-    position: absolute;
-    top: clamp(24px, 6.5vh, 48px);
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    pointer-events: none;
-}
-
-.welcome-logo {
-    max-height: clamp(68px, 8vh, 88px);
-    width: auto;
-    max-width: 88px;
-    object-fit: contain;
-    filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.6));
-    opacity: 0.92;
-}
-
-/* Capa 2: Contenido Editorial y Jerarquía Principal */
+/* Capa 2: Contenido y Tipografía High-End (Ultra-Minimalismo Maison Bugatti) */
 .welcome-content {
     position: relative;
     z-index: 2;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     text-align: center;
-    width: 90%;
-    max-width: 800px;
-    margin-top: clamp(30px, 6vh, 60px);
-    animation: heroContentEntrance 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    padding: 30px 24px;
+    max-width: 780px;
+    width: 92%;
+    animation: welcomeFadeIn 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.welcome-overlay.entering-threshold .welcome-content {
-    opacity: 0;
-    transform: translateY(-10px);
-}
-
-@keyframes heroContentEntrance {
-    0% {
-        opacity: 0;
-        transform: translateY(14px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.welcome-eyebrow {
-    font-family: var(--font-heading);
-    font-size: clamp(10px, 1.4vw, 12px);
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: #F3EEE8;
-    opacity: 0.75;
-    margin-bottom: clamp(8px, 1.5vh, 14px);
-    font-weight: 500;
+.welcome-logo {
+    max-height: 112px;
+    margin-bottom: 24px;
+    filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.28));
 }
 
 .welcome-title {
     font-family: var(--font-heading);
-    font-size: clamp(38px, 7.2vw, 76px);
-    line-height: 1.0;
-    letter-spacing: 0.04em;
-    color: #F3EEE8;
-    text-align: center;
-    font-weight: 700;
+    font-size: clamp(30px, 5vw, 54px);
+    color: #FFFFFF;
+    letter-spacing: 4px;
+    line-height: 1.15;
     text-transform: uppercase;
-    margin: 0;
-    width: 100%;
-    max-width: 780px;
-    text-shadow: 0 4px 25px rgba(0, 0, 0, 0.75);
+    margin-bottom: 16px;
+    font-weight: 600;
 }
 
-.welcome-concept {
+.welcome-statement {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 36px;
+    max-width: 680px;
+    text-align: center;
+}
+
+.statement-main {
     font-family: var(--font-heading);
-    font-size: clamp(11px, 1.6vw, 13px);
-    letter-spacing: 0.32em;
+    font-size: clamp(12px, 1.8vw, 15px);
+    letter-spacing: 4px;
     text-transform: uppercase;
-    color: #D9A0A2;
-    margin-top: clamp(16px, 2.8vh, 24px);
+    color: #EAEAEA;
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+.statement-sub {
+    font-family: var(--font-heading);
+    font-size: clamp(11px, 1.4vw, 13px);
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: var(--accent);
     font-weight: 600;
+    line-height: 1.3;
+    opacity: 0.95;
 }
 
 .welcome-cta-wrapper {
-    margin-top: clamp(24px, 4vh, 36px);
-    width: 100%;
-    display: flex;
-    justify-content: center;
+    margin-bottom: 30px;
 }
 
-/* Botón CTA Editorial de Autor (Rectangular / High-End / 0px Border-Radius) */
-.btn-editorial-cta {
-    width: min(82vw, 360px);
-    height: 64px;
-    border: 1px solid rgba(243, 238, 232, 0.55);
-    border-radius: 0px;
-    background: transparent;
-    color: #F3EEE8;
-    font-family: var(--font-heading);
-    font-size: 12px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    font-weight: 600;
+/* Botón CTA Resaltado de Ultra-Lujo (Estilo Bugatti Moderno) */
+.btn-bugatti-cta {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    padding: 16px 44px;
+    border-radius: 50px;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     cursor: pointer;
     display: inline-flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
     outline: none;
-    transition: all 400ms cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    animation: ctaEntrance 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 255, 255, 0.1);
 }
 
-@keyframes ctaEntrance {
-    0% {
+.btn-bugatti-cta .cta-label {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: #FFFFFF;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: all 0.35s ease;
+}
+
+.btn-bugatti-cta .cta-underline {
+    width: 50%;
+    height: 1px;
+    background: #FFFFFF;
+    margin-top: 6px;
+    opacity: 0.85;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-bugatti-cta:hover {
+    transform: scale(1.05) translateY(-2px);
+    background: #FFFFFF;
+    border-color: #FFFFFF;
+    box-shadow: 0 15px 40px rgba(255, 255, 255, 0.35);
+}
+
+.btn-bugatti-cta:hover .cta-label {
+    color: #050505;
+    letter-spacing: 4.5px;
+}
+
+.btn-bugatti-cta:hover .cta-underline {
+    background: #050505;
+    width: 75%;
+    box-shadow: none;
+}
+
+.welcome-brand-footer {
+    font-family: var(--font-heading);
+    font-size: 10px;
+    letter-spacing: 4.5px;
+    color: rgba(255, 255, 255, 0.35);
+    text-transform: uppercase;
+    margin-top: 36px;
+}
+
+@keyframes welcomeFadeIn {
+    from {
         opacity: 0;
-        transform: translateY(12px);
+        transform: translateY(20px);
     }
-    100% {
+    to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-.btn-editorial-cta:hover {
-    background: rgba(217, 160, 162, 0.08);
-    border-color: rgba(217, 160, 162, 0.8);
-    color: #FFFFFF;
-    box-shadow: 0 6px 25px rgba(217, 160, 162, 0.2);
-}
-
-.btn-editorial-cta:active {
-    transform: scale(0.98);
-}
-
-/* Capa 3: Indicador Editorial de Fase / Navegación */
-.welcome-nav-indicator {
-    position: absolute;
-    bottom: clamp(20px, 4.5vh, 40px);
-    left: clamp(16px, 5.5vw, 44px);
-    z-index: 3;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    pointer-events: none;
-}
-
-.nav-step-index {
-    font-family: var(--font-heading);
-    font-size: 10px;
-    letter-spacing: 0.25em;
-    color: rgba(243, 238, 232, 0.55);
-    font-weight: 600;
-}
-
-.nav-indicator-line {
-    width: 24px;
-    height: 1px;
-    background: rgba(243, 238, 232, 0.4);
-    animation: calmLineShimmer 2.8s infinite ease-in-out;
-}
-
-@keyframes calmLineShimmer {
-    0%, 100% {
-        opacity: 0.3;
-        transform: scaleX(0.7);
+@media (max-width: 768px) {
+    .welcome-content {
+        padding: 24px 16px;
     }
-    50% {
-        opacity: 0.85;
-        transform: scaleX(1);
+    .welcome-logo {
+        max-height: 92px;
+        margin-bottom: 20px;
     }
-}
-
-@media (min-width: 1200px) {
     .welcome-title {
-        font-size: 72px;
+        font-size: clamp(24px, 6vw, 36px);
+        letter-spacing: 3px;
+        margin-bottom: 12px;
     }
-    .btn-editorial-cta {
-        width: 380px;
-        height: 68px;
+    .welcome-statement {
+        font-size: 11px;
+        letter-spacing: 3px;
+        margin-bottom: 30px;
+    }
+    .btn-bugatti-cta {
+        padding: 14px 34px;
+        width: 100%;
+        max-width: 290px;
+    }
+    .btn-bugatti-cta .cta-label {
+        font-size: 12px;
+        letter-spacing: 3px;
+    }
+    .welcome-brand-footer {
+        font-size: 9px;
+        letter-spacing: 3px;
+        margin-top: 24px;
     }
 }
 

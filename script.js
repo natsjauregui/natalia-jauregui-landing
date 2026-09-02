@@ -202,33 +202,28 @@ const GOOGLE_REVIEWS_DB = [
     }
 ];
 
-// Global Launch Experience Handler (Cinematic Threshold Transition)
+// Global Launch Experience Handler (Immediate Execution & Bulletproof)
 function launchExperience(e) {
     if (e && e.preventDefault) e.preventDefault();
-    console.log("Transición cinematográfica a Pantalla 2 (Lienzo Base)...");
+    console.log("Transición a Pantalla 2 (Lienzo Base) activada...");
     
     const welcomeOverlay = document.getElementById('welcome-overlay');
     const gamifiedExperience = document.getElementById('gamified-experience');
     
     if (welcomeOverlay) {
-        welcomeOverlay.classList.add('entering-threshold');
+        welcomeOverlay.style.transition = 'opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+        welcomeOverlay.style.opacity = '0';
+        welcomeOverlay.style.transform = 'translateY(-20px)';
         setTimeout(() => {
             welcomeOverlay.style.display = 'none';
-            if (gamifiedExperience) {
-                gamifiedExperience.style.display = 'flex';
-                gamifiedExperience.style.opacity = '1';
-            }
-            document.body.classList.add('game-active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }, 750);
-    } else {
-        if (gamifiedExperience) {
-            gamifiedExperience.style.display = 'flex';
-            gamifiedExperience.style.opacity = '1';
-        }
-        document.body.classList.add('game-active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 400);
     }
+    if (gamifiedExperience) {
+        gamifiedExperience.style.display = 'flex';
+        gamifiedExperience.style.opacity = '1';
+    }
+    document.body.classList.add('game-active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 window.launchExperience = launchExperience;
 
