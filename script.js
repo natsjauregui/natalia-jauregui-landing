@@ -1662,11 +1662,227 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+        // ==========================================================================
+    // PANTALLA 3 (FASE 2): CONFIGURADOR ANATÓMICO TOUCH-TO-ZOOM CON ILUMINACIÓN
     // ==========================================================================
-    // PANTALLA 3 (FASE 2): CONFIGURADOR ANATÓMICO 360° CON ILUMINACIÓN EN VIVO
-    // ==========================================================================
+
+    const ZONE_DATA = {
+        'brazo-izq': {
+            name: 'Brazo Izquierdo',
+            mainZone: 'brazo',
+            autoView: 'front',
+            zoom: {
+                front: 'scale(1.9) translate(18%, -12%)',
+                back: 'scale(1.9) translate(18%, -12%)',
+                left: 'scale(1.8) translate(0%, -12%)',
+                right: 'scale(1.8) translate(0%, -12%)'
+            },
+            subzones: [
+                'Hombro Izquierdo',
+                'Bíceps Izquierdo',
+                'Tríceps Izquierdo',
+                'Antebrazo Interno Izq.',
+                'Antebrazo Externo Izq.',
+                'Media Manga Superior',
+                'Media Manga Inferior',
+                'Media Manga Externa Izq.',
+                'Media Manga Interna Izq.',
+                'Manga Completa',
+                'Muñeca / Mano Izquierda'
+            ]
+        },
+        'brazo-der': {
+            name: 'Brazo Derecho',
+            mainZone: 'brazo',
+            autoView: 'front',
+            zoom: {
+                front: 'scale(1.9) translate(-18%, -12%)',
+                back: 'scale(1.9) translate(-18%, -12%)',
+                left: 'scale(1.8) translate(0%, -12%)',
+                right: 'scale(1.8) translate(0%, -12%)'
+            },
+            subzones: [
+                'Hombro Derecho',
+                'Bíceps Derecho',
+                'Tríceps Derecho',
+                'Antebrazo Interno Der.',
+                'Antebrazo Externo Der.',
+                'Media Manga Superior',
+                'Media Manga Inferior',
+                'Media Manga Externa Der.',
+                'Media Manga Interna Der.',
+                'Manga Completa',
+                'Muñeca / Mano Derecha'
+            ]
+        },
+        'pecho': {
+            name: 'Pecho / Pectoral',
+            mainZone: 'pecho',
+            autoView: 'front',
+            zoom: {
+                front: 'scale(2.0) translate(0%, -16%)',
+                back: 'scale(2.0) translate(0%, -16%)',
+                left: 'scale(1.9) translate(12%, -16%)',
+                right: 'scale(1.9) translate(-12%, -16%)'
+            },
+            subzones: [
+                'Pectoral (Ambos)',
+                'Pectoral Izquierdo',
+                'Pectoral Derecho',
+                'Pecho Completo',
+                'Torso Completo (Pecho + Costillas + Abdomen)'
+            ]
+        },
+        'costilla-izq': {
+            name: 'Costilla Izquierda',
+            mainZone: 'pecho',
+            autoView: 'left',
+            zoom: {
+                front: 'scale(2.0) translate(14%, -8%)',
+                back: 'scale(2.0) translate(14%, -8%)',
+                left: 'scale(1.9) translate(0%, -8%)',
+                right: 'scale(1.9) translate(0%, -8%)'
+            },
+            subzones: [
+                'Costilla Izquierda',
+                'Costillas (Ambas)',
+                'Abdomen / Vientre',
+                'Torso Completo (Pecho + Costillas + Abdomen)'
+            ]
+        },
+        'costilla-der': {
+            name: 'Costilla Derecha',
+            mainZone: 'pecho',
+            autoView: 'right',
+            zoom: {
+                front: 'scale(2.0) translate(-14%, -8%)',
+                back: 'scale(2.0) translate(-14%, -8%)',
+                left: 'scale(1.9) translate(0%, -8%)',
+                right: 'scale(1.9) translate(0%, -8%)'
+            },
+            subzones: [
+                'Costilla Derecha',
+                'Costillas (Ambas)',
+                'Abdomen / Vientre',
+                'Torso Completo (Pecho + Costillas + Abdomen)'
+            ]
+        },
+        'abdomen': {
+            name: 'Abdomen / Vientre',
+            mainZone: 'pecho',
+            autoView: 'front',
+            zoom: {
+                front: 'scale(2.0) translate(0%, -5%)',
+                back: 'scale(2.0) translate(0%, -5%)',
+                left: 'scale(1.9) translate(10%, -5%)',
+                right: 'scale(1.9) translate(-10%, -5%)'
+            },
+            subzones: [
+                'Abdomen / Vientre',
+                'Torso Completo (Pecho + Costillas + Abdomen)'
+            ]
+        },
+        'espalda': {
+            name: 'Espalda / Columna',
+            mainZone: 'espalda',
+            autoView: 'back',
+            zoom: {
+                front: 'scale(2.0) translate(0%, -14%)',
+                back: 'scale(2.0) translate(0%, -14%)',
+                left: 'scale(1.9) translate(-12%, -14%)',
+                right: 'scale(1.9) translate(12%, -14%)'
+            },
+            subzones: [
+                'Columna Vertebral (Línea Central)',
+                'Omóplato / Escápula (Ambos)',
+                'Omóplato Izquierdo',
+                'Omóplato Derecho',
+                'Espalda Alta / Trapecio',
+                'Espalda Baja / Lumbar',
+                'Espalda Completa (Full Back)'
+            ]
+        },
+        'pierna-izq': {
+            name: 'Pierna Izquierda',
+            mainZone: 'pierna',
+            autoView: 'front',
+            zoom: {
+                front: 'scale(1.8) translate(14%, 24%)',
+                back: 'scale(1.8) translate(14%, 24%)',
+                left: 'scale(1.7) translate(0%, 24%)',
+                right: 'scale(1.7) translate(0%, 24%)'
+            },
+            subzones: [
+                'Muslo Frontal Izquierdo',
+                'Muslo Lateral-Ext. Izq.',
+                'Muslo Trasero Izquierdo',
+                'Muslo Lateral-Int. Izq.',
+                'Rodilla Izquierda',
+                'Espinilla Izquierda',
+                'Lateral Ext. Pierna Izq.',
+                'Lateral Int. Pierna Izq.',
+                'Gemelo Izquierdo',
+                'Media Pierna Superior',
+                'Media Pierna Inferior',
+                'Media Pierna Externa Izq.',
+                'Media Pierna Interna Izq.',
+                'Pierna Completa',
+                'Tobillo-Empeine Izquierdo'
+            ]
+        },
+        'pierna-der': {
+            name: 'Pierna Derecha',
+            mainZone: 'pierna',
+            autoView: 'front',
+            zoom: {
+                front: 'scale(1.8) translate(-14%, 24%)',
+                back: 'scale(1.8) translate(-14%, 24%)',
+                left: 'scale(1.7) translate(0%, 24%)',
+                right: 'scale(1.7) translate(0%, 24%)'
+            },
+            subzones: [
+                'Muslo Frontal Derecho',
+                'Muslo Lateral-Ext. Der.',
+                'Muslo Trasero Derecho',
+                'Muslo Lateral-Int. Der.',
+                'Rodilla Derecha',
+                'Espinilla Derecha',
+                'Lateral Ext. Pierna Der.',
+                'Lateral Int. Pierna Der.',
+                'Gemelo Derecho',
+                'Media Pierna Superior',
+                'Media Pierna Inferior',
+                'Media Pierna Externa Der.',
+                'Media Pierna Interna Der.',
+                'Pierna Completa',
+                'Tobillo-Empeine Derecho'
+            ]
+        },
+        'cuello': {
+            name: 'Cuello / Cabeza',
+            mainZone: 'cuello',
+            autoView: 'front',
+            zoom: {
+                front: 'scale(2.2) translate(0%, -30%)',
+                back: 'scale(2.2) translate(0%, -30%)',
+                left: 'scale(2.1) translate(0%, -30%)',
+                right: 'scale(2.1) translate(0%, -30%)'
+            },
+            subzones: [
+                'Garganta / Frontal',
+                'Lateral del Cuello (Ambos)',
+                'Lateral Cuello Izquierdo',
+                'Lateral Cuello Derecho',
+                'Nuca / Posterior',
+                'Cuello Completo',
+                'Cabeza (Nacimiento del Cabello)'
+            ]
+        }
+    };
+
     function updateAnatomicalHighlight() {
         const v = gameState.view || 'front';
+        const activeRegion = gameState.focusedRegion;
         const activeZone = gameState.zone;
         const activeSubzone = gameState.subzone;
 
@@ -1680,15 +1896,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // 2. Iluminación inteligente:
-        // - Si hay sub-zona seleccionada: ilumina SOLO los paths que correspondan a esa subzona
-        // - Si solo hay zona principal (sin subzona): ilumina TODOS los paths de la zona principal
         document.querySelectorAll('.anatomical-path').forEach(path => {
+            const pathRegion = path.getAttribute('data-region');
             const pathZone = path.getAttribute('data-zone');
             const pathSubzones = path.getAttribute('data-subzones') || '';
 
-            if (activeZone && pathZone === activeZone) {
+            const matchesRegion = activeRegion ? (pathRegion === activeRegion) : (pathZone === activeZone);
+
+            if (matchesRegion) {
                 if (activeSubzone) {
-                    // Verificación de coincidencia de subzona (o pieza completa)
                     const subzonesList = pathSubzones.split(',').map(s => s.trim().toLowerCase());
                     const currentSubLower = activeSubzone.trim().toLowerCase();
                     const isDirectMatch = subzonesList.some(s => s.includes(currentSubLower) || currentSubLower.includes(s));
@@ -1699,7 +1915,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         path.classList.remove('active');
                     }
                 } else {
-                    // Si no hay subzona específica aún, iluminar toda la zona principal
                     path.classList.add('active');
                 }
             } else {
@@ -1722,7 +1937,21 @@ document.addEventListener('DOMContentLoaded', () => {
             mannequinImg.style.opacity = '1';
             mannequinImg.style.transform = 'scale(1)';
             updateAnatomicalHighlight();
+            applyCameraZoom();
         }, 120);
+    }
+
+    function applyCameraZoom() {
+        const cameraRig = document.getElementById('mannequin-camera-rig');
+        if (!cameraRig) return;
+        const regionKey = gameState.focusedRegion;
+        if (!regionKey || !ZONE_DATA[regionKey]) {
+            cameraRig.style.transform = 'scale(1) translate(0, 0)';
+            return;
+        }
+        const v = gameState.view || 'front';
+        const zoomTransform = ZONE_DATA[regionKey].zoom[v] || 'scale(1.8) translate(0, 0)';
+        cameraRig.style.transform = zoomTransform;
     }
 
     // Global 360 Perspective Switcher
@@ -1740,157 +1969,169 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     window.changeMannequinView = changeMannequinView;
 
-    // Global Zone Accordion Toggle & 360 View Sync
-    function toggleZoneAccordion(zone, zoneName, defaultView) {
-        if (!zone) return;
+    // Direct Touch-to-Zoom Handler
+    function focusAnatomicalZone(regionKey, event) {
+        if (event && event.stopPropagation) event.stopPropagation();
+        if (!regionKey || !ZONE_DATA[regionKey]) return;
 
-        const allItems = document.querySelectorAll('.zone-accordion-item');
-        const targetItem = document.getElementById(`zone-item-${zone}`);
+        const data = ZONE_DATA[regionKey];
+        gameState.focusedRegion = regionKey;
+        gameState.zone = data.mainZone;
+        gameState.zoneName = data.name;
+        gameState.subzone = null;
 
-        // Close other accordion items
-        allItems.forEach(item => {
-            if (item !== targetItem) {
-                item.classList.remove('open');
-                item.classList.remove('active');
-            }
-        });
+        console.log(`Enfocando zona anatómica: ${data.name}`);
 
-        // Toggle target item
-        if (targetItem) {
-            targetItem.classList.add('open');
-            targetItem.classList.add('active');
-        }
-
-        // Si cambia de zona principal, reiniciar subzona para que se ilumine toda la zona nueva
-        if (gameState.zone !== zone) {
-            gameState.subzone = null;
-            const summaryDivider = document.getElementById('summary-divider');
-            const summarySubZone = document.getElementById('summary-sub-zone');
-            if (summaryDivider) summaryDivider.style.display = 'none';
-            if (summarySubZone) {
-                summarySubZone.textContent = 'Elige una sub-zona';
-                summarySubZone.style.color = '#888888';
-            }
-        }
-
-        gameState.zone = zone;
-        gameState.zoneName = zoneName;
-
-        // Auto-rotate view if defaultView given
-        if (defaultView && gameState.view !== defaultView) {
-            changeMannequinView(defaultView);
+        // Auto-switch perspective if requested region is better seen in another view
+        if (data.autoView && gameState.view !== data.autoView) {
+            changeMannequinView(data.autoView);
         } else {
+            applyCameraZoom();
             updateAnatomicalHighlight();
         }
 
-        // Update confirmation main zone title if no subzone selected yet
+        // Show Reset Zoom button
+        const btnReset = document.getElementById('btn-reset-zoom');
+        if (btnReset) btnReset.style.display = 'inline-flex';
+
+        // Toggle HUD states
+        const hudEmpty = document.getElementById('hud-empty-state');
+        const hudActive = document.getElementById('hud-active-panel');
+        const hudFocusedName = document.getElementById('hud-focused-name');
+        const hudChipsContainer = document.getElementById('hud-chips-container');
+
+        if (hudEmpty) hudEmpty.style.display = 'none';
+        if (hudActive) hudActive.style.display = 'flex';
+        if (hudFocusedName) hudFocusedName.textContent = data.name;
+
+        // Render subzone chips
+        if (hudChipsContainer) {
+            hudChipsContainer.innerHTML = '';
+            data.subzones.forEach(sub => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'subzone-chip-touch';
+                btn.textContent = sub;
+                btn.onclick = () => selectTouchSubzone(regionKey, sub);
+                hudChipsContainer.appendChild(btn);
+            });
+        }
+
+        // Update badge
+        const badgeZoneText = document.getElementById('badge-zone-text');
+        if (badgeZoneText) {
+            badgeZoneText.textContent = `ENFOCADO: ${data.name.toUpperCase()}`;
+        }
+
+        // Update confirmation main zone title
         const summaryMainZone = document.getElementById('summary-main-zone');
-        if (summaryMainZone) {
-            summaryMainZone.textContent = zoneName;
+        const summaryDivider = document.getElementById('summary-divider');
+        const summarySubZone = document.getElementById('summary-sub-zone');
+        if (summaryMainZone) summaryMainZone.textContent = data.name;
+        if (summaryDivider) summaryDivider.style.display = 'none';
+        if (summarySubZone) {
+            summarySubZone.textContent = 'Elige una sub-zona';
+            summarySubZone.style.color = '#888888';
         }
 
-        // Update stage badge
-        const mannequinBadge = document.getElementById('mannequin-badge');
-        const badgeZoneName = document.getElementById('badge-zone-name');
-        if (mannequinBadge && badgeZoneName) {
-            mannequinBadge.classList.add('has-zone');
-            if (gameState.subzone) {
-                badgeZoneName.textContent = `${zoneName} // ${gameState.subzone}`;
-            } else {
-                badgeZoneName.textContent = zoneName;
-            }
-        }
+        // Disable continue button until subzone is selected
+        const btnPhase2Next = document.getElementById('btn-phase2-next');
+        if (btnPhase2Next) btnPhase2Next.disabled = true;
     }
-    window.toggleZoneAccordion = toggleZoneAccordion;
+    window.focusAnatomicalZone = focusAnatomicalZone;
 
-    // Global Subzone Selection Handler
-    function selectSubzone(zone, zoneName, subzone) {
-        if (!zone || !subzone) return;
+    // Reset Zoom / View Full Body Handler
+    function resetAnatomicalZoom() {
+        gameState.focusedRegion = null;
+        gameState.zone = null;
+        gameState.subzone = null;
 
-        gameState.zone = zone;
-        gameState.zoneName = zoneName;
+        const cameraRig = document.getElementById('mannequin-camera-rig');
+        if (cameraRig) cameraRig.style.transform = 'scale(1) translate(0, 0)';
+
+        const btnReset = document.getElementById('btn-reset-zoom');
+        if (btnReset) btnReset.style.display = 'none';
+
+        const hudEmpty = document.getElementById('hud-empty-state');
+        const hudActive = document.getElementById('hud-active-panel');
+        if (hudEmpty) hudEmpty.style.display = 'flex';
+        if (hudActive) hudActive.style.display = 'none';
+
+        const badgeZoneText = document.getElementById('badge-zone-text');
+        if (badgeZoneText) badgeZoneText.textContent = 'TOCA EL MANIQUÍ PARA ENFOCAR';
+
+        const summaryMainZone = document.getElementById('summary-main-zone');
+        const summaryDivider = document.getElementById('summary-divider');
+        const summarySubZone = document.getElementById('summary-sub-zone');
+        if (summaryMainZone) summaryMainZone.textContent = 'Toca el maniquí para elegir';
+        if (summaryDivider) summaryDivider.style.display = 'none';
+        if (summarySubZone) {
+            summarySubZone.textContent = 'Esperando selección';
+            summarySubZone.style.color = '#888888';
+        }
+
+        updateAnatomicalHighlight();
+
+        const btnPhase2Next = document.getElementById('btn-phase2-next');
+        if (btnPhase2Next) btnPhase2Next.disabled = true;
+    }
+    window.resetAnatomicalZoom = resetAnatomicalZoom;
+
+    // Select Touch Subzone
+    function selectTouchSubzone(regionKey, subzone) {
+        if (!regionKey || !subzone) return;
+        const data = ZONE_DATA[regionKey];
+
+        gameState.focusedRegion = regionKey;
+        gameState.zone = data.mainZone;
+        gameState.zoneName = data.name;
         gameState.subzone = subzone;
 
-        // Ensure accordion item is open & marked as active
-        const allItems = document.querySelectorAll('.zone-accordion-item');
-        const targetItem = document.getElementById(`zone-item-${zone}`);
-
-        allItems.forEach(item => {
-            if (item !== targetItem) {
-                item.classList.remove('open');
-                item.classList.remove('active');
-                item.classList.remove('has-selected-subzone');
-                const tag = item.querySelector('.zone-selected-tag');
-                if (tag) tag.style.display = 'none';
-            }
-        });
-
-        if (targetItem) {
-            targetItem.classList.add('open');
-            targetItem.classList.add('active');
-            targetItem.classList.add('has-selected-subzone');
-
-            // Update header tag
-            const tag = document.getElementById(`tag-subzone-${zone}`);
-            if (tag) {
-                tag.textContent = subzone;
-                tag.style.display = 'inline-block';
-            }
-        }
-
-        // Highlight selected subzone chip
-        document.querySelectorAll('.subzone-chip').forEach(chip => {
-            if (chip.textContent.trim() === subzone.trim() || chip.getAttribute('onclick')?.includes(subzone)) {
+        // Highlight selected chip
+        document.querySelectorAll('.subzone-chip-touch').forEach(chip => {
+            if (chip.textContent.trim() === subzone.trim()) {
                 chip.classList.add('selected');
             } else {
                 chip.classList.remove('selected');
             }
         });
 
-        // Auto-rotate if subzone is best viewed from another perspective
-        const subLower = subzone.toLowerCase();
-        
-        // 1. Vista Posterior (back)
-        if (subLower.includes('trasero') || subLower.includes('nuca') || subLower.includes('espalda') || subLower.includes('omóplato') || subLower.includes('columna') || subLower.includes('lumbar') || subLower.includes('glúteo') || subLower.includes('full back')) {
-            if (gameState.view !== 'back') changeMannequinView('back');
-        }
-        // 2. Vista Perfil Izquierdo (left)
-        else if (subLower.includes('costilla izquierda') || subLower.includes('lateral ext. pierna izq.') || subLower.includes('lateral-ext. izq.') || subLower.includes('antebrazo externo izq.') || subLower.includes('hombro izquierdo') || subLower.includes('media manga externa izq.') || subLower.includes('media pierna externa izq.') || subLower.includes('lateral int. pierna izq.')) {
-            if (gameState.view !== 'left') changeMannequinView('left');
-        }
-        // 3. Vista Perfil Derecho (right)
-        else if (subLower.includes('costilla derecha') || subLower.includes('lateral ext. pierna der.') || subLower.includes('lateral-ext. der.') || subLower.includes('antebrazo externo der.') || subLower.includes('hombro derecho') || subLower.includes('media manga externa der.') || subLower.includes('media pierna externa der.') || subLower.includes('lateral int. pierna der.')) {
-            if (gameState.view !== 'right') changeMannequinView('right');
-        }
-        // 4. Vista Frontal (front)
-        else if (subLower.includes('frontal') || subLower.includes('pectoral') || subLower.includes('garganta') || subLower.includes('abdomen') || subLower.includes('espinilla') || subLower.includes('bíceps') || subLower.includes('rodilla') || subLower.includes('pie') || subLower.includes('cabeza') || subLower.includes('ambos') || subLower.includes('ambas') || subLower.includes('completo') || subLower.includes('completa')) {
-            if (gameState.view !== 'front' && !subLower.includes('espalda') && !subLower.includes('nuca') && !subLower.includes('omóplato') && !subLower.includes('columna') && !subLower.includes('lumbar')) {
-                changeMannequinView('front');
-            }
+        // Update badge
+        const badgeZoneText = document.getElementById('badge-zone-text');
+        if (badgeZoneText) {
+            badgeZoneText.textContent = `${data.name.toUpperCase()} // ${subzone.toUpperCase()}`;
         }
 
-        // Update Confirmation Panel Data
+        // Update confirmation panel
         const summaryMainZone = document.getElementById('summary-main-zone');
         const summaryDivider = document.getElementById('summary-divider');
         const summarySubZone = document.getElementById('summary-sub-zone');
 
-        if (summaryMainZone) summaryMainZone.textContent = zoneName;
+        if (summaryMainZone) summaryMainZone.textContent = data.name;
         if (summaryDivider) summaryDivider.style.display = 'inline';
         if (summarySubZone) {
             summarySubZone.textContent = subzone;
             summarySubZone.style.color = '#00FF88';
         }
 
-        // Update highlight on mannequin
+        // Auto-rotate if subzone benefits from specific angle
+        const subLower = subzone.toLowerCase();
+        if (subLower.includes('trasero') || subLower.includes('nuca') || subLower.includes('espalda') || subLower.includes('omóplato') || subLower.includes('columna') || subLower.includes('lumbar') || subLower.includes('full back')) {
+            if (gameState.view !== 'back') changeMannequinView('back');
+        } else if (subLower.includes('costilla izquierda') || subLower.includes('lateral ext. pierna izq.') || subLower.includes('antebrazo externo izq.') || subLower.includes('hombro izquierdo') || subLower.includes('media manga externa izq.')) {
+            if (gameState.view !== 'left') changeMannequinView('left');
+        } else if (subLower.includes('costilla derecha') || subLower.includes('lateral ext. pierna der.') || subLower.includes('antebrazo externo der.') || subLower.includes('hombro derecho') || subLower.includes('media manga externa der.')) {
+            if (gameState.view !== 'right') changeMannequinView('right');
+        }
+
+        // Update SVG highlight
         updateAnatomicalHighlight();
 
-        // Enable Confirmation & Continue button
+        // Enable continue button
         const btnPhase2Next = document.getElementById('btn-phase2-next');
-        if (btnPhase2Next) {
-            btnPhase2Next.disabled = false;
-        }
+        if (btnPhase2Next) btnPhase2Next.disabled = false;
     }
-    window.selectSubzone = selectSubzone;
+    window.selectTouchSubzone = selectTouchSubzone;
 
     // Global Scale Selector
     function selectScale(scale) {
