@@ -1563,7 +1563,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const liveImg = document.getElementById('mannequin-live-view');
         if (!liveImg) return;
         const g = gameState.gender || 'male';
-        liveImg.src = `images/mannequins/mannequin-${g}-${currentMannequinView}.webp`;
+        liveImg.src = `images/mannequins/${g}/mannequin-${g}-${currentMannequinView}.webp`;
     }
 
     // Swap 3D Mannequin based on selected gender
@@ -1745,7 +1745,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         mannequinImg.style.opacity = '0.3';
         setTimeout(() => {
-            mannequinImg.src = 'images/mannequins/mannequin-' + g + '-' + v + '.webp';
+            mannequinImg.src = 'images/mannequins/' + g + '/mannequin-' + g + '-' + v + '.webp';
             mannequinImg.style.opacity = '1';
         }, 80);
     }

@@ -89,6 +89,97 @@
                     
                     <!-- PANTALLA 2 (Fase 1): Selector de Lienzo Base (Siluetas 2D de Alta Fidelidad) -->
                     <div class="phase-card active" data-phase="1">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NATALIA JAUREGUI | Tatuajes de Autor y Custom Art</title>
+    <meta name="description" content="Estudio de tatuajes de autor por Natalia Jauregui (Nats Tattoos). Diseños totalmente personalizados creados por la artista Nats. Higiene impecable y arte premium.">
+    <meta name="keywords" content="natalia jauregui, nats tattoos, estudio de tatuajes, tatuajes personalizados, tattoo artist, color, anime, conceptual, sombras, fine line, tatuadora profesional, Bucaramanga">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Calendly Widget CSS -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css?v=130">
+</head>
+<body>
+
+    <!-- Status Banner for Post-Completion -->
+    <div class="status-banner" id="status-banner" style="display: none;">
+        <div class="status-banner-content">
+            <span class="status-badge"><i class="fa-solid fa-spinner fa-spin"></i> En revisión</span>
+            <span class="status-text">Ficha técnica en revisión por el equipo de Natalia</span>
+            <button id="btn-restart-wizard" class="btn-restart-text" aria-label="Modificar lienzo">[ Modificar mi lienzo ]</button>
+        </div>
+    </div>
+
+    <!-- P1: Portal de Bienvenida (Hero Inmersivo - Minimalismo de Ultra-Lujo) -->
+    <div class="welcome-overlay" id="welcome-overlay">
+        <!-- Capa 0: Video Background Loop -->
+        <video class="welcome-video-bg" autoplay loop muted playsinline preload="auto">
+            <source src="images/video-bienvenida.mp4" type="video/mp4">
+        </video>
+
+        <!-- Capa 1: Overlay de Contraste, Gradiente y Viñeta -->
+        <div class="welcome-overlay-contrast"></div>
+
+        <!-- Capa 2: Contenido Ultra-Minimalista High-End -->
+        <div class="welcome-content">
+            <img src="images/logo.png" alt="NATALIA JAUREGUI Logo" class="welcome-logo">
+            <h1 class="welcome-title">NATALIA JAUREGUI</h1>
+            <div class="welcome-statement">
+                <span class="statement-main">UNA HISTORIA DE PROPORCIÓN ÉPICA</span>
+                <span class="statement-sub">ARQUITECTURA CORPORAL.</span>
+            </div>
+            <div class="welcome-cta-wrapper">
+                <button class="btn-bugatti-cta" id="btn-enter-experience" onclick="launchExperience(event)">
+                    <span class="cta-label">VIVIR LA EXPERIENCIA</span>
+                    <span class="cta-underline"></span>
+                </button>
+            </div>
+            <div class="welcome-brand-footer">NATALIA JAUREGUI // ARQUITECTURA CORPORAL</div>
+        </div>
+    </div>
+
+    <!-- Gamified Experience Dashboard -->
+    <div class="gamified-experience" id="gamified-experience" style="display: none;">
+        <div class="gamified-container">
+            
+            <!-- Contenedor Principal del Asistente (Centrado) -->
+            <div class="gamified-wizard">
+                <div class="wizard-header-tiered">
+                    <!-- Fila 1: Marca Exclusiva (Logo ajustado a la altura del texto) -->
+                    <div class="wizard-brand-top">
+                        <img src="images/logo.png" alt="Logo Natalia Jauregui" class="wizard-brand-logo">
+                        <div class="wizard-brand-text">
+                            <span class="wizard-brand-name">NATALIA JAUREGUI</span>
+                            <span class="wizard-brand-sub">ARQUITECTURA CORPORAL</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Línea de margen divisoria -->
+                    <div class="wizard-brand-divider"></div>
+
+                    <!-- Fila 2: Indicador de Fase debajo de la línea -->
+                    <div class="wizard-phase-bar">
+                        <span class="phase-indicator-tag">FASE <span id="current-phase-num">1</span> // LIENZO BASE</span>
+                    </div>
+                </div>
+                
+                <!-- Contenedores de cada fase -->
+                <div class="phase-contents">
+                    
+                    <!-- PANTALLA 2 (Fase 1): Selector de Lienzo Base (Siluetas 2D de Alta Fidelidad) -->
+                    <div class="phase-card active" data-phase="1">
                         <div class="silhouette-selection-wrapper">
                             <div class="atelier-header-center">
                                 <h3 class="atelier-step-title">Define tu Lienzo Base</h3>
@@ -100,7 +191,7 @@
                                 <div class="silhouette-card" data-gender="male" id="card-silhouette-male" onclick="selectSilhouette('male')">
                                     <div class="card-radio-indicator"></div>
                                     <div class="silhouette-img-wrapper">
-                                        <img src="images/mannequins/select-male.webp" alt="Maniquí Masculino Postura Confianza" class="silhouette-mannequin-img">
+                                        <img src="images/mannequins/male/select-male.webp" alt="Maniquí Masculino Postura Confianza" class="silhouette-mannequin-img">
                                     </div>
                                     <h4 class="silhouette-name">Masculino</h4>
                                     <span class="silhouette-posture-tag">CONFIANZA</span>
@@ -111,7 +202,7 @@
                                 <div class="silhouette-card" data-gender="female" id="card-silhouette-female" onclick="selectSilhouette('female')">
                                     <div class="card-radio-indicator"></div>
                                     <div class="silhouette-img-wrapper">
-                                        <img src="images/mannequins/select-female.webp" alt="Maniquí Femenino Postura Elegancia" class="silhouette-mannequin-img">
+                                        <img src="images/mannequins/female/select-female.webp" alt="Maniquí Femenino Postura Elegancia" class="silhouette-mannequin-img">
                                     </div>
                                     <h4 class="silhouette-name">Femenino</h4>
                                     <span class="silhouette-posture-tag">ELEGANCIA</span>
@@ -122,7 +213,7 @@
                                 <div class="silhouette-card" data-gender="neutral" id="card-silhouette-neutral" onclick="selectSilhouette('neutral')">
                                     <div class="card-radio-indicator"></div>
                                     <div class="silhouette-img-wrapper">
-                                        <img src="images/mannequins/select-neutral.webp" alt="Maniquí Neutro Postura Equilibrio" class="silhouette-mannequin-img">
+                                        <img src="images/mannequins/neutral/select-neutral.webp" alt="Maniquí Neutro Postura Equilibrio" class="silhouette-mannequin-img">
                                     </div>
                                     <h4 class="silhouette-name">Neutro</h4>
                                     <span class="silhouette-posture-tag">EQUILIBRIO</span>
@@ -140,10 +231,6 @@
                     </div>
                     
                     <!-- PANTALLA 3 (Fase 2): Selección Anatómica // Configurador 360° con Subzonas -->
-                                        <!-- PANTALLA 3 (Fase 2): Selección Anatómica // Touch-to-Zoom de Autor -->
-                                        <!-- PANTALLA 3 (Fase 2): Selección Anatómica // Touch-to-Zoom de Autor -->
-                                        <!-- PANTALLA 3 (Fase 2): Selección Anatómica // Experiencia Visual de Autor -->
-                                        <!-- PANTALLA 3 (Fase 2): Selección Anatómica Minimalista de Ultra-Lujo -->
                     <div class="phase-card" data-phase="2">
                         <div class="atelier-header-center">
                             <h3 class="atelier-step-title">SELECCIÓN ANATÓMICA</h3>
@@ -175,7 +262,7 @@
                                 </div>
 
                                 <div class="clean-mannequin-box">
-                                    <img id="mannequin-360-img" src="images/mannequins/mannequin-male-front.webp" alt="Lienzo Anatómico 360°" class="clean-mannequin-img">
+                                    <img id="mannequin-360-img" src="images/mannequins/male/mannequin-male-front.webp" alt="Lienzo Anatómico 360°" class="clean-mannequin-img">
                                     
                                     <div class="clean-zone-badge" id="clean-zone-badge">
                                         <span class="badge-dot"></span>
