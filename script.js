@@ -2539,8 +2539,76 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     setupDropzoneEvents();
 
+    // Collapsible Consent Details Handlers (Leer más / Leer menos)
+    function toggleConsentDetails(event, detailsId, toggleBtnId) {
+        if (event) {
+            event.stopPropagation();
+            event.preventDefault();
+        }
+        const detailsEl = document.getElementById(detailsId);
+        const toggleBtn = document.getElementById(toggleBtnId);
+        if (!detailsEl) return;
+
+        const isCurrentlyExpanded = detailsEl.classList.contains('is-expanded');
+
+        if (isCurrentlyExpanded) {
+            collapseConsentDetails(event, detailsId, toggleBtnId);
+        } else {
+            // Expand this block
+            detailsEl.classList.add('is-expanded');
+            if (toggleBtn) {
+                toggleBtn.classList.add('is-active');
+                const label = toggleBtn.querySelector('.toggle-label');
+                const icon = toggleBtn.querySelector('i');
+                if (label) label.textContent = 'Leer menos';
+                if (icon) icon.className = 'fa-solid fa-chevron-up';
+            }
+        }
+    }
+    window.toggleConsentDetails = toggleConsentDetails;
+
+    function collapseConsentDetails(event, detailsId, toggleBtnId) {
+        if (event) {
+            event.stopPropagation();
+            event.preventDefault();
+        }
+        const detailsEl = document.getElementById(detailsId);
+        const toggleBtn = document.getElementById(toggleBtnId);
+        if (detailsEl) {
+            detailsEl.classList.remove('is-expanded');
+        }
+        if (toggleBtn) {
+            toggleBtn.classList.remove('is-active');
+            const label = toggleBtn.querySelector('.toggle-label');
+            const icon = toggleBtn.querySelector('i');
+            if (label) label.textContent = 'Leer más';
+            if (icon) icon.className = 'fa-solid fa-chevron-down';
+        }
+    }
+    window.collapseConsentDetails = collapseConsentDetails;
+
+    // Retract all open consent blocks when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.consent-text-block') && !e.target.closest('.privacy-modal-container')) {
+            document.querySelectorAll('.consent-expandable-content.is-expanded').forEach(content => {
+                content.classList.remove('is-expanded');
+            });
+            document.querySelectorAll('.btn-consent-toggle.is-active').forEach(btn => {
+                btn.classList.remove('is-active');
+                const label = btn.querySelector('.toggle-label');
+                const icon = btn.querySelector('i');
+                if (label) label.textContent = 'Leer más';
+                if (icon) icon.className = 'fa-solid fa-chevron-down';
+            });
+        }
+    });
+
     // Privacy Policy Modal Handlers (Ley 1581 de 2012)
-    function openPrivacyModal() {
+    function openPrivacyModal(event) {
+        if (event) {
+            event.stopPropagation();
+            event.preventDefault();
+        }
         const modal = document.getElementById('privacy-policy-modal');
         if (modal) {
             modal.style.display = 'flex';
@@ -2549,7 +2617,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     window.openPrivacyModal = openPrivacyModal;
 
-    function closePrivacyModal() {
+    function closePrivacyModal(event) {
+        if (event) {
+            event.stopPropagation();
+            event.preventDefault();
+        }
         const modal = document.getElementById('privacy-policy-modal');
         if (modal) {
             modal.style.display = 'none';

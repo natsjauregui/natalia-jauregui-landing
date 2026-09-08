@@ -461,23 +461,63 @@
                             <div class="option-section habeas-data-section" style="margin-top: 16px;">
                                 <span class="section-label-game">3. AUTORIZACIÓN DE DATOS (LEY 1581 DE 2012)</span>
                                 <div class="consent-checkbox-group">
-                                    <label class="consent-checkbox-label" for="consent-habeas-data">
-                                        <input type="checkbox" id="consent-habeas-data" class="consent-custom-checkbox" required>
-                                        <span class="custom-checkbox-visual"><i class="fa-solid fa-check"></i></span>
-                                        <span class="consent-text">
-                                            <strong>Autorización de Tratamiento de Datos (Requerido) *:</strong> 
-                                            Autorizo el tratamiento de mis datos de acuerdo con la <a href="javascript:void(0)" class="legal-link-trigger" onclick="openPrivacyModal()">Política de Privacidad</a> exclusivamente para la gestión de mi cita y asesoría con Natalia Jauregui.
-                                        </span>
-                                    </label>
                                     
-                                    <label class="consent-checkbox-label" for="consent-marketing">
-                                        <input type="checkbox" id="consent-marketing" class="consent-custom-checkbox">
-                                        <span class="custom-checkbox-visual"><i class="fa-solid fa-check"></i></span>
-                                        <span class="consent-text">
-                                            <strong>Comunicaciones Prioritarias &amp; Agenda VIP (Opcional):</strong> 
-                                            Deseo recibir aperturas exclusivas de agenda y novedades de autor.
-                                        </span>
-                                    </label>
+                                    <!-- Punto 1: Tratamiento de Datos Requerido -->
+                                    <div class="consent-row-item">
+                                        <label class="consent-checkbox-label" for="consent-habeas-data">
+                                            <input type="checkbox" id="consent-habeas-data" class="consent-custom-checkbox" required>
+                                            <span class="custom-checkbox-visual"><i class="fa-solid fa-check"></i></span>
+                                        </label>
+                                        <div class="consent-text-block" id="consent-block-1">
+                                            <div class="consent-header-line">
+                                                <label for="consent-habeas-data" class="consent-clickable-title">
+                                                    <strong class="consent-title-strong">Autorización de Tratamiento de Datos (Requerido) *:</strong>
+                                                </label>
+                                                <button type="button" class="btn-consent-toggle" id="btn-toggle-consent-1" onclick="toggleConsentDetails(event, 'consent-details-1', 'btn-toggle-consent-1')">
+                                                    <span class="toggle-label">Leer más</span>
+                                                    <i class="fa-solid fa-chevron-down"></i>
+                                                </button>
+                                            </div>
+                                            <div class="consent-expandable-content" id="consent-details-1">
+                                                <p class="consent-full-desc">
+                                                    Autorizo a Natalia Jauregui Studio el tratamiento de mis datos personales de acuerdo con la Ley 1581 de 2012 y la <a href="javascript:void(0)" class="legal-link-trigger" onclick="openPrivacyModal(event)">Política de Privacidad</a> exclusivamente para la gestión de mi cita, asesoría personalizada y conceptualización de mi proyecto de autor.
+                                                </p>
+                                                <button type="button" class="btn-consent-collapse" onclick="collapseConsentDetails(event, 'consent-details-1', 'btn-toggle-consent-1')">
+                                                    <span>Leer menos</span>
+                                                    <i class="fa-solid fa-chevron-up"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Punto 2: Comunicaciones Prioritarias Opcionales -->
+                                    <div class="consent-row-item">
+                                        <label class="consent-checkbox-label" for="consent-marketing">
+                                            <input type="checkbox" id="consent-marketing" class="consent-custom-checkbox">
+                                            <span class="custom-checkbox-visual"><i class="fa-solid fa-check"></i></span>
+                                        </label>
+                                        <div class="consent-text-block" id="consent-block-2">
+                                            <div class="consent-header-line">
+                                                <label for="consent-marketing" class="consent-clickable-title">
+                                                    <strong class="consent-title-strong">Comunicaciones Prioritarias &amp; Agenda VIP (Opcional):</strong>
+                                                </label>
+                                                <button type="button" class="btn-consent-toggle" id="btn-toggle-consent-2" onclick="toggleConsentDetails(event, 'consent-details-2', 'btn-toggle-consent-2')">
+                                                    <span class="toggle-label">Leer más</span>
+                                                    <i class="fa-solid fa-chevron-down"></i>
+                                                </button>
+                                            </div>
+                                            <div class="consent-expandable-content" id="consent-details-2">
+                                                <p class="consent-full-desc">
+                                                    Deseo recibir comunicados prioritarios, aperturas exclusivas de agenda, eventos privados y novedades de autor a través de WhatsApp, correo electrónico e Instagram.
+                                                </p>
+                                                <button type="button" class="btn-consent-collapse" onclick="collapseConsentDetails(event, 'consent-details-2', 'btn-toggle-consent-2')">
+                                                    <span>Leer menos</span>
+                                                    <i class="fa-solid fa-chevron-up"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
 
