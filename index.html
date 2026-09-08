@@ -120,6 +120,37 @@
         </div>
     </div>
 
+    <!-- Video Transición Pantalla Completa: Fase 4 -> Fase 5 (Cierre & Agendamiento con Natalia) -->
+    <div class="fullscreen-video-overlay" id="phase5-intro-video-overlay" style="display: none;">
+        <!-- Capa 0: Video Fullscreen Autoplay -->
+        <video class="fullscreen-transition-video" id="phase5-fullscreen-video" playsinline preload="auto">
+            <source src="images/video-cierre.mp4" type="video/mp4">
+            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+        </video>
+
+        <!-- Capa 1: Overlay cinematográfico de contraste -->
+        <div class="fullscreen-video-contrast"></div>
+
+        <!-- Capa 2: Controles Superiores & Info -->
+        <div class="fullscreen-video-topbar">
+            <div class="fullscreen-video-badge">
+                <span class="badge-dot"></span>
+                <span>FASE 5 // OFICIALIZAR &amp; AGENDAR</span>
+            </div>
+            <button type="button" class="btn-skip-video" id="btn-skip-phase5-video" onclick="finishPhase5IntroVideo()">
+                <span>Continuar</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+
+        <!-- Capa 3: Subtítulo inferior -->
+        <div class="fullscreen-video-caption-bar">
+            <p class="fullscreen-caption-text">
+                <strong>Natalia:</strong> "¡Ficha registrada! Estás a un paso de consolidar tu proyecto. A continuación agendaremos tu asesoría personalizada."
+            </p>
+        </div>
+    </div>
+
     <!-- Gamified Experience Dashboard -->
     <div class="gamified-experience" id="gamified-experience" style="display: none;">
         <div class="gamified-container">
@@ -536,17 +567,10 @@
                         </div>
                         
                         <div id="game-success-panel">
-                            <div class="video-container">
-                                <div class="video-placeholder-title"><i class="fa-solid fa-circle-play"></i> Video 3: Misión Cumplida y Cierre</div>
-                                <video class="phase-video" id="phase-video-3" playsinline controls poster="images/natalia-about-photo.jpg">
-                                    <source src="images/video-cierre.mp4" type="video/mp4">
-                                </video>
-                            </div>
-                            
                             <div class="phase-form text-center">
                                 <h3 class="phase-title">¡Ficha Registrada con Éxito!</h3>
+                                <p class="phase-subtitle" style="color: #A0A0A0; font-size: 0.85rem; margin-top: -6px; margin-bottom: 16px;">Selecciona la fecha y hora para tu sesión de asesoría digital con Natalia:</p>
                                 <div class="calendly-game-block">
-                                    <h4 style="color: var(--accent);">Paso Final: Agenda tu Asesoría Digital</h4>
                                     <div id="game-calendly-container" style="min-width: 300px; height: 600px;"></div>
                                 </div>
                                 <div class="calendly-confirm-actions" style="margin-top: 24px;">

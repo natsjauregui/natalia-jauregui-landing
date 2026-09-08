@@ -2379,6 +2379,86 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     window.finishPhase4IntroVideo = finishPhase4IntroVideo;
 
+    // Fullscreen Video Transition between Phase 4 and Phase 5 (Cierre & Agendamiento con Natalia)
+    function startPhase5TransitionVideo() {
+        console.log("Iniciando video de transición pantalla completa a Fase 5 (Cierre & Agendamiento)...");
+        const videoOverlay = document.getElementById('phase5-intro-video-overlay');
+        const video = document.getElementById('phase5-fullscreen-video');
+
+        if (videoOverlay && video) {
+            videoOverlay.style.display = 'flex';
+            videoOverlay.style.opacity = '1';
+            videoOverlay.classList.remove('overlay-fade-out');
+
+            video.currentTime = 0;
+            video.muted = false;
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(() => {
+                    video.muted = true;
+                    video.play().catch(e => console.log("Phase 5 transition video autoplay fallback:", e));
+                });
+            }
+
+            video.onended = () => {
+                console.log("Video de transición Fase 5 finalizado.");
+                finishPhase5IntroVideo();
+            };
+        } else {
+            showPhase(5);
+            initPhase5Calendly();
+        }
+    }
+    window.startPhase5TransitionVideo = startPhase5TransitionVideo;
+
+    function finishPhase5IntroVideo() {
+        const videoOverlay = document.getElementById('phase5-intro-video-overlay');
+        const video = document.getElementById('phase5-fullscreen-video');
+
+        if (video) {
+            video.pause();
+        }
+
+        if (videoOverlay) {
+            videoOverlay.classList.add('overlay-fade-out');
+            setTimeout(() => {
+                videoOverlay.style.display = 'none';
+                videoOverlay.classList.remove('overlay-fade-out');
+                showPhase(5);
+                initPhase5Calendly();
+            }, 450);
+        } else {
+            showPhase(5);
+            initPhase5Calendly();
+        }
+    }
+    window.finishPhase5IntroVideo = finishPhase5IntroVideo;
+
+    function initPhase5Calendly() {
+        const successPanel = document.getElementById('game-success-panel');
+        const loadingOverlay = document.getElementById('game-wizard-status');
+        if (loadingOverlay) loadingOverlay.style.display = 'none';
+        if (successPanel) successPanel.style.display = 'block';
+
+        const container = document.getElementById('game-calendly-container');
+        if (container && (!container.children || container.children.length === 0)) {
+            container.innerHTML = '';
+            if (typeof Calendly !== 'undefined') {
+                Calendly.initInlineWidget({
+                    url: 'https://calendly.com/nats-jauregui/30min?hide_gdpr_banner=1&locale=es',
+                    parentElement: container,
+                    prefill: {
+                        name: gameState.name,
+                        email: gameState.email
+                    },
+                    locale: 'es',
+                    embed_locale: 'es'
+                });
+            }
+        }
+    }
+    window.initPhase5Calendly = initPhase5Calendly;
+
     function selectArtStyle(styleKey) {
         if (!styleKey) return;
         gameState.style = styleKey;
@@ -2694,18 +2774,6 @@ document.addEventListener('DOMContentLoaded', () => {
         gameState.habeasConsent = true;
         gameState.marketingConsent = marketingCheckbox ? marketingCheckbox.checked : false;
 
-        const loadingOverlay = document.getElementById('game-wizard-status');
-        const successPanel = document.getElementById('game-success-panel');
-
-        if (loadingOverlay) loadingOverlay.style.display = 'flex';
-        if (successPanel) successPanel.style.display = 'none';
-
-        // Show Fase 5 container immediately
-        showPhase(5);
-
-        const container = document.getElementById('game-calendly-container');
-        if (container) container.innerHTML = '';
-
         // Prep data payload mapping gamification details to Apps Script schema
         const refNames = (gameState.references || []).map((r, i) => `Ref ${i+1}: ${r.name} (${r.compressedSizeKb}KB)`).join(', ');
         const payload = {
@@ -2731,7 +2799,7 @@ document.addEventListener('DOMContentLoaded', () => {
             references: (gameState.references || []).map(r => ({ name: r.name, sizeKb: r.compressedSizeKb, data: r.dataUrl }))
         };
 
-        // Send request using text/plain to prevent CORS preflight OPTIONS blocking
+        // Send background request using text/plain to prevent CORS preflight OPTIONS blocking
         fetch(GOOGLE_SCRIPT_URL, {
             method: 'POST',
             mode: 'cors',
@@ -2745,48 +2813,14 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(res => {
-            if (res.status === 'success') {
-                if (loadingOverlay) loadingOverlay.style.display = 'none';
-                if (successPanel) successPanel.style.display = 'block';
-
-                localStorage.setItem('natalia_tattoo_wizard_completed', 'true');
-
-                // Initialize Calendly inline inside the game
-                if (container) {
-                    Calendly.initInlineWidget({
-                        url: 'https://calendly.com/nats-jauregui/30min?hide_gdpr_banner=1&locale=es',
-                        parentElement: container,
-                        prefill: {
-                            name: gameState.name,
-                            email: gameState.email
-                        },
-                        locale: 'es',
-                        embed_locale: 'es'
-                    });
-                }
-            } else {
-                throw new Error(res.message || "Error al registrar la ficha.");
-            }
+            localStorage.setItem('natalia_tattoo_wizard_completed', 'true');
         })
         .catch(err => {
-            console.error("Error al enviar la ficha técnica:", err);
-            if (loadingOverlay) loadingOverlay.style.display = 'none';
-            if (successPanel) successPanel.style.display = 'block';
-            
-            // Allow user to proceed with Calendly even if sheet write failed
-            if (container) {
-                Calendly.initInlineWidget({
-                    url: 'https://calendly.com/nats-jauregui/30min?hide_gdpr_banner=1&locale=es',
-                    parentElement: container,
-                    prefill: {
-                        name: gameState.name,
-                        email: gameState.email
-                    },
-                    locale: 'es',
-                    embed_locale: 'es'
-                });
-            }
+            console.warn("Background sheet sync note:", err);
         });
+
+        // Trigger Fullscreen Video Transition to Phase 5 immediately
+        startPhase5TransitionVideo();
     }
     window.submitGamifiedFicha = submitGamifiedFicha;
 
