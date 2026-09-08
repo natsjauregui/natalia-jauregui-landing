@@ -58,6 +58,37 @@
         </div>
     </div>
 
+    <!-- Video Transición Pantalla Completa: Fase 2 -> Fase 3 (Explicación de Natalia) -->
+    <div class="fullscreen-video-overlay" id="phase3-intro-video-overlay" style="display: none;">
+        <!-- Capa 0: Video Fullscreen Autoplay -->
+        <video class="fullscreen-transition-video" id="phase3-fullscreen-video" playsinline preload="auto">
+            <source src="images/video-concepto.mp4" type="video/mp4">
+            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+        </video>
+
+        <!-- Capa 1: Overlay cinematográfico de contraste -->
+        <div class="fullscreen-video-contrast"></div>
+
+        <!-- Capa 2: Controles Superiores & Info -->
+        <div class="fullscreen-video-topbar">
+            <div class="fullscreen-video-badge">
+                <span class="badge-dot"></span>
+                <span>FASE 3 // DIRECCIÓN CREATIVA CON NATALIA</span>
+            </div>
+            <button type="button" class="btn-skip-video" id="btn-skip-phase3-video" onclick="finishPhase3IntroVideo()">
+                <span>Continuar a Estilos</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+
+        <!-- Capa 3: Subtítulo inferior -->
+        <div class="fullscreen-video-caption-bar">
+            <p class="fullscreen-caption-text">
+                <strong>Natalia:</strong> "Detrás de cada gran tatuaje hay una historia, una vibra o un significado único. A continuación definiremos el estilo artístico y las referencias visuales de tu obra."
+            </p>
+        </div>
+    </div>
+
     <!-- Gamified Experience Dashboard -->
     <div class="gamified-experience" id="gamified-experience" style="display: none;">
         <div class="gamified-container">
@@ -221,7 +252,7 @@
                                     <i class="fa-solid fa-arrow-left"></i>
                                     <span>Lienzo Base</span>
                                 </button>
-                                <button type="button" class="btn-atelier-primary" id="btn-phase2-next" onclick="showPhase(3)" disabled>
+                                <button type="button" class="btn-atelier-primary" id="btn-phase2-next" onclick="startPhase3TransitionVideo()" disabled>
                                     <span>Continuar a Estilos</span>
                                     <i class="fa-solid fa-arrow-right"></i>
                                 </button>
@@ -229,42 +260,109 @@
                         </div>
                     </div>
 
-                    <!-- PANTALLA 4 (Fase 3): El Concepto (Misión, Estilo y Significado) -->
+                    <!-- PANTALLA 4 (Fase 3): Atelier de Estilos, Narrativa y Referencias -->
                     <div class="phase-card" data-phase="3">
-                        <div class="video-container">
-                            <div class="video-placeholder-title"><i class="fa-solid fa-circle-play"></i> Video 2: Inspiración y Concepto</div>
-                            <video class="phase-video" id="phase-video-2" playsinline controls poster="images/natalia-about-photo.jpg">
-                                <source src="images/video-concepto.mp4" type="video/mp4">
-                                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
-                            </video>
-                            <div class="video-caption-box">
-                                <p><strong>Nats:</strong> "Esta es mi parte favorita. Detrás de cada gran tatuaje hay un significado, una historia o una vibra única. Cuéntame qué quieres expresar, qué estilo tienes en mente y sube tus referencias."</p>
-                            </div>
+                        <div class="atelier-header-center">
+                            <h3 class="atelier-step-title">ATELIER DE ESTILOS &amp; CONCEPTO</h3>
+                            <p class="atelier-step-subtitle">Define el lenguaje artístico de tu pieza y compártenos (si lo deseas) la narrativa o referencias visuales para iniciar la conceptualización de autor.</p>
                         </div>
                         
-                        <div class="phase-form">
-                            <h3 class="phase-title">Definiendo el Arte</h3>
+                        <div class="phase-form-clean">
                             
-                            <div class="form-group-game">
-                                <label for="game-style">Estilo Artístico Preferido *</label>
-                                <select id="game-style" required>
-                                    <option value="" disabled selected>Selecciona un estilo...</option>
-                                    <option value="anime">Anime / Manga</option>
-                                    <option value="color">Color de alta saturación</option>
-                                    <option value="conceptual">Conceptual / De Autor</option>
-                                    <option value="fineline">Fine Line / Línea Fina</option>
-                                    <option value="shadows">Sombras / Black & Grey</option>
-                                </select>
+                            <!-- Paso 1: Selector de Estilo Artístico -->
+                            <div class="clean-section-block">
+                                <span class="clean-section-tag">PASO 1 // ESTILO ARTÍSTICO PREFERIDO *</span>
+                                <div class="styles-cards-grid">
+                                    <div class="style-select-card" data-style="anime" onclick="selectArtStyle('anime')">
+                                        <div class="style-card-indicator"></div>
+                                        <div class="style-card-content">
+                                            <h4 class="style-card-title">Anime &amp; Manga</h4>
+                                            <p class="style-card-desc">Línea de alta precisión, dinamismo visual y fidelidad artística.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="style-select-card" data-style="color" onclick="selectArtStyle('color')">
+                                        <div class="style-card-indicator"></div>
+                                        <div class="style-card-content">
+                                            <h4 class="style-card-title">Color de Alta Saturación</h4>
+                                            <p class="style-card-desc">Pigmentación sólida, degradados intensos y vibrancia de autor.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="style-select-card" data-style="shadows" onclick="selectArtStyle('shadows')">
+                                        <div class="style-card-indicator"></div>
+                                        <div class="style-card-content">
+                                            <h4 class="style-card-title">Sombras &amp; Blackwork</h4>
+                                            <p class="style-card-desc">Contrastes profundos, volumen anatómico y realismo monocromático.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="style-select-card" data-style="fineline" onclick="selectArtStyle('fineline')">
+                                        <div class="style-card-indicator"></div>
+                                        <div class="style-card-content">
+                                            <h4 class="style-card-title">Fine Line &amp; Microrealismo</h4>
+                                            <p class="style-card-desc">Trazo sutil, elegancia milimétrica y detalles delicados.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="style-select-card" data-style="conceptual" onclick="selectArtStyle('conceptual')">
+                                        <div class="style-card-indicator"></div>
+                                        <div class="style-card-content">
+                                            <h4 class="style-card-title">Conceptual / De Autor</h4>
+                                            <p class="style-card-desc">Composición abstracta, vanguardia y diseño anatómico único.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="game-style" value="" required>
                             </div>
-                            
-                            <div class="form-group-game">
-                                <label for="game-meaning">Significado / Historia *</label>
-                                <textarea id="game-meaning" rows="4" placeholder="¿Qué representa esta pieza para ti?" required></textarea>
+
+                            <!-- Paso 2: Narrativa & Significado (Opcional) -->
+                            <div class="clean-section-block" style="margin-top: 24px;">
+                                <div class="section-title-with-badge">
+                                    <span class="clean-section-tag">PASO 2 // NARRATIVA &amp; SIGNIFICADO</span>
+                                    <span class="tag-optional">OPCIONAL</span>
+                                </div>
+                                <p class="section-guide-subtext">¿Qué representa este proyecto para ti? Si aún estás buscando la idea o tienes dudas, puedes dejarlo en blanco; lo co-crearemos juntos durante tu sesión de asesoría.</p>
+                                <textarea id="game-meaning" class="clean-textarea-input" rows="3" placeholder="Ej: Quiero representar un cambio de ciclo con elementos de la naturaleza, o simplemente busco una obra estética de autor..."></textarea>
                             </div>
-                            
-                            <div class="phase-actions-row">
-                                <button type="button" class="btn btn-outline phase-prev-btn" onclick="showPhase(2)"><i class="fa-solid fa-arrow-left"></i> Atrás</button>
-                                <button type="button" class="btn btn-gold-filled phase-next" onclick="showPhase(4)" id="btn-phase3-next">Continuar a Confort <i class="fa-solid fa-arrow-right"></i></button>
+
+                            <!-- Paso 3: Mesa de Referencias Visuales (Opcional & Optimizado) -->
+                            <div class="clean-section-block" style="margin-top: 24px;">
+                                <div class="section-title-with-badge">
+                                    <span class="clean-section-tag">PASO 3 // MESA DE REFERENCIAS VISUALES</span>
+                                    <span class="tag-optional">OPCIONAL</span>
+                                </div>
+                                <p class="section-guide-subtext">Sube fotos, bocetos, paletas o ideas que capturen la vibra que deseas (sugerido: 1 a 4 referencias). Las imágenes se optimizan y comprimen automáticamente en tu dispositivo para garantizar total rapidez.</p>
+                                
+                                <div class="references-dropzone" id="references-dropzone" onclick="document.getElementById('game-ref-files').click()">
+                                    <input type="file" id="game-ref-files" accept="image/jpeg,image/png,image/webp,image/heic,image/*" multiple style="display:none;" onchange="handleReferenceFiles(this.files)">
+                                    <div class="dropzone-inner">
+                                        <div class="dropzone-icon-box">
+                                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                                        </div>
+                                        <div class="dropzone-text-box">
+                                            <strong>Haz clic o arrastra tus imágenes aquí</strong>
+                                            <span>Formatos compatibles: JPG, PNG, WEBP, HEIC • Hasta 4 imágenes sugeridas</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Galería de Previsualización Optimizada -->
+                                <div class="references-preview-grid" id="references-preview-grid">
+                                    <!-- Miniaturas inyectadas dinámicamente -->
+                                </div>
+                            </div>
+
+                            <!-- Navegación Fase 3 -->
+                            <div class="clean-actions-row" style="margin-top: 30px;">
+                                <button type="button" class="btn-atelier-secondary" onclick="showPhase(2)">
+                                    <i class="fa-solid fa-arrow-left"></i>
+                                    <span>Lienzo Anatómico</span>
+                                </button>
+                                <button type="button" class="btn-atelier-primary" id="btn-phase3-next" onclick="showPhase(4)" disabled>
+                                    <span>Continuar a Protocolo de Confort</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
                             </div>
                         </div>
                     </div>

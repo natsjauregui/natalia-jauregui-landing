@@ -2275,9 +2275,224 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnPhase2Next = document.getElementById('btn-phase2-next');
     if (btnPhase2Next) {
         btnPhase2Next.addEventListener('click', () => {
-            showPhase(3);
+            startPhase3TransitionVideo();
         });
     }
+
+    // Fullscreen Video Transition between Phase 2 and Phase 3 (Explicación de Natalia)
+    function startPhase3TransitionVideo() {
+        console.log("Iniciando video de transición pantalla completa a Fase 3...");
+        const videoOverlay = document.getElementById('phase3-intro-video-overlay');
+        const video = document.getElementById('phase3-fullscreen-video');
+
+        if (videoOverlay && video) {
+            videoOverlay.style.display = 'flex';
+            videoOverlay.style.opacity = '1';
+            videoOverlay.classList.remove('overlay-fade-out');
+
+            video.currentTime = 0;
+            video.muted = false; // Intentar reproducción con audio
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(() => {
+                    // Si el navegador bloquea autoplay con audio, reproducir silenciado
+                    video.muted = true;
+                    video.play().catch(e => console.log("Phase 3 transition video autoplay fallback:", e));
+                });
+            }
+
+            // Cuando el video finalice de forma natural
+            video.onended = () => {
+                console.log("Video de transición Fase 3 finalizado.");
+                finishPhase3IntroVideo();
+            };
+        } else {
+            showPhase(3);
+        }
+    }
+    window.startPhase3TransitionVideo = startPhase3TransitionVideo;
+
+    function finishPhase3IntroVideo() {
+        const videoOverlay = document.getElementById('phase3-intro-video-overlay');
+        const video = document.getElementById('phase3-fullscreen-video');
+
+        if (video) {
+            video.pause();
+        }
+
+        if (videoOverlay) {
+            videoOverlay.classList.add('overlay-fade-out');
+            setTimeout(() => {
+                videoOverlay.style.display = 'none';
+                videoOverlay.classList.remove('overlay-fade-out');
+                showPhase(3);
+            }, 450);
+        } else {
+            showPhase(3);
+        }
+    }
+    window.finishPhase3IntroVideo = finishPhase3IntroVideo;
+
+    // Direct Art Style Selector (Fase 3)
+    function selectArtStyle(styleKey) {
+        if (!styleKey) return;
+        gameState.style = styleKey;
+
+        const styleInput = document.getElementById('game-style');
+        if (styleInput) styleInput.value = styleKey;
+
+        document.querySelectorAll('.style-select-card').forEach(card => {
+            if (card.getAttribute('data-style') === styleKey) {
+                card.classList.add('selected');
+            } else {
+                card.classList.remove('selected');
+            }
+        });
+
+        // Habilitar botón de continuar a Fase 4
+        const btnPhase3Next = document.getElementById('btn-phase3-next');
+        if (btnPhase3Next) {
+            btnPhase3Next.disabled = false;
+        }
+    }
+    window.selectArtStyle = selectArtStyle;
+
+    // Client-Side Image Compression & Optimization (Canvas API)
+    function compressImage(file, maxWidth = 1200, maxHeight = 1200, quality = 0.8) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = (e) => {
+                const img = new Image();
+                img.src = e.target.result;
+                img.onload = () => {
+                    let width = img.width;
+                    let height = img.height;
+
+                    if (width > maxWidth || height > maxHeight) {
+                        if (width / height > maxWidth / maxHeight) {
+                            height = Math.round((height * maxWidth) / width);
+                            width = maxWidth;
+                        } else {
+                            width = Math.round((width * maxHeight) / height);
+                            height = maxHeight;
+                        }
+                    }
+
+                    const canvas = document.createElement('canvas');
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    const compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
+                    const originalSizeKb = Math.round(file.size / 1024);
+                    const compressedSizeKb = Math.round((compressedDataUrl.length * 3 / 4) / 1024);
+
+                    resolve({
+                        dataUrl: compressedDataUrl,
+                        name: file.name,
+                        originalSizeKb,
+                        compressedSizeKb
+                    });
+                };
+                img.onerror = (err) => reject(err);
+            };
+            reader.onerror = (err) => reject(err);
+        });
+    }
+
+    // Handle reference file uploads
+    async function handleReferenceFiles(fileList) {
+        if (!fileList || fileList.length === 0) return;
+        if (!gameState.references) gameState.references = [];
+
+        const maxAllowed = 4; // Sugerido de 1 a 4 referencias
+        const availableSlots = maxAllowed - gameState.references.length;
+
+        if (availableSlots <= 0) {
+            alert("Has alcanzado el límite sugerido de 4 referencias. Puedes eliminar alguna si deseas subir una diferente.");
+            return;
+        }
+
+        const filesToProcess = Array.from(fileList).slice(0, availableSlots);
+        const dropzone = document.getElementById('references-dropzone');
+        if (dropzone) dropzone.classList.add('compressing');
+
+        try {
+            for (const file of filesToProcess) {
+                if (!file.type.startsWith('image/')) continue;
+                const compressed = await compressImage(file, 1200, 1200, 0.8);
+                gameState.references.push(compressed);
+            }
+            renderReferencesPreview();
+        } catch (err) {
+            console.error("Error al comprimir y procesar imágenes:", err);
+        } finally {
+            if (dropzone) dropzone.classList.remove('compressing');
+        }
+    }
+    window.handleReferenceFiles = handleReferenceFiles;
+
+    function removeReference(index) {
+        if (!gameState.references || index < 0 || index >= gameState.references.length) return;
+        gameState.references.splice(index, 1);
+        renderReferencesPreview();
+    }
+    window.removeReference = removeReference;
+
+    function renderReferencesPreview() {
+        const container = document.getElementById('references-preview-grid');
+        if (!container) return;
+        container.innerHTML = '';
+
+        if (!gameState.references || gameState.references.length === 0) return;
+
+        gameState.references.forEach((ref, idx) => {
+            const card = document.createElement('div');
+            card.className = 'ref-preview-card';
+            card.innerHTML = `
+                <img src="${ref.dataUrl}" alt="Referencia ${idx + 1}" class="ref-thumb-img">
+                <div class="ref-info-badge">
+                    <span class="ref-badge-saving"><i class="fa-solid fa-bolt"></i> ${ref.compressedSizeKb} KB</span>
+                </div>
+                <button type="button" class="btn-remove-ref" onclick="removeReference(${idx})" title="Eliminar referencia" aria-label="Eliminar referencia">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            `;
+            container.appendChild(card);
+        });
+    }
+    window.renderReferencesPreview = renderReferencesPreview;
+
+    // Dropzone Drag & Drop Setup
+    function setupDropzoneEvents() {
+        const dropzone = document.getElementById('references-dropzone');
+        if (!dropzone) return;
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropzone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                dropzone.classList.add('dragover');
+            }, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropzone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                dropzone.classList.remove('dragover');
+            }, false);
+        });
+
+        dropzone.addEventListener('drop', (e) => {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            handleReferenceFiles(files);
+        }, false);
+    }
+    setupDropzoneEvents();
 
     // Submit consolidated gamified ficha data
     function submitGamifiedFicha() {
@@ -2293,7 +2508,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (emailInput) gameState.email = emailInput.value.trim();
         if (igInput) gameState.instagram = igInput.value.trim();
         if (meaningInput) gameState.meaning = meaningInput.value.trim();
-        if (styleInput) gameState.style = styleInput.value;
+        if (styleInput && styleInput.value) gameState.style = styleInput.value;
 
         if (!gameState.name || !gameState.phone) {
             alert("Por favor completa tu nombre y número de WhatsApp para oficializar tu ficha técnica.");
@@ -2313,6 +2528,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (container) container.innerHTML = '';
 
         // Prep data payload mapping gamification details to Apps Script schema
+        const refNames = (gameState.references || []).map((r, i) => `Ref ${i+1}: ${r.name} (${r.compressedSizeKb}KB)`).join(', ');
         const payload = {
             style: gameState.style || 'conceptual',
             description: `[FICHA DE ARQUITECTURA CORPORAL - NATALIA JAUREGUI]\n` +
@@ -2320,7 +2536,8 @@ document.addEventListener('DOMContentLoaded', () => {
                          `• Coordenada Anatómica: ${gameState.zone.toUpperCase()} // ${gameState.subzone || 'General'}\n` +
                          `• Protocolo Confort: ${gameState.painMode === 'sin-dolor' ? 'TECNOLOGÍA SIN DOLOR' : 'SESIÓN TRADICIONAL'}\n` +
                          `• Escala / Formato: ${gameState.scale === 'pequeno' ? 'Pequeño (<12cm)' : (gameState.scale === 'mediano' ? 'Mediano (15-25cm)' : 'Gran Formato')}\n\n` +
-                         `• Historia y Significado:\n${gameState.meaning || 'Co-creación personalizada en sesión'}`,
+                         `• Historia y Significado:\n${gameState.meaning || 'Co-creación personalizada en sesión'}\n` +
+                         (refNames ? `\n• Referencias Visuales Adjuntas: ${refNames}` : ''),
             placement: `${gameState.zone.toUpperCase()} - ${gameState.subzone || 'General'}`,
             size: gameState.scale === 'pequeno' ? '< 12cm' : (gameState.scale === 'mediano' ? '15-25cm' : 'Gran Formato'),
             color: gameState.style === 'shadows' ? 'black-grey' : 'color',
@@ -2328,7 +2545,7 @@ document.addEventListener('DOMContentLoaded', () => {
             clientInstagram: gameState.instagram || 'No proporcionado',
             clientEmail: gameState.email || 'No proporcionado',
             clientPhone: gameState.phone,
-            references: []
+            references: (gameState.references || []).map(r => ({ name: r.name, sizeKb: r.compressedSizeKb, data: r.dataUrl }))
         };
 
         // Send request using text/plain to prevent CORS preflight OPTIONS blocking
