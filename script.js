@@ -2390,6 +2390,79 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     window.submitGamifiedFicha = submitGamifiedFicha;
 
+    // Show Official Ficha Summary (Ficha Técnica Oficializada)
+    function showOfficialFichaSummary() {
+        console.log("Oficializando y mostrando Ficha Técnica Consolidada...");
+        const successPanel = document.getElementById('game-success-panel');
+        const fichaPanel = document.getElementById('game-ficha-confirmed-panel');
+        
+        if (successPanel) successPanel.style.display = 'none';
+        if (fichaPanel) {
+            fichaPanel.style.display = 'flex';
+            fichaPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Map and populate all client data
+        const clientEl = document.getElementById('summary-card-client');
+        const silEl = document.getElementById('summary-card-silhouette');
+        const zoneEl = document.getElementById('summary-card-zone');
+        const scaleEl = document.getElementById('summary-card-scale');
+        const styleEl = document.getElementById('summary-card-style');
+        const painEl = document.getElementById('summary-card-pain');
+        const meaningEl = document.getElementById('summary-card-meaning');
+        const folioIdEl = document.getElementById('ficha-folio-id');
+
+        if (clientEl) {
+            const igPart = gameState.instagram ? ` / @${gameState.instagram.replace('@', '')}` : '';
+            clientEl.textContent = `${gameState.name || 'Cliente'} (${gameState.phone || 'WhatsApp'}${igPart})`;
+        }
+        if (silEl) {
+            silEl.textContent = gameState.gender === 'female' ? 'Silueta Femenina' : (gameState.gender === 'male' ? 'Silueta Masculina' : 'Silueta No Binario / Neutro');
+        }
+        if (zoneEl) {
+            const zoneText = gameState.zoneName || (gameState.zone ? gameState.zone.toUpperCase() : 'Brazos');
+            const subText = gameState.subzone ? ` // ${gameState.subzone}` : '';
+            zoneEl.textContent = `${zoneText}${subText}`;
+        }
+        if (scaleEl) {
+            if (gameState.scale === 'pequeno') scaleEl.textContent = 'Pequeño (< 12 cm)';
+            else if (gameState.scale === 'mediano') scaleEl.textContent = 'Mediano (15–25 cm)';
+            else scaleEl.textContent = 'Gran Formato (Zona Completa)';
+        }
+        if (styleEl) {
+            const styleMap = {
+                'color': 'Color & Saturación de Autor',
+                'anime': 'Anime & Ilustración Especializada',
+                'shadows': 'Sombras & Blackwork de Autor',
+                'fineline': 'Fine Line / Líneas Finas',
+                'conceptual': 'Conceptual / Vanguardia',
+                'other': 'Diseño de Autor Exclusivo'
+            };
+            styleEl.textContent = styleMap[gameState.style] || gameState.style || 'Conceptual / De Autor';
+        }
+        if (painEl) {
+            painEl.textContent = gameState.painMode === 'sin-dolor' ? 'Tecnología Sin Dolor (Infusión Continua)' : 'Sesión Tradicional';
+        }
+        if (meaningEl) {
+            meaningEl.textContent = `"${gameState.meaning || 'Co-creación y conceptualización anatómica en sesión con Natalia Jauregui.'}"`;
+        }
+        if (folioIdEl) {
+            const rand = Math.floor(1000 + Math.random() * 9000);
+            const year = new Date().getFullYear();
+            folioIdEl.textContent = `${year}-${rand}`;
+        }
+    }
+    window.showOfficialFichaSummary = showOfficialFichaSummary;
+    window.applyOptimizedLanding = applyOptimizedLanding;
+
+    // Calendly postMessage event listener
+    window.addEventListener('message', function(e) {
+        if (e && e.data && e.data.event && (e.data.event === 'calendly.event_scheduled' || e.data.event.indexOf('calendly.event_scheduled') === 0)) {
+            console.log("Calendly schedule event received:", e.data);
+            showOfficialFichaSummary();
+        }
+    });
+
     // Check completion state on load
     checkGameCompleted();
 

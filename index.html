@@ -333,6 +333,67 @@
                                     <h4 style="color: var(--accent);">Paso Final: Agenda tu Asesoría Digital</h4>
                                     <div id="game-calendly-container" style="min-width: 300px; height: 600px;"></div>
                                 </div>
+                                <div class="calendly-confirm-actions" style="margin-top: 24px;">
+                                    <button type="button" class="btn btn-gold-filled" id="btn-confirm-calendly-schedule" onclick="showOfficialFichaSummary()">
+                                        <i class="fa-solid fa-circle-check"></i> Ya Seleccioné mi Horario // Ver mi Ficha Oficial
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel de Ficha Técnica Oficializada (Aparece tras agendar en Calendly) -->
+                        <div id="game-ficha-confirmed-panel" class="game-ficha-confirmed-panel">
+                            <div class="official-ficha-card">
+                                <div class="ficha-card-header">
+                                    <div class="ficha-badge-certified">
+                                        <i class="fa-solid fa-certificate"></i> FICHA TÉCNICA OFICIALIZADA // REGISTRADA
+                                    </div>
+                                    <div class="ficha-folio-number" id="ficha-folio-display">
+                                        FOLIO: #NJ-<span id="ficha-folio-id">2026-081</span>
+                                    </div>
+                                </div>
+
+                                <div class="ficha-meta-grid">
+                                    <div class="ficha-meta-item">
+                                        <span class="ficha-meta-label">Titular del Proyecto</span>
+                                        <span class="ficha-meta-val" id="summary-card-client">—</span>
+                                    </div>
+                                    <div class="ficha-meta-item">
+                                        <span class="ficha-meta-label">Lienzo Base Anatómico</span>
+                                        <span class="ficha-meta-val" id="summary-card-silhouette">—</span>
+                                    </div>
+                                    <div class="ficha-meta-item">
+                                        <span class="ficha-meta-label">Coordenada Anatómica</span>
+                                        <span class="ficha-meta-val highlight-emerald" id="summary-card-zone">—</span>
+                                    </div>
+                                    <div class="ficha-meta-item">
+                                        <span class="ficha-meta-label">Escala / Formato de la Obra</span>
+                                        <span class="ficha-meta-val" id="summary-card-scale">—</span>
+                                    </div>
+                                    <div class="ficha-meta-item">
+                                        <span class="ficha-meta-label">Estilo Artístico Seleccionado</span>
+                                        <span class="ficha-meta-val" id="summary-card-style">—</span>
+                                    </div>
+                                    <div class="ficha-meta-item">
+                                        <span class="ficha-meta-label">Protocolo de Confort</span>
+                                        <span class="ficha-meta-val highlight-emerald" id="summary-card-pain">—</span>
+                                    </div>
+                                </div>
+
+                                <div class="ficha-meaning-box">
+                                    <span class="ficha-meta-label">Narrativa &amp; Significado del Proyecto:</span>
+                                    <p class="ficha-meaning-quote" id="summary-card-meaning">"Co-creación personalizada en sesión de asesoría."</p>
+                                </div>
+                            </div>
+
+                            <div class="ficha-next-exploration-box">
+                                <h3 class="exploration-title">Tu proyecto está en manos de una artista de autor</h3>
+                                <p class="exploration-text">
+                                    Tu ficha técnica y horario han sido reservados con éxito. Te invitamos a explorar el universo completo de Natalia Jauregui: técnicas quirúrgicas de bioseguridad, filosofía artística, portafolio de piezas exclusivas y líneas de autor.
+                                </p>
+                                <button type="button" class="btn-unlock-landing" id="btn-explore-landing" onclick="applyOptimizedLanding()">
+                                    <i class="fa-solid fa-compass"></i> EXPLORAR SERVICIOS &amp; UNIVERSO DE NATALIA <i class="fa-solid fa-arrow-right"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
