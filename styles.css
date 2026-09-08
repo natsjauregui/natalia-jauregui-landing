@@ -3610,14 +3610,14 @@ body.game-active {
 
 .silhouette-img-wrapper {
     width: 100%;
-    height: 290px;
+    height: clamp(160px, 24vh, 250px);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, transparent 75%);
     border-radius: 14px;
-    padding: 12px;
+    padding: 10px;
 }
 
 .silhouette-mannequin-img {
@@ -6109,5 +6109,478 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
         font-size: 0.82rem;
     }
 }
+
+/* ==========================================================================
+   HABEAS DATA & PRIVACIDAD (LEY 1581 DE 2012) // NATALIA JAUREGUI STUDIO
+   ========================================================================== */
+.habeas-data-section {
+    background: #0D0D0D;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-top: 16px;
+    box-sizing: border-box;
+}
+
+.consent-checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 10px;
+}
+
+.consent-checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    padding: 6px 4px;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+
+.consent-checkbox-label:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.consent-custom-checkbox {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+.custom-checkbox-visual {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border-radius: 6px;
+    background: #141414;
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: transparent;
+    font-size: 0.70rem;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    margin-top: 2px;
+}
+
+.consent-checkbox-label:hover .custom-checkbox-visual {
+    border-color: #00FF88;
+}
+
+.consent-custom-checkbox:checked + .custom-checkbox-visual {
+    background: #00FF88;
+    border-color: #00FF88;
+    color: #050505;
+    box-shadow: 0 0 12px rgba(0, 255, 136, 0.4);
+}
+
+.consent-text {
+    font-size: 0.82rem;
+    color: #B5B5B5;
+    line-height: 1.55;
+}
+
+.consent-text strong {
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+.legal-link-trigger {
+    color: #00FF88;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.legal-link-trigger:hover {
+    color: #38FFA6;
+}
+
+/* ==========================================================================
+   MODAL DE POLÍTICA DE PRIVACIDAD // HABEAS DATA
+   ========================================================================== */
+.privacy-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.privacy-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.privacy-modal-container {
+    position: relative;
+    z-index: 2;
+    background: #111111;
+    border: 1px solid rgba(0, 255, 136, 0.35);
+    border-radius: 20px;
+    max-width: 680px;
+    width: 100%;
+    max-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.95), 0 0 30px rgba(0, 255, 136, 0.12);
+    overflow: hidden;
+    animation: fadeInLanding 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.privacy-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: #161616;
+}
+
+.privacy-header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    color: #00FF88;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.privacy-modal-close {
+    font-size: 1.6rem;
+    color: #888888;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+.privacy-modal-close:hover {
+    color: #FFFFFF;
+}
+
+.privacy-modal-body {
+    padding: 24px;
+    overflow-y: auto;
+    color: #CCCCCC;
+    font-size: 0.86rem;
+    line-height: 1.6;
+}
+
+.privacy-modal-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.privacy-modal-body::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+}
+
+.privacy-title {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    letter-spacing: 1.5px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+.privacy-intro {
+    color: #A0A0A0;
+    margin-bottom: 20px;
+    font-size: 0.84rem;
+}
+
+.privacy-sections-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.privacy-item-tag {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.68rem;
+    letter-spacing: 1.5px;
+    color: #00FF88;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.privacy-item p {
+    margin: 0 0 6px 0;
+}
+
+.privacy-item ul {
+    list-style: disc;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.privacy-item li {
+    color: #B0B0B0;
+    font-size: 0.82rem;
+}
+
+.privacy-modal-footer {
+    padding: 16px 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    background: #141414;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* ==========================================================================
+   REGLA DE RESPONSIVIDAD Y ADAPTABILIDAD VISUAL ABSOLUTA (REGLA 7)
+   Calibración y Anti-Desborde para Desktop, Tablet y Smartphone
+   ========================================================================== */
+
+/* 1. Laptops y Monitores de Altura Moderada (1366x768 / 1440x900) */
+@media (max-height: 850px) {
+    .gamified-wizard {
+        padding: 16px 24px;
+        gap: 12px;
+    }
+    .wizard-brand-top {
+        padding-bottom: 0px;
+    }
+    .wizard-brand-logo {
+        height: 36px;
+    }
+    .wizard-brand-name {
+        font-size: 0.95rem;
+    }
+    .wizard-brand-sub {
+        font-size: 0.58rem;
+    }
+    .wizard-brand-divider {
+        margin: 4px 0 !important;
+    }
+    .phase-indicator-tag {
+        font-size: 0.68rem;
+    }
+    .atelier-header-center {
+        margin-top: 2px !important;
+        margin-bottom: 10px !important;
+    }
+    .atelier-step-title {
+        font-size: 1.15rem;
+        margin-bottom: 2px !important;
+    }
+    .atelier-step-subtitle {
+        font-size: 0.78rem;
+        line-height: 1.35 !important;
+    }
+    .silhouette-img-wrapper {
+        height: 175px;
+        margin-bottom: 8px;
+    }
+    .silhouette-card {
+        padding: 12px 14px;
+    }
+    .btn-atelier-primary, .btn-atelier-secondary {
+        padding: 10px 24px;
+        font-size: 0.80rem;
+    }
+    .clean-mannequin-box {
+        height: 310px;
+    }
+    .clean-macro-selector-wrapper {
+        margin-bottom: 8px;
+    }
+    .clean-macro-pill {
+        padding: 6px 12px;
+        font-size: 0.70rem;
+    }
+    .clean-subzones-flex {
+        max-height: 140px;
+    }
+    .clean-subzone-chip {
+        padding: 5px 10px;
+        font-size: 0.68rem;
+    }
+    .clean-scale-pill {
+        padding: 6px 6px;
+    }
+    .clean-summary-bar {
+        margin-top: 8px;
+        padding: 8px 12px;
+    }
+    .option-section {
+        margin-top: 8px !important;
+        margin-bottom: 6px !important;
+        gap: 6px;
+    }
+    .section-label-game {
+        font-size: 0.72rem;
+    }
+    .opt-btn-pain {
+        padding: 8px 12px;
+        gap: 10px;
+    }
+    .form-grid {
+        gap: 8px;
+    }
+    .form-group-game {
+        gap: 4px;
+    }
+    .form-group-game label {
+        font-size: 0.75rem;
+    }
+    .form-group-game input {
+        padding: 8px 10px;
+        font-size: 0.82rem;
+    }
+    .habeas-data-section {
+        padding: 10px 12px;
+        margin-top: 8px;
+    }
+    .consent-checkbox-group {
+        gap: 8px;
+        margin-top: 6px;
+    }
+    .consent-text {
+        font-size: 0.72rem;
+        line-height: 1.35;
+    }
+    .phase-actions-row {
+        margin-top: 8px;
+        padding-top: 8px;
+    }
+    .styles-cards-grid {
+        gap: 8px;
+    }
+    .style-select-card {
+        padding: 12px;
+        min-height: 105px;
+    }
+    .style-card-title {
+        font-size: 0.78rem;
+    }
+    .style-card-desc {
+        font-size: 0.70rem;
+    }
+}
+
+/* 2. Tabletas (768px a 1024px) */
+@media (min-width: 651px) and (max-width: 1024px) {
+    .gamified-container {
+        padding: 0 12px;
+        max-width: 95vw;
+    }
+    .silhouette-cards-grid.three-columns {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+    }
+    .silhouette-img-wrapper {
+        height: 190px;
+    }
+    .clean-anatomical-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+    }
+    .clean-mannequin-box {
+        height: 380px;
+    }
+    .styles-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+}
+
+/* 3. Dispositivos Móviles (hasta 650px) */
+@media (max-width: 650px) {
+    .gamified-experience {
+        padding: 10px 6px;
+    }
+    .gamified-wizard {
+        padding: 16px 12px;
+        border-radius: 14px;
+        gap: 14px;
+    }
+    .wizard-brand-name {
+        font-size: 0.92rem;
+    }
+    .wizard-brand-sub {
+        font-size: 0.58rem;
+    }
+    .atelier-step-title {
+        font-size: 1.15rem;
+    }
+    .silhouette-cards-grid.three-columns {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    .silhouette-card {
+        padding: 14px 12px;
+    }
+    .silhouette-img-wrapper {
+        height: 200px;
+    }
+    .clean-macro-pills-row {
+        gap: 6px;
+    }
+    .clean-macro-pill {
+        padding: 8px 10px;
+        font-size: 0.70rem;
+        min-width: 75px;
+    }
+    .clean-mannequin-box {
+        height: 320px;
+    }
+    .clean-controls-col {
+        padding: 14px 12px;
+    }
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    .habeas-data-section {
+        padding: 14px 12px;
+    }
+    .consent-text {
+        font-size: 0.78rem;
+    }
+    .official-ficha-card {
+        padding: 18px 14px;
+    }
+    .ficha-badge-certified {
+        font-size: 0.65rem;
+        padding: 5px 10px;
+    }
+    .ficha-meta-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    .btn-unlock-landing {
+        padding: 14px 20px;
+        font-size: 0.78rem;
+        width: 100%;
+        justify-content: center;
+    }
+}
+
 
 

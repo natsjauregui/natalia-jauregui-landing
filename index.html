@@ -18,7 +18,7 @@
     <!-- Calendly Widget CSS -->
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css?v=130">
+    <link rel="stylesheet" href="styles.css?v=131">
 </head>
 <body>
     <!-- Status Banner for Post-Completion -->
@@ -454,6 +454,30 @@
                                         <label for="game-email"><i class="fa-solid fa-envelope"></i> Correo Electrónico *</label>
                                         <input type="email" id="game-email" placeholder="Ej: tu_nombre@correo.com" required>
                                     </div>
+                                </div>
+                            </div>
+
+                            <!-- Paso 3: Autorizaciones Legales y Tratamiento de Datos (Ley 1581 de 2012) -->
+                            <div class="option-section habeas-data-section" style="margin-top: 16px;">
+                                <span class="section-label-game">3. AUTORIZACIÓN DE DATOS &amp; PRIVACIDAD (LEY 1581 DE 2012)</span>
+                                <div class="consent-checkbox-group">
+                                    <label class="consent-checkbox-label" for="consent-habeas-data">
+                                        <input type="checkbox" id="consent-habeas-data" class="consent-custom-checkbox" required>
+                                        <span class="custom-checkbox-visual"><i class="fa-solid fa-check"></i></span>
+                                        <span class="consent-text">
+                                            <strong>Autorización de Tratamiento de Datos (Requerido) *:</strong> 
+                                            Autorizo a Natalia Jauregui Studio el tratamiento de mis datos personales de acuerdo con la Ley 1581 de 2012 y la <a href="javascript:void(0)" class="legal-link-trigger" onclick="openPrivacyModal()">Política de Privacidad</a> exclusivamente para la gestión de mi cita, asesoría personalizada y conceptualización de mi proyecto de autor.
+                                        </span>
+                                    </label>
+                                    
+                                    <label class="consent-checkbox-label" for="consent-marketing">
+                                        <input type="checkbox" id="consent-marketing" class="consent-custom-checkbox">
+                                        <span class="custom-checkbox-visual"><i class="fa-solid fa-check"></i></span>
+                                        <span class="consent-text">
+                                            <strong>Comunicaciones Exclusivas &amp; Agenda VIP (Opcional):</strong> 
+                                            Deseo recibir comunicados prioritarios, aperturas exclusivas de agenda, eventos privados y novedades de autor a través de WhatsApp, correo electrónico e Instagram.
+                                        </span>
+                                    </label>
                                 </div>
                             </div>
 
@@ -1824,9 +1848,69 @@
         </div>
     </div>
 
+    <!-- Modal de Política de Privacidad y Tratamiento de Datos (Ley 1581 de 2012) -->
+    <div class="privacy-modal" id="privacy-policy-modal" style="display: none;">
+        <div class="privacy-modal-backdrop" onclick="closePrivacyModal()"></div>
+        <div class="privacy-modal-container">
+            <div class="privacy-modal-header">
+                <div class="privacy-header-badge">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>PROTECCIÓN DE DATOS // LEY 1581 DE 2012</span>
+                </div>
+                <button type="button" class="privacy-modal-close" onclick="closePrivacyModal()" aria-label="Cerrar política">&times;</button>
+            </div>
+            
+            <div class="privacy-modal-body">
+                <h3 class="privacy-title">POLÍTICA DE PRIVACIDAD &amp; HABEAS DATA</h3>
+                <p class="privacy-intro">En cumplimiento de la Ley Estatutaria 1581 de 2012 y el Decreto 1377 de 2013 de la República de Colombia, <strong>Natalia Jauregui Studio</strong> informa a los titulares de la información sobre las directrices que rigen el tratamiento de sus datos personales recolectados a través de esta experiencia interactiva.</p>
+
+                <div class="privacy-sections-list">
+                    <div class="privacy-item">
+                        <span class="privacy-item-tag">1. RESPONSABLE DEL TRATAMIENTO</span>
+                        <p>Natalia Jauregui Studio, con sede en Bucaramanga, Santander, Colombia. Canal oficial de atención y privacidad: WhatsApp oficial y correo electrónico registrado.</p>
+                    </div>
+
+                    <div class="privacy-item">
+                        <span class="privacy-item-tag">2. FINALIDADES DEL TRATAMIENTO</span>
+                        <p>Los datos personales básicos recolectados (Nombre, Teléfono/WhatsApp, Instagram y Correo Electrónico) serán utilizados exclusivamente para:</p>
+                        <ul>
+                            <li>Gestionar, coordinar y confirmar la cita de asesoría artística personalizada.</li>
+                            <li>Conceptualizar la arquitectura corporal, estilos y referencias técnicas del proyecto de autor.</li>
+                            <li>Contactar al titular mediante canales directos respecto al estado de su ficha técnica oficializada.</li>
+                            <li>En caso de autorización expresa del titular, remitir comunicados prioritarios sobre aperturas exclusivas de agenda, eventos privados y contenidos de autor.</li>
+                        </ul>
+                    </div>
+
+                    <div class="privacy-item">
+                        <span class="privacy-item-tag">3. DERECHOS DEL TITULAR (HABEAS DATA)</span>
+                        <p>Como titular de sus datos personales, usted tiene derecho a:</p>
+                        <ul>
+                            <li>Conocer, actualizar y rectificar sus datos personales en cualquier momento.</li>
+                            <li>Solicitar prueba de la autorización otorgada.</li>
+                            <li>Revocar la autorización y/o solicitar la supresión de sus datos cuando no exista un deber legal o contractual de permanecer en la base de datos.</li>
+                            <li>Acceder de forma gratuita a sus datos personales objeto de tratamiento.</li>
+                        </ul>
+                    </div>
+
+                    <div class="privacy-item">
+                        <span class="privacy-item-tag">4. COMPROMISO ANTI-SPAM Y NO CESIÓN</span>
+                        <p>Natalia Jauregui Studio se compromete de manera estricta a no vender, ceder ni compartir sus datos personales con terceros con fines comerciales masivos. Su información es tratada bajo rigurosos principios de confidencialidad y bioseguridad digital.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="privacy-modal-footer">
+                <button type="button" class="btn-atelier-primary" onclick="closePrivacyModal()">
+                    <i class="fa-solid fa-check"></i>
+                    <span>Entendido y Cerrar</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Calendly Widget JS -->
     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
     <!-- Custom JS -->
-    <script src="script.js?v=130"></script>
+    <script src="script.js?v=131"></script>
 </body>
 </html>

@@ -2523,6 +2523,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     setupDropzoneEvents();
 
+    // Privacy Policy Modal Handlers (Ley 1581 de 2012)
+    function openPrivacyModal() {
+        const modal = document.getElementById('privacy-policy-modal');
+        if (modal) {
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+    }
+    window.openPrivacyModal = openPrivacyModal;
+
+    function closePrivacyModal() {
+        const modal = document.getElementById('privacy-policy-modal');
+        if (modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    }
+    window.closePrivacyModal = closePrivacyModal;
+
     // Submit consolidated gamified ficha data
     function submitGamifiedFicha() {
         const nameInput = document.getElementById('game-name');
@@ -2531,6 +2550,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const igInput = document.getElementById('game-instagram');
         const meaningInput = document.getElementById('game-meaning');
         const styleInput = document.getElementById('game-style');
+        const habeasCheckbox = document.getElementById('consent-habeas-data');
+        const marketingCheckbox = document.getElementById('consent-marketing');
 
         if (nameInput) gameState.name = nameInput.value.trim();
         if (phoneInput) gameState.phone = phoneInput.value.trim();
@@ -2539,10 +2560,19 @@ document.addEventListener('DOMContentLoaded', () => {
         if (meaningInput) gameState.meaning = meaningInput.value.trim();
         if (styleInput && styleInput.value) gameState.style = styleInput.value;
 
-        if (!gameState.name || !gameState.phone) {
-            alert("Por favor completa tu nombre y número de WhatsApp para oficializar tu ficha técnica.");
+        if (!gameState.name || !gameState.phone || !gameState.email) {
+            alert("Por favor completa tu nombre, número de WhatsApp y correo electrónico para formalizar tu ficha técnica.");
             return;
         }
+
+        if (habeasCheckbox && !habeasCheckbox.checked) {
+            alert("Para proteger tu información y coordinar con transparencia tu asesoría de autor, es necesario autorizar el tratamiento de datos según la Ley 1581 de 2012.");
+            habeasCheckbox.focus();
+            return;
+        }
+
+        gameState.habeasConsent = true;
+        gameState.marketingConsent = marketingCheckbox ? marketingCheckbox.checked : false;
 
         const loadingOverlay = document.getElementById('game-wizard-status');
         const successPanel = document.getElementById('game-success-panel');
@@ -2565,6 +2595,8 @@ document.addEventListener('DOMContentLoaded', () => {
                          `• Coordenada Anatómica: ${gameState.zone.toUpperCase()} // ${gameState.subzone || 'General'}\n` +
                          `• Protocolo Confort: ${gameState.painMode === 'sin-dolor' ? 'TECNOLOGÍA SIN DOLOR' : 'SESIÓN TRADICIONAL'}\n` +
                          `• Escala / Formato: ${gameState.scale === 'pequeno' ? 'Pequeño (<12cm)' : (gameState.scale === 'mediano' ? 'Mediano (15-25cm)' : 'Gran Formato')}\n\n` +
+                         `• Consentimiento Habeas Data (Ley 1581/2012): AUTORIZADO\n` +
+                         `• Comunicados Prioritarios / Agenda VIP: ${gameState.marketingConsent ? 'AUTORIZADO' : 'NO AUTORIZADO'}\n\n` +
                          `• Historia y Significado:\n${gameState.meaning || 'Co-creación personalizada en sesión'}\n` +
                          (refNames ? `\n• Referencias Visuales Adjuntas: ${refNames}` : ''),
             placement: `${gameState.zone.toUpperCase()} - ${gameState.subzone || 'General'}`,
@@ -2574,6 +2606,8 @@ document.addEventListener('DOMContentLoaded', () => {
             clientInstagram: gameState.instagram || 'No proporcionado',
             clientEmail: gameState.email || 'No proporcionado',
             clientPhone: gameState.phone,
+            habeasDataConsent: true,
+            marketingConsent: gameState.marketingConsent ? 'Autorizado' : 'No autorizado',
             references: (gameState.references || []).map(r => ({ name: r.name, sizeKb: r.compressedSizeKb, data: r.dataUrl }))
         };
 
@@ -2639,9 +2673,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Show Official Ficha Summary (Ficha Técnica Oficializada)
     function showOfficialFichaSummary() {
         console.log("Oficializando y mostrando Ficha Técnica Consolidada...");
+        const loadingOverlay = document.getElementById('game-wizard-status');
         const successPanel = document.getElementById('game-success-panel');
         const fichaPanel = document.getElementById('game-ficha-confirmed-panel');
         
+        if (loadingOverlay) loadingOverlay.style.display = 'none';
         if (successPanel) successPanel.style.display = 'none';
         if (fichaPanel) {
             fichaPanel.style.display = 'flex';
