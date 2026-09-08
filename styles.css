@@ -4804,6 +4804,201 @@ body.game-active {
     border-radius: 30px;
     cursor: pointer;
     display: flex;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.subzone-chips-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.subzone-chip {
+    background: #181818;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    padding: 7px 14px;
+    font-size: 0.76rem;
+    color: #D0D0D0;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    font-family: var(--font-body);
+    outline: none;
+    letter-spacing: 0.3px;
+}
+
+.subzone-chip:hover {
+    border-color: rgba(0, 255, 136, 0.45);
+    color: #FFFFFF;
+    background: rgba(0, 255, 136, 0.05);
+    transform: translateY(-1px);
+}
+
+.subzone-chip.selected {
+    border-color: #00FF88 !important;
+    background: rgba(0, 255, 136, 0.18) !important;
+    color: #FFFFFF !important;
+    font-weight: 600;
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.35);
+    transform: translateY(-1px);
+}
+
+/* Opciones de Escala */
+.scale-options-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+@media (max-width: 600px) {
+    .scale-options-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.scale-option-btn {
+    background: #111111;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.scale-option-btn:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.scale-option-btn.active {
+    border-color: #D4A5A5;
+    background: rgba(212, 165, 165, 0.1);
+    box-shadow: 0 0 15px rgba(212, 165, 165, 0.25);
+}
+
+.scale-title {
+    font-family: var(--font-heading);
+    font-size: 0.80rem;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+.scale-measure {
+    font-size: 0.68rem;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   PANEL DE CONFIRMACIÓN ANATÓMICA INFERIOR
+   ========================================================================== */
+
+.anatomical-confirmation-panel {
+    margin-top: 24px;
+    padding: 18px 22px;
+    background: #101010;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+}
+
+.confirmation-summary-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.confirmation-icon-box {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid rgba(0, 255, 136, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #00FF88;
+    font-size: 1rem;
+    box-shadow: 0 0 18px rgba(0, 255, 136, 0.2);
+    flex-shrink: 0;
+}
+
+.confirmation-info-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    text-align: left;
+}
+
+.confirmation-badge-title {
+    font-family: var(--font-heading);
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    color: #D4A5A5;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.confirmation-data-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.confirm-zone-main {
+    font-family: var(--font-heading);
+    font-size: 0.94rem;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.confirm-divider {
+    color: #666666;
+    font-size: 0.85rem;
+}
+
+.confirm-zone-sub {
+    font-family: var(--font-heading);
+    font-size: 0.88rem;
+    letter-spacing: 1px;
+    color: #00FF88;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+/* Footer de Acciones con Botón Volver y Continuar */
+.atelier-action-footer.split-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.btn-atelier-secondary {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #A0A0A0;
+    font-family: var(--font-heading);
+    font-size: 0.80rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 12px 22px;
+    border-radius: 30px;
+    cursor: pointer;
+    display: flex;
     align-items: center;
     gap: 8px;
     transition: all 0.25s ease;
@@ -4816,194 +5011,8 @@ body.game-active {
 }
 
 /* ==========================================================================
-   OPTIMIZACIÓN MÓVIL GAMIFICADA // EXPERIENCIA FLUIDA SIN PÉRDIDA VISUAL
-   ========================================================================== */
-
-@media (max-width: 768px) {
-    /* Contenedores con márgenes seguros y sin desborde */
-    .gamified-experience,
-    .gamified-container,
-    .gamified-wizard,
-    .phase-card,
-    .wizard-header-tiered {
-        width: 100% !important;
-        max-width: 100vw !important;
-        box-sizing: border-box !important;
-    }
-
-    .atelier-step-subtitle {
-        font-size: 0.78rem;
-        line-height: 1.4;
-        padding: 0 6px;
-    }
-
-    /* Grid Anatómico en Pantalla 3 */
-    .anatomical-configurator-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    /* HUD Holográfico Fijo (Sticky) en Móvil: El cliente nunca deja de ver el maniquí */
-    .anatomical-viewer-col {
-        position: sticky;
-        top: 62px;
-        z-index: 30;
-        background: rgba(8, 8, 8, 0.94);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        padding: 8px 10px 10px;
-        border-radius: 18px;
-        border: 1px solid rgba(0, 255, 136, 0.2);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.85), 0 0 20px rgba(0, 255, 136, 0.1);
-        gap: 8px;
-    }
-
-    .view-rotation-nav {
-        padding: 3px 6px;
-        border-radius: 20px;
-        background: rgba(18, 18, 18, 0.9);
-    }
-
-    .rotation-label {
-        font-size: 0.58rem;
-        letter-spacing: 1px;
-        padding-left: 6px;
-    }
-
-    .view-tab-btn {
-        font-size: 0.65rem;
-        padding: 5px 9px;
-        letter-spacing: 0.5px;
-    }
-
-    .mannequin-360-stage {
-        height: 220px;
-        min-height: 220px;
-        padding: 8px 10px;
-        border-radius: 14px;
-        background: radial-gradient(circle at center, rgba(0, 255, 136, 0.05) 0%, rgba(10, 10, 10, 0.98) 90%);
-    }
-
-    .mannequin-stage-wrapper {
-        max-height: 205px;
-    }
-
-    .mannequin-360-display {
-        max-height: 205px;
-    }
-
-    .mannequin-zone-badge {
-        bottom: 8px;
-        padding: 4px 12px;
-        border-radius: 20px;
-        background: rgba(10, 10, 10, 0.9);
-    }
-
-    .badge-text {
-        font-size: 0.62rem;
-        letter-spacing: 1px;
-    }
-
-    /* Cajón de Controles y Acordeón Táctil en Móvil */
-    .anatomical-controls-col {
-        gap: 16px;
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    .zone-accordion-header {
-        padding: 10px 14px;
-    }
-
-    .zone-main-title {
-        font-size: 0.82rem;
-        letter-spacing: 1px;
-    }
-
-    .zone-sub-caption {
-        font-size: 0.68rem;
-    }
-
-    .zone-accordion-item.open .zone-suboptions-drawer {
-        max-height: 360px;
-        padding: 12px 14px 14px;
-    }
-
-    .subzone-chips-grid {
-        gap: 5px;
-    }
-
-    .subzone-chip {
-        padding: 6px 11px;
-        font-size: 0.72rem;
-        border-radius: 16px;
-    }
-
-    /* Tamaño del Proyecto en Móvil */
-    .scale-options-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-    }
-
-    .scale-option-btn {
-        padding: 12px 16px;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        border-radius: 12px;
-    }
-
-    .scale-title {
-        font-size: 0.78rem;
-    }
-
-    .scale-measure {
-        font-size: 0.68rem;
-    }
-
-    /* Panel de Confirmación en Móvil */
-    .anatomical-confirmation-panel {
-        padding: 14px 16px;
-        margin-top: 16px;
-        border-radius: 14px;
-    }
-
-    .confirmation-summary-card {
-        gap: 12px;
-        padding-bottom: 12px;
-    }
-
-    .confirm-zone-main {
-        font-size: 0.84rem;
-    }
-
-    .confirm-zone-sub {
-        font-size: 0.80rem;
-    }
-
-    .atelier-action-footer.split-actions {
-        flex-direction: column-reverse;
-        gap: 10px;
-        margin-top: 14px;
-    }
-
-    .atelier-action-footer.split-actions .btn-atelier-secondary,
-    .atelier-action-footer.split-actions .btn-atelier-cta {
-        width: 100%;
-        justify-content: center;
-        padding: 14px 20px;
-        font-size: 0.78rem;
-    }
-}
-
-
-
-/* ==========================================================================
-   P3: SELECCIÓN ANATÓMICA RADICALMENTE LIMPIA Y ELEGANTE (NATALIA JAUREGUI)
+   ATELIER DE AUTOR - ARQUITECTURA VISUAL MULTI-DISPOSITIVO DE ALTA GAMA
+   Desktop Expandido (>= 1024px) // Tablet (768px-1023px) // Smartphone (<= 767px)
    ========================================================================== */
 
 /* Prevención global de desborde horizontal */
@@ -5013,11 +5022,47 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     box-sizing: border-box !important;
 }
 
+.gamified-experience {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #080808;
+    z-index: 9998;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 30px 24px 60px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    box-sizing: border-box;
+}
+
 .gamified-container {
-    max-width: 1080px;
+    max-width: 1260px;
     width: 100%;
     margin: 0 auto;
-    padding: 0 14px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10px 0 40px;
+    box-sizing: border-box;
+}
+
+.gamified-wizard {
+    background: rgba(14, 14, 14, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 24px;
+    padding: 38px 46px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9), 0 0 40px rgba(212, 165, 165, 0.03);
+    width: 100%;
+    box-sizing: border-box;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 
 /* 1. Paso 1: Selector de Macro-Zonas (Pills Horizontales Fluidos) */
@@ -5027,21 +5072,10 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     box-sizing: border-box;
 }
 
-.clean-section-tag {
-    display: block;
-    font-family: var(--font-heading);
-    font-size: 0.62rem;
-    letter-spacing: 2px;
-    color: #00FF88;
-    text-transform: uppercase;
-    font-weight: 600;
-    margin-bottom: 8px;
-}
-
 .clean-macro-pills-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 10px;
     width: 100%;
 }
 
@@ -5050,18 +5084,18 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     border: 1px solid rgba(255, 255, 255, 0.12);
     color: #CCCCCC;
     font-family: var(--font-heading);
-    font-size: 0.80rem;
+    font-size: 0.82rem;
     letter-spacing: 1.2px;
     text-transform: uppercase;
     font-weight: 600;
-    padding: 10px 20px;
+    padding: 12px 22px;
     border-radius: 24px;
     cursor: pointer;
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     outline: none;
     flex: 1 1 auto;
     text-align: center;
-    min-width: 100px;
+    min-width: 110px;
 }
 
 .clean-macro-pill:hover {
@@ -5070,29 +5104,14 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     background: rgba(0, 255, 136, 0.05);
 }
 
-.clean-macro-pill.active {
-    background: #00FF88;
-    border-color: #00FF88;
-    color: #050505;
-    font-weight: 700;
-    box-shadow: 0 0 20px rgba(0, 255, 136, 0.35);
-}
-
 /* 2. Grid Principal (Visor Maniquí + Controles) */
 .clean-anatomical-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 28px;
     align-items: stretch;
     width: 100%;
     box-sizing: border-box;
-}
-
-@media (max-width: 800px) {
-    .clean-anatomical-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-    }
 }
 
 /* Columna del Visor */
@@ -5106,23 +5125,23 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
 .clean-view-nav {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
     background: #141414;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 4px;
-    border-radius: 20px;
+    padding: 5px;
+    border-radius: 24px;
     width: 100%;
     box-sizing: border-box;
 }
 
 .clean-view-btn {
     flex: 1 1 0;
-    padding: 7px 4px;
-    font-size: 0.70rem;
+    padding: 8px 6px;
+    font-size: 0.72rem;
     font-family: var(--font-heading);
     letter-spacing: 0.8px;
     color: #888888;
-    border-radius: 16px;
+    border-radius: 18px;
     cursor: pointer;
     transition: all 0.2s ease;
     background: transparent;
@@ -5131,34 +5150,24 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     white-space: nowrap;
 }
 
-.clean-view-btn:hover {
-    color: #FFFFFF;
-}
-
-.clean-view-btn.active {
-    background: #FFFFFF;
-    color: #000000;
-    font-weight: 700;
-}
-
 .clean-mannequin-box {
     position: relative;
     width: 100%;
-    height: 440px;
+    height: 490px;
     background: radial-gradient(circle at 50% 45%, rgba(0, 255, 136, 0.03) 0%, rgba(8, 8, 8, 0.95) 85%);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 14px;
+    border-radius: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.65);
 }
 
 .clean-mannequin-img {
     height: 94%;
     width: auto;
-    max-height: 410px;
+    max-height: 450px;
     object-fit: contain;
     filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.95));
     transition: opacity 0.2s ease;
@@ -5173,7 +5182,7 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     transform: translate(-50%, -50%);
     height: 94%;
     width: auto;
-    max-height: 410px;
+    max-height: 450px;
     object-fit: contain;
     pointer-events: none;
     opacity: 0;
@@ -5186,29 +5195,14 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     z-index: 2;
 }
 
-.clean-mannequin-highlight-img.active {
-    opacity: 0.95;
-}
-
-@keyframes emeraldPulse {
-    0%, 100% {
-        filter: drop-shadow(0 0 5px rgba(0, 255, 136, 0.4)) drop-shadow(0 0 12px rgba(0, 255, 136, 0.2));
-        opacity: 0.88;
-    }
-    50% {
-        filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.65)) drop-shadow(0 0 20px rgba(0, 255, 136, 0.35));
-        opacity: 1;
-    }
-}
-
 .clean-zone-badge {
     position: absolute;
-    bottom: 12px;
+    bottom: 14px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(10, 10, 10, 0.9);
+    background: rgba(10, 10, 10, 0.92);
     border: 1px solid rgba(0, 255, 136, 0.35);
-    padding: 5px 16px;
+    padding: 6px 18px;
     border-radius: 20px;
     display: flex;
     align-items: center;
@@ -5224,8 +5218,8 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
 .clean-controls-col {
     background: #0D0D0D;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 14px;
-    padding: 18px 16px;
+    border-radius: 18px;
+    padding: 22px 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -5235,8 +5229,8 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
 .clean-subzones-flex {
     display: flex;
     flex-wrap: wrap;
-    gap: 7px;
-    max-height: 220px;
+    gap: 8px;
+    max-height: 240px;
     overflow-y: auto;
     padding-right: 4px;
 }
@@ -5254,32 +5248,19 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: #D4D4D4;
     font-family: var(--font-heading);
-    font-size: 0.74rem;
+    font-size: 0.76rem;
     letter-spacing: 0.5px;
-    padding: 8px 14px;
+    padding: 9px 15px;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s ease;
     outline: none;
 }
 
-.clean-subzone-chip:hover {
-    border-color: rgba(0, 255, 136, 0.4);
-    background: rgba(0, 255, 136, 0.05);
-    color: #FFFFFF;
-}
-
-.clean-subzone-chip.selected {
-    border-color: #00FF88 !important;
-    background: rgba(0, 255, 136, 0.15) !important;
-    color: #00FF88 !important;
-    font-weight: 600;
-}
-
 /* Paso 3: Escala */
 .clean-scale-pills-row {
     display: flex;
-    gap: 8px;
+    gap: 10px;
     width: 100%;
 }
 
@@ -5287,12 +5268,12 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     flex: 1 1 0;
     background: #141414;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    padding: 10px 8px;
+    border-radius: 10px;
+    padding: 12px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2px;
+    gap: 3px;
     cursor: pointer;
     transition: all 0.2s ease;
     text-align: center;
@@ -5301,51 +5282,42 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
 
 .clean-scale-pill strong {
     font-family: var(--font-heading);
-    font-size: 0.74rem;
+    font-size: 0.78rem;
     color: #FFFFFF;
 }
 
 .clean-scale-pill span {
-    font-size: 0.62rem;
-    color: #777777;
+    font-size: 0.65rem;
+    color: #888888;
 }
 
 .clean-scale-pill:hover {
     border-color: rgba(255, 255, 255, 0.3);
 }
 
-.clean-scale-pill.active {
-    border-color: #00FF88;
-    background: rgba(0, 255, 136, 0.1);
-}
-
-.clean-scale-pill.active strong {
-    color: #00FF88;
-}
-
 /* Resumen Inferior */
 .clean-summary-bar {
     background: #111111;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-    padding: 14px 18px;
-    margin-top: 18px;
+    border-radius: 14px;
+    padding: 16px 22px;
+    margin-top: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 14px;
 }
 
 .clean-summary-text {
-    font-size: 0.82rem;
+    font-size: 0.84rem;
     font-family: var(--font-heading);
     letter-spacing: 1px;
 }
 
 .clean-summary-label {
     color: #777777;
-    font-size: 0.70rem;
+    font-size: 0.72rem;
     margin-right: 6px;
 }
 
@@ -5360,32 +5332,273 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
 .clean-actions-row {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
-@media (max-width: 600px) {
-    .clean-summary-bar {
-        flex-direction: column;
-        align-items: stretch;
-    }
+/* Phase 3: Estilos y Referencias (Desktop 2-Col Grid) */
+.phase3-desktop-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 28px;
+    align-items: start;
+    width: 100%;
+}
 
-    .clean-actions-row {
-        flex-direction: column-reverse;
-        width: 100%;
-    }
+.styles-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    width: 100%;
+}
 
-    .clean-actions-row button {
-        width: 100%;
-        justify-content: center;
-    }
+.style-select-card {
+    background: #141414;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    padding: 16px 18px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    min-height: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
 
-    .clean-mannequin-box {
-        height: 350px;
-    }
+.style-select-card:hover {
+    border-color: rgba(0, 255, 136, 0.4);
+    transform: translateY(-2px);
+}
 
-    .clean-scale-pills-row {
-        flex-direction: column;
-    }
+.style-select-card.selected {
+    border-color: #00FF88;
+    box-shadow: 0 0 25px rgba(0, 255, 136, 0.25);
+}
+
+.style-card-bg-img {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.35;
+    transition: opacity 0.3s ease, transform 0.4s ease;
+    z-index: 0;
+}
+
+.style-select-card:hover .style-card-bg-img {
+    opacity: 0.55;
+    transform: scale(1.05);
+}
+
+.style-select-card.selected .style-card-bg-img {
+    opacity: 0.6;
+}
+
+.style-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10, 10, 10, 0.4) 0%, rgba(10, 10, 10, 0.95) 90%);
+    z-index: 1;
+}
+
+.style-card-indicator {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    color: transparent;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 2;
+    transition: all 0.25s ease;
+}
+
+.style-select-card.selected .style-card-indicator {
+    background: #00FF88;
+    border-color: #00FF88;
+    color: #050505;
+    font-weight: 700;
+}
+
+.style-card-content {
+    position: relative;
+    z-index: 2;
+}
+
+.style-card-tag {
+    font-family: var(--font-heading);
+    font-size: 0.60rem;
+    letter-spacing: 1.5px;
+    color: #00FF88;
+    text-transform: uppercase;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.style-card-title {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+    margin: 0 0 4px 0;
+}
+
+.style-card-desc {
+    font-size: 0.74rem;
+    color: #AAAAAA;
+    line-height: 1.35;
+    margin: 0;
+}
+
+.clean-textarea-input {
+    width: 100%;
+    background: #111111;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 14px 16px;
+    color: #FFFFFF;
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    line-height: 1.5;
+    resize: vertical;
+    min-height: 95px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.25s ease;
+}
+
+.clean-textarea-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 15px rgba(212, 165, 165, 0.15);
+}
+
+.references-dropzone {
+    border: 2px dashed rgba(255, 255, 255, 0.15);
+    background: rgba(15, 15, 15, 0.6);
+    border-radius: 14px;
+    padding: 22px 18px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.references-dropzone:hover {
+    border-color: var(--accent);
+    background: rgba(212, 165, 165, 0.04);
+}
+
+/* Phase 4: Confort & Datos (Desktop 2-Col Grid) */
+.phase4-desktop-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 28px;
+    align-items: start;
+    width: 100%;
+}
+
+.grid-options-pain {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.opt-btn-pain {
+    background: #121212;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 16px 18px;
+    border-radius: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-align: left;
+    transition: all 0.25s ease;
+}
+
+.opt-btn-pain i {
+    font-size: 1.6rem;
+    color: #777777;
+    transition: color 0.25s ease;
+    flex-shrink: 0;
+}
+
+.opt-btn-pain.active {
+    border-color: #00FF88;
+    background: rgba(0, 255, 136, 0.06);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.15);
+}
+
+.opt-btn-pain.active i {
+    color: #00FF88;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.form-group-game {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group-game label {
+    font-family: var(--font-heading);
+    font-size: 0.74rem;
+    letter-spacing: 1px;
+    color: #BBBBBB;
+    text-transform: uppercase;
+}
+
+.form-group-game input {
+    background: #111111;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    padding: 12px 14px;
+    color: #FFFFFF;
+    font-size: 0.88rem;
+    outline: none;
+    transition: border-color 0.25s ease;
+}
+
+.form-group-game input:focus {
+    border-color: var(--accent);
+}
+
+.habeas-data-section {
+    background: #0E0E0E;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Phase 5: Calendly & Agendamiento */
+.calendly-game-block {
+    width: 100%;
+    max-width: 1060px;
+    margin: 0 auto;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #0E0E0E;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+}
+
+#game-calendly-container {
+    width: 100%;
+    min-height: 680px;
+    height: 700px;
 }
 
 /* ==========================================================================
@@ -5404,11 +5617,11 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
 .official-ficha-card {
     background: #111111;
     border: 1px solid rgba(0, 255, 136, 0.35);
-    border-radius: 20px;
-    padding: 30px;
+    border-radius: 22px;
+    padding: 38px 44px;
     width: 100%;
-    max-width: 780px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 35px rgba(0, 255, 136, 0.1);
+    max-width: 980px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 45px rgba(0, 255, 136, 0.12);
     position: relative;
     overflow: hidden;
     text-align: left;
@@ -6470,168 +6683,98 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
    Calibración y Anti-Desborde para Desktop, Tablet y Smartphone
    ========================================================================== */
 
-/* 1. Laptops y Monitores de Altura Moderada (1366x768 / 1440x900) */
-@media (max-height: 850px) {
-    .gamified-wizard {
-        padding: 16px 24px;
-        gap: 12px;
-    }
-    .wizard-brand-top {
-        padding-bottom: 0px;
-    }
-    .wizard-brand-logo {
-        height: 36px;
-    }
-    .wizard-brand-name {
-        font-size: 0.95rem;
-    }
-    .wizard-brand-sub {
-        font-size: 0.58rem;
-    }
-    .wizard-brand-divider {
-        margin: 4px 0 !important;
-    }
-    .phase-indicator-tag {
-        font-size: 0.68rem;
-    }
-    .atelier-header-center {
-        margin-top: 2px !important;
-        margin-bottom: 10px !important;
-    }
-    .atelier-step-title {
-        font-size: 1.15rem;
-        margin-bottom: 2px !important;
-    }
-    .atelier-step-subtitle {
-        font-size: 0.78rem;
-        line-height: 1.35 !important;
-    }
-    .silhouette-img-wrapper {
-        height: 175px;
-        margin-bottom: 8px;
-    }
-    .silhouette-card {
-        padding: 12px 14px;
-    }
-    .btn-atelier-primary, .btn-atelier-secondary {
-        padding: 10px 24px;
-        font-size: 0.80rem;
-    }
-    .clean-mannequin-box {
-        height: 310px;
-    }
-    .clean-macro-selector-wrapper {
-        margin-bottom: 8px;
-    }
-    .clean-macro-pill {
-        padding: 6px 12px;
-        font-size: 0.70rem;
-    }
-    .clean-subzones-flex {
-        max-height: 140px;
-    }
-    .clean-subzone-chip {
-        padding: 5px 10px;
-        font-size: 0.68rem;
-    }
-    .clean-scale-pill {
-        padding: 6px 6px;
-    }
-    .clean-summary-bar {
-        margin-top: 8px;
-        padding: 8px 12px;
-    }
-    .option-section {
-        margin-top: 8px !important;
-        margin-bottom: 6px !important;
-        gap: 6px;
-    }
-    .section-label-game {
-        font-size: 0.72rem;
-    }
-    .opt-btn-pain {
-        padding: 8px 12px;
-        gap: 10px;
-    }
-    .form-grid {
-        gap: 8px;
-    }
-    .form-group-game {
-        gap: 4px;
-    }
-    .form-group-game label {
-        font-size: 0.75rem;
-    }
-    .form-group-game input {
-        padding: 8px 10px;
-        font-size: 0.82rem;
-    }
-    .habeas-data-section {
-        padding: 10px 12px;
-        margin-top: 8px;
-    }
-    .consent-checkbox-group {
-        gap: 8px;
-        margin-top: 6px;
-    }
-    .consent-text {
-        font-size: 0.72rem;
-        line-height: 1.35;
-    }
-    .phase-actions-row {
-        margin-top: 8px;
-        padding-top: 8px;
-    }
-    .styles-cards-grid {
-        gap: 8px;
-    }
-    .style-select-card {
-        padding: 12px;
-        min-height: 105px;
-    }
-    .style-card-title {
-        font-size: 0.78rem;
-    }
-    .style-card-desc {
-        font-size: 0.70rem;
-    }
-}
-
-/* 2. Tabletas (768px a 1024px) */
-@media (min-width: 651px) and (max-width: 1024px) {
+/* 1. Desktop & Laptops Grandes (>= 1024px) */
+@media (min-width: 1024px) {
     .gamified-container {
-        padding: 0 12px;
-        max-width: 95vw;
+        max-width: 1260px;
+        width: 94%;
     }
     .silhouette-cards-grid.three-columns {
         grid-template-columns: repeat(3, 1fr);
-        gap: 12px;
+        gap: 24px;
+    }
+    .silhouette-card {
+        min-height: 380px;
+        padding: 24px 20px;
     }
     .silhouette-img-wrapper {
-        height: 190px;
+        height: 250px;
     }
     .clean-anatomical-grid {
+        grid-template-columns: 1fr 1.15fr;
+        gap: 28px;
+    }
+    .clean-mannequin-box {
+        height: 490px;
+    }
+    .phase3-desktop-grid {
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 28px;
+    }
+    .styles-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+    .phase4-desktop-grid {
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 28px;
+    }
+    .form-grid {
         grid-template-columns: 1fr 1fr;
         gap: 14px;
     }
+}
+
+/* 2. Tabletas (768px a 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .gamified-container {
+        padding: 0 16px;
+        max-width: 96vw;
+    }
+    .gamified-wizard {
+        padding: 28px 24px;
+    }
+    .silhouette-cards-grid.three-columns {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+    }
+    .silhouette-img-wrapper {
+        height: 200px;
+    }
+    .clean-anatomical-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
     .clean-mannequin-box {
-        height: 380px;
+        height: 400px;
+    }
+    .phase3-desktop-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
     .styles-cards-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
     }
+    .phase4-desktop-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .form-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
 }
 
-/* 3. Dispositivos Móviles (hasta 650px) */
-@media (max-width: 650px) {
+/* 3. Dispositivos Móviles (hasta 767px) */
+@media (max-width: 767px) {
     .gamified-experience {
-        padding: 10px 6px;
+        padding: 12px 6px;
     }
     .gamified-wizard {
-        padding: 16px 12px;
-        border-radius: 14px;
-        gap: 14px;
+        padding: 20px 14px;
+        border-radius: 16px;
+        gap: 16px;
     }
     .wizard-brand-name {
         font-size: 0.92rem;
@@ -6647,7 +6790,8 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
         gap: 12px;
     }
     .silhouette-card {
-        padding: 14px 12px;
+        padding: 16px 14px;
+        min-height: auto;
     }
     .silhouette-img-wrapper {
         height: 200px;
@@ -6656,15 +6800,35 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
         gap: 6px;
     }
     .clean-macro-pill {
-        padding: 8px 10px;
-        font-size: 0.70rem;
+        padding: 8px 12px;
+        font-size: 0.72rem;
         min-width: 75px;
     }
+    .clean-anatomical-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
     .clean-mannequin-box {
-        height: 320px;
+        height: 330px;
     }
     .clean-controls-col {
-        padding: 14px 12px;
+        padding: 16px 14px;
+    }
+    .phase3-desktop-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    .styles-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .phase4-desktop-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    .grid-options-pain {
+        grid-template-columns: 1fr;
+        gap: 10px;
     }
     .form-grid {
         grid-template-columns: 1fr;
@@ -6677,7 +6841,7 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
         font-size: 0.78rem;
     }
     .official-ficha-card {
-        padding: 18px 14px;
+        padding: 20px 14px;
     }
     .ficha-badge-certified {
         font-size: 0.65rem;
@@ -6692,6 +6856,9 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
         font-size: 0.78rem;
         width: 100%;
         justify-content: center;
+    }
+    #game-calendly-container {
+        height: 600px;
     }
 }
 

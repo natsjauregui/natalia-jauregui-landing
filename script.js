@@ -1647,7 +1647,9 @@ document.addEventListener('DOMContentLoaded', () => {
             btnPhase1Next.disabled = false;
         }
 
-        swapAvatarSilhouette(gender);
+        if (typeof update360MannequinView === 'function') {
+            update360MannequinView();
+        }
     }
     window.selectSilhouette = selectSilhouette;
 

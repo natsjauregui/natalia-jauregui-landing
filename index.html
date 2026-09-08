@@ -18,7 +18,7 @@
     <!-- Calendly Widget CSS -->
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css?v=131">
+    <link rel="stylesheet" href="styles.css?v=132">
 </head>
 <body>
     <!-- Status Banner for Post-Completion -->
@@ -330,103 +330,109 @@
                         </div>
                         
                         <div class="phase-form-clean">
-                            
-                            <!-- Paso 1: Selector de Estilo Artístico con Portafolio de Autor -->
-                            <div class="clean-section-block">
-                                <span class="clean-section-tag">PASO 1 // ESTILO PREFERIDO *</span>
-                                <div class="styles-cards-grid">
-                                    <div class="style-select-card" data-style="anime" onclick="selectArtStyle('anime')">
-                                        <div class="style-card-bg-img" style="background-image: url('images/gallery-anime-sukuna.jpg');"></div>
-                                        <div class="style-card-overlay"></div>
-                                        <div class="style-card-indicator"><i class="fa-solid fa-check"></i></div>
-                                        <div class="style-card-content">
-                                            <span class="style-card-tag">TÉCNICA DE AUTOR</span>
-                                            <h4 class="style-card-title">Anime &amp; Manga</h4>
-                                            <p class="style-card-desc">Línea de alta precisión y dinamismo visual.</p>
-                                        </div>
-                                    </div>
+                            <div class="phase3-desktop-grid">
+                                <!-- Columna Izquierda: Selector de Estilo Artístico -->
+                                <div class="phase3-styles-col">
+                                    <div class="clean-section-block">
+                                        <span class="clean-section-tag">PASO 1 // ESTILO PREFERIDO *</span>
+                                        <div class="styles-cards-grid">
+                                            <div class="style-select-card" data-style="anime" onclick="selectArtStyle('anime')">
+                                                <div class="style-card-bg-img" style="background-image: url('images/gallery-anime-sukuna.jpg');"></div>
+                                                <div class="style-card-overlay"></div>
+                                                <div class="style-card-indicator"><i class="fa-solid fa-check"></i></div>
+                                                <div class="style-card-content">
+                                                    <span class="style-card-tag">TÉCNICA DE AUTOR</span>
+                                                    <h4 class="style-card-title">Anime &amp; Manga</h4>
+                                                    <p class="style-card-desc">Línea de alta precisión y dinamismo visual.</p>
+                                                </div>
+                                            </div>
 
-                                    <div class="style-select-card" data-style="color" onclick="selectArtStyle('color')">
-                                        <div class="style-card-bg-img" style="background-image: url('images/gallery-color-colibri.jpg');"></div>
-                                        <div class="style-card-overlay"></div>
-                                        <div class="style-card-indicator"><i class="fa-solid fa-check"></i></div>
-                                        <div class="style-card-content">
-                                            <span class="style-card-tag">TÉCNICA DE AUTOR</span>
-                                            <h4 class="style-card-title">Color Saturado</h4>
-                                            <p class="style-card-desc">Pigmentación sólida y degradados vibrantes.</p>
-                                        </div>
-                                    </div>
+                                            <div class="style-select-card" data-style="color" onclick="selectArtStyle('color')">
+                                                <div class="style-card-bg-img" style="background-image: url('images/gallery-color-colibri.jpg');"></div>
+                                                <div class="style-card-overlay"></div>
+                                                <div class="style-card-indicator"><i class="fa-solid fa-check"></i></div>
+                                                <div class="style-card-content">
+                                                    <span class="style-card-tag">TÉCNICA DE AUTOR</span>
+                                                    <h4 class="style-card-title">Color Saturado</h4>
+                                                    <p class="style-card-desc">Pigmentación sólida y degradados vibrantes.</p>
+                                                </div>
+                                            </div>
 
-                                    <div class="style-select-card" data-style="shadows" onclick="selectArtStyle('shadows')">
-                                        <div class="style-card-bg-img" style="background-image: url('images/gallery-shadows-samuraifox.jpg');"></div>
-                                        <div class="style-card-overlay"></div>
-                                        <div class="style-card-indicator"><i class="fa-solid fa-check"></i></div>
-                                        <div class="style-card-content">
-                                            <span class="style-card-tag">TÉCNICA DE AUTOR</span>
-                                            <h4 class="style-card-title">Sombras &amp; Blackwork</h4>
-                                            <p class="style-card-desc">Contrastes profundos y realismo monocromático.</p>
-                                        </div>
-                                    </div>
+                                            <div class="style-select-card" data-style="shadows" onclick="selectArtStyle('shadows')">
+                                                <div class="style-card-bg-img" style="background-image: url('images/gallery-shadows-samuraifox.jpg');"></div>
+                                                <div class="style-card-overlay"></div>
+                                                <div class="style-card-indicator"><i class="fa-solid fa-check"></i></div>
+                                                <div class="style-card-content">
+                                                    <span class="style-card-tag">TÉCNICA DE AUTOR</span>
+                                                    <h4 class="style-card-title">Sombras &amp; Blackwork</h4>
+                                                    <p class="style-card-desc">Contrastes profundos y realismo monocromático.</p>
+                                                </div>
+                                            </div>
 
-                                    <div class="style-select-card" data-style="fineline" onclick="selectArtStyle('fineline')">
-                                        <div class="style-card-bg-img" style="background-image: url('images/gallery-fineline-skull.jpg');"></div>
-                                        <div class="style-card-overlay"></div>
-                                        <div class="style-card-indicator"><i class="fa-solid fa-check"></i></div>
-                                        <div class="style-card-content">
-                                            <span class="style-card-tag">TÉCNICA DE AUTOR</span>
-                                            <h4 class="style-card-title">Fine Line &amp; Detalle</h4>
-                                            <p class="style-card-desc">Trazo sutil y detalles milimétricos delicados.</p>
-                                        </div>
-                                    </div>
+                                            <div class="style-select-card" data-style="fineline" onclick="selectArtStyle('fineline')">
+                                                <div class="style-card-bg-img" style="background-image: url('images/gallery-fineline-skull.jpg');"></div>
+                                                <div class="style-card-overlay"></div>
+                                                <div class="style-card-indicator"><i class="fa-solid fa-check"></i></div>
+                                                <div class="style-card-content">
+                                                    <span class="style-card-tag">TÉCNICA DE AUTOR</span>
+                                                    <h4 class="style-card-title">Fine Line &amp; Detalle</h4>
+                                                    <p class="style-card-desc">Trazo sutil y detalles milimétricos delicados.</p>
+                                                </div>
+                                            </div>
 
-                                    <div class="style-select-card" data-style="conceptual" onclick="selectArtStyle('conceptual')">
-                                        <div class="style-card-bg-img" style="background-image: url('images/gallery-conceptual-memento.jpg');"></div>
-                                        <div class="style-card-overlay"></div>
-                                        <div class="style-card-indicator"><i class="fa-solid fa-check"></i></div>
-                                        <div class="style-card-content">
-                                            <span class="style-card-tag">TÉCNICA DE AUTOR</span>
-                                            <h4 class="style-card-title">Conceptual / De Autor</h4>
-                                            <p class="style-card-desc">Composición abstracta y diseño personalizado único.</p>
+                                            <div class="style-select-card" data-style="conceptual" onclick="selectArtStyle('conceptual')">
+                                                <div class="style-card-bg-img" style="background-image: url('images/gallery-conceptual-memento.jpg');"></div>
+                                                <div class="style-card-overlay"></div>
+                                                <div class="style-card-indicator"><i class="fa-solid fa-check"></i></div>
+                                                <div class="style-card-content">
+                                                    <span class="style-card-tag">TÉCNICA DE AUTOR</span>
+                                                    <h4 class="style-card-title">Conceptual / De Autor</h4>
+                                                    <p class="style-card-desc">Composición abstracta y diseño personalizado único.</p>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <input type="hidden" id="game-style" value="" required>
-                            </div>
-
-                            <!-- Paso 2: Narrativa & Significado (Opcional) -->
-                            <div class="clean-section-block" style="margin-top: 24px;">
-                                <div class="section-title-with-badge">
-                                    <span class="clean-section-tag">PASO 2 // IDEA O SIGNIFICADO</span>
-                                    <span class="tag-optional">OPCIONAL</span>
-                                </div>
-                                <p class="section-guide-subtext">¿Qué te inspira? Si aún tienes dudas, lo definiremos juntos en tu asesoría personalizada.</p>
-                                <textarea id="game-meaning" class="clean-textarea-input" rows="3" placeholder="Ej: Un cambio de ciclo o simplemente un diseño estético de autor..."></textarea>
-                            </div>
-
-                            <!-- Paso 3: Mesa de Referencias Visuales (Opcional & Optimizado) -->
-                            <div class="clean-section-block" style="margin-top: 24px;">
-                                <div class="section-title-with-badge">
-                                    <span class="clean-section-tag">PASO 3 // REFERENCIAS VISUALES</span>
-                                    <span class="tag-optional">OPCIONAL</span>
-                                </div>
-                                <p class="section-guide-subtext">Sube imágenes, fotos o bocetos de referencia (1 a 4 sugeridas). Se comprimen al instante.</p>
-                                
-                                <div class="references-dropzone" id="references-dropzone" onclick="document.getElementById('game-ref-files').click()">
-                                    <input type="file" id="game-ref-files" accept="image/jpeg,image/png,image/webp,image/heic,image/*" multiple style="display:none;" onchange="handleReferenceFiles(this.files)">
-                                    <div class="dropzone-inner">
-                                        <div class="dropzone-icon-box">
-                                            <i class="fa-solid fa-cloud-arrow-up"></i>
-                                        </div>
-                                        <div class="dropzone-text-box">
-                                            <strong>Haz clic o arrastra tus imágenes aquí</strong>
-                                            <span>Formatos: JPG, PNG, WEBP, HEIC • Hasta 4 imágenes</span>
-                                        </div>
+                                        <input type="hidden" id="game-style" value="" required>
                                     </div>
                                 </div>
 
-                                <!-- Galería de Previsualización Optimizada -->
-                                <div class="references-preview-grid" id="references-preview-grid">
-                                    <!-- Miniaturas inyectadas dinámicamente -->
+                                <!-- Columna Derecha: Significado & Referencias -->
+                                <div class="phase3-meta-col">
+                                    <!-- Paso 2: Narrativa & Significado (Opcional) -->
+                                    <div class="clean-section-block">
+                                        <div class="section-title-with-badge">
+                                            <span class="clean-section-tag">PASO 2 // IDEA O SIGNIFICADO</span>
+                                            <span class="tag-optional">OPCIONAL</span>
+                                        </div>
+                                        <p class="section-guide-subtext">¿Qué te inspira? Si aún tienes dudas, lo definiremos juntos en tu asesoría personalizada.</p>
+                                        <textarea id="game-meaning" class="clean-textarea-input" rows="3" placeholder="Ej: Un cambio de ciclo o simplemente un diseño estético de autor..."></textarea>
+                                    </div>
+
+                                    <!-- Paso 3: Mesa de Referencias Visuales (Opcional & Optimizado) -->
+                                    <div class="clean-section-block" style="margin-top: 20px;">
+                                        <div class="section-title-with-badge">
+                                            <span class="clean-section-tag">PASO 3 // REFERENCIAS VISUALES</span>
+                                            <span class="tag-optional">OPCIONAL</span>
+                                        </div>
+                                        <p class="section-guide-subtext">Sube imágenes, fotos o bocetos de referencia (1 a 4 sugeridas). Se comprimen al instante.</p>
+                                        
+                                        <div class="references-dropzone" id="references-dropzone" onclick="document.getElementById('game-ref-files').click()">
+                                            <input type="file" id="game-ref-files" accept="image/jpeg,image/png,image/webp,image/heic,image/*" multiple style="display:none;" onchange="handleReferenceFiles(this.files)">
+                                            <div class="dropzone-inner">
+                                                <div class="dropzone-icon-box">
+                                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                                </div>
+                                                <div class="dropzone-text-box">
+                                                    <strong>Haz clic o arrastra tus imágenes aquí</strong>
+                                                    <span>Formatos: JPG, PNG, WEBP, HEIC • Hasta 4 imágenes</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Galería de Previsualización Optimizada -->
+                                        <div class="references-preview-grid" id="references-preview-grid">
+                                            <!-- Miniaturas inyectadas dinámicamente -->
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -452,103 +458,117 @@
                         </div>
 
                         <div class="phase-form">
-                            <div class="option-section">
-                                <span class="section-label-game">1. PROTOCOLO DE EXPERIENCIA EN SESIÓN</span>
-                                <div class="grid-options-pain">
-                                    <div class="opt-btn-pain active" data-pain="sin-dolor" onclick="selectPainMode('sin-dolor')">
-                                        <i class="fa-solid fa-shield-halved"></i>
-                                        <strong>Tecnología Sin Dolor</strong>
-                                    </div>
-                                    <div class="opt-btn-pain" data-pain="clasico" onclick="selectPainMode('clasico')">
-                                        <i class="fa-solid fa-feather"></i>
-                                        <strong>Sesión Tradicional</strong>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="option-section" style="margin-top: 15px;">
-                                <span class="section-label-game">2. DATOS PARA TU FICHA TÉCNICA</span>
-                                <div class="form-grid">
-                                    <div class="form-group-game">
-                                        <label for="game-name"><i class="fa-solid fa-user"></i> Nombre Completo *</label>
-                                        <input type="text" id="game-name" placeholder="Tu nombre y apellido" required>
-                                    </div>
-                                    <div class="form-group-game">
-                                        <label for="game-phone"><i class="fa-brands fa-whatsapp"></i> WhatsApp *</label>
-                                        <input type="tel" id="game-phone" placeholder="Ej: +57 310 123 4567" required>
-                                    </div>
-                                    <div class="form-group-game">
-                                        <label for="game-instagram"><i class="fa-brands fa-instagram"></i> Instagram (@usuario)</label>
-                                        <input type="text" id="game-instagram" placeholder="Ej: @tu_usuario">
-                                    </div>
-                                    <div class="form-group-game">
-                                        <label for="game-email"><i class="fa-solid fa-envelope"></i> Correo Electrónico *</label>
-                                        <input type="email" id="game-email" placeholder="Ej: tu_nombre@correo.com" required>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Paso 3: Autorizaciones Legales y Tratamiento de Datos (Ley 1581 de 2012) -->
-                            <div class="option-section habeas-data-section" style="margin-top: 16px;">
-                                <span class="section-label-game">3. AUTORIZACIÓN DE DATOS (LEY 1581 DE 2012)</span>
-                                <div class="consent-checkbox-group">
-                                    
-                                    <!-- Punto 1: Tratamiento de Datos Requerido -->
-                                    <div class="consent-row-item">
-                                        <label class="consent-checkbox-label" for="consent-habeas-data">
-                                            <input type="checkbox" id="consent-habeas-data" class="consent-custom-checkbox" required>
-                                            <span class="custom-checkbox-visual"><i class="fa-solid fa-check"></i></span>
-                                        </label>
-                                        <div class="consent-text-block" id="consent-block-1">
-                                            <div class="consent-header-line">
-                                                <label for="consent-habeas-data" class="consent-clickable-title">
-                                                    <strong class="consent-title-strong">Autorización de Tratamiento de Datos (Requerido) *:</strong>
-                                                </label>
-                                                <button type="button" class="btn-consent-toggle" id="btn-toggle-consent-1" onclick="toggleConsentDetails(event, 'consent-details-1', 'btn-toggle-consent-1')">
-                                                    <span class="toggle-label">Leer más</span>
-                                                    <i class="fa-solid fa-chevron-down"></i>
-                                                </button>
+                            <div class="phase4-desktop-grid">
+                                <!-- Columna Izquierda: Protocolo de Confort & Datos -->
+                                <div class="phase4-left-col">
+                                    <div class="option-section">
+                                        <span class="section-label-game">1. PROTOCOLO DE EXPERIENCIA EN SESIÓN</span>
+                                        <div class="grid-options-pain">
+                                            <div class="opt-btn-pain active" data-pain="sin-dolor" onclick="selectPainMode('sin-dolor')">
+                                                <i class="fa-solid fa-shield-halved"></i>
+                                                <div class="opt-text-wrap">
+                                                    <strong>Tecnología Sin Dolor</strong>
+                                                    <span>Infusión continua &amp; confort máximo</span>
+                                                </div>
                                             </div>
-                                            <div class="consent-expandable-content" id="consent-details-1">
-                                                <p class="consent-full-desc">
-                                                    Autorizo a Natalia Jauregui Studio el tratamiento de mis datos personales de acuerdo con la Ley 1581 de 2012 y la <a href="javascript:void(0)" class="legal-link-trigger" onclick="openPrivacyModal(event)">Política de Privacidad</a> exclusivamente para la gestión de mi cita, asesoría personalizada y conceptualización de mi proyecto de autor.
-                                                </p>
-                                                <button type="button" class="btn-consent-collapse" onclick="collapseConsentDetails(event, 'consent-details-1', 'btn-toggle-consent-1')">
-                                                    <span>Leer menos</span>
-                                                    <i class="fa-solid fa-chevron-up"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Punto 2: Comunicaciones Prioritarias Opcionales -->
-                                    <div class="consent-row-item">
-                                        <label class="consent-checkbox-label" for="consent-marketing">
-                                            <input type="checkbox" id="consent-marketing" class="consent-custom-checkbox">
-                                            <span class="custom-checkbox-visual"><i class="fa-solid fa-check"></i></span>
-                                        </label>
-                                        <div class="consent-text-block" id="consent-block-2">
-                                            <div class="consent-header-line">
-                                                <label for="consent-marketing" class="consent-clickable-title">
-                                                    <strong class="consent-title-strong">Comunicaciones Prioritarias &amp; Agenda VIP (Opcional):</strong>
-                                                </label>
-                                                <button type="button" class="btn-consent-toggle" id="btn-toggle-consent-2" onclick="toggleConsentDetails(event, 'consent-details-2', 'btn-toggle-consent-2')">
-                                                    <span class="toggle-label">Leer más</span>
-                                                    <i class="fa-solid fa-chevron-down"></i>
-                                                </button>
-                                            </div>
-                                            <div class="consent-expandable-content" id="consent-details-2">
-                                                <p class="consent-full-desc">
-                                                    Deseo recibir comunicados prioritarios, aperturas exclusivas de agenda, eventos privados y novedades de autor a través de WhatsApp, correo electrónico e Instagram.
-                                                </p>
-                                                <button type="button" class="btn-consent-collapse" onclick="collapseConsentDetails(event, 'consent-details-2', 'btn-toggle-consent-2')">
-                                                    <span>Leer menos</span>
-                                                    <i class="fa-solid fa-chevron-up"></i>
-                                                </button>
+                                            <div class="opt-btn-pain" data-pain="clasico" onclick="selectPainMode('clasico')">
+                                                <i class="fa-solid fa-feather"></i>
+                                                <div class="opt-text-wrap">
+                                                    <strong>Sesión Tradicional</strong>
+                                                    <span>Ritmo habitual de sesión</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
+                                    <div class="option-section" style="margin-top: 18px;">
+                                        <span class="section-label-game">2. DATOS PARA TU FICHA TÉCNICA</span>
+                                        <div class="form-grid">
+                                            <div class="form-group-game">
+                                                <label for="game-name"><i class="fa-solid fa-user"></i> Nombre Completo *</label>
+                                                <input type="text" id="game-name" placeholder="Tu nombre y apellido" required>
+                                            </div>
+                                            <div class="form-group-game">
+                                                <label for="game-phone"><i class="fa-brands fa-whatsapp"></i> WhatsApp *</label>
+                                                <input type="tel" id="game-phone" placeholder="Ej: +57 310 123 4567" required>
+                                            </div>
+                                            <div class="form-group-game">
+                                                <label for="game-instagram"><i class="fa-brands fa-instagram"></i> Instagram (@usuario)</label>
+                                                <input type="text" id="game-instagram" placeholder="Ej: @tu_usuario">
+                                            </div>
+                                            <div class="form-group-game">
+                                                <label for="game-email"><i class="fa-solid fa-envelope"></i> Correo Electrónico *</label>
+                                                <input type="email" id="game-email" placeholder="Ej: tu_nombre@correo.com" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Columna Derecha: Habeas Data & Autorizaciones Legales -->
+                                <div class="phase4-right-col">
+                                    <!-- Paso 3: Autorizaciones Legales y Tratamiento de Datos (Ley 1581 de 2012) -->
+                                    <div class="option-section habeas-data-section">
+                                        <span class="section-label-game">3. AUTORIZACIÓN DE DATOS (LEY 1581 DE 2012)</span>
+                                        <div class="consent-checkbox-group">
+                                            
+                                            <!-- Punto 1: Tratamiento de Datos Requerido -->
+                                            <div class="consent-row-item">
+                                                <label class="consent-checkbox-label" for="consent-habeas-data">
+                                                    <input type="checkbox" id="consent-habeas-data" class="consent-custom-checkbox" required>
+                                                    <span class="custom-checkbox-visual"><i class="fa-solid fa-check"></i></span>
+                                                </label>
+                                                <div class="consent-text-block" id="consent-block-1">
+                                                    <div class="consent-header-line">
+                                                        <label for="consent-habeas-data" class="consent-clickable-title">
+                                                            <strong class="consent-title-strong">Autorización de Tratamiento de Datos (Requerido) *:</strong>
+                                                        </label>
+                                                        <button type="button" class="btn-consent-toggle" id="btn-toggle-consent-1" onclick="toggleConsentDetails(event, 'consent-details-1', 'btn-toggle-consent-1')">
+                                                            <span class="toggle-label">Leer más</span>
+                                                            <i class="fa-solid fa-chevron-down"></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="consent-expandable-content" id="consent-details-1">
+                                                        <p class="consent-full-desc">
+                                                            Autorizo a Natalia Jauregui Studio el tratamiento de mis datos personales de acuerdo con la Ley 1581 de 2012 y la <a href="javascript:void(0)" class="legal-link-trigger" onclick="openPrivacyModal(event)">Política de Privacidad</a> exclusivamente para la gestión de mi cita, asesoría personalizada y conceptualización de mi proyecto de autor.
+                                                        </p>
+                                                        <button type="button" class="btn-consent-collapse" onclick="collapseConsentDetails(event, 'consent-details-1', 'btn-toggle-consent-1')">
+                                                            <span>Leer menos</span>
+                                                            <i class="fa-solid fa-chevron-up"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Punto 2: Comunicaciones Prioritarias Opcionales -->
+                                            <div class="consent-row-item">
+                                                <label class="consent-checkbox-label" for="consent-marketing">
+                                                    <input type="checkbox" id="consent-marketing" class="consent-custom-checkbox">
+                                                    <span class="custom-checkbox-visual"><i class="fa-solid fa-check"></i></span>
+                                                </label>
+                                                <div class="consent-text-block" id="consent-block-2">
+                                                    <div class="consent-header-line">
+                                                        <label for="consent-marketing" class="consent-clickable-title">
+                                                            <strong class="consent-title-strong">Comunicaciones Prioritarias &amp; Agenda VIP (Opcional):</strong>
+                                                        </label>
+                                                        <button type="button" class="btn-consent-toggle" id="btn-toggle-consent-2" onclick="toggleConsentDetails(event, 'consent-details-2', 'btn-toggle-consent-2')">
+                                                            <span class="toggle-label">Leer más</span>
+                                                            <i class="fa-solid fa-chevron-down"></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="consent-expandable-content" id="consent-details-2">
+                                                        <p class="consent-full-desc">
+                                                            Deseo recibir comunicados prioritarios, aperturas exclusivas de agenda, eventos privados y novedades de autor a través de WhatsApp, correo electrónico e Instagram.
+                                                        </p>
+                                                        <button type="button" class="btn-consent-collapse" onclick="collapseConsentDetails(event, 'consent-details-2', 'btn-toggle-consent-2')">
+                                                            <span>Leer menos</span>
+                                                            <i class="fa-solid fa-chevron-up"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
