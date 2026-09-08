@@ -5415,6 +5415,21 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     box-sizing: border-box;
 }
 
+.ficha-style-watermark {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.12;
+    filter: grayscale(30%) contrast(120%);
+    pointer-events: none;
+    border-radius: 20px;
+    mix-blend-mode: luminosity;
+    z-index: 0;
+    transition: opacity 0.5s ease;
+    display: none;
+}
+
 .official-ficha-card::before {
     content: '';
     position: absolute;
@@ -5423,6 +5438,7 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     right: 0;
     height: 3px;
     background: linear-gradient(90deg, transparent, #00FF88, #D4A5A5, transparent);
+    z-index: 2;
 }
 
 .ficha-card-header {
@@ -5434,6 +5450,8 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     margin-bottom: 20px;
     flex-wrap: wrap;
     gap: 12px;
+    position: relative;
+    z-index: 1;
 }
 
 .ficha-badge-certified {
@@ -5464,6 +5482,12 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     grid-template-columns: repeat(2, 1fr);
     gap: 16px 24px;
     margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.ficha-meta-item.full-width-meta {
+    grid-column: 1 / -1;
 }
 
 @media (max-width: 650px) {
@@ -5504,6 +5528,8 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     border-radius: 12px;
     padding: 16px 20px;
     margin-top: 10px;
+    position: relative;
+    z-index: 1;
 }
 
 .ficha-meaning-quote {
@@ -5721,7 +5747,7 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
 .styles-cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 12px;
+    gap: 14px;
     margin-top: 10px;
 }
 
@@ -5729,44 +5755,101 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     background: #111111;
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 14px;
-    padding: 18px 20px;
+    padding: 20px;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     display: flex;
     flex-direction: column;
     gap: 8px;
     text-align: left;
     user-select: none;
+    overflow: hidden;
+    min-height: 145px;
+    justify-content: flex-end;
+}
+
+.style-card-bg-img {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.38;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+    z-index: 0;
+}
+
+.style-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(13, 17, 23, 0.25) 0%, rgba(13, 17, 23, 0.85) 65%, rgba(13, 17, 23, 0.98) 100%);
+    z-index: 1;
+}
+
+.style-card-tag {
+    font-family: var(--font-heading);
+    font-size: 0.6rem;
+    letter-spacing: 1.5px;
+    color: #00FF88;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+    display: inline-block;
+}
+
+.style-card-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .style-select-card:hover {
-    border-color: rgba(212, 165, 165, 0.4);
-    transform: translateY(-2px);
-    background: #161616;
+    border-color: rgba(0, 255, 136, 0.45);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 15px rgba(0, 255, 136, 0.1);
+}
+
+.style-select-card:hover .style-card-bg-img {
+    transform: scale(1.08);
+    opacity: 0.58;
 }
 
 .style-select-card.selected {
     border-color: #00FF88;
     background: rgba(0, 255, 136, 0.04);
-    box-shadow: 0 6px 20px rgba(0, 255, 136, 0.15);
+    box-shadow: 0 8px 30px rgba(0, 255, 136, 0.22);
+}
+
+.style-select-card.selected .style-card-bg-img {
+    opacity: 0.6;
+    transform: scale(1.04);
 }
 
 .style-card-indicator {
     position: absolute;
-    top: 16px;
-    right: 16px;
-    width: 16px;
-    height: 16px;
+    top: 14px;
+    right: 14px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
-    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
     transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    color: transparent;
+    z-index: 3;
+    background: rgba(0, 0, 0, 0.4);
 }
 
 .style-select-card.selected .style-card-indicator {
     border-color: #00FF88;
     background: #00FF88;
-    box-shadow: 0 0 10px #00FF88;
+    color: #000000;
+    box-shadow: 0 0 12px #00FF88;
 }
 
 .style-card-title {
@@ -5786,9 +5869,37 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
 
 .style-card-desc {
     font-size: 0.78rem;
-    color: #888888;
+    color: #A0A0A0;
     line-height: 1.4;
     margin: 0;
+}
+
+/* Phase 5 Video Container Calibration */
+.phase-card[data-phase="5"] .video-container {
+    max-width: 640px;
+    width: 100%;
+    margin: 0 auto 24px auto;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 255, 136, 0.12);
+    border: 1px solid rgba(0, 255, 136, 0.25);
+    background: #080c10;
+}
+
+.phase-card[data-phase="5"] #phase-video-3,
+.phase-card[data-phase="5"] .phase-video {
+    width: 100%;
+    max-height: 360px;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .phase-card[data-phase="5"] #phase-video-3,
+    .phase-card[data-phase="5"] .phase-video {
+        max-height: 220px;
+    }
 }
 
 .section-title-with-badge {

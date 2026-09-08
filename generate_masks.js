@@ -93,83 +93,83 @@ const SUBZONE_SPECS = [
   {
     name: 'brazo-der-antebrazo-front.webp',
     view: 'front',
-    box: { minX: 180, maxX: 310, minY: 340, maxY: 480 }
+    box: { minX: 180, maxX: 310, minY: 330, maxY: 495 }
   },
   {
     name: 'brazo-der-antebrazo-back.webp',
     view: 'back',
-    box: { minX: 490, maxX: 620, minY: 340, maxY: 480 }
+    box: { minX: 490, maxX: 620, minY: 330, maxY: 495 }
   },
   {
     name: 'brazo-der-antebrazo-external.webp',
     view: 'right',
-    box: { minX: 300, maxX: 500, minY: 340, maxY: 480 }
+    box: { minX: 300, maxX: 500, minY: 330, maxY: 495 }
   },
   {
     name: 'brazo-der-antebrazo-internal.webp',
     view: 'left',
-    box: { minX: 300, maxX: 500, minY: 340, maxY: 480 }
+    box: { minX: 300, maxX: 500, minY: 330, maxY: 495 }
   },
   {
     name: 'brazo-izq-antebrazo-front.webp',
     view: 'front',
-    box: { minX: 490, maxX: 620, minY: 340, maxY: 480 }
+    box: { minX: 490, maxX: 620, minY: 330, maxY: 495 }
   },
   {
     name: 'brazo-izq-antebrazo-back.webp',
     view: 'back',
-    box: { minX: 180, maxX: 310, minY: 340, maxY: 480 }
+    box: { minX: 180, maxX: 310, minY: 330, maxY: 495 }
   },
   {
     name: 'brazo-izq-antebrazo-external.webp',
     view: 'left',
-    box: { minX: 300, maxX: 500, minY: 340, maxY: 480 }
+    box: { minX: 300, maxX: 500, minY: 330, maxY: 495 }
   },
   {
     name: 'brazo-izq-antebrazo-internal.webp',
     view: 'right',
-    box: { minX: 300, maxX: 500, minY: 340, maxY: 480 }
+    box: { minX: 300, maxX: 500, minY: 330, maxY: 495 }
   },
-  // Mano
+  // Mano (Estrictamente Muñeca y Mano)
   {
     name: 'brazo-der-mano-front.webp',
     view: 'front',
-    box: { minX: 180, maxX: 290, minY: 460, maxY: 570 }
+    box: { minX: 180, maxX: 290, minY: 495, maxY: 630 }
   },
   {
     name: 'brazo-der-mano-back.webp',
     view: 'back',
-    box: { minX: 510, maxX: 620, minY: 460, maxY: 570 }
+    box: { minX: 510, maxX: 620, minY: 495, maxY: 630 }
   },
   {
     name: 'brazo-der-mano-external.webp',
     view: 'right',
-    box: { minX: 300, maxX: 500, minY: 460, maxY: 570 }
+    box: { minX: 300, maxX: 500, minY: 495, maxY: 630 }
   },
   {
     name: 'brazo-der-mano-internal.webp',
     view: 'left',
-    box: { minX: 300, maxX: 500, minY: 460, maxY: 570 }
+    box: { minX: 300, maxX: 500, minY: 495, maxY: 630 }
   },
   {
     name: 'brazo-izq-mano-front.webp',
     view: 'front',
-    box: { minX: 510, maxX: 620, minY: 460, maxY: 570 }
+    box: { minX: 510, maxX: 620, minY: 495, maxY: 630 }
   },
   {
     name: 'brazo-izq-mano-back.webp',
     view: 'back',
-    box: { minX: 180, maxX: 290, minY: 460, maxY: 570 }
+    box: { minX: 180, maxX: 290, minY: 495, maxY: 630 }
   },
   {
     name: 'brazo-izq-mano-external.webp',
     view: 'left',
-    box: { minX: 300, maxX: 500, minY: 460, maxY: 570 }
+    box: { minX: 300, maxX: 500, minY: 495, maxY: 630 }
   },
   {
     name: 'brazo-izq-mano-internal.webp',
     view: 'right',
-    box: { minX: 300, maxX: 500, minY: 460, maxY: 570 }
+    box: { minX: 300, maxX: 500, minY: 495, maxY: 630 }
   },
 
   // PECHO / TORSO

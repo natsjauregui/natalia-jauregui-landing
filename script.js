@@ -1690,7 +1690,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 "Muslo Frontal",
                 "Muslo Lateral",
                 "Muslo Trasero",
-                "Rodilla",
                 "Espinilla",
                 "Gemelo / Pantorrilla",
                 "Media Pierna Superior",
@@ -1706,8 +1705,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 "Pectoral Derecho",
                 "Pectoral Izquierdo",
                 "Pectoral (Ambos)",
-                "Costilla Derecha",
-                "Costilla Izquierda",
                 "Abdomen / Vientre",
                 "Torso Completo"
             ]
@@ -1719,7 +1716,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 "Espalda Alta / Trapecio",
                 "Omóplato Derecho",
                 "Omóplato Izquierdo",
-                "Columna Central",
                 "Espalda Baja / Lumbar",
                 "Espalda Completa (Full Back)"
             ]
@@ -1848,13 +1844,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     "right": "pierna-der-muslo-external.webp",
                     "defaultView": "back"
                 },
-                "Rodilla": {
-                    "front": "pierna-der-muslo-front.webp",
-                    "back": "pierna-der-pantorrilla-back.webp",
-                    "left": "pierna-izq-pantorrilla-external.webp",
-                    "right": "pierna-der-pantorrilla-external.webp",
-                    "defaultView": "front"
-                },
                 "Espinilla": {
                     "front": "pierna-der-pantorrilla-front.webp",
                     "back": "pierna-der-pantorrilla-back.webp",
@@ -1928,20 +1917,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     "right": "torso-costilla-der.webp",
                     "defaultView": "front"
                 },
-                "Costilla Derecha": {
-                    "front": "torso-costilla-der.webp",
-                    "back": "torso-costilla-der.webp",
-                    "left": "torso-costilla-izq.webp",
-                    "right": "torso-costilla-der.webp",
-                    "defaultView": "right"
-                },
-                "Costilla Izquierda": {
-                    "front": "torso-costilla-izq.webp",
-                    "back": "torso-costilla-izq.webp",
-                    "left": "torso-costilla-izq.webp",
-                    "right": "torso-costilla-der.webp",
-                    "defaultView": "left"
-                },
                 "Abdomen / Vientre": {
                     "front": "torso-abdomen.webp",
                     "back": "torso.webp",
@@ -1985,13 +1960,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     "back": "espalda-escapula-izq.webp",
                     "left": "espalda-escapula-izq.webp",
                     "right": "espalda-escapula-izq.webp",
-                    "defaultView": "back"
-                },
-                "Columna Central": {
-                    "front": "espalda.webp",
-                    "back": "espalda.webp",
-                    "left": "espalda.webp",
-                    "right": "espalda.webp",
                     "defaultView": "back"
                 },
                 "Espalda Baja / Lumbar": {
@@ -2333,7 +2301,68 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     window.finishPhase3IntroVideo = finishPhase3IntroVideo;
 
-    // Direct Art Style Selector (Fase 3)
+    // Direct Art Style Selector (Fase 3) & Image Mapping
+    const STYLE_IMAGE_MAP = {
+        "anime": { name: "Anime & Manga", img: "images/gallery-anime-sukuna.jpg", desc: "Línea de alta precisión, dinamismo visual y fidelidad artística." },
+        "color": { name: "Color de Alta Saturación", img: "images/gallery-color-colibri.jpg", desc: "Pigmentación sólida, degradados intensos y vibrancia de autor." },
+        "shadows": { name: "Sombras & Blackwork", img: "images/gallery-shadows-samuraifox.jpg", desc: "Contrastes profundos, volumen anatómico y realismo monocromático." },
+        "fineline": { name: "Fine Line & Microrealismo", img: "images/gallery-fineline-skull.jpg", desc: "Trazo sutil, elegancia milimétrica y detalles delicados." },
+        "conceptual": { name: "Conceptual / De Autor", img: "images/gallery-conceptual-memento.jpg", desc: "Composición abstracta, vanguardia y diseño anatómico único." }
+    };
+    window.STYLE_IMAGE_MAP = STYLE_IMAGE_MAP;
+
+    // Fullscreen Video Transition between Phase 3 and Phase 4 (Protocolo de Confort con Natalia)
+    function startPhase4TransitionVideo() {
+        console.log("Iniciando video de transición pantalla completa a Fase 4 (Protocolo de Confort)...");
+        const videoOverlay = document.getElementById('phase4-intro-video-overlay');
+        const video = document.getElementById('phase4-fullscreen-video');
+
+        if (videoOverlay && video) {
+            videoOverlay.style.display = 'flex';
+            videoOverlay.style.opacity = '1';
+            videoOverlay.classList.remove('overlay-fade-out');
+
+            video.currentTime = 0;
+            video.muted = false;
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(() => {
+                    video.muted = true;
+                    video.play().catch(e => console.log("Phase 4 transition video autoplay fallback:", e));
+                });
+            }
+
+            video.onended = () => {
+                console.log("Video de transición Fase 4 finalizado.");
+                finishPhase4IntroVideo();
+            };
+        } else {
+            showPhase(4);
+        }
+    }
+    window.startPhase4TransitionVideo = startPhase4TransitionVideo;
+
+    function finishPhase4IntroVideo() {
+        const videoOverlay = document.getElementById('phase4-intro-video-overlay');
+        const video = document.getElementById('phase4-fullscreen-video');
+
+        if (video) {
+            video.pause();
+        }
+
+        if (videoOverlay) {
+            videoOverlay.classList.add('overlay-fade-out');
+            setTimeout(() => {
+                videoOverlay.style.display = 'none';
+                videoOverlay.classList.remove('overlay-fade-out');
+                showPhase(4);
+            }, 450);
+        } else {
+            showPhase(4);
+        }
+    }
+    window.finishPhase4IntroVideo = finishPhase4IntroVideo;
+
     function selectArtStyle(styleKey) {
         if (!styleKey) return;
         gameState.style = styleKey;
@@ -2616,11 +2645,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (successPanel) successPanel.style.display = 'none';
         if (fichaPanel) {
             fichaPanel.style.display = 'flex';
-            fichaPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         // Map and populate all client data
         const clientEl = document.getElementById('summary-card-client');
+        const phoneEl = document.getElementById('summary-card-phone');
+        const igEl = document.getElementById('summary-card-instagram');
+        const emailEl = document.getElementById('summary-card-email');
         const silEl = document.getElementById('summary-card-silhouette');
         const zoneEl = document.getElementById('summary-card-zone');
         const scaleEl = document.getElementById('summary-card-scale');
@@ -2628,10 +2660,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const painEl = document.getElementById('summary-card-pain');
         const meaningEl = document.getElementById('summary-card-meaning');
         const folioIdEl = document.getElementById('ficha-folio-id');
+        const watermarkEl = document.getElementById('ficha-style-watermark');
 
         if (clientEl) {
-            const igPart = gameState.instagram ? ` / @${gameState.instagram.replace('@', '')}` : '';
-            clientEl.textContent = `${gameState.name || 'Cliente'} (${gameState.phone || 'WhatsApp'}${igPart})`;
+            clientEl.textContent = gameState.name || 'Cliente';
+        }
+        if (phoneEl) {
+            phoneEl.textContent = gameState.phone || '—';
+        }
+        if (igEl) {
+            igEl.textContent = gameState.instagram ? (gameState.instagram.startsWith('@') ? gameState.instagram : `@${gameState.instagram}`) : 'No indicado';
+        }
+        if (emailEl) {
+            emailEl.textContent = gameState.email || 'No indicado';
         }
         if (silEl) {
             silEl.textContent = gameState.gender === 'female' ? 'Silueta Femenina' : (gameState.gender === 'male' ? 'Silueta Masculina' : 'Silueta No Binario / Neutro');
@@ -2662,6 +2703,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (meaningEl) {
             meaningEl.textContent = `"${gameState.meaning || 'Co-creación y conceptualización anatómica en sesión con Natalia Jauregui.'}"`;
+        }
+        if (watermarkEl) {
+            if (gameState.style && STYLE_IMAGE_MAP[gameState.style]) {
+                watermarkEl.style.backgroundImage = `url('${STYLE_IMAGE_MAP[gameState.style].img}')`;
+                watermarkEl.style.display = 'block';
+            } else {
+                watermarkEl.style.display = 'none';
+            }
         }
         if (folioIdEl) {
             const rand = Math.floor(1000 + Math.random() * 9000);

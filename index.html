@@ -89,6 +89,37 @@
         </div>
     </div>
 
+    <!-- Video Transición Pantalla Completa: Fase 3 -> Fase 4 (Protocolo de Confort con Natalia) -->
+    <div class="fullscreen-video-overlay" id="phase4-intro-video-overlay" style="display: none;">
+        <!-- Capa 0: Video Fullscreen Autoplay -->
+        <video class="fullscreen-transition-video" id="phase4-fullscreen-video" playsinline preload="auto">
+            <source src="images/video-tooltip.mp4" type="video/mp4">
+            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+        </video>
+
+        <!-- Capa 1: Overlay cinematográfico de contraste -->
+        <div class="fullscreen-video-contrast"></div>
+
+        <!-- Capa 2: Controles Superiores & Info -->
+        <div class="fullscreen-video-topbar">
+            <div class="fullscreen-video-badge">
+                <span class="badge-dot"></span>
+                <span>FASE 4 // PROTOCOLO DE CONFORT &amp; BIOSEGURIDAD</span>
+            </div>
+            <button type="button" class="btn-skip-video" id="btn-skip-phase4-video" onclick="finishPhase4IntroVideo()">
+                <span>Continuar a Protocolo</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+
+        <!-- Capa 3: Subtítulo inferior -->
+        <div class="fullscreen-video-caption-bar">
+            <p class="fullscreen-caption-text">
+                <strong>Natalia:</strong> "Tu tranquilidad y confort son esenciales. Conoce cómo aplicamos tecnología y protocolos avanzados para que vivas una sesión cómoda y sin dolor."
+            </p>
+        </div>
+    </div>
+
     <!-- Gamified Experience Dashboard -->
     <div class="gamified-experience" id="gamified-experience" style="display: none;">
         <div class="gamified-container">
@@ -269,45 +300,60 @@
                         
                         <div class="phase-form-clean">
                             
-                            <!-- Paso 1: Selector de Estilo Artístico -->
+                            <!-- Paso 1: Selector de Estilo Artístico con Portafolio de Autor -->
                             <div class="clean-section-block">
                                 <span class="clean-section-tag">PASO 1 // ESTILO ARTÍSTICO PREFERIDO *</span>
                                 <div class="styles-cards-grid">
                                     <div class="style-select-card" data-style="anime" onclick="selectArtStyle('anime')">
-                                        <div class="style-card-indicator"></div>
+                                        <div class="style-card-bg-img" style="background-image: url('images/gallery-anime-sukuna.jpg');"></div>
+                                        <div class="style-card-overlay"></div>
+                                        <div class="style-card-indicator"><i class="fa-solid fa-check"></i></div>
                                         <div class="style-card-content">
+                                            <span class="style-card-tag">TÉCNICA DE AUTOR</span>
                                             <h4 class="style-card-title">Anime &amp; Manga</h4>
                                             <p class="style-card-desc">Línea de alta precisión, dinamismo visual y fidelidad artística.</p>
                                         </div>
                                     </div>
 
                                     <div class="style-select-card" data-style="color" onclick="selectArtStyle('color')">
-                                        <div class="style-card-indicator"></div>
+                                        <div class="style-card-bg-img" style="background-image: url('images/gallery-color-colibri.jpg');"></div>
+                                        <div class="style-card-overlay"></div>
+                                        <div class="style-card-indicator"><i class="fa-solid fa-check"></i></div>
                                         <div class="style-card-content">
+                                            <span class="style-card-tag">TÉCNICA DE AUTOR</span>
                                             <h4 class="style-card-title">Color de Alta Saturación</h4>
                                             <p class="style-card-desc">Pigmentación sólida, degradados intensos y vibrancia de autor.</p>
                                         </div>
                                     </div>
 
                                     <div class="style-select-card" data-style="shadows" onclick="selectArtStyle('shadows')">
-                                        <div class="style-card-indicator"></div>
+                                        <div class="style-card-bg-img" style="background-image: url('images/gallery-shadows-samuraifox.jpg');"></div>
+                                        <div class="style-card-overlay"></div>
+                                        <div class="style-card-indicator"><i class="fa-solid fa-check"></i></div>
                                         <div class="style-card-content">
+                                            <span class="style-card-tag">TÉCNICA DE AUTOR</span>
                                             <h4 class="style-card-title">Sombras &amp; Blackwork</h4>
                                             <p class="style-card-desc">Contrastes profundos, volumen anatómico y realismo monocromático.</p>
                                         </div>
                                     </div>
 
                                     <div class="style-select-card" data-style="fineline" onclick="selectArtStyle('fineline')">
-                                        <div class="style-card-indicator"></div>
+                                        <div class="style-card-bg-img" style="background-image: url('images/gallery-fineline-skull.jpg');"></div>
+                                        <div class="style-card-overlay"></div>
+                                        <div class="style-card-indicator"><i class="fa-solid fa-check"></i></div>
                                         <div class="style-card-content">
+                                            <span class="style-card-tag">TÉCNICA DE AUTOR</span>
                                             <h4 class="style-card-title">Fine Line &amp; Microrealismo</h4>
                                             <p class="style-card-desc">Trazo sutil, elegancia milimétrica y detalles delicados.</p>
                                         </div>
                                     </div>
 
                                     <div class="style-select-card" data-style="conceptual" onclick="selectArtStyle('conceptual')">
-                                        <div class="style-card-indicator"></div>
+                                        <div class="style-card-bg-img" style="background-image: url('images/gallery-conceptual-memento.jpg');"></div>
+                                        <div class="style-card-overlay"></div>
+                                        <div class="style-card-indicator"><i class="fa-solid fa-check"></i></div>
                                         <div class="style-card-content">
+                                            <span class="style-card-tag">TÉCNICA DE AUTOR</span>
                                             <h4 class="style-card-title">Conceptual / De Autor</h4>
                                             <p class="style-card-desc">Composición abstracta, vanguardia y diseño anatómico único.</p>
                                         </div>
@@ -359,7 +405,7 @@
                                     <i class="fa-solid fa-arrow-left"></i>
                                     <span>Lienzo Anatómico</span>
                                 </button>
-                                <button type="button" class="btn-atelier-primary" id="btn-phase3-next" onclick="showPhase(4)" disabled>
+                                <button type="button" class="btn-atelier-primary" id="btn-phase3-next" onclick="startPhase4TransitionVideo()" disabled>
                                     <span>Continuar a Protocolo de Confort</span>
                                     <i class="fa-solid fa-arrow-right"></i>
                                 </button>
@@ -393,12 +439,20 @@
                                 <span class="section-label-game">2. DATOS DE OFICIALIZACIÓN DE FICHA</span>
                                 <div class="form-grid">
                                     <div class="form-group-game">
-                                        <label for="game-name">Nombre y Apellidos *</label>
+                                        <label for="game-name"><i class="fa-solid fa-user"></i> Nombre y Apellidos *</label>
                                         <input type="text" id="game-name" placeholder="Tu nombre completo" required>
                                     </div>
                                     <div class="form-group-game">
-                                        <label for="game-phone">WhatsApp / Teléfono *</label>
+                                        <label for="game-phone"><i class="fa-brands fa-whatsapp"></i> WhatsApp / Teléfono *</label>
                                         <input type="tel" id="game-phone" placeholder="Ej: +57 310 123 4567" required>
+                                    </div>
+                                    <div class="form-group-game">
+                                        <label for="game-instagram"><i class="fa-brands fa-instagram"></i> Instagram (@usuario)</label>
+                                        <input type="text" id="game-instagram" placeholder="Ej: @tu_usuario">
+                                    </div>
+                                    <div class="form-group-game">
+                                        <label for="game-email"><i class="fa-solid fa-envelope"></i> Correo Electrónico *</label>
+                                        <input type="email" id="game-email" placeholder="Ej: tu_nombre@correo.com" required>
                                     </div>
                                 </div>
                             </div>
@@ -442,6 +496,9 @@
                         <!-- Panel de Ficha Técnica Oficializada (Aparece tras agendar en Calendly) -->
                         <div id="game-ficha-confirmed-panel" class="game-ficha-confirmed-panel">
                             <div class="official-ficha-card">
+                                <!-- Marca de agua translúcida del estilo seleccionado -->
+                                <div class="ficha-style-watermark" id="ficha-style-watermark"></div>
+
                                 <div class="ficha-card-header">
                                     <div class="ficha-badge-certified">
                                         <i class="fa-solid fa-certificate"></i> FICHA TÉCNICA OFICIALIZADA // REGISTRADA
@@ -455,6 +512,18 @@
                                     <div class="ficha-meta-item">
                                         <span class="ficha-meta-label">Titular del Proyecto</span>
                                         <span class="ficha-meta-val" id="summary-card-client">—</span>
+                                    </div>
+                                    <div class="ficha-meta-item">
+                                        <span class="ficha-meta-label">WhatsApp de Contacto</span>
+                                        <span class="ficha-meta-val" id="summary-card-phone">—</span>
+                                    </div>
+                                    <div class="ficha-meta-item">
+                                        <span class="ficha-meta-label">Instagram del Titular</span>
+                                        <span class="ficha-meta-val highlight-emerald" id="summary-card-instagram">—</span>
+                                    </div>
+                                    <div class="ficha-meta-item">
+                                        <span class="ficha-meta-label">Correo Electrónico</span>
+                                        <span class="ficha-meta-val" id="summary-card-email">—</span>
                                     </div>
                                     <div class="ficha-meta-item">
                                         <span class="ficha-meta-label">Lienzo Base Anatómico</span>
@@ -472,7 +541,7 @@
                                         <span class="ficha-meta-label">Estilo Artístico Seleccionado</span>
                                         <span class="ficha-meta-val" id="summary-card-style">—</span>
                                     </div>
-                                    <div class="ficha-meta-item">
+                                    <div class="ficha-meta-item full-width-meta">
                                         <span class="ficha-meta-label">Protocolo de Confort</span>
                                         <span class="ficha-meta-val highlight-emerald" id="summary-card-pain">—</span>
                                     </div>
