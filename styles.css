@@ -5647,49 +5647,56 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
 
 .fullscreen-video-topbar {
     position: absolute;
-    top: 24px;
-    left: 24px;
-    right: 24px;
+    top: clamp(14px, 3vh, 24px);
+    left: clamp(12px, 3vw, 24px);
+    right: clamp(12px, 3vw, 24px);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 8px;
     z-index: 2;
 }
 
 .fullscreen-video-badge {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    background: rgba(10, 10, 10, 0.75);
+    gap: 8px;
+    background: rgba(10, 10, 10, 0.85);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 8px 18px;
+    padding: clamp(6px, 1.2vh, 8px) clamp(10px, 2.5vw, 16px);
     border-radius: 30px;
     font-family: var(--font-heading);
-    font-size: 0.75rem;
-    letter-spacing: 2px;
+    font-size: clamp(0.56rem, 2.2vw, 0.72rem);
+    letter-spacing: clamp(0.5px, 0.2vw, 1.5px);
     color: var(--accent);
     text-transform: uppercase;
     font-weight: 700;
     backdrop-filter: blur(10px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
 }
 
 .btn-skip-video {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.12);
     border: 1px solid rgba(255, 255, 255, 0.35);
     color: #FFFFFF;
-    padding: 10px 22px;
+    padding: clamp(6px, 1.2vh, 8px) clamp(12px, 2.8vw, 18px);
     border-radius: 30px;
     font-family: var(--font-heading);
-    font-size: 0.78rem;
-    letter-spacing: 2px;
+    font-size: clamp(0.58rem, 2.2vw, 0.74rem);
+    letter-spacing: clamp(0.5px, 0.2vw, 1.5px);
     text-transform: uppercase;
     font-weight: 700;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 6px;
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .btn-skip-video:hover {
@@ -5702,25 +5709,26 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
 
 .fullscreen-video-caption-bar {
     position: absolute;
-    bottom: 30px;
+    bottom: clamp(16px, 3.5vh, 30px);
     left: 50%;
     transform: translateX(-50%);
     max-width: 780px;
-    width: 90%;
-    background: rgba(10, 10, 10, 0.85);
+    width: calc(100% - clamp(24px, 6vw, 48px));
+    background: rgba(10, 10, 10, 0.88);
     border: 1px solid rgba(255, 255, 255, 0.12);
-    padding: 16px 24px;
-    border-radius: 16px;
+    padding: clamp(10px, 2vh, 16px) clamp(14px, 3vw, 24px);
+    border-radius: 14px;
     text-align: center;
     z-index: 2;
     backdrop-filter: blur(12px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    box-sizing: border-box;
 }
 
 .fullscreen-caption-text {
-    font-size: 0.92rem;
+    font-size: clamp(0.80rem, 2.6vw, 0.92rem);
     color: #EAEAEA;
-    line-height: 1.5;
+    line-height: 1.45;
     margin: 0;
 }
 

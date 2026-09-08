@@ -1607,6 +1607,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update current 360 viewer if entering Phase 2
         if (phaseNum === 2) {
             update360MannequinView();
+            if (typeof validatePhase2 === 'function') validatePhase2();
+        }
+
+        if (phaseNum === 4) {
+            if (typeof validatePhase4 === 'function') validatePhase4();
         }
 
         // Stop all phase videos currently playing
@@ -1765,31 +1770,31 @@ document.addEventListener('DOMContentLoaded', () => {
                     "defaultView": "front"
                 },
                 "Hombro Derecho": {
-                    "front": "brazo-der-superior-front.webp",
-                    "back": "brazo-der-superior-back.webp",
-                    "left": "brazo-der-superior-internal.webp",
-                    "right": "brazo-der-superior-external.webp",
+                    "front": "brazo-der-hombro-front.webp",
+                    "back": "brazo-der-hombro-back.webp",
+                    "left": "brazo-der-hombro-internal.webp",
+                    "right": "brazo-der-hombro-external.webp",
                     "defaultView": "right"
                 },
                 "Hombro Izquierdo": {
-                    "front": "brazo-izq-superior-front.webp",
-                    "back": "brazo-izq-superior-back.webp",
-                    "left": "brazo-izq-superior-external.webp",
-                    "right": "brazo-izq-superior-internal.webp",
+                    "front": "brazo-izq-hombro-front.webp",
+                    "back": "brazo-izq-hombro-back.webp",
+                    "left": "brazo-izq-hombro-external.webp",
+                    "right": "brazo-izq-hombro-internal.webp",
                     "defaultView": "left"
                 },
                 "Bíceps": {
-                    "front": "brazo-der-superior-front.webp",
-                    "back": "brazo-der-superior-back.webp",
-                    "left": "brazo-izq-superior-internal.webp",
-                    "right": "brazo-der-superior-internal.webp",
+                    "front": "brazo-der-biceps-front.webp",
+                    "back": "brazo-der-biceps-back.webp",
+                    "left": "brazo-der-biceps-internal.webp",
+                    "right": "brazo-der-biceps-external.webp",
                     "defaultView": "front"
                 },
                 "Tríceps": {
-                    "front": "brazo-der-superior-front.webp",
-                    "back": "brazo-der-superior-back.webp",
-                    "left": "brazo-izq-superior-external.webp",
-                    "right": "brazo-der-superior-external.webp",
+                    "front": "brazo-der-triceps-front.webp",
+                    "back": "brazo-der-triceps-back.webp",
+                    "left": "brazo-der-triceps-internal.webp",
+                    "right": "brazo-der-triceps-external.webp",
                     "defaultView": "back"
                 },
                 "Antebrazo Interno": {
@@ -2189,11 +2194,20 @@ document.addEventListener('DOMContentLoaded', () => {
             update360MannequinView();
         }
 
-        // Enable continue button
-        const btnPhase2Next = document.getElementById('btn-phase2-next');
-        if (btnPhase2Next) btnPhase2Next.disabled = false;
+        // Validate Phase 2 completion
+        validatePhase2();
     }
     window.selectCleanSubzone = selectCleanSubzone;
+
+    // Validate Phase 2 strictly (requires macro + subzone + scale)
+    function validatePhase2() {
+        const btnPhase2Next = document.getElementById('btn-phase2-next');
+        const isValid = !!(gameState.focusedMacro && gameState.subzone && gameState.scale);
+        if (btnPhase2Next) {
+            btnPhase2Next.disabled = !isValid;
+        }
+    }
+    window.validatePhase2 = validatePhase2;
 
     // Global Scale Selector
     function selectScale(scale) {
@@ -2206,6 +2220,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.classList.remove('active');
             }
         });
+        validatePhase2();
     }
     window.selectScale = selectScale;
 
@@ -2229,6 +2244,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.classList.remove('active');
             }
         });
+        if (typeof validatePhase4 === 'function') validatePhase4();
     }
     window.selectPainMode = selectPainMode;
 
@@ -2541,6 +2557,38 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     window.closePrivacyModal = closePrivacyModal;
+
+    // Real-time strict validation for Phase 4
+    function validatePhase4() {
+        const btnPhase4Next = document.getElementById('btn-phase4-next');
+        const nameVal = document.getElementById('game-name')?.value?.trim() || '';
+        const phoneVal = document.getElementById('game-phone')?.value?.trim() || '';
+        const emailVal = document.getElementById('game-email')?.value?.trim() || '';
+        const habeasChecked = document.getElementById('consent-habeas-data')?.checked || false;
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const isValid = (nameVal.length >= 3) && (phoneVal.length >= 7) && emailRegex.test(emailVal) && habeasChecked;
+
+        if (btnPhase4Next) {
+            btnPhase4Next.disabled = !isValid;
+        }
+        return isValid;
+    }
+    window.validatePhase4 = validatePhase4;
+
+    // Attach listeners for real-time validation
+    ['game-name', 'game-phone', 'game-email'].forEach(id => {
+        const inputEl = document.getElementById(id);
+        if (inputEl) {
+            inputEl.addEventListener('input', validatePhase4);
+            inputEl.addEventListener('change', validatePhase4);
+        }
+    });
+
+    const habeasInput = document.getElementById('consent-habeas-data');
+    if (habeasInput) {
+        habeasInput.addEventListener('change', validatePhase4);
+    }
 
     // Submit consolidated gamified ficha data
     function submitGamifiedFicha() {
