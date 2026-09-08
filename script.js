@@ -1584,8 +1584,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const phaseHeaderTitles = {
         1: "FASE 1 // LIENZO BASE",
         2: "FASE 2 // COORDENADA ANATÓMICA",
-        3: "FASE 3 // ATELIER DE ESTILOS",
-        4: "FASE 4 // PROTOCOLO DE CONFORT",
+        3: "FASE 3 // ATELIER DE ESTILOS & CONCEPTO",
+        4: "FASE 4 // PROTOCOLO DE CONFORT & DATOS",
         5: "FASE 5 // OFICIALIZAR FICHA"
     };
 
@@ -1662,92 +1662,440 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-                        // ==========================================================================
-    // PANTALLA 3 (FASE 2): CONFIGURADOR ANATÓMICO RADICALMENTE LIMPIO
+    // ==========================================================================
+    // PANTALLA 3 (FASE 2): CONFIGURADOR ANATÓMICO 360° CON RESALTADO VERDE EN TIEMPO REAL
     // ==========================================================================
 
     const MACRO_ZONES = {
-  "brazo": {
-    "name": "Brazos",
-    "defaultView": "front",
-    "subzones": [
-      "Media Manga Superior",
-      "Media Manga Inferior",
-      "Manga Completa",
-      "Hombro Derecho",
-      "Hombro Izquierdo",
-      "Bíceps",
-      "Tríceps",
-      "Antebrazo Interno",
-      "Antebrazo Externo",
-      "Muñeca / Mano"
-    ]
-  },
-  "pierna": {
-    "name": "Piernas",
-    "defaultView": "front",
-    "subzones": [
-      "Muslo Frontal",
-      "Muslo Lateral",
-      "Muslo Trasero",
-      "Rodilla",
-      "Espinilla",
-      "Gemelo / Pantorrilla",
-      "Media Pierna Superior",
-      "Media Pierna Inferior",
-      "Pierna Completa",
-      "Tobillo / Pie"
-    ]
-  },
-  "pecho": {
-    "name": "Pecho / Torso",
-    "defaultView": "front",
-    "subzones": [
-      "Pectoral Derecho",
-      "Pectoral Izquierdo",
-      "Pectoral (Ambos)",
-      "Costilla Derecha",
-      "Costilla Izquierda",
-      "Abdomen / Vientre",
-      "Torso Completo"
-    ]
-  },
-  "espalda": {
-    "name": "Espalda",
-    "defaultView": "back",
-    "subzones": [
-      "Espalda Alta / Trapecio",
-      "Omóplato Derecho",
-      "Omóplato Izquierdo",
-      "Columna Central",
-      "Espalda Baja / Lumbar",
-      "Espalda Completa (Full Back)"
-    ]
-  },
-  "cuello": {
-    "name": "Cuello",
-    "defaultView": "front",
-    "subzones": [
-      "Garganta / Frontal",
-      "Lateral Derecho",
-      "Lateral Izquierdo",
-      "Nuca / Posterior",
-      "Cuello Completo"
-    ]
-  }
-};
+        "brazo": {
+            "name": "Brazos",
+            "defaultView": "front",
+            "subzones": [
+                "Media Manga Superior",
+                "Media Manga Inferior",
+                "Manga Completa",
+                "Hombro Derecho",
+                "Hombro Izquierdo",
+                "Bíceps",
+                "Tríceps",
+                "Antebrazo Interno",
+                "Antebrazo Externo",
+                "Muñeca / Mano"
+            ]
+        },
+        "pierna": {
+            "name": "Piernas",
+            "defaultView": "front",
+            "subzones": [
+                "Muslo Frontal",
+                "Muslo Lateral",
+                "Muslo Trasero",
+                "Rodilla",
+                "Espinilla",
+                "Gemelo / Pantorrilla",
+                "Media Pierna Superior",
+                "Media Pierna Inferior",
+                "Pierna Completa",
+                "Tobillo / Pie"
+            ]
+        },
+        "pecho": {
+            "name": "Pecho / Torso",
+            "defaultView": "front",
+            "subzones": [
+                "Pectoral Derecho",
+                "Pectoral Izquierdo",
+                "Pectoral (Ambos)",
+                "Costilla Derecha",
+                "Costilla Izquierda",
+                "Abdomen / Vientre",
+                "Torso Completo"
+            ]
+        },
+        "espalda": {
+            "name": "Espalda",
+            "defaultView": "back",
+            "subzones": [
+                "Espalda Alta / Trapecio",
+                "Omóplato Derecho",
+                "Omóplato Izquierdo",
+                "Columna Central",
+                "Espalda Baja / Lumbar",
+                "Espalda Completa (Full Back)"
+            ]
+        },
+        "cuello": {
+            "name": "Cuello",
+            "defaultView": "front",
+            "subzones": [
+                "Garganta / Frontal",
+                "Lateral Derecho",
+                "Lateral Izquierdo",
+                "Nuca / Posterior",
+                "Cuello Completo"
+            ]
+        }
+    };
+
+    // Mapeo exhaustivo de capas verdes esmeralda por perspectiva
+    const ANATOMICAL_PART_MAPPING = {
+        "brazo": {
+            "default": {
+                "front": "brazo-der-front.webp",
+                "back": "brazo-der-back.webp",
+                "left": "brazo-izq-external.webp",
+                "right": "brazo-der-external.webp"
+            },
+            "subzones": {
+                "Media Manga Superior": {
+                    "front": "brazo-der-superior-front.webp",
+                    "back": "brazo-der-superior-back.webp",
+                    "left": "brazo-izq-superior-external.webp",
+                    "right": "brazo-der-superior-external.webp",
+                    "defaultView": "front"
+                },
+                "Media Manga Inferior": {
+                    "front": "brazo-der-antebrazo-front.webp",
+                    "back": "brazo-der-antebrazo-back.webp",
+                    "left": "brazo-izq-antebrazo-external.webp",
+                    "right": "brazo-der-antebrazo-external.webp",
+                    "defaultView": "front"
+                },
+                "Manga Completa": {
+                    "front": "brazo-der-front.webp",
+                    "back": "brazo-der-back.webp",
+                    "left": "brazo-izq-external.webp",
+                    "right": "brazo-der-external.webp",
+                    "defaultView": "front"
+                },
+                "Hombro Derecho": {
+                    "front": "brazo-der-superior-front.webp",
+                    "back": "brazo-der-superior-back.webp",
+                    "left": "brazo-der-superior-internal.webp",
+                    "right": "brazo-der-superior-external.webp",
+                    "defaultView": "right"
+                },
+                "Hombro Izquierdo": {
+                    "front": "brazo-izq-superior-front.webp",
+                    "back": "brazo-izq-superior-back.webp",
+                    "left": "brazo-izq-superior-external.webp",
+                    "right": "brazo-izq-superior-internal.webp",
+                    "defaultView": "left"
+                },
+                "Bíceps": {
+                    "front": "brazo-der-superior-front.webp",
+                    "back": "brazo-der-superior-back.webp",
+                    "left": "brazo-izq-superior-internal.webp",
+                    "right": "brazo-der-superior-internal.webp",
+                    "defaultView": "front"
+                },
+                "Tríceps": {
+                    "front": "brazo-der-superior-front.webp",
+                    "back": "brazo-der-superior-back.webp",
+                    "left": "brazo-izq-superior-external.webp",
+                    "right": "brazo-der-superior-external.webp",
+                    "defaultView": "back"
+                },
+                "Antebrazo Interno": {
+                    "front": "brazo-der-antebrazo-front.webp",
+                    "back": "brazo-der-antebrazo-back.webp",
+                    "left": "brazo-izq-antebrazo-internal.webp",
+                    "right": "brazo-der-antebrazo-internal.webp",
+                    "defaultView": "front"
+                },
+                "Antebrazo Externo": {
+                    "front": "brazo-der-antebrazo-front.webp",
+                    "back": "brazo-der-antebrazo-back.webp",
+                    "left": "brazo-izq-antebrazo-external.webp",
+                    "right": "brazo-der-antebrazo-external.webp",
+                    "defaultView": "right"
+                },
+                "Muñeca / Mano": {
+                    "front": "brazo-der-mano-front.webp",
+                    "back": "brazo-der-mano-back.webp",
+                    "left": "brazo-izq-mano-external.webp",
+                    "right": "brazo-der-mano-external.webp",
+                    "defaultView": "front"
+                }
+            }
+        },
+        "pierna": {
+            "default": {
+                "front": "pierna-der-front.webp",
+                "back": "pierna-der-back.webp",
+                "left": "pierna-izq-external.webp",
+                "right": "pierna-der-external.webp"
+            },
+            "subzones": {
+                "Muslo Frontal": {
+                    "front": "pierna-der-muslo-front.webp",
+                    "back": "pierna-der-muslo-back.webp",
+                    "left": "pierna-izq-muslo-external.webp",
+                    "right": "pierna-der-muslo-external.webp",
+                    "defaultView": "front"
+                },
+                "Muslo Lateral": {
+                    "front": "pierna-der-muslo-front.webp",
+                    "back": "pierna-der-muslo-back.webp",
+                    "left": "pierna-izq-muslo-external.webp",
+                    "right": "pierna-der-muslo-external.webp",
+                    "defaultView": "right"
+                },
+                "Muslo Trasero": {
+                    "front": "pierna-der-muslo-front.webp",
+                    "back": "pierna-der-muslo-back.webp",
+                    "left": "pierna-izq-muslo-external.webp",
+                    "right": "pierna-der-muslo-external.webp",
+                    "defaultView": "back"
+                },
+                "Rodilla": {
+                    "front": "pierna-der-muslo-front.webp",
+                    "back": "pierna-der-pantorrilla-back.webp",
+                    "left": "pierna-izq-pantorrilla-external.webp",
+                    "right": "pierna-der-pantorrilla-external.webp",
+                    "defaultView": "front"
+                },
+                "Espinilla": {
+                    "front": "pierna-der-pantorrilla-front.webp",
+                    "back": "pierna-der-pantorrilla-back.webp",
+                    "left": "pierna-izq-pantorrilla-external.webp",
+                    "right": "pierna-der-pantorrilla-external.webp",
+                    "defaultView": "front"
+                },
+                "Gemelo / Pantorrilla": {
+                    "front": "pierna-der-pantorrilla-front.webp",
+                    "back": "pierna-der-pantorrilla-back.webp",
+                    "left": "pierna-izq-pantorrilla-external.webp",
+                    "right": "pierna-der-pantorrilla-external.webp",
+                    "defaultView": "back"
+                },
+                "Media Pierna Superior": {
+                    "front": "pierna-der-muslo-front.webp",
+                    "back": "pierna-der-muslo-back.webp",
+                    "left": "pierna-izq-muslo-external.webp",
+                    "right": "pierna-der-muslo-external.webp",
+                    "defaultView": "front"
+                },
+                "Media Pierna Inferior": {
+                    "front": "pierna-der-pantorrilla-front.webp",
+                    "back": "pierna-der-pantorrilla-back.webp",
+                    "left": "pierna-izq-pantorrilla-external.webp",
+                    "right": "pierna-der-pantorrilla-external.webp",
+                    "defaultView": "front"
+                },
+                "Pierna Completa": {
+                    "front": "pierna-der-front.webp",
+                    "back": "pierna-der-back.webp",
+                    "left": "pierna-izq-external.webp",
+                    "right": "pierna-der-external.webp",
+                    "defaultView": "front"
+                },
+                "Tobillo / Pie": {
+                    "front": "pierna-der-pie-front.webp",
+                    "back": "pierna-der-pie-back.webp",
+                    "left": "pierna-izq-pie-external.webp",
+                    "right": "pierna-der-pie-external.webp",
+                    "defaultView": "front"
+                }
+            }
+        },
+        "pecho": {
+            "default": {
+                "front": "torso-pecho.webp",
+                "back": "torso.webp",
+                "left": "torso-costilla-izq.webp",
+                "right": "torso-costilla-der.webp"
+            },
+            "subzones": {
+                "Pectoral Derecho": {
+                    "front": "torso-pectoral-der.webp",
+                    "back": "torso.webp",
+                    "left": "torso-costilla-izq.webp",
+                    "right": "torso-costilla-der.webp",
+                    "defaultView": "front"
+                },
+                "Pectoral Izquierdo": {
+                    "front": "torso-pectoral-izq.webp",
+                    "back": "torso.webp",
+                    "left": "torso-costilla-izq.webp",
+                    "right": "torso-costilla-der.webp",
+                    "defaultView": "front"
+                },
+                "Pectoral (Ambos)": {
+                    "front": "torso-pecho.webp",
+                    "back": "torso.webp",
+                    "left": "torso-costilla-izq.webp",
+                    "right": "torso-costilla-der.webp",
+                    "defaultView": "front"
+                },
+                "Costilla Derecha": {
+                    "front": "torso-costilla-der.webp",
+                    "back": "torso-costilla-der.webp",
+                    "left": "torso-costilla-izq.webp",
+                    "right": "torso-costilla-der.webp",
+                    "defaultView": "right"
+                },
+                "Costilla Izquierda": {
+                    "front": "torso-costilla-izq.webp",
+                    "back": "torso-costilla-izq.webp",
+                    "left": "torso-costilla-izq.webp",
+                    "right": "torso-costilla-der.webp",
+                    "defaultView": "left"
+                },
+                "Abdomen / Vientre": {
+                    "front": "torso-abdomen.webp",
+                    "back": "torso.webp",
+                    "left": "torso-costilla-izq.webp",
+                    "right": "torso-costilla-der.webp",
+                    "defaultView": "front"
+                },
+                "Torso Completo": {
+                    "front": "torso.webp",
+                    "back": "torso.webp",
+                    "left": "torso-costilla-izq.webp",
+                    "right": "torso-costilla-der.webp",
+                    "defaultView": "front"
+                }
+            }
+        },
+        "espalda": {
+            "default": {
+                "front": "espalda.webp",
+                "back": "espalda.webp",
+                "left": "espalda.webp",
+                "right": "espalda.webp"
+            },
+            "subzones": {
+                "Espalda Alta / Trapecio": {
+                    "front": "espalda-alta.webp",
+                    "back": "espalda-alta.webp",
+                    "left": "espalda-alta.webp",
+                    "right": "espalda-alta.webp",
+                    "defaultView": "back"
+                },
+                "Omóplato Derecho": {
+                    "front": "espalda-escapula-der.webp",
+                    "back": "espalda-escapula-der.webp",
+                    "left": "espalda-escapula-der.webp",
+                    "right": "espalda-escapula-der.webp",
+                    "defaultView": "back"
+                },
+                "Omóplato Izquierdo": {
+                    "front": "espalda-escapula-izq.webp",
+                    "back": "espalda-escapula-izq.webp",
+                    "left": "espalda-escapula-izq.webp",
+                    "right": "espalda-escapula-izq.webp",
+                    "defaultView": "back"
+                },
+                "Columna Central": {
+                    "front": "espalda.webp",
+                    "back": "espalda.webp",
+                    "left": "espalda.webp",
+                    "right": "espalda.webp",
+                    "defaultView": "back"
+                },
+                "Espalda Baja / Lumbar": {
+                    "front": "espalda-baja.webp",
+                    "back": "espalda-baja.webp",
+                    "left": "espalda-baja.webp",
+                    "right": "espalda-baja.webp",
+                    "defaultView": "back"
+                },
+                "Espalda Completa (Full Back)": {
+                    "front": "espalda.webp",
+                    "back": "espalda.webp",
+                    "left": "espalda.webp",
+                    "right": "espalda.webp",
+                    "defaultView": "back"
+                }
+            }
+        },
+        "cuello": {
+            "default": {
+                "front": "cuello-front.webp",
+                "back": "cuello-back.webp",
+                "left": "cuello-left.webp",
+                "right": "cuello-right.webp"
+            },
+            "subzones": {
+                "Garganta / Frontal": {
+                    "front": "cuello-front.webp",
+                    "back": "cuello-back.webp",
+                    "left": "cuello-left.webp",
+                    "right": "cuello-right.webp",
+                    "defaultView": "front"
+                },
+                "Lateral Derecho": {
+                    "front": "cuello-front.webp",
+                    "back": "cuello-back.webp",
+                    "left": "cuello-left.webp",
+                    "right": "cuello-right.webp",
+                    "defaultView": "right"
+                },
+                "Lateral Izquierdo": {
+                    "front": "cuello-front.webp",
+                    "back": "cuello-back.webp",
+                    "left": "cuello-left.webp",
+                    "right": "cuello-right.webp",
+                    "defaultView": "left"
+                },
+                "Nuca / Posterior": {
+                    "front": "cuello-front.webp",
+                    "back": "cuello-back.webp",
+                    "left": "cuello-left.webp",
+                    "right": "cuello-right.webp",
+                    "defaultView": "back"
+                },
+                "Cuello Completo": {
+                    "front": "head-neck-front.webp",
+                    "back": "head-neck-back.webp",
+                    "left": "head-neck-left.webp",
+                    "right": "head-neck-right.webp",
+                    "defaultView": "front"
+                }
+            }
+        }
+    };
 
     function update360MannequinView() {
         const mannequinImg = document.getElementById('mannequin-360-img');
-        if (!mannequinImg) return;
+        const highlightImg = document.getElementById('mannequin-highlight-img');
         const g = gameState.gender || 'male';
         const v = gameState.view || 'front';
         
-        mannequinImg.style.opacity = '0.3';
-        setTimeout(() => {
-            mannequinImg.src = 'images/mannequins/' + g + '/mannequin-' + g + '-' + v + '.webp';
-            mannequinImg.style.opacity = '1';
-        }, 80);
+        if (mannequinImg) {
+            mannequinImg.style.opacity = '0.3';
+            setTimeout(() => {
+                mannequinImg.src = 'images/mannequins/' + g + '/mannequin-' + g + '-' + v + '.webp';
+                mannequinImg.style.opacity = '1';
+            }, 60);
+        }
+
+        if (highlightImg) {
+            const macro = gameState.focusedMacro || gameState.zone || 'brazo';
+            const sub = gameState.subzone;
+            let overlayFilename = null;
+
+            if (ANATOMICAL_PART_MAPPING[macro]) {
+                if (sub && ANATOMICAL_PART_MAPPING[macro].subzones && ANATOMICAL_PART_MAPPING[macro].subzones[sub]) {
+                    overlayFilename = ANATOMICAL_PART_MAPPING[macro].subzones[sub][v] || ANATOMICAL_PART_MAPPING[macro].subzones[sub].front;
+                } else if (ANATOMICAL_PART_MAPPING[macro].default) {
+                    overlayFilename = ANATOMICAL_PART_MAPPING[macro].default[v] || ANATOMICAL_PART_MAPPING[macro].default.front;
+                }
+            }
+
+            if (overlayFilename) {
+                highlightImg.style.opacity = '0';
+                setTimeout(() => {
+                    highlightImg.src = 'images/mannequins/' + g + '/green/' + overlayFilename;
+                    highlightImg.classList.add('active');
+                    highlightImg.style.opacity = '1';
+                }, 60);
+            } else {
+                highlightImg.classList.remove('active');
+                highlightImg.style.opacity = '0';
+            }
+        }
     }
 
     // Global 360 Perspective Switcher
@@ -1862,13 +2210,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Auto-rotate perspective if subzone hints at a specific angle
-        const subLower = subzoneName.toLowerCase();
-        if (subLower.includes('trasero') || subLower.includes('posterior') || subLower.includes('tríceps') || subLower.includes('nuca') || subLower.includes('espalda') || subLower.includes('omóplato') || subLower.includes('columna') || subLower.includes('lumbar') || subLower.includes('full back') || subLower.includes('gemelo')) {
-            if (gameState.view !== 'back') changeMannequinView('back');
-        } else if (subLower.includes('costilla izq') || subLower.includes('lateral izq')) {
-            if (gameState.view !== 'left') changeMannequinView('left');
-        } else if (subLower.includes('costilla der') || subLower.includes('lateral der')) {
-            if (gameState.view !== 'right') changeMannequinView('right');
+        if (ANATOMICAL_PART_MAPPING[macroKey] && ANATOMICAL_PART_MAPPING[macroKey].subzones && ANATOMICAL_PART_MAPPING[macroKey].subzones[subzoneName]) {
+            const defV = ANATOMICAL_PART_MAPPING[macroKey].subzones[subzoneName].defaultView;
+            if (defV && gameState.view !== defV) {
+                changeMannequinView(defV);
+            } else {
+                update360MannequinView();
+            }
+        } else {
+            update360MannequinView();
         }
 
         // Enable continue button
@@ -1877,18 +2227,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     window.selectCleanSubzone = selectCleanSubzone;
 
-    // Initialize default macro selection on load
-    setTimeout(() => {
-        if (!gameState.zone) {
-            selectMacroZone('brazo');
-        }
-    }, 200);
-
     // Global Scale Selector
     function selectScale(scale) {
         if (!scale) return;
         gameState.scale = scale;
-        document.querySelectorAll('.scale-option-btn').forEach(btn => {
+        document.querySelectorAll('.clean-scale-pill').forEach(btn => {
             if (btn.getAttribute('data-scale') === scale) {
                 btn.classList.add('active');
             } else {
@@ -1899,13 +2242,27 @@ document.addEventListener('DOMContentLoaded', () => {
     window.selectScale = selectScale;
 
     // Scale options binding
-    const scaleOptionBtns = document.querySelectorAll('.scale-option-btn');
+    const scaleOptionBtns = document.querySelectorAll('.clean-scale-pill');
     scaleOptionBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             const scale = btn.getAttribute('data-scale');
             selectScale(scale);
         });
     });
+
+    // Pain Mode Selector (Fase 4)
+    function selectPainMode(mode) {
+        if (!mode) return;
+        gameState.painMode = mode;
+        document.querySelectorAll('.opt-btn-pain').forEach(btn => {
+            if (btn.getAttribute('data-pain') === mode) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+    }
+    window.selectPainMode = selectPainMode;
 
     // Navigation buttons for Phase 2
     const btnPhase2Prev = document.getElementById('btn-phase2-prev');
@@ -1922,147 +2279,119 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Game file upload feedback (Fase 4)
-    const gameFileInput = document.getElementById('game-refs');
-    const gameFileList = document.getElementById('game-file-list');
-
-    if (gameFileInput && gameFileList) {
-        gameFileInput.addEventListener('change', (e) => {
-            const files = Array.from(e.target.files);
-            
-            files.forEach(file => {
-                if (gameSelectedFiles.some(f => f.name === file.name && f.size === file.size)) return;
-                
-                gameSelectedFiles.push(file);
-                
-                const fileItem = document.createElement('div');
-                fileItem.className = 'game-file-item';
-                
-                const sizeKB = (file.size / 1024).toFixed(1);
-                
-                const spanInfo = document.createElement('span');
-                const icon = document.createElement('i');
-                icon.className = 'fa-regular fa-image';
-                spanInfo.appendChild(icon);
-                spanInfo.appendChild(document.createTextNode(` ${file.name} (${sizeKB} KB)`));
-                
-                const spanRemove = document.createElement('span');
-                spanRemove.className = 'game-file-item-remove';
-                spanRemove.setAttribute('data-name', file.name);
-                const trashIcon = document.createElement('i');
-                trashIcon.className = 'fa-solid fa-trash-can';
-                spanRemove.appendChild(trashIcon);
-                
-                fileItem.appendChild(spanInfo);
-                fileItem.appendChild(spanRemove);
-                
-                gameFileList.appendChild(fileItem);
-            });
-            
-            bindGameFileRemoveEvents();
-        });
-    }
-
-    function bindGameFileRemoveEvents() {
-        const removeBtns = gameFileList.querySelectorAll('.game-file-item-remove');
-        removeBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const fileName = btn.getAttribute('data-name');
-                gameSelectedFiles = gameSelectedFiles.filter(f => f.name !== fileName);
-                btn.closest('.game-file-item').remove();
-            });
-        });
-    }
-
-    // Submit consolidated gamified ficha data to Google Sheets
+    // Submit consolidated gamified ficha data
     function submitGamifiedFicha() {
+        const nameInput = document.getElementById('game-name');
+        const phoneInput = document.getElementById('game-phone');
+        const emailInput = document.getElementById('game-email');
+        const igInput = document.getElementById('game-instagram');
+        const meaningInput = document.getElementById('game-meaning');
+        const styleInput = document.getElementById('game-style');
+
+        if (nameInput) gameState.name = nameInput.value.trim();
+        if (phoneInput) gameState.phone = phoneInput.value.trim();
+        if (emailInput) gameState.email = emailInput.value.trim();
+        if (igInput) gameState.instagram = igInput.value.trim();
+        if (meaningInput) gameState.meaning = meaningInput.value.trim();
+        if (styleInput) gameState.style = styleInput.value;
+
+        if (!gameState.name || !gameState.phone) {
+            alert("Por favor completa tu nombre y número de WhatsApp para oficializar tu ficha técnica.");
+            return;
+        }
+
         const loadingOverlay = document.getElementById('game-wizard-status');
         const successPanel = document.getElementById('game-success-panel');
 
         if (loadingOverlay) loadingOverlay.style.display = 'flex';
         if (successPanel) successPanel.style.display = 'none';
 
-        // Clear and initialize Calendly inline widget inside game
-        const container = document.getElementById('game-calendly-container');
-        if (container) {
-            container.innerHTML = '';
-        }
-
-        // Show Fase 5 container immediately so loading spinner is visible
+        // Show Fase 5 container immediately
         showPhase(5);
+
+        const container = document.getElementById('game-calendly-container');
+        if (container) container.innerHTML = '';
 
         // Prep data payload mapping gamification details to Apps Script schema
         const payload = {
-            style: gameState.style,
-            description: `[FICHA DE CO-CREACIÓN GAMIFICADA]\n` +
-                         `• Silueta: ${gameState.gender.toUpperCase()}\n` +
-                         `• Contextura: ${gameState.contexture.toUpperCase()}\n` +
-                         `• Zona General: ${gameState.zone.toUpperCase()}\n` +
-                         `• Ubicación Detallada: ${gameState.subzone}\n` +
-                         `• Protocolo Experiencia: ${gameState.painMode === 'sin-dolor' ? 'SESIÓN SIN DOLOR' : 'MODO CLÁSICO'}\n` +
-                         `• Tamaño Aproximado: ${gameState.size === 'pequeno' ? 'Pequeño (<10cm)' : (gameState.size === 'mediano' ? 'Mediano (10-20cm)' : 'Grande/Manga')}\n\n` +
-                         `• Historia y Significado:\n${gameState.meaning}`,
-            placement: `${gameState.zone.toUpperCase()} - ${gameState.subzone}`,
-            size: gameState.size === 'pequeno' ? '< 10cm' : (gameState.size === 'mediano' ? '10-20cm' : 'Manga completa/Grande'),
+            style: gameState.style || 'conceptual',
+            description: `[FICHA DE ARQUITECTURA CORPORAL - NATALIA JAUREGUI]\n` +
+                         `• Silueta Base: ${gameState.gender.toUpperCase()}\n` +
+                         `• Coordenada Anatómica: ${gameState.zone.toUpperCase()} // ${gameState.subzone || 'General'}\n` +
+                         `• Protocolo Confort: ${gameState.painMode === 'sin-dolor' ? 'TECNOLOGÍA SIN DOLOR' : 'SESIÓN TRADICIONAL'}\n` +
+                         `• Escala / Formato: ${gameState.scale === 'pequeno' ? 'Pequeño (<12cm)' : (gameState.scale === 'mediano' ? 'Mediano (15-25cm)' : 'Gran Formato')}\n\n` +
+                         `• Historia y Significado:\n${gameState.meaning || 'Co-creación personalizada en sesión'}`,
+            placement: `${gameState.zone.toUpperCase()} - ${gameState.subzone || 'General'}`,
+            size: gameState.scale === 'pequeno' ? '< 12cm' : (gameState.scale === 'mediano' ? '15-25cm' : 'Gran Formato'),
             color: gameState.style === 'shadows' ? 'black-grey' : 'color',
             clientName: gameState.name,
             clientInstagram: gameState.instagram || 'No proporcionado',
-            clientEmail: gameState.email,
+            clientEmail: gameState.email || 'No proporcionado',
             clientPhone: gameState.phone,
             references: []
         };
 
-        // Convert files if exists
-        const filePromises = gameSelectedFiles.map(file => compressAndResizeImage(file));
+        // Send request using text/plain to prevent CORS preflight OPTIONS blocking
+        fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'text/plain;charset=utf-8'
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(response => {
+            if (!response.ok) throw new Error("La respuesta del servidor no es correcta.");
+            return response.json();
+        })
+        .then(res => {
+            if (res.status === 'success') {
+                if (loadingOverlay) loadingOverlay.style.display = 'none';
+                if (successPanel) successPanel.style.display = 'block';
 
-        Promise.all(filePromises)
-            .then(base64Files => {
-                payload.references = base64Files;
+                localStorage.setItem('natalia_tattoo_wizard_completed', 'true');
 
-                // Send request using text/plain to prevent CORS preflight OPTIONS blocking
-                return fetch(GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'cors',
-                    headers: {
-                        'Content-Type': 'text/plain;charset=utf-8'
-                    },
-                    body: JSON.stringify(payload)
-                });
-            })
-            .then(response => {
-                if (!response.ok) throw new Error("La respuesta del servidor no es correcta.");
-                return response.json();
-            })
-            .then(res => {
-                if (res.status === 'success') {
-                    if (loadingOverlay) loadingOverlay.style.display = 'none';
-                    if (successPanel) successPanel.style.display = 'block';
-
-                    // Initialize Calendly inline inside the game
-                    if (container) {
-                        Calendly.initInlineWidget({
-                            url: 'https://calendly.com/nats-jauregui/30min?hide_gdpr_banner=1&locale=es',
-                            parentElement: container,
-                            prefill: {
-                                name: gameState.name,
-                                email: gameState.email
-                            },
-                            locale: 'es',
-                            embed_locale: 'es'
-                        });
-                    }
-                } else {
-                    throw new Error(res.message || "Error al registrar la ficha en Google Sheets.");
+                // Initialize Calendly inline inside the game
+                if (container) {
+                    Calendly.initInlineWidget({
+                        url: 'https://calendly.com/nats-jauregui/30min?hide_gdpr_banner=1&locale=es',
+                        parentElement: container,
+                        prefill: {
+                            name: gameState.name,
+                            email: gameState.email
+                        },
+                        locale: 'es',
+                        embed_locale: 'es'
+                    });
                 }
-            })
-            .catch(err => {
-                console.error("Error al enviar la ficha técnica:", err);
-                alert("Hubo un inconveniente al enviar tu ficha técnica:\n\n" + err.message + "\n\nPor favor, contacta directamente con nuestro equipo por WhatsApp.");
-                
-                // Return to phase 4
-                showPhase(4);
-            });
+            } else {
+                throw new Error(res.message || "Error al registrar la ficha.");
+            }
+        })
+        .catch(err => {
+            console.error("Error al enviar la ficha técnica:", err);
+            if (loadingOverlay) loadingOverlay.style.display = 'none';
+            if (successPanel) successPanel.style.display = 'block';
+            
+            // Allow user to proceed with Calendly even if sheet write failed
+            if (container) {
+                Calendly.initInlineWidget({
+                    url: 'https://calendly.com/nats-jauregui/30min?hide_gdpr_banner=1&locale=es',
+                    parentElement: container,
+                    prefill: {
+                        name: gameState.name,
+                        email: gameState.email
+                    },
+                    locale: 'es',
+                    embed_locale: 'es'
+                });
+            }
+        });
     }
+    window.submitGamifiedFicha = submitGamifiedFicha;
+
+    // Check completion state on load
+    checkGameCompleted();
 
     // Welcome overlay & Video Background (P1 -> P2 Transition)
     const btnEnterExperience = document.getElementById('btn-enter-experience');

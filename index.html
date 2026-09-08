@@ -21,7 +21,6 @@
     <link rel="stylesheet" href="styles.css?v=130">
 </head>
 <body>
-
     <!-- Status Banner for Post-Completion -->
     <div class="status-banner" id="status-banner" style="display: none;">
         <div class="status-banner-content">
@@ -29,8 +28,38 @@
             <span class="status-text">Ficha técnica en revisión por el equipo de Natalia</span>
             <button id="btn-restart-wizard" class="btn-restart-text" aria-label="Modificar lienzo">[ Modificar mi lienzo ]</button>
         </div>
-    </div>    <!-- Gamified Experience Dashboard (Fase 1: Lienzo Base Activo) -->
-    <div class="gamified-experience" id="gamified-experience">
+    </div>
+
+    <!-- PANTALLA 1: Portal de Bienvenida (Hero Inmersivo - Minimalismo de Ultra-Lujo) -->
+    <div class="welcome-overlay" id="welcome-overlay">
+        <!-- Capa 0: Video Background Loop -->
+        <video class="welcome-video-bg" autoplay loop muted playsinline preload="auto">
+            <source src="images/video-bienvenida.mp4" type="video/mp4">
+        </video>
+
+        <!-- Capa 1: Overlay de Contraste, Gradiente y Viñeta -->
+        <div class="welcome-overlay-contrast"></div>
+
+        <!-- Capa 2: Contenido Ultra-Minimalista High-End -->
+        <div class="welcome-content">
+            <img src="images/logo.png" alt="NATALIA JAUREGUI Logo" class="welcome-logo">
+            <h1 class="welcome-title">NATALIA JAUREGUI</h1>
+            <div class="welcome-statement">
+                <span class="statement-main">UNA HISTORIA DE PROPORCIÓN ÉPICA</span>
+                <span class="statement-sub">ARQUITECTURA CORPORAL.</span>
+            </div>
+            <div class="welcome-cta-wrapper">
+                <button class="btn-bugatti-cta" id="btn-enter-experience" onclick="launchExperience(event)">
+                    <span class="cta-label">VIVIR LA EXPERIENCIA</span>
+                    <span class="cta-underline"></span>
+                </button>
+            </div>
+            <div class="welcome-brand-footer">NATALIA JAUREGUI // ARQUITECTURA CORPORAL</div>
+        </div>
+    </div>
+
+    <!-- Gamified Experience Dashboard -->
+    <div class="gamified-experience" id="gamified-experience" style="display: none;">
         <div class="gamified-container">
             
             <!-- Contenedor Principal del Asistente (Centrado) -->
@@ -57,7 +86,7 @@
                 <!-- Contenedores de cada fase -->
                 <div class="phase-contents">
                     
-                    <!-- PANTALLA 2 (Fase 1): Selector de Lienzo Base (Siluetas 2D de Alta Fidelidad) -->
+                    <!-- PANTALLA 2 (Fase 1): Selector de Lienzo Base -->
                     <div class="phase-card active" data-phase="1">
                         <div class="silhouette-selection-wrapper">
                             <div class="atelier-header-center">
@@ -66,37 +95,28 @@
                             </div>
                             
                             <div class="silhouette-cards-grid three-columns">
-                                <!-- Opción 1: Masculino -->
                                 <div class="silhouette-card" data-gender="male" id="card-silhouette-male" onclick="selectSilhouette('male')">
                                     <div class="card-radio-indicator"></div>
                                     <div class="silhouette-img-wrapper">
                                         <img src="images/mannequins/male/select-male.webp" alt="Maniquí Masculino Postura Confianza" class="silhouette-mannequin-img">
                                     </div>
                                     <h4 class="silhouette-name">Masculino</h4>
-                                    <span class="silhouette-posture-tag">CONFIANZA</span>
-                                    <p class="silhouette-desc">Planos musculares definidos, hombros estructurados y porte de autoridad.</p>
                                 </div>
 
-                                <!-- Opción 2: Femenino -->
                                 <div class="silhouette-card" data-gender="female" id="card-silhouette-female" onclick="selectSilhouette('female')">
                                     <div class="card-radio-indicator"></div>
                                     <div class="silhouette-img-wrapper">
                                         <img src="images/mannequins/female/select-female.webp" alt="Maniquí Femenino Postura Elegancia" class="silhouette-mannequin-img">
                                     </div>
                                     <h4 class="silhouette-name">Femenino</h4>
-                                    <span class="silhouette-posture-tag">ELEGANCIA</span>
-                                    <p class="silhouette-desc">Líneas anatómicas curvas, fluidez de contorno y proporciones orgánicas.</p>
                                 </div>
 
-                                <!-- Opción 3: Neutro -->
                                 <div class="silhouette-card" data-gender="neutral" id="card-silhouette-neutral" onclick="selectSilhouette('neutral')">
                                     <div class="card-radio-indicator"></div>
                                     <div class="silhouette-img-wrapper">
                                         <img src="images/mannequins/neutral/select-neutral.webp" alt="Maniquí Neutro Postura Equilibrio" class="silhouette-mannequin-img">
                                     </div>
                                     <h4 class="silhouette-name">Neutro</h4>
-                                    <span class="silhouette-posture-tag">EQUILIBRIO</span>
-                                    <p class="silhouette-desc">Proporciones neutras, armonía simétrica y balance anatómico sutil.</p>
                                 </div>
                             </div>
 
@@ -109,7 +129,7 @@
                         </div>
                     </div>
                     
-                    <!-- PANTALLA 3 (Fase 2): Selección Anatómica // Configurador 360° con Subzonas -->
+                    <!-- PANTALLA 3 (Fase 2): Selección Anatómica // Configurador 360° con Resaltado Verde Esmeralda -->
                     <div class="phase-card" data-phase="2">
                         <div class="atelier-header-center">
                             <h3 class="atelier-step-title">SELECCIÓN ANATÓMICA</h3>
@@ -131,7 +151,7 @@
                         <!-- Escenario 360° + Ficha de Sub-zonas -->
                         <div class="clean-anatomical-grid">
                             
-                            <!-- Visor Maniquí 360° -->
+                            <!-- Visor Maniquí 360° con Capa Verde Esmeralda -->
                             <div class="clean-stage-col">
                                 <div class="clean-view-nav">
                                     <button type="button" class="clean-view-btn active" data-view="front" onclick="changeMannequinView('front')">Frente</button>
@@ -141,7 +161,11 @@
                                 </div>
 
                                 <div class="clean-mannequin-box">
+                                    <!-- Maniquí Base 360° -->
                                     <img id="mannequin-360-img" src="images/mannequins/male/mannequin-male-front.webp" alt="Lienzo Anatómico 360°" class="clean-mannequin-img">
+                                    
+                                    <!-- Capa de Resaltado Verde Esmeralda Activa en Tiempo Real -->
+                                    <img id="mannequin-highlight-img" src="images/mannequins/male/green/brazo-der-front.webp" alt="Zona Seleccionada" class="clean-mannequin-highlight-img active">
                                     
                                     <div class="clean-zone-badge" id="clean-zone-badge">
                                         <span class="badge-dot"></span>
@@ -205,28 +229,8 @@
                         </div>
                     </div>
 
+                    <!-- PANTALLA 4 (Fase 3): El Concepto (Misión, Estilo y Significado) -->
                     <div class="phase-card" data-phase="3">
-                        <div class="phase-instruction">
-                            <h3 class="phase-title">Precisión Anatómica</h3>
-                            <p class="phase-subtitle">Enfocamos el visor en la zona seleccionada. Indica la ubicación milimétrica de tu pieza.</p>
-                        </div>
-                        
-                        <div class="phase-options">
-                            <div class="form-group-game">
-                                <label for="game-subzone">Ubicación Detallada de la Zona *</label>
-                                <input type="text" id="game-subzone" placeholder="Ej: Cara interna del antebrazo, parte superior del muslo..." required>
-                                <span class="input-hint">Especifica la cara (interna/externa) o altura exacta.</span>
-                            </div>
-                        </div>
-                        
-                        <div class="phase-actions-row">
-                            <button type="button" class="btn btn-outline phase-prev-btn" data-target="2"><i class="fa-solid fa-arrow-left"></i> Atrás</button>
-                            <button type="button" class="btn btn-gold-filled phase-next" data-target="4" id="btn-phase3-next">Fijar Zona y Definir Arte <i class="fa-solid fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-                    
-                    <!-- FASE 4: El Concepto (Misión y Significado) -->
-                    <div class="phase-card" data-phase="4">
                         <div class="video-container">
                             <div class="video-placeholder-title"><i class="fa-solid fa-circle-play"></i> Video 2: Inspiración y Concepto</div>
                             <video class="phase-video" id="phase-video-2" playsinline controls poster="images/natalia-about-photo.jpg">
@@ -234,7 +238,7 @@
                                 <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
                             </video>
                             <div class="video-caption-box">
-                                <p><strong>Nats:</strong> "Esta es mi parte favorita. Detrás de cada gran tatuaje hay un significado, una historia o una vibra única. Cuéntame qué quieres expresar, qué estilo tienes en mente y sube tus referencias. Entre más detalles me dejes, mejor comprenderé tu idea."</p>
+                                <p><strong>Nats:</strong> "Esta es mi parte favorita. Detrás de cada gran tatuaje hay un significado, una historia o una vibra única. Cuéntame qué quieres expresar, qué estilo tienes en mente y sube tus referencias."</p>
                             </div>
                         </div>
                         
@@ -255,35 +259,64 @@
                             
                             <div class="form-group-game">
                                 <label for="game-meaning">Significado / Historia *</label>
-                                <textarea id="game-meaning" rows="4" placeholder="¿Qué representa esta pieza para ti? Describe tu idea, los elementos clave o el mensaje..." required></textarea>
-                            </div>
-                            
-                            <div class="form-group-game">
-                                <label>Imágenes de Referencia (Opcional)</label>
-                                <div class="file-upload-game" id="game-file-upload">
-                                    <input type="file" id="game-refs" accept="image/*" multiple class="file-input-game" style="display: none;">
-                                    <div class="file-upload-trigger-game" onclick="document.getElementById('game-refs').click()">
-                                        <i class="fa-solid fa-cloud-arrow-up"></i>
-                                        <span>Sube tus imágenes de referencia</span>
-                                        <p class="file-info">Formatos: JPG, PNG. Máx. 5MB c/u. Máx. 3 archivos.</p>
-                                    </div>
-                                </div>
-                                <div id="game-file-list" class="game-file-list"></div>
+                                <textarea id="game-meaning" rows="4" placeholder="¿Qué representa esta pieza para ti?" required></textarea>
                             </div>
                             
                             <div class="phase-actions-row">
-                                <button type="button" class="btn btn-outline phase-prev-btn" data-target="3"><i class="fa-solid fa-arrow-left"></i> Atrás</button>
-                                <button type="button" class="btn btn-gold-filled phase-next" data-target="5" id="btn-phase4-next">Enviar Ficha Técnica <i class="fa-solid fa-arrow-right"></i></button>
+                                <button type="button" class="btn btn-outline phase-prev-btn" onclick="showPhase(2)"><i class="fa-solid fa-arrow-left"></i> Atrás</button>
+                                <button type="button" class="btn btn-gold-filled phase-next" onclick="showPhase(4)" id="btn-phase3-next">Continuar a Confort <i class="fa-solid fa-arrow-right"></i></button>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- FASE 5: Misión Cumplida y Agendamiento -->
+                    <!-- PANTALLA 5 (Fase 4): Protocolo de Confort & Ficha Técnica -->
+                    <div class="phase-card" data-phase="4">
+                        <div class="atelier-header-center">
+                            <h3 class="atelier-step-title">PROTOCOLO DE CONFORT & DATOS</h3>
+                            <p class="atelier-step-subtitle">Tu tranquilidad es nuestra prioridad. Selecciona tu nivel de confort y completa tu ficha para oficializar tu proyecto.</p>
+                        </div>
+
+                        <div class="phase-form">
+                            <div class="option-section">
+                                <span class="section-label-game">1. PROTOCOLO DE EXPERIENCIA EN SESIÓN</span>
+                                <div class="grid-options-pain">
+                                    <div class="opt-btn-pain active" data-pain="sin-dolor" onclick="selectPainMode('sin-dolor')">
+                                        <i class="fa-solid fa-shield-halved"></i>
+                                        <strong>Tecnología Sin Dolor</strong>
+                                    </div>
+                                    <div class="opt-btn-pain" data-pain="clasico" onclick="selectPainMode('clasico')">
+                                        <i class="fa-solid fa-feather"></i>
+                                        <strong>Sesión Tradicional</strong>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="option-section" style="margin-top: 15px;">
+                                <span class="section-label-game">2. DATOS DE OFICIALIZACIÓN DE FICHA</span>
+                                <div class="form-grid">
+                                    <div class="form-group-game">
+                                        <label for="game-name">Nombre y Apellidos *</label>
+                                        <input type="text" id="game-name" placeholder="Tu nombre completo" required>
+                                    </div>
+                                    <div class="form-group-game">
+                                        <label for="game-phone">WhatsApp / Teléfono *</label>
+                                        <input type="tel" id="game-phone" placeholder="Ej: +57 310 123 4567" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="phase-actions-row">
+                                <button type="button" class="btn btn-outline phase-prev-btn" onclick="showPhase(3)"><i class="fa-solid fa-arrow-left"></i> Atrás</button>
+                                <button type="button" class="btn btn-gold-filled phase-next" id="btn-phase4-next" onclick="submitGamifiedFicha()">Enviar Ficha Técnica <i class="fa-solid fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PANTALLA 6 (Fase 5): Misión Cumplida y Agendamiento -->
                     <div class="phase-card" data-phase="5">
                         <div class="wizard-game-status" id="game-wizard-status" style="display: none;">
                             <div class="spinner"></div>
                             <h3>Consolidando tu Ficha Técnica...</h3>
-                            <p>Subiendo tu lienzo de autor al sistema de Aura Tattoo Studio.</p>
                         </div>
                         
                         <div id="game-success-panel">
@@ -291,22 +324,14 @@
                                 <div class="video-placeholder-title"><i class="fa-solid fa-circle-play"></i> Video 3: Misión Cumplida y Cierre</div>
                                 <video class="phase-video" id="phase-video-3" playsinline controls poster="images/natalia-about-photo.jpg">
                                     <source src="images/video-cierre.mp4" type="video/mp4">
-                                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
                                 </video>
-                                <div class="video-caption-box">
-                                    <p><strong>Nats:</strong> "¡Felicidades, tu solicitud ya está completa! Toda la información de tu diseño ya quedó registrada. Muy pronto mi equipo se comunicará contigo por WhatsApp para confirmar tu asesoría personalizada y afinar los últimos detalles. ¡Gracias por confiar en mi arte, nos vemos muy pronto!"</p>
-                                </div>
                             </div>
                             
                             <div class="phase-form text-center">
-                                <div class="game-success-icon" style="font-size: 4rem; color: var(--accent); margin-bottom: 20px;"><i class="fa-solid fa-circle-check"></i></div>
                                 <h3 class="phase-title">¡Ficha Recibida con Éxito!</h3>
-                                <p class="phase-subtitle" style="margin-bottom: 30px;">Hemos creado tu perfil técnico y bloqueado tu lienzo en el sistema.</p>
-                                
-                                <div class="calendly-game-block" style="border-top: 1px solid var(--border-color); padding-top: 25px; text-align: left;">
-                                    <h4 style="font-family: var(--font-heading); color: var(--accent); font-size: 1.1rem; text-align: center; margin-bottom: 10px; text-transform: uppercase;">Paso Final: Agenda tu Asesoría Digital</h4>
-                                    <p style="font-size: 0.9rem; text-align: center; margin-bottom: 20px; color: var(--text-secondary);">Elige el día y la hora para conversar sobre los detalles de tu pieza:</p>
-                                    <div id="game-calendly-container" style="min-width: 300px; height: 600px; overflow: hidden; border: 1px solid var(--border-color); border-radius: 4px; background: white;"></div>
+                                <div class="calendly-game-block">
+                                    <h4 style="color: var(--accent);">Paso Final: Agenda tu Asesoría Digital</h4>
+                                    <div id="game-calendly-container" style="min-width: 300px; height: 600px;"></div>
                                 </div>
                             </div>
                         </div>
@@ -318,7 +343,6 @@
 
     <!-- Landing Page de Autor y Refuerzo de Decisión (Activa tras completar las fases) -->
     <div id="post-experience-landing" class="post-experience-landing">
-
         <!-- Header / Navigation -->
         <header class="header" id="header">
             <div class="header-container">
