@@ -5178,23 +5178,26 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease;
-    filter: drop-shadow(0 0 10px rgba(0, 255, 136, 0.8)) drop-shadow(0 0 25px rgba(0, 255, 136, 0.45));
-    animation: emeraldPulse 2.4s infinite ease-in-out;
+    mix-blend-mode: screen;
+    filter: drop-shadow(0 0 6px rgba(0, 255, 136, 0.45)) drop-shadow(0 0 16px rgba(0, 255, 136, 0.25));
+    animation: emeraldPulse 2.8s infinite ease-in-out;
     user-select: none;
     -webkit-user-drag: none;
     z-index: 2;
 }
 
 .clean-mannequin-highlight-img.active {
-    opacity: 1;
+    opacity: 0.95;
 }
 
 @keyframes emeraldPulse {
     0%, 100% {
-        filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.7)) drop-shadow(0 0 18px rgba(0, 255, 136, 0.35));
+        filter: drop-shadow(0 0 5px rgba(0, 255, 136, 0.4)) drop-shadow(0 0 12px rgba(0, 255, 136, 0.2));
+        opacity: 0.88;
     }
     50% {
-        filter: drop-shadow(0 0 14px rgba(0, 255, 136, 0.95)) drop-shadow(0 0 30px rgba(0, 255, 136, 0.6));
+        filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.65)) drop-shadow(0 0 20px rgba(0, 255, 136, 0.35));
+        opacity: 1;
     }
 }
 
