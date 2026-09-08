@@ -5032,7 +5032,7 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     z-index: 9998;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 30px 24px 60px;
+    padding: clamp(10px, 1.6vh, 20px) clamp(14px, 2vw, 24px) clamp(14px, 2vh, 28px);
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -5040,24 +5040,24 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
 }
 
 .gamified-container {
-    max-width: 1260px;
+    max-width: 1160px;
     width: 100%;
     margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding: 10px 0 40px;
+    padding: 0;
     box-sizing: border-box;
 }
 
 .gamified-wizard {
     background: rgba(14, 14, 14, 0.94);
     border: 1px solid rgba(255, 255, 255, 0.09);
-    border-radius: 24px;
-    padding: 38px 46px;
+    border-radius: 20px;
+    padding: clamp(14px, 2vh, 24px) clamp(18px, 2.2vw, 32px);
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: clamp(8px, 1.2vh, 14px);
     box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9), 0 0 40px rgba(212, 165, 165, 0.03);
     width: 100%;
     box-sizing: border-box;
@@ -5065,9 +5065,31 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     -webkit-backdrop-filter: blur(20px);
 }
 
+.atelier-header-center {
+    text-align: center;
+    margin-bottom: 2px;
+}
+
+.atelier-step-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.10rem, 1.5vw, 1.30rem);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    margin: 0 0 3px 0;
+    font-weight: 700;
+}
+
+.atelier-step-subtitle {
+    font-size: clamp(0.72rem, 0.85vw, 0.80rem);
+    color: #A0A0A0;
+    margin: 0;
+    line-height: 1.35;
+}
+
 /* 1. Paso 1: Selector de Macro-Zonas (Pills Horizontales Fluidos) */
 .clean-macro-selector-wrapper {
-    margin-bottom: 20px;
+    margin-bottom: 6px;
     width: 100%;
     box-sizing: border-box;
 }
@@ -5075,7 +5097,7 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
 .clean-macro-pills-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 6px;
     width: 100%;
 }
 
@@ -5084,31 +5106,40 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     border: 1px solid rgba(255, 255, 255, 0.12);
     color: #CCCCCC;
     font-family: var(--font-heading);
-    font-size: 0.82rem;
-    letter-spacing: 1.2px;
+    font-size: 0.74rem;
+    letter-spacing: 1.1px;
     text-transform: uppercase;
     font-weight: 600;
-    padding: 12px 22px;
-    border-radius: 24px;
+    padding: 7px 14px;
+    border-radius: 18px;
     cursor: pointer;
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     outline: none;
     flex: 1 1 auto;
     text-align: center;
-    min-width: 110px;
+    min-width: 85px;
 }
 
 .clean-macro-pill:hover {
-    border-color: rgba(0, 255, 136, 0.4);
+    border-color: rgba(0, 255, 136, 0.45);
     color: #FFFFFF;
     background: rgba(0, 255, 136, 0.05);
+    transform: translateY(-1px);
+}
+
+.clean-macro-pill.active {
+    border-color: #00FF88 !important;
+    color: #FFFFFF !important;
+    background: rgba(0, 255, 136, 0.14) !important;
+    box-shadow: 0 0 16px rgba(0, 255, 136, 0.3) !important;
+    font-weight: 700;
 }
 
 /* 2. Grid Principal (Visor Maniquí + Controles) */
 .clean-anatomical-grid {
     display: grid;
-    grid-template-columns: 1fr 1.15fr;
-    gap: 28px;
+    grid-template-columns: 0.92fr 1.08fr;
+    gap: 16px;
     align-items: stretch;
     width: 100%;
     box-sizing: border-box;
@@ -5118,58 +5149,71 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
 .clean-stage-col {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 6px;
     width: 100%;
 }
 
 .clean-view-nav {
     display: flex;
     align-items: center;
-    gap: 6px;
-    background: #141414;
+    gap: 4px;
+    background: #121212;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 5px;
-    border-radius: 24px;
+    padding: 3px;
+    border-radius: 16px;
     width: 100%;
     box-sizing: border-box;
 }
 
 .clean-view-btn {
     flex: 1 1 0;
-    padding: 8px 6px;
-    font-size: 0.72rem;
+    padding: 5px 3px;
+    font-size: 0.68rem;
     font-family: var(--font-heading);
-    letter-spacing: 0.8px;
+    letter-spacing: 0.6px;
     color: #888888;
-    border-radius: 18px;
+    border-radius: 12px;
     cursor: pointer;
     transition: all 0.2s ease;
     background: transparent;
     border: none;
     text-align: center;
     white-space: nowrap;
+    font-weight: 600;
+}
+
+.clean-view-btn:hover {
+    color: #FFFFFF;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.clean-view-btn.active {
+    background: #00FF88 !important;
+    color: #050505 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.35) !important;
 }
 
 .clean-mannequin-box {
     position: relative;
     width: 100%;
-    height: 490px;
-    background: radial-gradient(circle at 50% 45%, rgba(0, 255, 136, 0.03) 0%, rgba(8, 8, 8, 0.95) 85%);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 18px;
+    height: clamp(260px, 35vh, 320px);
+    background: radial-gradient(circle at 50% 50%, rgba(0, 255, 136, 0.04) 0%, rgba(8, 8, 8, 0.98) 85%);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.65);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
 }
 
 .clean-mannequin-img {
     height: 94%;
     width: auto;
-    max-height: 450px;
+    max-height: 100%;
     object-fit: contain;
-    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.95));
+    filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.95));
     transition: opacity 0.2s ease;
     user-select: none;
     -webkit-user-drag: none;
@@ -5182,55 +5226,78 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     transform: translate(-50%, -50%);
     height: 94%;
     width: auto;
-    max-height: 450px;
+    max-height: 100%;
     object-fit: contain;
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease;
     mix-blend-mode: screen;
-    filter: drop-shadow(0 0 6px rgba(0, 255, 136, 0.45)) drop-shadow(0 0 16px rgba(0, 255, 136, 0.25));
+    filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.6)) drop-shadow(0 0 20px rgba(0, 255, 136, 0.3));
     animation: emeraldPulse 2.8s infinite ease-in-out;
     user-select: none;
     -webkit-user-drag: none;
     z-index: 2;
 }
 
+.clean-mannequin-highlight-img.active {
+    opacity: 1;
+}
+
 .clean-zone-badge {
     position: absolute;
-    bottom: 14px;
+    bottom: 8px;
     left: 50%;
     transform: translateX(-50%);
     background: rgba(10, 10, 10, 0.92);
-    border: 1px solid rgba(0, 255, 136, 0.35);
-    padding: 6px 18px;
-    border-radius: 20px;
+    border: 1px solid rgba(0, 255, 136, 0.4);
+    padding: 4px 12px;
+    border-radius: 16px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     z-index: 5;
     pointer-events: none;
     white-space: nowrap;
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.15);
 }
 
 /* Columna de Controles */
 .clean-controls-col {
-    background: #0D0D0D;
+    background: #0E0E0E;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 18px;
-    padding: 22px 20px;
+    border-radius: 14px;
+    padding: 12px 16px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     box-sizing: border-box;
+    gap: 8px;
+}
+
+.clean-control-block {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.clean-section-tag {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.60rem;
+    letter-spacing: 1.2px;
+    color: #D4A5A5;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 5px;
 }
 
 .clean-subzones-flex {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    max-height: 240px;
+    gap: 5px;
+    max-height: clamp(95px, 13vh, 120px);
     overflow-y: auto;
     padding-right: 4px;
 }
@@ -5239,41 +5306,58 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     width: 4px;
 }
 .clean-subzones-flex::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.18);
     border-radius: 4px;
 }
 
 .clean-subzone-chip {
     background: #141414;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #D4D4D4;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #CCCCCC;
     font-family: var(--font-heading);
-    font-size: 0.76rem;
-    letter-spacing: 0.5px;
-    padding: 9px 15px;
-    border-radius: 8px;
+    font-size: 0.70rem;
+    letter-spacing: 0.3px;
+    padding: 6px 11px;
+    border-radius: 7px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     outline: none;
+    font-weight: 500;
+}
+
+.clean-subzone-chip:hover {
+    border-color: rgba(0, 255, 136, 0.45);
+    color: #FFFFFF;
+    background: rgba(0, 255, 136, 0.06);
+    transform: translateY(-1px);
+}
+
+.clean-subzone-chip.selected {
+    border-color: #00FF88 !important;
+    background: rgba(0, 255, 136, 0.16) !important;
+    color: #00FF88 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 0 12px rgba(0, 255, 136, 0.25) !important;
+    transform: translateY(-1px);
 }
 
 /* Paso 3: Escala */
 .clean-scale-pills-row {
     display: flex;
-    gap: 10px;
+    gap: 6px;
     width: 100%;
 }
 
 .clean-scale-pill {
     flex: 1 1 0;
     background: #141414;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 12px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    padding: 6px 4px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3px;
+    gap: 1px;
     cursor: pointer;
     transition: all 0.2s ease;
     text-align: center;
@@ -5282,43 +5366,57 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
 
 .clean-scale-pill strong {
     font-family: var(--font-heading);
-    font-size: 0.78rem;
+    font-size: 0.72rem;
     color: #FFFFFF;
+    font-weight: 600;
 }
 
 .clean-scale-pill span {
-    font-size: 0.65rem;
+    font-size: 0.60rem;
     color: #888888;
 }
 
 .clean-scale-pill:hover {
-    border-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(0, 255, 136, 0.4);
+    transform: translateY(-1px);
+}
+
+.clean-scale-pill.active {
+    border-color: #00FF88 !important;
+    background: rgba(0, 255, 136, 0.12) !important;
+    box-shadow: 0 0 12px rgba(0, 255, 136, 0.25) !important;
+}
+
+.clean-scale-pill.active strong {
+    color: #00FF88 !important;
 }
 
 /* Resumen Inferior */
 .clean-summary-bar {
     background: #111111;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 14px;
-    padding: 16px 22px;
-    margin-top: 20px;
+    border-radius: 12px;
+    padding: 7px 16px;
+    margin-top: 6px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 14px;
+    gap: 8px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .clean-summary-text {
-    font-size: 0.84rem;
+    font-size: 0.78rem;
     font-family: var(--font-heading);
-    letter-spacing: 1px;
+    letter-spacing: 0.6px;
 }
 
 .clean-summary-label {
     color: #777777;
-    font-size: 0.72rem;
-    margin-right: 6px;
+    font-size: 0.68rem;
+    margin-right: 5px;
 }
 
 .clean-summary-val {
@@ -5332,7 +5430,17 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
 .clean-actions-row {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
+}
+
+.clean-actions-row .btn-atelier-secondary {
+    padding: 8px 18px;
+    font-size: 0.74rem;
+}
+
+.clean-actions-row .btn-atelier-primary {
+    padding: 8px 20px;
+    font-size: 0.74rem;
 }
 
 /* Phase 3: Estilos y Referencias (Desktop 2-Col Grid) */
@@ -6686,42 +6794,46 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
 /* 1. Desktop & Laptops Grandes (>= 1024px) */
 @media (min-width: 1024px) {
     .gamified-container {
-        max-width: 1260px;
-        width: 94%;
+        max-width: 1160px;
+        width: 95%;
+    }
+    .gamified-wizard {
+        padding: clamp(14px, 2vh, 24px) clamp(18px, 2.2vw, 32px);
+        gap: clamp(8px, 1.2vh, 14px);
     }
     .silhouette-cards-grid.three-columns {
         grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
+        gap: 16px;
     }
     .silhouette-card {
-        min-height: 380px;
-        padding: 24px 20px;
+        min-height: 320px;
+        padding: 18px 16px;
     }
     .silhouette-img-wrapper {
-        height: 250px;
+        height: 210px;
     }
     .clean-anatomical-grid {
-        grid-template-columns: 1fr 1.15fr;
-        gap: 28px;
+        grid-template-columns: 0.92fr 1.08fr;
+        gap: 16px;
     }
     .clean-mannequin-box {
-        height: 490px;
+        height: clamp(260px, 35vh, 320px);
     }
     .phase3-desktop-grid {
         grid-template-columns: 1.15fr 0.85fr;
-        gap: 28px;
+        gap: 22px;
     }
     .styles-cards-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 14px;
+        gap: 12px;
     }
     .phase4-desktop-grid {
         grid-template-columns: 1.1fr 0.9fr;
-        gap: 28px;
+        gap: 22px;
     }
     .form-grid {
         grid-template-columns: 1fr 1fr;
-        gap: 14px;
+        gap: 12px;
     }
 }
 
