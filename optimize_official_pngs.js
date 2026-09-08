@@ -5,17 +5,17 @@ const sharp = require('sharp');
 const mannequinsDir = 'c:/Users/natsj/projects/natalia-jauregui-landing/images/mannequins';
 
 const list = [
-  { in: 'select-male.png', out: 'select-male.webp' },
-  { in: 'select-female.png', out: 'select-female.webp' },
-  { in: 'select-neutral.png', out: 'select-neutral.webp' }
+  { folder: 'male', in: 'select-male.png', out: 'select-male.webp' },
+  { folder: 'female', in: 'select-female.png', out: 'select-female.webp' },
+  { folder: 'neutral', in: 'select-neutral.png', out: 'select-neutral.webp' }
 ];
 
 async function optimize() {
   console.log("Optimizing official user-provided PNG mannequins to WebP...");
 
   for (const item of list) {
-    const inPath = path.join(mannequinsDir, item.in);
-    const outPath = path.join(mannequinsDir, item.out);
+    const inPath = path.join(mannequinsDir, item.folder, item.in);
+    const outPath = path.join(mannequinsDir, item.folder, item.out);
 
     if (fs.existsSync(inPath)) {
       const meta = await sharp(inPath).metadata();

@@ -20,8 +20,8 @@ async function process360() {
     for (const view of views) {
       const filenamePng = `mannequin-${gender}-${view}.png`;
       const filenameWebp = `mannequin-${gender}-${view}.webp`;
-      const inPath = path.join(mannequinsDir, filenamePng);
-      const outPath = path.join(mannequinsDir, filenameWebp);
+      const inPath = path.join(mannequinsDir, gender, filenamePng);
+      const outPath = path.join(mannequinsDir, gender, filenameWebp);
 
       if (!fs.existsSync(inPath)) {
         console.warn(`[!] Archivo no encontrado: ${filenamePng}`);
