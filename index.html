@@ -18,7 +18,7 @@
     <!-- Calendly Widget CSS -->
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css?v=134">
+    <link rel="stylesheet" href="styles.css?v=136">
 </head>
 <body>
     <!-- Status Banner for Post-Completion -->
@@ -408,7 +408,7 @@
                                     </div>
 
                                     <!-- Paso 3: Mesa de Referencias Visuales (Opcional & Optimizado) -->
-                                    <div class="clean-section-block" style="margin-top: 20px;">
+                                    <div class="clean-section-block" style="margin-top: 8px;">
                                         <div class="section-title-with-badge">
                                             <span class="clean-section-tag">PASO 3 // REFERENCIAS VISUALES</span>
                                             <span class="tag-optional">OPCIONAL</span>
@@ -437,7 +437,7 @@
                             </div>
 
                             <!-- Navegación Fase 3 -->
-                            <div class="clean-actions-row" style="margin-top: 30px;">
+                            <div class="clean-actions-row split-actions" style="margin-top: 10px; display: flex; justify-content: space-between;">
                                 <button type="button" class="btn-atelier-secondary" onclick="showPhase(2)">
                                     <i class="fa-solid fa-arrow-left"></i>
                                     <span>Atrás</span>
@@ -591,7 +591,7 @@
                                 <h3 class="phase-title">¡Ficha Registrada con Éxito!</h3>
                                 <p class="phase-subtitle" style="color: #A0A0A0; font-size: 0.85rem; margin-top: -6px; margin-bottom: 16px;">Selecciona la fecha y hora para tu sesión de asesoría digital con Natalia:</p>
                                 <div class="calendly-game-block">
-                                    <div id="game-calendly-container" style="min-width: 300px; height: 600px;"></div>
+                                    <div id="game-calendly-container" style="min-width: 300px; width: 100%;"></div>
                                 </div>
                                 <div class="calendly-confirm-actions" style="margin-top: 24px;">
                                     <button type="button" class="btn btn-gold-filled" id="btn-confirm-calendly-schedule" onclick="showOfficialFichaSummary()">
@@ -662,10 +662,12 @@
                             </div>
 
                             <div class="ficha-next-exploration-box">
-                                <h3 class="exploration-title">Tu proyecto está en manos de una artista de autor</h3>
-                                <p class="exploration-text">
-                                    Tu ficha técnica y horario han sido reservados. Te invitamos a conocer las técnicas, bioseguridad y portafolio exclusivo de Natalia Jauregui.
-                                </p>
+                                <div class="exploration-text-col">
+                                    <h3 class="exploration-title">Tu proyecto está en manos de una artista de autor</h3>
+                                    <p class="exploration-text">
+                                        Tu ficha técnica y horario han sido reservados. Te invitamos a conocer las técnicas, bioseguridad y portafolio exclusivo de Natalia Jauregui.
+                                    </p>
+                                </div>
                                 <button type="button" class="btn-unlock-landing" id="btn-explore-landing" onclick="applyOptimizedLanding()">
                                     <i class="fa-solid fa-compass"></i> EXPLORAR UNIVERSO DE NATALIA <i class="fa-solid fa-arrow-right"></i>
                                 </button>

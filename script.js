@@ -1619,6 +1619,10 @@ document.addEventListener('DOMContentLoaded', () => {
             video.pause();
         });
 
+        const expContainer = document.getElementById('gamified-experience');
+        if (expContainer) {
+            expContainer.scrollTo({ top: 0, behavior: 'smooth' });
+        }
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     window.showPhase = showPhase;
@@ -2837,6 +2841,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (successPanel) successPanel.style.display = 'none';
         if (fichaPanel) {
             fichaPanel.style.display = 'flex';
+            const expContainer = document.getElementById('gamified-experience');
+            if (expContainer) expContainer.scrollTo({ top: 0, behavior: 'smooth' });
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
