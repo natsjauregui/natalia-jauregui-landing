@@ -2168,6 +2168,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { passive: true });
     })();
 
+    // Biometric Laser Sweep Trigger
+    function triggerBiometricLaserScan() {
+        const laser = document.getElementById('biometric-scan-laser');
+        if (laser) {
+            laser.classList.remove('scanning');
+            void laser.offsetWidth; // Force CSS reflow
+            laser.classList.add('scanning');
+        }
+    }
+
     // Direct Macro Zone Selector (Brazos, Piernas, Pecho, Espalda, Cuello)
     function selectMacroZone(macroKey) {
         if (!macroKey || !MACRO_ZONES[macroKey]) return;
@@ -2187,20 +2197,29 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // 2. Auto-rotate mannequin to the best perspective if needed
+        // 2. Camera Rig Zoom & Enfoque Inteligente por Zona
+        const cameraRig = document.getElementById('clean-mannequin-camera-rig');
+        if (cameraRig) {
+            cameraRig.className = 'clean-mannequin-camera-rig camera-focus-' + macroKey;
+        }
+
+        // 3. Activar barrido de escaneo láser biométrico
+        triggerBiometricLaserScan();
+
+        // 4. Auto-rotate mannequin to the best perspective if needed
         if (data.defaultView && gameState.view !== data.defaultView) {
             changeMannequinView(data.defaultView);
         } else {
             update360MannequinView();
         }
 
-        // 3. Update Badge
+        // 5. Update Badge
         const badgeZoneText = document.getElementById('badge-zone-text');
         if (badgeZoneText) {
             badgeZoneText.textContent = 'ZONA: ' + data.name.toUpperCase();
         }
 
-        // 4. Render sub-zone pills
+        // 6. Render sub-zone pills
         const container = document.getElementById('clean-subzones-container');
         if (container) {
             container.innerHTML = '';
@@ -2214,10 +2233,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // 5. Update Confirmation Summary
+        // 7. Update Confirmation Summary
         const summaryMainZone = document.getElementById('summary-main-zone');
-        const summaryDivider = document.getElementById('summary-divider');
-        const summarySubZone = document.getElementById('summary-sub-zone');
         if (summaryMainZone) summaryMainZone.textContent = data.name;
         
         // Auto-select first subzone for frictionless experience
@@ -2245,6 +2262,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 chip.classList.remove('selected');
             }
         });
+
+        // Activar láser al seleccionar subzona
+        triggerBiometricLaserScan();
+
+        // Auto-rotate if subzone has a specialized perspective (ej. gemelo/tríceps a espalda)
+        if (ANATOMICAL_PART_MAPPING[macroKey] && ANATOMICAL_PART_MAPPING[macroKey].subzones && ANATOMICAL_PART_MAPPING[macroKey].subzones[subzoneName]) {
+            const subData = ANATOMICAL_PART_MAPPING[macroKey].subzones[subzoneName];
+            if (subData.defaultView && gameState.view !== subData.defaultView) {
+                changeMannequinView(subData.defaultView);
+            } else {
+                update360MannequinView();
+            }
+        } else {
+            update360MannequinView();
+        }
 
         // Update Badge
         const badgeZoneText = document.getElementById('badge-zone-text');

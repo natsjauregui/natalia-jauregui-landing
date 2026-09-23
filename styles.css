@@ -5208,6 +5208,72 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
 }
 
+/* Camera Rig con Enfoque Dinámico por Zona */
+.clean-mannequin-camera-rig {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: center center;
+}
+
+.clean-mannequin-camera-rig.camera-focus-brazo {
+    transform: scale(1.36) translateY(-4%) translateX(-2%);
+}
+
+.clean-mannequin-camera-rig.camera-focus-pierna {
+    transform: scale(1.30) translateY(-18%);
+}
+
+.clean-mannequin-camera-rig.camera-focus-pecho {
+    transform: scale(1.38) translateY(10%);
+}
+
+.clean-mannequin-camera-rig.camera-focus-espalda {
+    transform: scale(1.35) translateY(10%);
+}
+
+.clean-mannequin-camera-rig.camera-focus-cuello {
+    transform: scale(1.65) translateY(24%);
+}
+
+/* Escáner Láser Biométrico */
+.biometric-scan-laser {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 255, 136, 0.2) 20%, #00FF88 50%, rgba(0, 255, 136, 0.2) 80%, transparent 100%);
+    box-shadow: 0 0 15px #00FF88, 0 0 30px rgba(0, 255, 136, 0.8);
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0;
+}
+
+.biometric-scan-laser.scanning {
+    animation: laserScanSweep 0.75s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes laserScanSweep {
+    0% {
+        top: 5%;
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        top: 95%;
+        opacity: 0;
+    }
+}
+
 .clean-mannequin-img {
     height: 94%;
     width: auto;
