@@ -1,4 +1,4 @@
-/**
+﻿/**
  * NATALIA JAUREGUI | NATS TATTOOS - Interactive Landing Page Logic
  * Features: Scroll Effects, Mobile Navigation, Portfolio Filter, Lightbox, Step-by-Step Booking Form, Aftercare Accordion, Reveal on Scroll
  */
@@ -204,6 +204,8 @@ const GOOGLE_REVIEWS_DB = [
 
 // Global Launch Experience Handler (Immediate Execution & Bulletproof)
 function launchExperience(e) {
+        if (heroBgVideo) { heroBgVideo.pause(); }
+        if (heroBgVideo) { heroBgVideo.pause(); }
     if (e && e.preventDefault) e.preventDefault();
     console.log("Transición a Pantalla 2 (Lienzo Base) activada...");
     
@@ -1614,8 +1616,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (typeof validatePhase4 === 'function') validatePhase4();
         }
 
-        // Stop all phase videos currently playing
-        document.querySelectorAll('.phase-video').forEach(video => {
+        // Stop all videos currently playing to free mobile hardware decoders and RAM
+        document.querySelectorAll('video').forEach(video => {
             video.pause();
         });
 
@@ -2871,6 +2873,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fullscreen Video Transition between Phase 2 and Phase 3 (Explicación de Natalia)
     function startPhase3TransitionVideo() {
         console.log("Iniciando video de transición pantalla completa a Fase 3...");
+        if (heroBgVideo) { heroBgVideo.pause(); }
         const videoOverlay = document.getElementById('phase3-intro-video-overlay');
         const video = document.getElementById('phase3-fullscreen-video');
 
@@ -2879,6 +2882,7 @@ document.addEventListener('DOMContentLoaded', () => {
             videoOverlay.style.opacity = '1';
             videoOverlay.classList.remove('overlay-fade-out');
 
+            video.load();
             video.currentTime = 0;
             video.muted = false; // Intentar reproducción con audio
             const playPromise = video.play();
@@ -2907,6 +2911,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (video) {
             video.pause();
+            video.currentTime = 0;
         }
 
         if (videoOverlay) {
@@ -2943,6 +2948,7 @@ document.addEventListener('DOMContentLoaded', () => {
             videoOverlay.style.opacity = '1';
             videoOverlay.classList.remove('overlay-fade-out');
 
+            video.load();
             video.currentTime = 0;
             video.muted = false;
             const playPromise = video.play();
@@ -2969,6 +2975,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (video) {
             video.pause();
+            video.currentTime = 0;
         }
 
         if (videoOverlay) {
@@ -2995,6 +3002,7 @@ document.addEventListener('DOMContentLoaded', () => {
             videoOverlay.style.opacity = '1';
             videoOverlay.classList.remove('overlay-fade-out');
 
+            video.load();
             video.currentTime = 0;
             video.muted = false;
             const playPromise = video.play();
@@ -3022,6 +3030,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (video) {
             video.pause();
+            video.currentTime = 0;
         }
 
         if (videoOverlay) {

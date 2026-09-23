@@ -5296,13 +5296,23 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     object-fit: contain;
     pointer-events: none;
     opacity: 0;
-    transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease;
+    transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     mix-blend-mode: screen;
-    filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.6)) drop-shadow(0 0 20px rgba(0, 255, 136, 0.3));
-    animation: emeraldPulse 2.8s infinite ease-in-out;
+    filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.6)) drop-shadow(0 0 16px rgba(0, 255, 136, 0.3));
+    animation: emeraldOpacityPulse 2.8s infinite ease-in-out;
     user-select: none;
     -webkit-user-drag: none;
     z-index: 2;
+    will-change: opacity;
+}
+
+@keyframes emeraldOpacityPulse {
+    0%, 100% {
+        opacity: 0.85;
+    }
+    50% {
+        opacity: 1;
+    }
 }
 
 .clean-mannequin-highlight-img.active {
