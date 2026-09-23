@@ -7011,5 +7011,221 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     }
 }
 
+/* ==========================================================================
+   GAMIFIED AVATAR CREATOR & HUD STYLING (FASE 1 & FASE 2)
+   ========================================================================== */
+.avatar-creation-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 14px;
+    background: rgba(0, 255, 136, 0.08);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    border-radius: 20px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #00FF88;
+    margin-bottom: 12px;
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.15);
+}
 
+.silhouette-cards-grid.two-columns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(16px, 3vw, 28px);
+    max-width: 720px;
+    width: 100%;
+    margin: 18px auto 26px auto;
+}
 
+.gamified-avatar-card {
+    position: relative;
+    background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.04) 0%, rgba(12, 12, 12, 0.95) 85%);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 20px;
+    padding: clamp(18px, 3vw, 26px) 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+}
+
+.gamified-avatar-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 255, 136, 0.4);
+    box-shadow: 0 16px 40px rgba(0, 255, 136, 0.15), 0 0 20px rgba(0, 255, 136, 0.1);
+}
+
+.gamified-avatar-card.selected {
+    border-color: #00FF88;
+    background: radial-gradient(circle at 50% 30%, rgba(0, 255, 136, 0.12) 0%, rgba(10, 10, 10, 0.96) 85%);
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.3), inset 0 0 20px rgba(0, 255, 136, 0.05);
+}
+
+.avatar-card-hud-tag {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    font-size: 0.62rem;
+    font-family: monospace;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #707070;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 3px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all 0.3s ease;
+}
+
+.gamified-avatar-card.selected .avatar-card-hud-tag {
+    color: #00FF88;
+    border-color: rgba(0, 255, 136, 0.35);
+    background: rgba(0, 255, 136, 0.08);
+}
+
+.gamified-avatar-card .silhouette-img-wrapper {
+    height: clamp(220px, 35vh, 290px);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 14px 0 12px 0;
+}
+
+.gamified-avatar-card .silhouette-mannequin-img {
+    max-height: 100%;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.8));
+    transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.gamified-avatar-card:hover .silhouette-mannequin-img {
+    transform: scale(1.04);
+    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 15px rgba(0, 255, 136, 0.2));
+}
+
+.avatar-card-info {
+    text-align: center;
+    margin-top: 6px;
+}
+
+.gamified-avatar-card .silhouette-name {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    margin-bottom: 4px;
+}
+
+.avatar-card-status {
+    font-size: 0.72rem;
+    color: #888888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    letter-spacing: 0.5px;
+}
+
+.gamified-avatar-card.selected .avatar-card-status {
+    color: #00FF88;
+}
+
+.gamified-avatar-card.selected .avatar-card-status i {
+    animation: pulseEmerald 1.8s infinite;
+}
+
+/* 360 Mannequin Box HUD Brackets & Turntable */
+.clean-mannequin-box {
+    cursor: grab;
+    user-select: none;
+}
+
+.clean-mannequin-box:active {
+    cursor: grabbing;
+}
+
+.hud-corner-bracket {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    pointer-events: none;
+    z-index: 6;
+    border-color: rgba(0, 255, 136, 0.4);
+    transition: border-color 0.3s ease;
+}
+
+.clean-mannequin-box:hover .hud-corner-bracket {
+    border-color: #00FF88;
+}
+
+.hud-corner-bracket.top-left {
+    top: 10px;
+    left: 10px;
+    border-top: 2px solid;
+    border-left: 2px solid;
+}
+
+.hud-corner-bracket.top-right {
+    top: 10px;
+    right: 10px;
+    border-top: 2px solid;
+    border-right: 2px solid;
+}
+
+.hud-corner-bracket.bottom-left {
+    bottom: 10px;
+    left: 10px;
+    border-bottom: 2px solid;
+    border-left: 2px solid;
+}
+
+.hud-corner-bracket.bottom-right {
+    bottom: 10px;
+    right: 10px;
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+}
+
+.hud-rotation-hint {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    font-size: 0.65rem;
+    font-family: var(--font-heading);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #A0A0A0;
+    background: rgba(10, 10, 10, 0.75);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 4px 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    pointer-events: none;
+    z-index: 7;
+}
+
+.hud-rotation-hint i {
+    color: #00FF88;
+}
+
+@media (max-width: 600px) {
+    .silhouette-cards-grid.two-columns {
+        grid-template-columns: 1fr;
+        max-width: 320px;
+    }
+    .gamified-avatar-card .silhouette-img-wrapper {
+        height: 210px;
+    }
+}

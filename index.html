@@ -179,43 +179,44 @@
                 <!-- Contenedores de cada fase -->
                 <div class="phase-contents">
                     
-                    <!-- PANTALLA 2 (Fase 1): Selector de Lienzo Base -->
+                    <!-- PANTALLA 2 (Fase 1): Selector de Avatar Anatómico -->
                     <div class="phase-card active" data-phase="1">
                         <div class="silhouette-selection-wrapper">
                             <div class="atelier-header-center">
-                                <h3 class="atelier-step-title">Define tu Silueta</h3>
-                                <p class="atelier-step-subtitle">Selecciona la base anatómica para proyectar la proporción de tu obra de autor.</p>
+                                <div class="avatar-creation-badge"><i class="fa-solid fa-gamepad"></i> CREACIÓN DE AVATAR // LIENZO DE AUTOR</div>
+                                <h3 class="atelier-step-title">Elige tu Avatar</h3>
+                                <p class="atelier-step-subtitle">Selecciona tu base anatómica para calibrar proporción, volumen y flujo corporal en tiempo real.</p>
                             </div>
                             
-                            <div class="silhouette-cards-grid three-columns">
-                                <div class="silhouette-card" data-gender="male" id="card-silhouette-male" onclick="selectSilhouette('male')">
+                            <div class="silhouette-cards-grid two-columns">
+                                <div class="silhouette-card gamified-avatar-card" data-gender="male" id="card-silhouette-male" onclick="selectSilhouette('male')">
+                                    <div class="avatar-card-hud-tag">AVATAR M // 01</div>
                                     <div class="card-radio-indicator"></div>
                                     <div class="silhouette-img-wrapper">
-                                        <img src="images/mannequins/male/select-male.webp" alt="Maniquí Masculino" class="silhouette-mannequin-img">
+                                        <img src="images/mannequins/male/select-male.webp" alt="Avatar Masculino" class="silhouette-mannequin-img">
                                     </div>
-                                    <h4 class="silhouette-name">Masculino</h4>
+                                    <div class="avatar-card-info">
+                                        <h4 class="silhouette-name">Masculino</h4>
+                                        <span class="avatar-card-status"><i class="fa-solid fa-circle-dot"></i> Lienzo Anatómico Activo</span>
+                                    </div>
                                 </div>
 
-                                <div class="silhouette-card" data-gender="female" id="card-silhouette-female" onclick="selectSilhouette('female')">
+                                <div class="silhouette-card gamified-avatar-card" data-gender="female" id="card-silhouette-female" onclick="selectSilhouette('female')">
+                                    <div class="avatar-card-hud-tag">AVATAR F // 02</div>
                                     <div class="card-radio-indicator"></div>
                                     <div class="silhouette-img-wrapper">
-                                        <img src="images/mannequins/female/select-female.webp" alt="Maniquí Femenino" class="silhouette-mannequin-img">
+                                        <img src="images/mannequins/female/select-female.webp" alt="Avatar Femenino" class="silhouette-mannequin-img">
                                     </div>
-                                    <h4 class="silhouette-name">Femenino</h4>
-                                </div>
-
-                                <div class="silhouette-card" data-gender="neutral" id="card-silhouette-neutral" onclick="selectSilhouette('neutral')">
-                                    <div class="card-radio-indicator"></div>
-                                    <div class="silhouette-img-wrapper">
-                                        <img src="images/mannequins/neutral/select-neutral.webp" alt="Maniquí Neutro" class="silhouette-mannequin-img">
+                                    <div class="avatar-card-info">
+                                        <h4 class="silhouette-name">Femenino</h4>
+                                        <span class="avatar-card-status"><i class="fa-solid fa-circle-dot"></i> Lienzo Anatómico Activo</span>
                                     </div>
-                                    <h4 class="silhouette-name">Neutro</h4>
                                 </div>
                             </div>
 
                             <div class="atelier-action-footer">
                                 <button type="button" class="btn-atelier-primary" id="btn-phase1-next" onclick="showPhase(2)" disabled>
-                                    <span>Continuar</span>
+                                    <span>Iniciar Calibración Anatómica</span>
                                     <i class="fa-solid fa-arrow-right"></i>
                                 </button>
                             </div>
@@ -225,8 +226,9 @@
                     <!-- PANTALLA 3 (Fase 2): Selección Anatómica // Configurador 360° con Resaltado Verde Esmeralda -->
                     <div class="phase-card" data-phase="2">
                         <div class="atelier-header-center">
+                            <div class="avatar-creation-badge"><i class="fa-solid fa-crosshairs"></i> ESCANEO BIOMÉTRICO 360°</div>
                             <h3 class="atelier-step-title">Zona Anatómica</h3>
-                            <p class="atelier-step-subtitle">Elige el área donde ubicaremos tu pieza y explora la perspectiva en 360°.</p>
+                            <p class="atelier-step-subtitle">Gira tu avatar arrastrando en 360° y selecciona el área donde cobrará vida tu pieza.</p>
                         </div>
 
                         <!-- Paso 1: Selector de Zona Principal (Pills Minimalistas) -->
@@ -247,13 +249,19 @@
                             <!-- Visor Maniquí 360° con Capa Verde Esmeralda -->
                             <div class="clean-stage-col">
                                 <div class="clean-view-nav">
-                                    <button type="button" class="clean-view-btn active" data-view="front" onclick="changeMannequinView('front')">Frente</button>
-                                    <button type="button" class="clean-view-btn" data-view="back" onclick="changeMannequinView('back')">Espalda</button>
-                                    <button type="button" class="clean-view-btn" data-view="left" onclick="changeMannequinView('left')">Perfil Izq.</button>
-                                    <button type="button" class="clean-view-btn" data-view="right" onclick="changeMannequinView('right')">Perfil Der.</button>
+                                    <button type="button" class="clean-view-btn active" data-view="front" onclick="changeMannequinView('front')">Frente (0°)</button>
+                                    <button type="button" class="clean-view-btn" data-view="right" onclick="changeMannequinView('right')">Perfil Der. (90°)</button>
+                                    <button type="button" class="clean-view-btn" data-view="back" onclick="changeMannequinView('back')">Espalda (180°)</button>
+                                    <button type="button" class="clean-view-btn" data-view="left" onclick="changeMannequinView('left')">Perfil Izq. (270°)</button>
                                 </div>
 
-                                <div class="clean-mannequin-box">
+                                <div class="clean-mannequin-box" id="clean-mannequin-box" title="Arrastra para rotar en 360°">
+                                    <div class="hud-corner-bracket top-left"></div>
+                                    <div class="hud-corner-bracket top-right"></div>
+                                    <div class="hud-corner-bracket bottom-left"></div>
+                                    <div class="hud-corner-bracket bottom-right"></div>
+                                    <div class="hud-rotation-hint"><i class="fa-solid fa-arrows-rotate"></i> Arrastra para rotar 360°</div>
+
                                     <!-- Maniquí Base 360° -->
                                     <img id="mannequin-360-img" src="images/mannequins/male/mannequin-male-front.webp" alt="Lienzo Anatómico 360°" class="clean-mannequin-img">
                                     

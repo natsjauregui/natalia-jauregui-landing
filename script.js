@@ -1401,9 +1401,9 @@ document.addEventListener('DOMContentLoaded', () => {
         phone: '',
         email: '',
         instagram: '',
-        gender: 'neutral',
+        gender: 'male',
         contexture: 'delgada',
-        zone: '',
+        zone: 'brazo',
         subzone: '',
         size: 'pequeno',
         painMode: 'sin-dolor',
@@ -1573,7 +1573,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update stats
         const statSil = document.getElementById('stat-silhouette');
         if (statSil) {
-            statSil.textContent = gender === 'neutral' ? 'No Binario / Neutro' : (gender === 'female' ? 'Femenino' : 'Masculino');
+            statSil.textContent = gender === 'female' ? 'Avatar Femenino' : 'Avatar Masculino';
         }
 
         // Update 3D viewer
@@ -2078,6 +2078,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Global 360 Perspective Switcher
+    const VIEW_ORDER_360 = ['front', 'right', 'back', 'left'];
+
     function changeMannequinView(view) {
         if (!view) return;
         gameState.view = view;
@@ -2091,6 +2093,80 @@ document.addEventListener('DOMContentLoaded', () => {
         update360MannequinView();
     }
     window.changeMannequinView = changeMannequinView;
+
+    // Interactive Drag / Touch 360 Turntable Controller
+    (function init360DragTurntable() {
+        const mannequinBox = document.getElementById('clean-mannequin-box');
+        if (!mannequinBox) return;
+
+        let startX = 0;
+        let isDragging = false;
+        const dragThreshold = 35; // Pixels needed to trigger rotation
+
+        function rotateStep(direction) {
+            const currentIdx = VIEW_ORDER_360.indexOf(gameState.view || 'front');
+            let nextIdx;
+            if (direction === 'next') {
+                nextIdx = (currentIdx + 1) % VIEW_ORDER_360.length;
+            } else {
+                nextIdx = (currentIdx - 1 + VIEW_ORDER_360.length) % VIEW_ORDER_360.length;
+            }
+            changeMannequinView(VIEW_ORDER_360[nextIdx]);
+        }
+
+        // Mouse Events
+        mannequinBox.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.clientX;
+            mannequinBox.style.cursor = 'grabbing';
+            e.preventDefault();
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            const diffX = e.clientX - startX;
+            if (Math.abs(diffX) > dragThreshold) {
+                if (diffX < 0) {
+                    rotateStep('next'); // Drag left -> rotate clockwise
+                } else {
+                    rotateStep('prev'); // Drag right -> rotate counter-clockwise
+                }
+                startX = e.clientX;
+            }
+        });
+
+        window.addEventListener('mouseup', () => {
+            if (isDragging) {
+                isDragging = false;
+                mannequinBox.style.cursor = 'grab';
+            }
+        });
+
+        // Touch Events for Mobile & Tablet
+        mannequinBox.addEventListener('touchstart', (e) => {
+            if (e.touches.length === 1) {
+                isDragging = true;
+                startX = e.touches[0].clientX;
+            }
+        }, { passive: true });
+
+        mannequinBox.addEventListener('touchmove', (e) => {
+            if (!isDragging || e.touches.length !== 1) return;
+            const diffX = e.touches[0].clientX - startX;
+            if (Math.abs(diffX) > dragThreshold) {
+                if (diffX < 0) {
+                    rotateStep('next');
+                } else {
+                    rotateStep('prev');
+                }
+                startX = e.touches[0].clientX;
+            }
+        }, { passive: true });
+
+        mannequinBox.addEventListener('touchend', () => {
+            isDragging = false;
+        }, { passive: true });
+    })();
 
     // Direct Macro Zone Selector (Brazos, Piernas, Pecho, Espalda, Cuello)
     function selectMacroZone(macroKey) {
@@ -2873,7 +2949,7 @@ document.addEventListener('DOMContentLoaded', () => {
             emailEl.textContent = gameState.email || 'No indicado';
         }
         if (silEl) {
-            silEl.textContent = gameState.gender === 'female' ? 'Silueta Femenina' : (gameState.gender === 'male' ? 'Silueta Masculina' : 'Silueta No Binario / Neutro');
+            silEl.textContent = gameState.gender === 'female' ? 'Avatar Femenino' : 'Avatar Masculino';
         }
         if (zoneEl) {
             const zoneText = gameState.zoneName || (gameState.zone ? gameState.zone.toUpperCase() : 'Brazos');
