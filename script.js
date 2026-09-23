@@ -2036,6 +2036,488 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // Base de datos de Sensibilidad Anatómica y Protocolo de Confort ("Pain-o-Meter")
+    const ANATOMICAL_PAIN_DB = {
+        "brazo": {
+            "default": {
+                score: 4,
+                tag: "LIENZO DE ALTA TOLERANCIA",
+                tolerance: "Tolerancia Óptima",
+                color: "#00FF88",
+                anatomy: "Masa muscular en bíceps y deltoides que amortigua la vibración.",
+                protocol: "Protocolo Confort: Soporte ergonómico de brazo y bálsamos botánicos calmantes continuos."
+            },
+            "subzones": {
+                "Media Manga Superior": {
+                    score: 4,
+                    tag: "LIENZO DE ALTA TOLERANCIA",
+                    tolerance: "Tolerancia Óptima",
+                    color: "#00FF88",
+                    anatomy: "El deltoides y bíceps proporcionan una base acolchada muy dócil.",
+                    protocol: "Protocolo Confort: Apoyo ergonómico y humectación activa durante la sesión."
+                },
+                "Media Manga Inferior": {
+                    score: 3,
+                    tag: "LIENZO DE CONFORT",
+                    tolerance: "Tolerancia Máxima",
+                    color: "#00FF88",
+                    anatomy: "Una de las zonas más nobles y estables de la anatomía humana.",
+                    protocol: "Protocolo Confort: Posición de descanso total y técnica fluida sin estrés."
+                },
+                "Manga Completa": {
+                    score: 5,
+                    tag: "COMPOSICIÓN INTEGRAL",
+                    tolerance: "Tolerancia Media",
+                    color: "#FFD700",
+                    anatomy: "Transición anatómica que combina zonas de muy baja molestia con articulaciones.",
+                    protocol: "Protocolo Confort: Sesiones estructuradas por bloques con pausas de recuperación."
+                },
+                "Hombro Derecho": {
+                    score: 4,
+                    tag: "ZONA NOBLE Y ESTABLE",
+                    tolerance: "Tolerancia Óptima",
+                    color: "#00FF88",
+                    anatomy: "Piel firme con excelente soporte muscular para sombras y color.",
+                    protocol: "Protocolo Confort: Ajuste postural para relajación completa de hombros."
+                },
+                "Hombro Izquierdo": {
+                    score: 4,
+                    tag: "ZONA NOBLE Y ESTABLE",
+                    tolerance: "Tolerancia Óptima",
+                    color: "#00FF88",
+                    anatomy: "Piel firme con excelente soporte muscular para sombras y color.",
+                    protocol: "Protocolo Confort: Ajuste postural para relajación completa de hombros."
+                },
+                "Bíceps": {
+                    score: 4,
+                    tag: "LIENZO AMIGABLE",
+                    tolerance: "Tolerancia Óptima",
+                    color: "#00FF88",
+                    anatomy: "Tejido muscular suave y baja densidad de receptores nociceptivos.",
+                    protocol: "Protocolo Confort: Presión modulada y enfriamiento tópico intermitente."
+                },
+                "Tríceps": {
+                    score: 5,
+                    tag: "SENSIBILIDAD MEDIA",
+                    tolerance: "Tolerancia Media",
+                    color: "#FFD700",
+                    anatomy: "Piel algo más fina en la cara posterior del brazo cerca al codo.",
+                    protocol: "Protocolo Confort: Soporte acolchado especial y micro-pausas estratégicas."
+                },
+                "Antebrazo Interno": {
+                    score: 3,
+                    tag: "LIENZO DE CONFORT",
+                    tolerance: "Tolerancia Máxima",
+                    color: "#00FF88",
+                    anatomy: "Piel suave y uniforme, perfecta para fine line y micro-detalles.",
+                    protocol: "Protocolo Confort: Bálsamos calmantes de acción rápida y apoyo ergonómico."
+                },
+                "Antebrazo Externo": {
+                    score: 3,
+                    tag: "LIENZO FÁCIL",
+                    tolerance: "Tolerancia Máxima",
+                    color: "#00FF88",
+                    anatomy: "Mínima sensibilidad nerviosa y fijación extraordinaria del pigmento.",
+                    protocol: "Protocolo Confort: Sesión súper relajada y fluida."
+                },
+                "Muñeca / Mano": {
+                    score: 7,
+                    tag: "ZONA DELICADA",
+                    tolerance: "Sensibilidad Elevada",
+                    color: "#FF8800",
+                    anatomy: "Capa dérmica delgada y proximidad a huesos carpianos y tendones.",
+                    protocol: "Protocolo Confort: Aplicación tópica previa, agujas de micro-calibre y descansos rítmicos."
+                }
+            }
+        },
+        "pierna": {
+            "default": {
+                score: 4,
+                tag: "LIENZO ESTABLE",
+                tolerance: "Tolerancia Óptima",
+                color: "#00FF88",
+                anatomy: "Fuerte musculatura en cuádriceps y gemelos que disipa la vibración.",
+                protocol: "Protocolo Confort: Camilla clínica reclinable y soporte ergonómico para piernas."
+            },
+            "subzones": {
+                "Muslo Frontal": {
+                    score: 4,
+                    tag: "LIENZO AMPLIO Y CÓMODO",
+                    tolerance: "Tolerancia Óptima",
+                    color: "#00FF88",
+                    anatomy: "El cuádriceps ofrece una base gruesa y elástica de gran estabilidad.",
+                    protocol: "Protocolo Confort: Postura semi-recostada muy cómoda y suave aplicación."
+                },
+                "Muslo Lateral": {
+                    score: 5,
+                    tag: "TOLERANCIA MEDIA",
+                    tolerance: "Tolerancia Media",
+                    color: "#FFD700",
+                    anatomy: "Fascia lata y banda iliotibial con densidad moderada.",
+                    protocol: "Protocolo Confort: Cojines ergonómicos de alivio y bálsamos anti-inflamatorios."
+                },
+                "Muslo Trasero": {
+                    score: 6,
+                    tag: "SENSIBILIDAD NERVIOSA",
+                    tolerance: "Sensibilidad Moderada",
+                    color: "#FFD700",
+                    anatomy: "Mayor proximidad a ramificaciones nerviosas del nervio ciático.",
+                    protocol: "Protocolo Confort: Regulación suave de voltaje y pausas de confort."
+                },
+                "Espinilla": {
+                    score: 7,
+                    tag: "IMPACTO ÓSEO",
+                    tolerance: "Sensibilidad Elevada",
+                    color: "#FF8800",
+                    anatomy: "Proximidad directa a la cresta tibial anterior con poco tejido adiposo.",
+                    protocol: "Protocolo Confort: Modulación precisa de velocidad y presión liviana milimétrica."
+                },
+                "Gemelo / Pantorrilla": {
+                    score: 4,
+                    tag: "LIENZO NOBLE",
+                    tolerance: "Tolerancia Óptima",
+                    color: "#00FF88",
+                    anatomy: "Masa muscular gastronémica densa y excelente vascularización.",
+                    protocol: "Protocolo Confort: Postura relajada de decúbito y bálsamo calmante."
+                },
+                "Media Pierna Superior": {
+                    score: 4,
+                    tag: "LIENZO ESTABLE",
+                    tolerance: "Tolerancia Óptima",
+                    color: "#00FF88",
+                    anatomy: "Zona amplia y muscular ideal para composiciones de gran impacto.",
+                    protocol: "Protocolo Confort: Sesión guiada con ambientación y ergonomía premium."
+                },
+                "Media Pierna Inferior": {
+                    score: 5,
+                    tag: "SENSIBILIDAD MODERADA",
+                    tolerance: "Tolerancia Media",
+                    color: "#FFD700",
+                    anatomy: "Transición anatómica hacia el tobillo y los tendones extensores.",
+                    protocol: "Protocolo Confort: Ajustes de inclinación y descansos específicos."
+                },
+                "Pierna Completa": {
+                    score: 6,
+                    tag: "PROYECTO MONUMENTAL",
+                    tolerance: "Tolerancia Media",
+                    color: "#FFD700",
+                    anatomy: "Gran cobertura anatómica planificada estratégicamente.",
+                    protocol: "Protocolo Confort: Cronograma por sesiones sectorizadas y bioseguridad intensiva."
+                },
+                "Tobillo / Pie": {
+                    score: 8,
+                    tag: "ZONA SENSIBLE",
+                    tolerance: "Sensibilidad Alta",
+                    color: "#FF8800",
+                    anatomy: "Piel delgada y numerosas terminaciones nerviosas periféricas.",
+                    protocol: "Protocolo Confort: Inmovilización ergonómica, anestésico tópico y micro-trazos."
+                }
+            }
+        },
+        "pecho": {
+            "default": {
+                score: 6,
+                tag: "SENSIBILIDAD MEDIA-ALTA",
+                tolerance: "Sensibilidad Moderada",
+                color: "#FFD700",
+                anatomy: "Cercanía a la caja torácica, esternón y clavículas.",
+                protocol: "Protocolo Confort: Respiración guiada coordinada y apoyo lumbar ergonómico."
+            },
+            "subzones": {
+                "Pectoral Derecho": {
+                    score: 6,
+                    tag: "SENSIBILIDAD MODERADA",
+                    tolerance: "Sensibilidad Moderada",
+                    color: "#FFD700",
+                    anatomy: "Músculo pectoral mayor ofrece soporte, más sensible hacia el esternón.",
+                    protocol: "Protocolo Confort: Control del ritmo de tatuado y pausas respiratorias."
+                },
+                "Pectoral Izquierdo": {
+                    score: 6,
+                    tag: "SENSIBILIDAD MODERADA",
+                    tolerance: "Sensibilidad Moderada",
+                    color: "#FFD700",
+                    anatomy: "Músculo pectoral mayor ofrece soporte, más sensible hacia el esternón.",
+                    protocol: "Protocolo Confort: Control del ritmo de tatuado y pausas respiratorias."
+                },
+                "Pectoral (Ambos)": {
+                    score: 7,
+                    tag: "COMPOSICIÓN FRONTAL",
+                    tolerance: "Sensibilidad Elevada",
+                    color: "#FF8800",
+                    anatomy: "Cubre la unión esternal y la región subclavicular completa.",
+                    protocol: "Protocolo Confort: Trabajo simétrico por fases y alivio dérmico continuo."
+                },
+                "Abdomen / Vientre": {
+                    score: 7,
+                    tag: "PIEL ELÁSTICA SENSIBLE",
+                    tolerance: "Sensibilidad Elevada",
+                    color: "#FF8800",
+                    anatomy: "Piel muy móvil sujeta a la respiración y sin base ósea rígida.",
+                    protocol: "Protocolo Confort: Estiramiento técnico delicado y pausas rítmicas."
+                },
+                "Torso Completo": {
+                    score: 8,
+                    tag: "GRAN DESAFÍO VISUAL",
+                    tolerance: "Sensibilidad Alta",
+                    color: "#FF8800",
+                    anatomy: "Abarca esternón, costillas y abdomen en un flujo continuo.",
+                    protocol: "Protocolo Confort: División en múltiples sesiones con kit de bio-cuidado avanzado."
+                }
+            }
+        },
+        "espalda": {
+            "default": {
+                score: 5,
+                tag: "LIENZO MAJESTUOSO",
+                tolerance: "Tolerancia Media",
+                color: "#FFD700",
+                anatomy: "Espesa capa dérmica con variaciones según la proximidad vertebral.",
+                protocol: "Protocolo Confort: Camilla ergonómica de decúbito prono con cojín facial de spa."
+            },
+            "subzones": {
+                "Espalda Alta / Trapecio": {
+                    score: 5,
+                    tag: "TOLERANCIA MEDIA",
+                    tolerance: "Tolerancia Media",
+                    color: "#FFD700",
+                    anatomy: "Músculos trapecios y romboides proporcionan excelente colchón.",
+                    protocol: "Protocolo Confort: Apoyo cervical suave y técnica de saturación progresiva."
+                },
+                "Omóplato Derecho": {
+                    score: 6,
+                    tag: "VIBRACIÓN ÓSEA",
+                    tolerance: "Sensibilidad Moderada",
+                    color: "#FFD700",
+                    anatomy: "Resonancia sobre la escápula con sensación vibratoria.",
+                    protocol: "Protocolo Confort: Ángulo de máquina calibrado y descanso articular."
+                },
+                "Omóplato Izquierdo": {
+                    score: 6,
+                    tag: "VIBRACIÓN ÓSEA",
+                    tolerance: "Sensibilidad Moderada",
+                    color: "#FFD700",
+                    anatomy: "Resonancia sobre la escápula con sensación vibratoria.",
+                    protocol: "Protocolo Confort: Ángulo de máquina calibrado y descanso articular."
+                },
+                "Espalda Baja / Lumbar": {
+                    score: 6,
+                    tag: "SENSIBILIDAD MODERADA",
+                    tolerance: "Sensibilidad Moderada",
+                    color: "#FFD700",
+                    anatomy: "Piel firme con tensión lumbar natural al estar recostado.",
+                    protocol: "Protocolo Confort: Soporte bajo rodillas para liberar tensión en la columna."
+                },
+                "Espalda Completa (Full Back)": {
+                    score: 7,
+                    tag: "OBRA MAESTRA DE AUTOR",
+                    tolerance: "Sensibilidad Elevada",
+                    color: "#FF8800",
+                    anatomy: "El lienzo más emblemático y de mayor proyección artística del cuerpo.",
+                    protocol: "Protocolo Confort: Plan integral por etapas con bio-regeneración acelerada."
+                }
+            }
+        },
+        "cuello": {
+            "default": {
+                score: 7,
+                tag: "ZONA DE ALTA SENSIBILIDAD",
+                tolerance: "Sensibilidad Elevada",
+                color: "#FF8800",
+                anatomy: "Piel fina y flexible con gran vascularización y cercanía articular.",
+                protocol: "Protocolo Confort: Soporte de cabeza clínico, anestésico tópico y trazo ultra-fino."
+            },
+            "subzones": {
+                "Garganta / Frontal": {
+                    score: 8,
+                    tag: "ZONA DELICADA",
+                    tolerance: "Sensibilidad Alta",
+                    color: "#FF8800",
+                    anatomy: "Tejido muy delgado sobre tráquea y vasos sanguíneos mayores.",
+                    protocol: "Protocolo Confort: Técnica de apoyo suave con pausas continuas para tragar y respirar."
+                },
+                "Lateral Derecho": {
+                    score: 7,
+                    tag: "SENSIBILIDAD ELEVADA",
+                    tolerance: "Sensibilidad Elevada",
+                    color: "#FF8800",
+                    anatomy: "Músculo esternocleidomastoideo con notable sensibilidad vibratoria.",
+                    protocol: "Protocolo Confort: Inclinación cervical protegida y descansos frecuentes."
+                },
+                "Lateral Izquierdo": {
+                    score: 7,
+                    tag: "SENSIBILIDAD ELEVADA",
+                    tolerance: "Sensibilidad Elevada",
+                    color: "#FF8800",
+                    anatomy: "Músculo esternocleidomastoideo con notable sensibilidad vibratoria.",
+                    protocol: "Protocolo Confort: Inclinación cervical protegida y descansos frecuentes."
+                },
+                "Nuca / Posterior": {
+                    score: 6,
+                    tag: "SENSIBILIDAD MEDIA",
+                    tolerance: "Sensibilidad Moderada",
+                    color: "#FFD700",
+                    anatomy: "Base del cráneo y vértebras cervicales con buena tolerancia dérmica.",
+                    protocol: "Protocolo Confort: Almohadilla anatómica de descarga cervical."
+                },
+                "Cuello Completo": {
+                    score: 8,
+                    tag: "UMBRAL PARA COLECCIONISTAS",
+                    tolerance: "Sensibilidad Alta",
+                    color: "#FF8800",
+                    anatomy: "Composición 360° que rodea toda la arquitectura del cuello.",
+                    protocol: "Protocolo Confort: Sesiones fragmentadas con máxima atención ergonómica."
+                }
+            }
+        }
+    };
+
+    // Base de datos de Hotspots Táctiles por perspectiva
+    const MANNEQUIN_HOTSPOTS_DB = {
+        "front": [
+            { macro: "cuello", subzone: "Garganta / Frontal", top: "24%", left: "50%", label: "Cuello" },
+            { macro: "pecho", subzone: "Pectoral Derecho", top: "33%", left: "44%", label: "Pectoral D." },
+            { macro: "pecho", subzone: "Pectoral Izquierdo", top: "33%", left: "56%", label: "Pectoral I." },
+            { macro: "pecho", subzone: "Abdomen / Vientre", top: "42%", left: "50%", label: "Abdomen" },
+            { macro: "brazo", subzone: "Bíceps", top: "37%", left: "34%", label: "Bíceps D." },
+            { macro: "brazo", subzone: "Bíceps", top: "37%", left: "66%", label: "Bíceps I." },
+            { macro: "brazo", subzone: "Antebrazo Interno", top: "47%", left: "30%", label: "Antebrazo D." },
+            { macro: "brazo", subzone: "Antebrazo Interno", top: "47%", left: "70%", label: "Antebrazo I." },
+            { macro: "pierna", subzone: "Muslo Frontal", top: "60%", left: "43%", label: "Muslo D." },
+            { macro: "pierna", subzone: "Muslo Frontal", top: "60%", left: "57%", label: "Muslo I." },
+            { macro: "pierna", subzone: "Espinilla", top: "76%", left: "43%", label: "Espinilla D." },
+            { macro: "pierna", subzone: "Espinilla", top: "76%", left: "57%", label: "Espinilla I." }
+        ],
+        "back": [
+            { macro: "cuello", subzone: "Nuca / Posterior", top: "22%", left: "50%", label: "Nuca" },
+            { macro: "espalda", subzone: "Espalda Alta / Trapecio", top: "28%", left: "50%", label: "Trapecio" },
+            { macro: "espalda", subzone: "Omóplato Derecho", top: "34%", left: "42%", label: "Omóplato D." },
+            { macro: "espalda", subzone: "Omóplato Izquierdo", top: "34%", left: "58%", label: "Omóplato I." },
+            { macro: "brazo", subzone: "Tríceps", top: "37%", left: "34%", label: "Tríceps D." },
+            { macro: "brazo", subzone: "Tríceps", top: "37%", left: "66%", label: "Tríceps I." },
+            { macro: "espalda", subzone: "Espalda Baja / Lumbar", top: "45%", left: "50%", label: "Lumbar" },
+            { macro: "pierna", subzone: "Muslo Trasero", top: "60%", left: "43%", label: "Muslo D." },
+            { macro: "pierna", subzone: "Muslo Trasero", top: "60%", left: "57%", label: "Muslo I." },
+            { macro: "pierna", subzone: "Gemelo / Pantorrilla", top: "76%", left: "43%", label: "Gemelo D." },
+            { macro: "pierna", subzone: "Gemelo / Pantorrilla", top: "76%", left: "57%", label: "Gemelo I." }
+        ],
+        "right": [
+            { macro: "cuello", subzone: "Lateral Derecho", top: "24%", left: "50%", label: "Lateral Cuello" },
+            { macro: "brazo", subzone: "Hombro Derecho", top: "29%", left: "48%", label: "Hombro Der." },
+            { macro: "brazo", subzone: "Media Manga Superior", top: "37%", left: "48%", label: "Brazo Der." },
+            { macro: "brazo", subzone: "Antebrazo Externo", top: "48%", left: "48%", label: "Antebrazo" },
+            { macro: "pierna", subzone: "Muslo Lateral", top: "60%", left: "50%", label: "Muslo Lateral" },
+            { macro: "pierna", subzone: "Media Pierna Inferior", top: "76%", left: "50%", label: "Pantorrilla" }
+        ],
+        "left": [
+            { macro: "cuello", subzone: "Lateral Izquierdo", top: "24%", left: "50%", label: "Lateral Cuello" },
+            { macro: "brazo", subzone: "Hombro Izquierdo", top: "29%", left: "52%", label: "Hombro Izq." },
+            { macro: "brazo", subzone: "Media Manga Superior", top: "37%", left: "52%", label: "Brazo Izq." },
+            { macro: "brazo", subzone: "Antebrazo Externo", top: "48%", left: "52%", label: "Antebrazo" },
+            { macro: "pierna", subzone: "Muslo Lateral", top: "60%", left: "50%", label: "Muslo Lateral" },
+            { macro: "pierna", subzone: "Media Pierna Inferior", top: "76%", left: "50%", label: "Pantorrilla" }
+        ]
+    };
+
+    // Actualizador en Tiempo Real del HUD Pain-o-Meter
+    function updatePainOMeter(macroKey, subzoneName) {
+        const macro = macroKey || gameState.focusedMacro || gameState.zone || 'brazo';
+        const macroData = ANATOMICAL_PAIN_DB[macro];
+        let painInfo = macroData ? macroData.default : null;
+
+        if (macroData && subzoneName && macroData.subzones && macroData.subzones[subzoneName]) {
+            painInfo = macroData.subzones[subzoneName];
+        }
+
+        if (!painInfo) return;
+
+        gameState.painScore = painInfo.score;
+        gameState.painTag = painInfo.tag;
+        gameState.painTolerance = painInfo.tolerance;
+        gameState.painColor = painInfo.color;
+        gameState.painAnatomy = painInfo.anatomy;
+        gameState.painProtocol = painInfo.protocol;
+
+        const scoreVal = document.getElementById('pain-score-val');
+        const barFill = document.getElementById('pain-meter-bar-fill');
+        const tagEl = document.getElementById('pain-meter-tag');
+        const tolEl = document.getElementById('pain-meter-tolerance');
+        const anatEl = document.getElementById('pain-diagnosis-anatomy');
+        const protoEl = document.getElementById('pain-diagnosis-protocol');
+        const scoreBadge = document.getElementById('pain-score-badge');
+
+        if (scoreVal) scoreVal.textContent = painInfo.score;
+        if (barFill) {
+            barFill.style.width = (painInfo.score * 10) + '%';
+            barFill.style.backgroundColor = painInfo.color;
+            barFill.style.boxShadow = `0 0 14px ${painInfo.color}`;
+        }
+        if (scoreBadge) {
+            scoreBadge.style.borderColor = painInfo.color;
+            scoreBadge.style.boxShadow = `0 0 10px ${painInfo.color}40`;
+        }
+        if (tagEl) {
+            tagEl.textContent = painInfo.tag;
+            tagEl.style.color = painInfo.color;
+        }
+        if (tolEl) {
+            tolEl.textContent = painInfo.tolerance;
+        }
+        if (anatEl) {
+            anatEl.innerHTML = `<i class="fa-solid fa-dna" style="color: ${painInfo.color};"></i> <span>${painInfo.anatomy}</span>`;
+        }
+        if (protoEl) {
+            protoEl.innerHTML = `<i class="fa-solid fa-shield-halved" style="color: ${painInfo.color};"></i> <span><strong>Protocolo Confort:</strong> ${painInfo.protocol.replace('Protocolo Confort: ', '')}</span>`;
+        }
+    }
+    window.updatePainOMeter = updatePainOMeter;
+
+    // Renderizador de Hotspots Táctiles sobre el Maniquí 3D
+    function renderMannequinHotspots() {
+        const layer = document.getElementById('mannequin-hotspots-layer');
+        if (!layer) return;
+        const v = gameState.view || 'front';
+        const hotspots = MANNEQUIN_HOTSPOTS_DB[v] || [];
+
+        layer.innerHTML = '';
+        hotspots.forEach(h => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'mannequin-hotspot';
+            btn.style.top = h.top;
+            btn.style.left = h.left;
+            btn.setAttribute('aria-label', `${h.macro} - ${h.subzone}`);
+
+            const isCurrent = (gameState.focusedMacro === h.macro && gameState.subzone === h.subzone);
+            if (isCurrent) btn.classList.add('active');
+
+            btn.innerHTML = `
+                <span class="hotspot-pulse"></span>
+                <span class="hotspot-dot"></span>
+                <span class="hotspot-tooltip">${h.label}</span>
+            `;
+
+            btn.onclick = (e) => {
+                e.stopPropagation();
+                if (gameState.focusedMacro !== h.macro) {
+                    selectMacroZone(h.macro);
+                }
+                selectCleanSubzone(h.macro, h.subzone);
+            };
+
+            btn.onmouseenter = () => {
+                updatePainOMeter(h.macro, h.subzone);
+            };
+            btn.onmouseleave = () => {
+                if (gameState.focusedMacro && gameState.subzone) {
+                    updatePainOMeter(gameState.focusedMacro, gameState.subzone);
+                }
+            };
+
+            layer.appendChild(btn);
+        });
+    }
+
     function update360MannequinView() {
         const mannequinImg = document.getElementById('mannequin-360-img');
         const highlightImg = document.getElementById('mannequin-highlight-img');
@@ -2075,6 +2557,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 highlightImg.style.opacity = '0';
             }
         }
+
+        // Renderizar Hotspots interactivos de la vista
+        renderMannequinHotspots();
     }
 
     // Global 360 Perspective Switcher
@@ -2237,6 +2722,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const summaryMainZone = document.getElementById('summary-main-zone');
         if (summaryMainZone) summaryMainZone.textContent = data.name;
         
+        // 8. Actualizar HUD de Sensibilidad Anatómica (Pain-o-Meter)
+        updatePainOMeter(macroKey, null);
+
         // Auto-select first subzone for frictionless experience
         if (data.subzones && data.subzones.length > 0) {
             selectCleanSubzone(macroKey, data.subzones[0]);
@@ -2265,6 +2753,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Activar láser al seleccionar subzona
         triggerBiometricLaserScan();
+
+        // Actualizar HUD Sensor de Sensibilidad (Pain-o-Meter)
+        updatePainOMeter(macroKey, subzoneName);
 
         // Auto-rotate if subzone has a specialized perspective (ej. gemelo/tríceps a espalda)
         if (ANATOMICAL_PART_MAPPING[macroKey] && ANATOMICAL_PART_MAPPING[macroKey].subzones && ANATOMICAL_PART_MAPPING[macroKey].subzones[subzoneName]) {
@@ -2895,6 +3386,7 @@ document.addEventListener('DOMContentLoaded', () => {
             description: `[FICHA DE ARQUITECTURA CORPORAL - NATALIA JAUREGUI]\n` +
                          `• Silueta Base: ${gameState.gender.toUpperCase()}\n` +
                          `• Coordenada Anatómica: ${gameState.zone.toUpperCase()} // ${gameState.subzone || 'General'}\n` +
+                         `• Sensibilidad Anatómica: ${gameState.painScore || 3}/10 (${gameState.painTolerance || 'Tolerancia Óptima'} - ${gameState.painTag || 'Lienzo de Confort'})\n` +
                          `• Protocolo Confort: ${gameState.painMode === 'sin-dolor' ? 'TECNOLOGÍA SIN DOLOR' : 'SESIÓN TRADICIONAL'}\n` +
                          `• Escala / Formato: ${gameState.scale === 'pequeno' ? 'Pequeño (<12cm)' : (gameState.scale === 'mediano' ? 'Mediano (15-25cm)' : 'Gran Formato')}\n\n` +
                          `• Consentimiento Habeas Data (Ley 1581/2012): AUTORIZADO\n` +
@@ -2964,6 +3456,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const scaleEl = document.getElementById('summary-card-scale');
         const styleEl = document.getElementById('summary-card-style');
         const painEl = document.getElementById('summary-card-pain');
+        const sensitivityEl = document.getElementById('summary-card-sensitivity');
         const meaningEl = document.getElementById('summary-card-meaning');
         const folioIdEl = document.getElementById('ficha-folio-id');
         const watermarkEl = document.getElementById('ficha-style-watermark');
@@ -3006,6 +3499,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (painEl) {
             painEl.textContent = gameState.painMode === 'sin-dolor' ? 'Tecnología Sin Dolor (Infusión Continua)' : 'Sesión Tradicional';
+        }
+        if (sensitivityEl) {
+            sensitivityEl.textContent = `${gameState.painScore || 3}/10 (${gameState.painTolerance || 'Tolerancia Óptima'} - ${gameState.painTag || 'Lienzo de Confort'})`;
+            if (gameState.painColor) sensitivityEl.style.color = gameState.painColor;
         }
         if (meaningEl) {
             meaningEl.textContent = `"${gameState.meaning || 'Co-creación y conceptualización anatómica en sesión con Natalia Jauregui.'}"`;

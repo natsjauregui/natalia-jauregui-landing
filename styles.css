@@ -5457,6 +5457,258 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     color: #00FF88 !important;
 }
 
+/* ==========================================================================
+   HOTSPOTS INTERACTIVOS SOBRE MANIQUÍ 360°
+   ========================================================================== */
+.mannequin-hotspots-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.mannequin-hotspot {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 22px;
+    height: 22px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hotspot-dot {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #00FF88;
+    box-shadow: 0 0 8px #00FF88, 0 0 16px rgba(0, 255, 136, 0.8);
+    transition: all 0.2s ease;
+}
+
+.hotspot-pulse {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(0, 255, 136, 0.6);
+    background: rgba(0, 255, 136, 0.15);
+    animation: hotspotPulseAnim 2s infinite ease-out;
+}
+
+@keyframes hotspotPulseAnim {
+    0% {
+        transform: scale(0.6);
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(1.6);
+        opacity: 0;
+    }
+}
+
+.hotspot-tooltip {
+    position: absolute;
+    bottom: calc(100% + 5px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    background: rgba(10, 10, 10, 0.94);
+    border: 1px solid rgba(0, 255, 136, 0.5);
+    color: #FFFFFF;
+    font-family: var(--font-heading);
+    font-size: 0.58rem;
+    letter-spacing: 0.4px;
+    padding: 2px 7px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+    z-index: 20;
+}
+
+.mannequin-hotspot:hover {
+    transform: translate(-50%, -50%) scale(1.3);
+}
+
+.mannequin-hotspot:hover .hotspot-dot {
+    background: #FFFFFF;
+    box-shadow: 0 0 12px #FFFFFF, 0 0 20px #00FF88;
+}
+
+.mannequin-hotspot:hover .hotspot-tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.mannequin-hotspot.active .hotspot-dot {
+    background: #00FF88;
+    box-shadow: 0 0 12px #00FF88, 0 0 24px #00FF88;
+    width: 9px;
+    height: 9px;
+}
+
+.mannequin-hotspot.active .hotspot-pulse {
+    border-color: #00FF88;
+    animation-duration: 1.2s;
+}
+
+/* ==========================================================================
+   PAIN-O-METER HUD (SENSOR DE SENSIBILIDAD & PROTOCOLO CONFORT)
+   ========================================================================== */
+.pain-hud-block {
+    background: rgba(18, 18, 18, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 8px 10px;
+    box-sizing: border-box;
+}
+
+.pain-hud-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.pain-hud-header .clean-section-tag {
+    margin-bottom: 0;
+    font-size: 0.58rem;
+    color: #E2C2C2;
+}
+
+.pain-score-badge {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 2px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid #00FF88;
+    padding: 2px 8px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.pain-score-val {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+.pain-score-max {
+    font-family: var(--font-heading);
+    font-size: 0.60rem;
+    color: #888888;
+}
+
+.pain-meter-card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.pain-meter-bar-wrapper {
+    position: relative;
+    width: 100%;
+    height: 8px;
+    background: #0A0A0A;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.pain-meter-bar-fill {
+    height: 100%;
+    width: 30%;
+    background: #00FF88;
+    border-radius: 6px;
+    box-shadow: 0 0 12px #00FF88;
+    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.pain-meter-notches {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    padding: 0 2px;
+}
+
+.pain-meter-notches span {
+    width: 1px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.pain-meter-info-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--font-heading);
+}
+
+.pain-meter-tag {
+    font-size: 0.64rem;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    color: #00FF88;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.pain-meter-tolerance {
+    font-size: 0.60rem;
+    color: #AAAAAA;
+    letter-spacing: 0.3px;
+}
+
+.pain-diagnosis-box {
+    background: rgba(0, 0, 0, 0.45);
+    border-radius: 7px;
+    padding: 6px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.pain-diagnosis-anatomy,
+.pain-diagnosis-protocol {
+    font-size: 0.62rem;
+    line-height: 1.35;
+    color: #CCCCCC;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+}
+
+.pain-diagnosis-anatomy i,
+.pain-diagnosis-protocol i {
+    font-size: 0.68rem;
+    margin-top: 1px;
+    flex-shrink: 0;
+}
+
+.pain-diagnosis-protocol strong {
+    color: #FFFFFF;
+}
+
 /* Resumen Inferior */
 .clean-summary-bar {
     background: #111111;

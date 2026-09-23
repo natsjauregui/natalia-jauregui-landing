@@ -18,7 +18,7 @@
     <!-- Calendly Widget CSS -->
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css?v=136">
+    <link rel="stylesheet" href="styles.css?v=137">
 </head>
 <body>
     <!-- Status Banner for Post-Completion -->
@@ -270,6 +270,9 @@
                                         
                                         <!-- Capa de Resaltado Verde Esmeralda Activa en Tiempo Real -->
                                         <img id="mannequin-highlight-img" src="images/mannequins/male/green/brazo-der-front.webp" alt="Zona Seleccionada" class="clean-mannequin-highlight-img active">
+
+                                        <!-- Capa de Hotspots Táctiles Interactivos -->
+                                        <div class="mannequin-hotspots-layer" id="mannequin-hotspots-layer"></div>
                                     </div>
                                     
                                     <div class="clean-zone-badge" id="clean-zone-badge">
@@ -291,7 +294,7 @@
                                 </div>
 
                                 <!-- Paso 3: Tamaño del Proyecto -->
-                                <div class="clean-control-block" style="margin-top: 14px;">
+                                <div class="clean-control-block" style="margin-top: 10px;">
                                     <span class="clean-section-tag">PASO 3 // TAMAÑO ESTIMADO</span>
                                     <div class="clean-scale-pills-row">
                                         <button type="button" class="clean-scale-pill active" data-scale="pequeno" onclick="selectScale('pequeno')">
@@ -306,6 +309,37 @@
                                             <strong>Gran Formato</strong>
                                             <span>Zona Completa</span>
                                         </button>
+                                    </div>
+                                </div>
+
+                                <!-- Paso 4: Sensor de Sensibilidad & Protocolo Confort (Pain-o-Meter HUD) -->
+                                <div class="clean-control-block pain-hud-block" id="pain-meter-block" style="margin-top: 10px;">
+                                    <div class="pain-hud-header">
+                                        <span class="clean-section-tag"><i class="fa-solid fa-gauge-high"></i> SENSOR DE SENSIBILIDAD // CONFORT</span>
+                                        <div class="pain-score-badge" id="pain-score-badge">
+                                            <span class="pain-score-val" id="pain-score-val">3</span>
+                                            <span class="pain-score-max">/ 10</span>
+                                        </div>
+                                    </div>
+                                    <div class="pain-meter-card">
+                                        <div class="pain-meter-bar-wrapper">
+                                            <div class="pain-meter-bar-fill" id="pain-meter-bar-fill" style="width: 30%;"></div>
+                                            <div class="pain-meter-notches">
+                                                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                                            </div>
+                                        </div>
+                                        <div class="pain-meter-info-row">
+                                            <span class="pain-meter-tag" id="pain-meter-tag">LIENZO DE CONFORT</span>
+                                            <span class="pain-meter-tolerance" id="pain-meter-tolerance">Tolerancia Alta</span>
+                                        </div>
+                                        <div class="pain-diagnosis-box">
+                                            <div class="pain-diagnosis-anatomy" id="pain-diagnosis-anatomy">
+                                                <i class="fa-solid fa-dna"></i> <span>Masa muscular y baja densidad de terminaciones nerviosas.</span>
+                                            </div>
+                                            <div class="pain-diagnosis-protocol" id="pain-diagnosis-protocol">
+                                                <i class="fa-solid fa-shield-halved"></i> <span><strong>Protocolo Confort:</strong> Bálsamos calmantes continuos y ergonomía de apoyo.</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -660,6 +694,10 @@
                                     <div class="ficha-meta-item">
                                         <span class="ficha-meta-label">Estilo Artístico Seleccionado</span>
                                         <span class="ficha-meta-val" id="summary-card-style">—</span>
+                                    </div>
+                                    <div class="ficha-meta-item">
+                                        <span class="ficha-meta-label">Índice de Sensibilidad</span>
+                                        <span class="ficha-meta-val highlight-emerald" id="summary-card-sensitivity">—</span>
                                     </div>
                                     <div class="ficha-meta-item full-width-meta">
                                         <span class="ficha-meta-label">Protocolo de Confort</span>
