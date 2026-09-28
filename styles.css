@@ -5213,15 +5213,16 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
 }
 
-/* Camera Rig Maniquí Cuerpo Completo (Sin zoom exagerado) */
-.clean-mannequin-camera-rig {
+/* Escenario Anatómico 360° Calibrado con Proporción Fija 800:1132 */
+.clean-mannequin-stage {
     position: relative;
-    width: 100%;
-    height: 100%;
+    height: 96%;
+    max-height: 100%;
+    aspect-ratio: 800 / 1132;
     display: flex;
     align-items: center;
     justify-content: center;
-    transform: none !important;
+    pointer-events: auto;
 }
 
 /* Escáner Láser Biométrico */
@@ -5259,25 +5260,26 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
 }
 
 .clean-mannequin-img {
-    height: 96%;
-    width: auto;
-    max-height: 100%;
-    object-fit: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
     filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.95));
     transition: opacity 0.2s ease;
     user-select: none;
     -webkit-user-drag: none;
+    pointer-events: none;
 }
 
 .clean-mannequin-highlight-img {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 96%;
-    width: auto;
-    max-height: 100%;
-    object-fit: contain;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
@@ -5288,15 +5290,6 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     -webkit-user-drag: none;
     z-index: 2;
     will-change: opacity;
-}
-
-@keyframes emeraldOpacityPulse {
-    0%, 100% {
-        opacity: 0.85;
-    }
-    50% {
-        opacity: 1;
-    }
 }
 
 .clean-mannequin-highlight-img.active {
