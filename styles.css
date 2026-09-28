@@ -5299,24 +5299,68 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     opacity: 1;
 }
 
-.clean-zone-badge {
-    position: absolute;
-    bottom: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(10, 10, 10, 0.92);
-    border: 1px solid rgba(0, 255, 136, 0.4);
-    padding: 4px 12px;
-    border-radius: 16px;
+/* Barra de Estado y Orientación 360° (Debajo del Maniquí para 0% obstrucción) */
+.clean-stage-footer-bar {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    width: 100%;
+    margin-top: 4px;
+    box-sizing: border-box;
+}
+
+.hud-rotation-hint {
+    font-size: clamp(0.56rem, 1.8vw, 0.64rem);
+    font-family: var(--font-heading);
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: #888888;
+    background: rgba(14, 14, 14, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 3px 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.hud-rotation-hint i {
+    color: #00FF88;
+}
+
+.clean-zone-badge {
+    background: rgba(10, 10, 10, 0.92);
+    border: 1px solid rgba(0, 255, 136, 0.35);
+    padding: 3px 10px;
+    border-radius: 12px;
+    display: inline-flex;
     align-items: center;
     gap: 6px;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    z-index: 5;
     pointer-events: none;
     white-space: nowrap;
-    box-shadow: 0 0 15px rgba(0, 255, 136, 0.15);
+    box-shadow: 0 0 12px rgba(0, 255, 136, 0.12);
+}
+
+.clean-zone-badge .badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #00FF88;
+    box-shadow: 0 0 8px #00FF88;
+    display: inline-block;
+}
+
+.clean-zone-badge .badge-text {
+    font-size: clamp(0.56rem, 1.8vw, 0.64rem);
+    font-family: var(--font-heading);
+    letter-spacing: 0.6px;
+    color: #00FF88;
+    font-weight: 700;
 }
 
 /* Columna de Controles */
@@ -7471,31 +7515,6 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     right: 10px;
     border-bottom: 2px solid;
     border-right: 2px solid;
-}
-
-.hud-rotation-hint {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    font-size: 0.65rem;
-    font-family: var(--font-heading);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: #A0A0A0;
-    background: rgba(10, 10, 10, 0.75);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 20px;
-    padding: 4px 10px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    pointer-events: none;
-    z-index: 7;
-}
-
-.hud-rotation-hint i {
-    color: #00FF88;
 }
 
 @media (max-width: 600px) {
