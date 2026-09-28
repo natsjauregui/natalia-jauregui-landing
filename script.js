@@ -1608,6 +1608,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update current 360 viewer if entering Phase 2
         if (phaseNum === 2) {
+            if (typeof updateMacroZonesVisibility === 'function') {
+                updateMacroZonesVisibility(gameState.view || 'front');
+            }
             update360MannequinView();
             if (typeof validatePhase2 === 'function') validatePhase2();
         }
@@ -2032,16 +2035,12 @@ document.addEventListener('DOMContentLoaded', () => {
         "right": [
             { macro: "brazo", subzone: "Bíceps", side: "der", top: "25.0%", left: "48.3%", label: "Bíceps Der." },
             { macro: "brazo", subzone: "Antebrazo", side: "der", top: "42.5%", left: "50.0%", label: "Antebrazo Der." },
-            { macro: "torso", subzone: "Pectorales", side: "der", top: "24.5%", left: "56.3%", label: "Costilla / Pectoral" },
-            { macro: "espalda", subzone: "Espalda Alta", top: "22.0%", left: "43.1%", label: "Espalda Alta" },
             { macro: "pierna", subzone: "Muslo", side: "der", top: "55.5%", left: "50.6%", label: "Muslo Der." },
             { macro: "pierna", subzone: "Pantorrilla", side: "der", top: "76.5%", left: "46.4%", label: "Pantorrilla Der." }
         ],
         "left": [
             { macro: "brazo", subzone: "Bíceps", side: "izq", top: "25.0%", left: "51.6%", label: "Bíceps Izq." },
             { macro: "brazo", subzone: "Antebrazo", side: "izq", top: "42.5%", left: "50.0%", label: "Antebrazo Izq." },
-            { macro: "torso", subzone: "Pectorales", side: "izq", top: "24.5%", left: "43.8%", label: "Costilla / Pectoral" },
-            { macro: "espalda", subzone: "Espalda Alta", top: "22.0%", left: "56.9%", label: "Espalda Alta" },
             { macro: "pierna", subzone: "Muslo", side: "izq", top: "55.5%", left: "49.6%", label: "Muslo Izq." },
             { macro: "pierna", subzone: "Pantorrilla", side: "izq", top: "76.5%", left: "53.8%", label: "Pantorrilla Izq." }
         ]
@@ -2199,6 +2198,44 @@ document.addEventListener('DOMContentLoaded', () => {
         renderMannequinHotspots();
     }
 
+    // Actualizador dinámico de visibilidad de Macro Zonas según la perspectiva
+    function updateMacroZonesVisibility(view) {
+        const v = view || gameState.view || 'front';
+        const isLateral = (v === 'right' || v === 'left');
+
+        document.querySelectorAll('.clean-macro-pill').forEach(btn => {
+            const macro = btn.getAttribute('data-macro');
+            if (isLateral && (macro === 'torso' || macro === 'pecho' || macro === 'espalda')) {
+                btn.style.display = 'none';
+            } else {
+                btn.style.display = '';
+            }
+        });
+
+        // Si la zona activa era Torso o Espalda y giramos a un perfil lateral,
+        // conmutar fluidamente a Brazos en el lado correspondiente
+        if (isLateral && (gameState.focusedMacro === 'torso' || gameState.focusedMacro === 'pecho' || gameState.focusedMacro === 'espalda')) {
+            const side = (v === 'right' ? 'der' : 'izq');
+            gameState.side = side;
+            selectMacroZone('brazo');
+        } else if (isLateral) {
+            // Sincronizar lateralidad automáticamente con el perfil visible
+            const side = (v === 'right' ? 'der' : 'izq');
+            if (gameState.side !== side && (gameState.focusedMacro === 'brazo' || gameState.focusedMacro === 'pierna')) {
+                gameState.side = side;
+                document.querySelectorAll('.clean-side-pill').forEach(btn => {
+                    if (btn.getAttribute('data-side') === side) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+                updateZoneBadgeAndSummary();
+            }
+        }
+    }
+    window.updateMacroZonesVisibility = updateMacroZonesVisibility;
+
     // Global 360 Perspective Switcher
     const VIEW_ORDER_360 = ['front', 'right', 'back', 'left'];
 
@@ -2212,6 +2249,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 b.classList.remove('active');
             }
         });
+        updateMacroZonesVisibility(view);
         update360MannequinView();
     }
     window.changeMannequinView = changeMannequinView;
@@ -2310,7 +2348,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gameState.zoneName = data.name;
         gameState.subzone = null;
         if (!gameState.side) {
-            gameState.side = 'der';
+            gameState.side = (gameState.view === 'left' ? 'izq' : 'der');
         }
 
         // 1. Highlight active macro pill
@@ -2326,7 +2364,10 @@ document.addEventListener('DOMContentLoaded', () => {
         triggerBiometricLaserScan();
 
         // 3. Auto-rotate mannequin to the best perspective if needed
-        if (data.defaultView && gameState.view !== data.defaultView) {
+        const isLateral = (gameState.view === 'right' || gameState.view === 'left');
+        const isLateralMacro = (macroKey === 'brazo' || macroKey === 'pierna');
+
+        if (data.defaultView && gameState.view !== data.defaultView && (!isLateral || !isLateralMacro)) {
             changeMannequinView(data.defaultView);
         } else {
             update360MannequinView();
