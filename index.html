@@ -228,15 +228,14 @@
                             <p class="atelier-step-subtitle">Gira tu avatar arrastrando en 360° y selecciona el área donde cobrará vida tu pieza.</p>
                         </div>
 
-                        <!-- Paso 1: Selector de Zona Principal (Pills Minimalistas) -->
+                        <!-- Paso 1: Selector de Zona Principal (4 Macro Zonas) -->
                         <div class="clean-macro-selector-wrapper">
                             <span class="clean-section-tag">PASO 1 // ZONA PRINCIPAL</span>
                             <div class="clean-macro-pills-row">
                                 <button type="button" class="clean-macro-pill active" data-macro="brazo" onclick="selectMacroZone('brazo')">Brazos</button>
                                 <button type="button" class="clean-macro-pill" data-macro="pierna" onclick="selectMacroZone('pierna')">Piernas</button>
-                                <button type="button" class="clean-macro-pill" data-macro="pecho" onclick="selectMacroZone('pecho')">Pecho / Torso</button>
+                                <button type="button" class="clean-macro-pill" data-macro="torso" onclick="selectMacroZone('torso')">Torso</button>
                                 <button type="button" class="clean-macro-pill" data-macro="espalda" onclick="selectMacroZone('espalda')">Espalda</button>
-                                <button type="button" class="clean-macro-pill" data-macro="cuello" onclick="selectMacroZone('cuello')">Cuello</button>
                             </div>
                         </div>
 
@@ -246,7 +245,7 @@
                             <!-- Visor Maniquí 360° con Capa Verde Esmeralda -->
                             <div class="clean-stage-col">
                                 <div class="clean-view-nav">
-                                    <button type="button" class="clean-view-btn active" data-view="front" onclick="changeMannequinView('front')">Frente (0°)</button>
+                                    <button type="button" class="clean-view-btn active" data-view="front" onclick="changeMannequinView('front')">Frente</button>
                                     <button type="button" class="clean-view-btn" data-view="right" onclick="changeMannequinView('right')">Perfil Der. (90°)</button>
                                     <button type="button" class="clean-view-btn" data-view="back" onclick="changeMannequinView('back')">Espalda (180°)</button>
                                     <button type="button" class="clean-view-btn" data-view="left" onclick="changeMannequinView('left')">Perfil Izq. (270°)</button>
@@ -260,8 +259,8 @@
                                     <div class="hud-rotation-hint"><i class="fa-solid fa-arrows-rotate"></i> Arrastra para rotar 360°</div>
                                     <div class="biometric-scan-laser" id="biometric-scan-laser"></div>
 
-                                    <!-- Camera Rig con Enfoque y Zoom Inteligente por Zona -->
-                                    <div class="clean-mannequin-camera-rig camera-focus-brazo" id="clean-mannequin-camera-rig">
+                                    <!-- Camera Rig Maniquí Cuerpo Completo -->
+                                    <div class="clean-mannequin-camera-rig" id="clean-mannequin-camera-rig">
                                         <!-- Maniquí Base 360° -->
                                         <img id="mannequin-360-img" src="images/mannequins/male/mannequin-male-front.webp" alt="Lienzo Anatómico 360°" class="clean-mannequin-img">
                                         
@@ -274,24 +273,31 @@
                                     
                                     <div class="clean-zone-badge" id="clean-zone-badge">
                                         <span class="badge-dot"></span>
-                                        <span class="badge-text" id="badge-zone-text">ZONA: BRAZOS</span>
+                                        <span class="badge-text" id="badge-zone-text">ZONA: BRAZOS (DERECHO) // BRAZO COMPLETO</span>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Panel Lateral de Subzonas y Escala -->
+                            <!-- Panel Lateral de Subzonas, Lateralidad, Escala y Criterio de Autor -->
                             <div class="clean-controls-col">
                                 
-                                <!-- Paso 2: Sub-zona -->
+                                <!-- Paso 2: Sub-zona & Lateralidad -->
                                 <div class="clean-control-block">
-                                    <span class="clean-section-tag">PASO 2 // SUB-ZONA ESPECÍFICA</span>
+                                    <div class="clean-subzone-header-row">
+                                        <span class="clean-section-tag">PASO 2 // SUB-ZONA ESPECÍFICA</span>
+                                        <!-- Selector de Lateralidad (Izquierda / Derecha) -->
+                                        <div class="clean-side-selector" id="clean-side-selector">
+                                            <button type="button" class="clean-side-pill active" data-side="der" onclick="selectSide('der')">Derecho/a</button>
+                                            <button type="button" class="clean-side-pill" data-side="izq" onclick="selectSide('izq')">Izquierdo/a</button>
+                                        </div>
+                                    </div>
                                     <div class="clean-subzones-flex" id="clean-subzones-container">
                                         <!-- Inyectado dinámicamente -->
                                     </div>
                                 </div>
 
                                 <!-- Paso 3: Tamaño del Proyecto -->
-                                <div class="clean-control-block" style="margin-top: 10px;">
+                                <div class="clean-control-block">
                                     <span class="clean-section-tag">PASO 3 // TAMAÑO ESTIMADO</span>
                                     <div class="clean-scale-pills-row">
                                         <button type="button" class="clean-scale-pill active" data-scale="pequeno" onclick="selectScale('pequeno')">
@@ -309,33 +315,19 @@
                                     </div>
                                 </div>
 
-                                <!-- Paso 4: Sensor de Sensibilidad & Protocolo Confort (Pain-o-Meter HUD) -->
-                                <div class="clean-control-block pain-hud-block" id="pain-meter-block" style="margin-top: 10px;">
-                                    <div class="pain-hud-header">
-                                        <span class="clean-section-tag"><i class="fa-solid fa-gauge-high"></i> SENSOR DE SENSIBILIDAD // CONFORT</span>
-                                        <div class="pain-score-badge" id="pain-score-badge">
-                                            <span class="pain-score-val" id="pain-score-val">3</span>
-                                            <span class="pain-score-max">/ 10</span>
-                                        </div>
+                                <!-- Paso 4: Criterio Anatómico de Autor (Reemplaza Pain-o-Meter) -->
+                                <div class="clean-control-block anatomical-criteria-block" id="anatomical-criteria-block">
+                                    <div class="criteria-header">
+                                        <span class="clean-section-tag"><i class="fa-solid fa-compass-drafting"></i> CRITERIO ANATÓMICO DE AUTOR</span>
                                     </div>
-                                    <div class="pain-meter-card">
-                                        <div class="pain-meter-bar-wrapper">
-                                            <div class="pain-meter-bar-fill" id="pain-meter-bar-fill" style="width: 30%;"></div>
-                                            <div class="pain-meter-notches">
-                                                <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-                                            </div>
+                                    <div class="anatomical-criteria-card">
+                                        <div class="criteria-icon-col">
+                                            <i class="fa-solid fa-feather-pointed"></i>
                                         </div>
-                                        <div class="pain-meter-info-row">
-                                            <span class="pain-meter-tag" id="pain-meter-tag">LIENZO DE CONFORT</span>
-                                            <span class="pain-meter-tolerance" id="pain-meter-tolerance">Tolerancia Alta</span>
-                                        </div>
-                                        <div class="pain-diagnosis-box">
-                                            <div class="pain-diagnosis-anatomy" id="pain-diagnosis-anatomy">
-                                                <i class="fa-solid fa-dna"></i> <span>Masa muscular y baja densidad de terminaciones nerviosas.</span>
-                                            </div>
-                                            <div class="pain-diagnosis-protocol" id="pain-diagnosis-protocol">
-                                                <i class="fa-solid fa-shield-halved"></i> <span><strong>Protocolo Confort:</strong> Bálsamos calmantes continuos y ergonomía de apoyo.</span>
-                                            </div>
+                                        <div class="criteria-content-col">
+                                            <p class="criteria-text" id="anatomical-criteria-text">
+                                                El brazo es la zona recomendada para un primer tatuaje de realismo o proyectos narrativos visibles gracias a su óptima cicatrización y baja deformación dérmica.
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -347,9 +339,9 @@
                         <div class="clean-summary-bar">
                             <div class="clean-summary-text">
                                 <span class="clean-summary-label">UBICACIÓN:</span>
-                                <strong class="clean-summary-val" id="summary-main-zone">Brazos</strong>
-                                <span id="summary-divider" style="color: #666; margin: 0 4px; display: none;">//</span>
-                                <span class="clean-summary-sub" id="summary-sub-zone">Elige una sub-zona</span>
+                                <strong class="clean-summary-val" id="summary-main-zone">Brazos (Derecho)</strong>
+                                <span id="summary-divider" style="color: #666; margin: 0 4px;">//</span>
+                                <span class="clean-summary-sub" id="summary-sub-zone">Brazo Completo</span>
                             </div>
 
                             <div class="clean-actions-row">
@@ -357,7 +349,7 @@
                                     <i class="fa-solid fa-arrow-left"></i>
                                     <span>Atrás</span>
                                 </button>
-                                <button type="button" class="btn-atelier-primary" id="btn-phase2-next" onclick="startPhase3TransitionVideo()" disabled>
+                                <button type="button" class="btn-atelier-primary" id="btn-phase2-next" onclick="startPhase3TransitionVideo()">
                                     <span>Continuar</span>
                                     <i class="fa-solid fa-arrow-right"></i>
                                 </button>

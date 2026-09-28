@@ -1,4 +1,4 @@
-﻿/**
+/**
  * NATALIA JAUREGUI | NATS TATTOOS - Interactive Landing Page Logic
  * Features: Scroll Effects, Mobile Navigation, Portfolio Filter, Lightbox, Step-by-Step Booking Form, Aftercare Accordion, Reveal on Scroll
  */
@@ -1683,262 +1683,252 @@ document.addEventListener('DOMContentLoaded', () => {
         "brazo": {
             "name": "Brazos",
             "defaultView": "front",
+            "supportsSide": true,
             "subzones": [
-                "Media Manga Superior",
-                "Media Manga Inferior",
-                "Manga Completa",
-                "Hombro Derecho",
-                "Hombro Izquierdo",
+                "Brazo Completo",
                 "Bíceps",
-                "Tríceps",
-                "Antebrazo Interno",
-                "Antebrazo Externo",
-                "Muñeca / Mano"
+                "Antebrazo"
             ]
         },
         "pierna": {
             "name": "Piernas",
             "defaultView": "front",
+            "supportsSide": true,
             "subzones": [
-                "Muslo Frontal",
-                "Muslo Lateral",
-                "Muslo Trasero",
-                "Espinilla",
-                "Gemelo / Pantorrilla",
-                "Media Pierna Superior",
-                "Media Pierna Inferior",
                 "Pierna Completa",
-                "Tobillo / Pie"
+                "Muslo",
+                "Pantorrilla"
+            ]
+        },
+        "torso": {
+            "name": "Torso",
+            "defaultView": "front",
+            "subzones": [
+                "Pectorales",
+                "Abdomen"
             ]
         },
         "pecho": {
-            "name": "Pecho / Torso",
+            "name": "Torso",
             "defaultView": "front",
             "subzones": [
-                "Pectoral Derecho",
-                "Pectoral Izquierdo",
-                "Pectoral (Ambos)",
-                "Abdomen / Vientre",
-                "Torso Completo"
+                "Pectorales",
+                "Abdomen"
             ]
         },
         "espalda": {
             "name": "Espalda",
             "defaultView": "back",
+            "supportsSide": false,
             "subzones": [
-                "Espalda Alta / Trapecio",
-                "Omóplato Derecho",
-                "Omóplato Izquierdo",
-                "Espalda Baja / Lumbar",
-                "Espalda Completa (Full Back)"
-            ]
-        },
-        "cuello": {
-            "name": "Cuello",
-            "defaultView": "front",
-            "subzones": [
-                "Garganta / Frontal",
-                "Lateral Derecho",
-                "Lateral Izquierdo",
-                "Nuca / Posterior",
-                "Cuello Completo"
+                "Espalda Completa",
+                "Espalda Alta",
+                "Espalda Baja"
             ]
         }
     };
 
-    // Mapeo exhaustivo de capas verdes esmeralda por perspectiva
+    // Mapeo exhaustivo de capas verdes esmeralda por perspectiva y lateralidad (der/izq)
     const ANATOMICAL_PART_MAPPING = {
         "brazo": {
             "default": {
-                "front": "brazo-der-front.webp",
-                "back": "brazo-der-back.webp",
-                "left": "brazo-izq-external.webp",
-                "right": "brazo-der-external.webp"
-            },
-            "subzones": {
-                "Media Manga Superior": {
-                    "front": "brazo-der-superior-front.webp",
-                    "back": "brazo-der-superior-back.webp",
-                    "left": "brazo-izq-superior-external.webp",
-                    "right": "brazo-der-superior-external.webp",
-                    "defaultView": "front"
-                },
-                "Media Manga Inferior": {
-                    "front": "brazo-der-antebrazo-front.webp",
-                    "back": "brazo-der-antebrazo-back.webp",
-                    "left": "brazo-izq-antebrazo-external.webp",
-                    "right": "brazo-der-antebrazo-external.webp",
-                    "defaultView": "front"
-                },
-                "Manga Completa": {
+                "der": {
                     "front": "brazo-der-front.webp",
                     "back": "brazo-der-back.webp",
+                    "left": "brazo-der-internal.webp",
+                    "right": "brazo-der-external.webp"
+                },
+                "izq": {
+                    "front": "brazo-izq-front.webp",
+                    "back": "brazo-izq-back.webp",
                     "left": "brazo-izq-external.webp",
-                    "right": "brazo-der-external.webp",
+                    "right": "brazo-izq-internal.webp"
+                }
+            },
+            "subzones": {
+                "Brazo Completo": {
+                    "der": {
+                        "front": "brazo-der-front.webp",
+                        "back": "brazo-der-back.webp",
+                        "left": "brazo-der-internal.webp",
+                        "right": "brazo-der-external.webp"
+                    },
+                    "izq": {
+                        "front": "brazo-izq-front.webp",
+                        "back": "brazo-izq-back.webp",
+                        "left": "brazo-izq-external.webp",
+                        "right": "brazo-izq-internal.webp"
+                    },
                     "defaultView": "front"
-                },
-                "Hombro Derecho": {
-                    "front": "brazo-der-hombro-front.webp",
-                    "back": "brazo-der-hombro-back.webp",
-                    "left": "brazo-der-hombro-internal.webp",
-                    "right": "brazo-der-hombro-external.webp",
-                    "defaultView": "right"
-                },
-                "Hombro Izquierdo": {
-                    "front": "brazo-izq-hombro-front.webp",
-                    "back": "brazo-izq-hombro-back.webp",
-                    "left": "brazo-izq-hombro-external.webp",
-                    "right": "brazo-izq-hombro-internal.webp",
-                    "defaultView": "left"
                 },
                 "Bíceps": {
-                    "front": "brazo-der-biceps-front.webp",
-                    "back": "brazo-der-biceps-back.webp",
-                    "left": "brazo-der-biceps-internal.webp",
-                    "right": "brazo-der-biceps-external.webp",
+                    "der": {
+                        "front": "brazo-der-biceps-front.webp",
+                        "back": "brazo-der-biceps-back.webp",
+                        "left": "brazo-der-biceps-internal.webp",
+                        "right": "brazo-der-biceps-external.webp"
+                    },
+                    "izq": {
+                        "front": "brazo-izq-superior-front.webp",
+                        "back": "brazo-izq-superior-back.webp",
+                        "left": "brazo-izq-superior-external.webp",
+                        "right": "brazo-izq-superior-internal.webp"
+                    },
                     "defaultView": "front"
                 },
-                "Tríceps": {
-                    "front": "brazo-der-triceps-front.webp",
-                    "back": "brazo-der-triceps-back.webp",
-                    "left": "brazo-der-triceps-internal.webp",
-                    "right": "brazo-der-triceps-external.webp",
-                    "defaultView": "back"
-                },
-                "Antebrazo Interno": {
-                    "front": "brazo-der-antebrazo-front.webp",
-                    "back": "brazo-der-antebrazo-back.webp",
-                    "left": "brazo-izq-antebrazo-internal.webp",
-                    "right": "brazo-der-antebrazo-internal.webp",
-                    "defaultView": "front"
-                },
-                "Antebrazo Externo": {
-                    "front": "brazo-der-antebrazo-front.webp",
-                    "back": "brazo-der-antebrazo-back.webp",
-                    "left": "brazo-izq-antebrazo-external.webp",
-                    "right": "brazo-der-antebrazo-external.webp",
-                    "defaultView": "right"
-                },
-                "Muñeca / Mano": {
-                    "front": "brazo-der-mano-front.webp",
-                    "back": "brazo-der-mano-back.webp",
-                    "left": "brazo-izq-mano-external.webp",
-                    "right": "brazo-der-mano-external.webp",
+                "Antebrazo": {
+                    "der": {
+                        "front": "brazo-der-antebrazo-front.webp",
+                        "back": "brazo-der-antebrazo-back.webp",
+                        "left": "brazo-der-antebrazo-internal.webp",
+                        "right": "brazo-der-antebrazo-external.webp"
+                    },
+                    "izq": {
+                        "front": "brazo-izq-antebrazo-front.webp",
+                        "back": "brazo-izq-antebrazo-back.webp",
+                        "left": "brazo-izq-antebrazo-external.webp",
+                        "right": "brazo-izq-antebrazo-internal.webp"
+                    },
                     "defaultView": "front"
                 }
             }
         },
         "pierna": {
             "default": {
-                "front": "pierna-der-front.webp",
-                "back": "pierna-der-back.webp",
-                "left": "pierna-izq-external.webp",
-                "right": "pierna-der-external.webp"
-            },
-            "subzones": {
-                "Muslo Frontal": {
-                    "front": "pierna-der-muslo-front.webp",
-                    "back": "pierna-der-muslo-back.webp",
-                    "left": "pierna-izq-muslo-external.webp",
-                    "right": "pierna-der-muslo-external.webp",
-                    "defaultView": "front"
-                },
-                "Muslo Lateral": {
-                    "front": "pierna-der-muslo-front.webp",
-                    "back": "pierna-der-muslo-back.webp",
-                    "left": "pierna-izq-muslo-external.webp",
-                    "right": "pierna-der-muslo-external.webp",
-                    "defaultView": "right"
-                },
-                "Muslo Trasero": {
-                    "front": "pierna-der-muslo-front.webp",
-                    "back": "pierna-der-muslo-back.webp",
-                    "left": "pierna-izq-muslo-external.webp",
-                    "right": "pierna-der-muslo-external.webp",
-                    "defaultView": "back"
-                },
-                "Espinilla": {
-                    "front": "pierna-der-pantorrilla-front.webp",
-                    "back": "pierna-der-pantorrilla-back.webp",
-                    "left": "pierna-izq-pantorrilla-external.webp",
-                    "right": "pierna-der-pantorrilla-external.webp",
-                    "defaultView": "front"
-                },
-                "Gemelo / Pantorrilla": {
-                    "front": "pierna-der-pantorrilla-front.webp",
-                    "back": "pierna-der-pantorrilla-back.webp",
-                    "left": "pierna-izq-pantorrilla-external.webp",
-                    "right": "pierna-der-pantorrilla-external.webp",
-                    "defaultView": "back"
-                },
-                "Media Pierna Superior": {
-                    "front": "pierna-der-muslo-front.webp",
-                    "back": "pierna-der-muslo-back.webp",
-                    "left": "pierna-izq-muslo-external.webp",
-                    "right": "pierna-der-muslo-external.webp",
-                    "defaultView": "front"
-                },
-                "Media Pierna Inferior": {
-                    "front": "pierna-der-pantorrilla-front.webp",
-                    "back": "pierna-der-pantorrilla-back.webp",
-                    "left": "pierna-izq-pantorrilla-external.webp",
-                    "right": "pierna-der-pantorrilla-external.webp",
-                    "defaultView": "front"
-                },
-                "Pierna Completa": {
+                "der": {
                     "front": "pierna-der-front.webp",
                     "back": "pierna-der-back.webp",
+                    "left": "pierna-der-internal.webp",
+                    "right": "pierna-der-external.webp"
+                },
+                "izq": {
+                    "front": "pierna-izq-front.webp",
+                    "back": "pierna-izq-back.webp",
                     "left": "pierna-izq-external.webp",
-                    "right": "pierna-der-external.webp",
+                    "right": "pierna-izq-internal.webp"
+                }
+            },
+            "subzones": {
+                "Pierna Completa": {
+                    "der": {
+                        "front": "pierna-der-front.webp",
+                        "back": "pierna-der-back.webp",
+                        "left": "pierna-der-internal.webp",
+                        "right": "pierna-der-external.webp"
+                    },
+                    "izq": {
+                        "front": "pierna-izq-front.webp",
+                        "back": "pierna-izq-back.webp",
+                        "left": "pierna-izq-external.webp",
+                        "right": "pierna-izq-internal.webp"
+                    },
                     "defaultView": "front"
                 },
-                "Tobillo / Pie": {
-                    "front": "pierna-der-pie-front.webp",
-                    "back": "pierna-der-pie-back.webp",
-                    "left": "pierna-izq-pie-external.webp",
-                    "right": "pierna-der-pie-external.webp",
+                "Muslo": {
+                    "der": {
+                        "front": "pierna-der-muslo-front.webp",
+                        "back": "pierna-der-muslo-back.webp",
+                        "left": "pierna-der-muslo-internal.webp",
+                        "right": "pierna-der-muslo-external.webp"
+                    },
+                    "izq": {
+                        "front": "pierna-izq-muslo-front.webp",
+                        "back": "pierna-izq-muslo-back.webp",
+                        "left": "pierna-izq-muslo-external.webp",
+                        "right": "pierna-izq-muslo-internal.webp"
+                    },
+                    "defaultView": "front"
+                },
+                "Pantorrilla": {
+                    "der": {
+                        "front": "pierna-der-pantorrilla-front.webp",
+                        "back": "pierna-der-pantorrilla-back.webp",
+                        "left": "pierna-der-pantorrilla-internal.webp",
+                        "right": "pierna-der-pantorrilla-external.webp"
+                    },
+                    "izq": {
+                        "front": "pierna-izq-pantorrilla-front.webp",
+                        "back": "pierna-izq-pantorrilla-back.webp",
+                        "left": "pierna-izq-pantorrilla-external.webp",
+                        "right": "pierna-izq-pantorrilla-internal.webp"
+                    },
+                    "defaultView": "front"
+                }
+            }
+        },
+        "torso": {
+            "default": {
+                "der": {
+                    "front": "torso-pecho.webp",
+                    "back": "torso.webp",
+                    "left": "torso-costilla-izq.webp",
+                    "right": "torso-costilla-der.webp"
+                },
+                "izq": {
+                    "front": "torso-pecho.webp",
+                    "back": "torso.webp",
+                    "left": "torso-costilla-izq.webp",
+                    "right": "torso-costilla-der.webp"
+                }
+            },
+            "subzones": {
+                "Pectorales": {
+                    "der": {
+                        "front": "torso-pectoral-der.webp",
+                        "back": "torso.webp",
+                        "left": "torso-costilla-izq.webp",
+                        "right": "torso-costilla-der.webp"
+                    },
+                    "izq": {
+                        "front": "torso-pectoral-izq.webp",
+                        "back": "torso.webp",
+                        "left": "torso-costilla-izq.webp",
+                        "right": "torso-costilla-der.webp"
+                    },
+                    "defaultView": "front"
+                },
+                "Abdomen": {
+                    "front": "torso-abdomen.webp",
+                    "back": "torso.webp",
+                    "left": "torso-costilla-izq.webp",
+                    "right": "torso-costilla-der.webp",
                     "defaultView": "front"
                 }
             }
         },
         "pecho": {
             "default": {
-                "front": "torso-pecho.webp",
-                "back": "torso.webp",
-                "left": "torso-costilla-izq.webp",
-                "right": "torso-costilla-der.webp"
-            },
-            "subzones": {
-                "Pectoral Derecho": {
-                    "front": "torso-pectoral-der.webp",
-                    "back": "torso.webp",
-                    "left": "torso-costilla-izq.webp",
-                    "right": "torso-costilla-der.webp",
-                    "defaultView": "front"
-                },
-                "Pectoral Izquierdo": {
-                    "front": "torso-pectoral-izq.webp",
-                    "back": "torso.webp",
-                    "left": "torso-costilla-izq.webp",
-                    "right": "torso-costilla-der.webp",
-                    "defaultView": "front"
-                },
-                "Pectoral (Ambos)": {
+                "der": {
                     "front": "torso-pecho.webp",
                     "back": "torso.webp",
                     "left": "torso-costilla-izq.webp",
-                    "right": "torso-costilla-der.webp",
-                    "defaultView": "front"
+                    "right": "torso-costilla-der.webp"
                 },
-                "Abdomen / Vientre": {
-                    "front": "torso-abdomen.webp",
+                "izq": {
+                    "front": "torso-pecho.webp",
                     "back": "torso.webp",
                     "left": "torso-costilla-izq.webp",
-                    "right": "torso-costilla-der.webp",
+                    "right": "torso-costilla-der.webp"
+                }
+            },
+            "subzones": {
+                "Pectorales": {
+                    "der": {
+                        "front": "torso-pectoral-der.webp",
+                        "back": "torso.webp",
+                        "left": "torso-costilla-izq.webp",
+                        "right": "torso-costilla-der.webp"
+                    },
+                    "izq": {
+                        "front": "torso-pectoral-izq.webp",
+                        "back": "torso.webp",
+                        "left": "torso-costilla-izq.webp",
+                        "right": "torso-costilla-der.webp"
+                    },
                     "defaultView": "front"
                 },
-                "Torso Completo": {
-                    "front": "torso.webp",
+                "Abdomen": {
+                    "front": "torso-abdomen.webp",
                     "back": "torso.webp",
                     "left": "torso-costilla-izq.webp",
                     "right": "torso-costilla-der.webp",
@@ -1954,525 +1944,128 @@ document.addEventListener('DOMContentLoaded', () => {
                 "right": "espalda.webp"
             },
             "subzones": {
-                "Espalda Alta / Trapecio": {
+                "Espalda Completa": {
+                    "front": "espalda.webp",
+                    "back": "espalda.webp",
+                    "left": "espalda.webp",
+                    "right": "espalda.webp",
+                    "defaultView": "back"
+                },
+                "Espalda Alta": {
                     "front": "espalda-alta.webp",
                     "back": "espalda-alta.webp",
                     "left": "espalda-alta.webp",
                     "right": "espalda-alta.webp",
                     "defaultView": "back"
                 },
-                "Omóplato Derecho": {
-                    "front": "espalda-escapula-der.webp",
-                    "back": "espalda-escapula-der.webp",
-                    "left": "espalda-escapula-der.webp",
-                    "right": "espalda-escapula-der.webp",
-                    "defaultView": "back"
-                },
-                "Omóplato Izquierdo": {
-                    "front": "espalda-escapula-izq.webp",
-                    "back": "espalda-escapula-izq.webp",
-                    "left": "espalda-escapula-izq.webp",
-                    "right": "espalda-escapula-izq.webp",
-                    "defaultView": "back"
-                },
-                "Espalda Baja / Lumbar": {
+                "Espalda Baja": {
                     "front": "espalda-baja.webp",
                     "back": "espalda-baja.webp",
                     "left": "espalda-baja.webp",
                     "right": "espalda-baja.webp",
                     "defaultView": "back"
-                },
-                "Espalda Completa (Full Back)": {
-                    "front": "espalda.webp",
-                    "back": "espalda.webp",
-                    "left": "espalda.webp",
-                    "right": "espalda.webp",
-                    "defaultView": "back"
-                }
-            }
-        },
-        "cuello": {
-            "default": {
-                "front": "cuello-front.webp",
-                "back": "cuello-back.webp",
-                "left": "cuello-left.webp",
-                "right": "cuello-right.webp"
-            },
-            "subzones": {
-                "Garganta / Frontal": {
-                    "front": "cuello-front.webp",
-                    "back": "cuello-back.webp",
-                    "left": "cuello-left.webp",
-                    "right": "cuello-right.webp",
-                    "defaultView": "front"
-                },
-                "Lateral Derecho": {
-                    "front": "cuello-front.webp",
-                    "back": "cuello-back.webp",
-                    "left": "cuello-left.webp",
-                    "right": "cuello-right.webp",
-                    "defaultView": "right"
-                },
-                "Lateral Izquierdo": {
-                    "front": "cuello-front.webp",
-                    "back": "cuello-back.webp",
-                    "left": "cuello-left.webp",
-                    "right": "cuello-right.webp",
-                    "defaultView": "left"
-                },
-                "Nuca / Posterior": {
-                    "front": "cuello-front.webp",
-                    "back": "cuello-back.webp",
-                    "left": "cuello-left.webp",
-                    "right": "cuello-right.webp",
-                    "defaultView": "back"
-                },
-                "Cuello Completo": {
-                    "front": "head-neck-front.webp",
-                    "back": "head-neck-back.webp",
-                    "left": "head-neck-left.webp",
-                    "right": "head-neck-right.webp",
-                    "defaultView": "front"
                 }
             }
         }
     };
 
-    // Base de datos de Sensibilidad Anatómica y Protocolo de Confort ("Pain-o-Meter")
-    const ANATOMICAL_PAIN_DB = {
-        "brazo": {
-            "default": {
-                score: 4,
-                tag: "LIENZO DE ALTA TOLERANCIA",
-                tolerance: "Tolerancia Óptima",
-                color: "#00FF88",
-                anatomy: "Masa muscular en bíceps y deltoides que amortigua la vibración.",
-                protocol: "Protocolo Confort: Soporte ergonómico de brazo y bálsamos botánicos calmantes continuos."
-            },
-            "subzones": {
-                "Media Manga Superior": {
-                    score: 4,
-                    tag: "LIENZO DE ALTA TOLERANCIA",
-                    tolerance: "Tolerancia Óptima",
-                    color: "#00FF88",
-                    anatomy: "El deltoides y bíceps proporcionan una base acolchada muy dócil.",
-                    protocol: "Protocolo Confort: Apoyo ergonómico y humectación activa durante la sesión."
-                },
-                "Media Manga Inferior": {
-                    score: 3,
-                    tag: "LIENZO DE CONFORT",
-                    tolerance: "Tolerancia Máxima",
-                    color: "#00FF88",
-                    anatomy: "Una de las zonas más nobles y estables de la anatomía humana.",
-                    protocol: "Protocolo Confort: Posición de descanso total y técnica fluida sin estrés."
-                },
-                "Manga Completa": {
-                    score: 5,
-                    tag: "COMPOSICIÓN INTEGRAL",
-                    tolerance: "Tolerancia Media",
-                    color: "#FFD700",
-                    anatomy: "Transición anatómica que combina zonas de muy baja molestia con articulaciones.",
-                    protocol: "Protocolo Confort: Sesiones estructuradas por bloques con pausas de recuperación."
-                },
-                "Hombro Derecho": {
-                    score: 4,
-                    tag: "ZONA NOBLE Y ESTABLE",
-                    tolerance: "Tolerancia Óptima",
-                    color: "#00FF88",
-                    anatomy: "Piel firme con excelente soporte muscular para sombras y color.",
-                    protocol: "Protocolo Confort: Ajuste postural para relajación completa de hombros."
-                },
-                "Hombro Izquierdo": {
-                    score: 4,
-                    tag: "ZONA NOBLE Y ESTABLE",
-                    tolerance: "Tolerancia Óptima",
-                    color: "#00FF88",
-                    anatomy: "Piel firme con excelente soporte muscular para sombras y color.",
-                    protocol: "Protocolo Confort: Ajuste postural para relajación completa de hombros."
-                },
-                "Bíceps": {
-                    score: 4,
-                    tag: "LIENZO AMIGABLE",
-                    tolerance: "Tolerancia Óptima",
-                    color: "#00FF88",
-                    anatomy: "Tejido muscular suave y baja densidad de receptores nociceptivos.",
-                    protocol: "Protocolo Confort: Presión modulada y enfriamiento tópico intermitente."
-                },
-                "Tríceps": {
-                    score: 5,
-                    tag: "SENSIBILIDAD MEDIA",
-                    tolerance: "Tolerancia Media",
-                    color: "#FFD700",
-                    anatomy: "Piel algo más fina en la cara posterior del brazo cerca al codo.",
-                    protocol: "Protocolo Confort: Soporte acolchado especial y micro-pausas estratégicas."
-                },
-                "Antebrazo Interno": {
-                    score: 3,
-                    tag: "LIENZO DE CONFORT",
-                    tolerance: "Tolerancia Máxima",
-                    color: "#00FF88",
-                    anatomy: "Piel suave y uniforme, perfecta para fine line y micro-detalles.",
-                    protocol: "Protocolo Confort: Bálsamos calmantes de acción rápida y apoyo ergonómico."
-                },
-                "Antebrazo Externo": {
-                    score: 3,
-                    tag: "LIENZO FÁCIL",
-                    tolerance: "Tolerancia Máxima",
-                    color: "#00FF88",
-                    anatomy: "Mínima sensibilidad nerviosa y fijación extraordinaria del pigmento.",
-                    protocol: "Protocolo Confort: Sesión súper relajada y fluida."
-                },
-                "Muñeca / Mano": {
-                    score: 7,
-                    tag: "ZONA DELICADA",
-                    tolerance: "Sensibilidad Elevada",
-                    color: "#FF8800",
-                    anatomy: "Capa dérmica delgada y proximidad a huesos carpianos y tendones.",
-                    protocol: "Protocolo Confort: Aplicación tópica previa, agujas de micro-calibre y descansos rítmicos."
-                }
-            }
-        },
-        "pierna": {
-            "default": {
-                score: 4,
-                tag: "LIENZO ESTABLE",
-                tolerance: "Tolerancia Óptima",
-                color: "#00FF88",
-                anatomy: "Fuerte musculatura en cuádriceps y gemelos que disipa la vibración.",
-                protocol: "Protocolo Confort: Camilla clínica reclinable y soporte ergonómico para piernas."
-            },
-            "subzones": {
-                "Muslo Frontal": {
-                    score: 4,
-                    tag: "LIENZO AMPLIO Y CÓMODO",
-                    tolerance: "Tolerancia Óptima",
-                    color: "#00FF88",
-                    anatomy: "El cuádriceps ofrece una base gruesa y elástica de gran estabilidad.",
-                    protocol: "Protocolo Confort: Postura semi-recostada muy cómoda y suave aplicación."
-                },
-                "Muslo Lateral": {
-                    score: 5,
-                    tag: "TOLERANCIA MEDIA",
-                    tolerance: "Tolerancia Media",
-                    color: "#FFD700",
-                    anatomy: "Fascia lata y banda iliotibial con densidad moderada.",
-                    protocol: "Protocolo Confort: Cojines ergonómicos de alivio y bálsamos anti-inflamatorios."
-                },
-                "Muslo Trasero": {
-                    score: 6,
-                    tag: "SENSIBILIDAD NERVIOSA",
-                    tolerance: "Sensibilidad Moderada",
-                    color: "#FFD700",
-                    anatomy: "Mayor proximidad a ramificaciones nerviosas del nervio ciático.",
-                    protocol: "Protocolo Confort: Regulación suave de voltaje y pausas de confort."
-                },
-                "Espinilla": {
-                    score: 7,
-                    tag: "IMPACTO ÓSEO",
-                    tolerance: "Sensibilidad Elevada",
-                    color: "#FF8800",
-                    anatomy: "Proximidad directa a la cresta tibial anterior con poco tejido adiposo.",
-                    protocol: "Protocolo Confort: Modulación precisa de velocidad y presión liviana milimétrica."
-                },
-                "Gemelo / Pantorrilla": {
-                    score: 4,
-                    tag: "LIENZO NOBLE",
-                    tolerance: "Tolerancia Óptima",
-                    color: "#00FF88",
-                    anatomy: "Masa muscular gastronémica densa y excelente vascularización.",
-                    protocol: "Protocolo Confort: Postura relajada de decúbito y bálsamo calmante."
-                },
-                "Media Pierna Superior": {
-                    score: 4,
-                    tag: "LIENZO ESTABLE",
-                    tolerance: "Tolerancia Óptima",
-                    color: "#00FF88",
-                    anatomy: "Zona amplia y muscular ideal para composiciones de gran impacto.",
-                    protocol: "Protocolo Confort: Sesión guiada con ambientación y ergonomía premium."
-                },
-                "Media Pierna Inferior": {
-                    score: 5,
-                    tag: "SENSIBILIDAD MODERADA",
-                    tolerance: "Tolerancia Media",
-                    color: "#FFD700",
-                    anatomy: "Transición anatómica hacia el tobillo y los tendones extensores.",
-                    protocol: "Protocolo Confort: Ajustes de inclinación y descansos específicos."
-                },
-                "Pierna Completa": {
-                    score: 6,
-                    tag: "PROYECTO MONUMENTAL",
-                    tolerance: "Tolerancia Media",
-                    color: "#FFD700",
-                    anatomy: "Gran cobertura anatómica planificada estratégicamente.",
-                    protocol: "Protocolo Confort: Cronograma por sesiones sectorizadas y bioseguridad intensiva."
-                },
-                "Tobillo / Pie": {
-                    score: 8,
-                    tag: "ZONA SENSIBLE",
-                    tolerance: "Sensibilidad Alta",
-                    color: "#FF8800",
-                    anatomy: "Piel delgada y numerosas terminaciones nerviosas periféricas.",
-                    protocol: "Protocolo Confort: Inmovilización ergonómica, anestésico tópico y micro-trazos."
-                }
-            }
-        },
-        "pecho": {
-            "default": {
-                score: 6,
-                tag: "SENSIBILIDAD MEDIA-ALTA",
-                tolerance: "Sensibilidad Moderada",
-                color: "#FFD700",
-                anatomy: "Cercanía a la caja torácica, esternón y clavículas.",
-                protocol: "Protocolo Confort: Respiración guiada coordinada y apoyo lumbar ergonómico."
-            },
-            "subzones": {
-                "Pectoral Derecho": {
-                    score: 6,
-                    tag: "SENSIBILIDAD MODERADA",
-                    tolerance: "Sensibilidad Moderada",
-                    color: "#FFD700",
-                    anatomy: "Músculo pectoral mayor ofrece soporte, más sensible hacia el esternón.",
-                    protocol: "Protocolo Confort: Control del ritmo de tatuado y pausas respiratorias."
-                },
-                "Pectoral Izquierdo": {
-                    score: 6,
-                    tag: "SENSIBILIDAD MODERADA",
-                    tolerance: "Sensibilidad Moderada",
-                    color: "#FFD700",
-                    anatomy: "Músculo pectoral mayor ofrece soporte, más sensible hacia el esternón.",
-                    protocol: "Protocolo Confort: Control del ritmo de tatuado y pausas respiratorias."
-                },
-                "Pectoral (Ambos)": {
-                    score: 7,
-                    tag: "COMPOSICIÓN FRONTAL",
-                    tolerance: "Sensibilidad Elevada",
-                    color: "#FF8800",
-                    anatomy: "Cubre la unión esternal y la región subclavicular completa.",
-                    protocol: "Protocolo Confort: Trabajo simétrico por fases y alivio dérmico continuo."
-                },
-                "Abdomen / Vientre": {
-                    score: 7,
-                    tag: "PIEL ELÁSTICA SENSIBLE",
-                    tolerance: "Sensibilidad Elevada",
-                    color: "#FF8800",
-                    anatomy: "Piel muy móvil sujeta a la respiración y sin base ósea rígida.",
-                    protocol: "Protocolo Confort: Estiramiento técnico delicado y pausas rítmicas."
-                },
-                "Torso Completo": {
-                    score: 8,
-                    tag: "GRAN DESAFÍO VISUAL",
-                    tolerance: "Sensibilidad Alta",
-                    color: "#FF8800",
-                    anatomy: "Abarca esternón, costillas y abdomen en un flujo continuo.",
-                    protocol: "Protocolo Confort: División en múltiples sesiones con kit de bio-cuidado avanzado."
-                }
-            }
-        },
-        "espalda": {
-            "default": {
-                score: 5,
-                tag: "LIENZO MAJESTUOSO",
-                tolerance: "Tolerancia Media",
-                color: "#FFD700",
-                anatomy: "Espesa capa dérmica con variaciones según la proximidad vertebral.",
-                protocol: "Protocolo Confort: Camilla ergonómica de decúbito prono con cojín facial de spa."
-            },
-            "subzones": {
-                "Espalda Alta / Trapecio": {
-                    score: 5,
-                    tag: "TOLERANCIA MEDIA",
-                    tolerance: "Tolerancia Media",
-                    color: "#FFD700",
-                    anatomy: "Músculos trapecios y romboides proporcionan excelente colchón.",
-                    protocol: "Protocolo Confort: Apoyo cervical suave y técnica de saturación progresiva."
-                },
-                "Omóplato Derecho": {
-                    score: 6,
-                    tag: "VIBRACIÓN ÓSEA",
-                    tolerance: "Sensibilidad Moderada",
-                    color: "#FFD700",
-                    anatomy: "Resonancia sobre la escápula con sensación vibratoria.",
-                    protocol: "Protocolo Confort: Ángulo de máquina calibrado y descanso articular."
-                },
-                "Omóplato Izquierdo": {
-                    score: 6,
-                    tag: "VIBRACIÓN ÓSEA",
-                    tolerance: "Sensibilidad Moderada",
-                    color: "#FFD700",
-                    anatomy: "Resonancia sobre la escápula con sensación vibratoria.",
-                    protocol: "Protocolo Confort: Ángulo de máquina calibrado y descanso articular."
-                },
-                "Espalda Baja / Lumbar": {
-                    score: 6,
-                    tag: "SENSIBILIDAD MODERADA",
-                    tolerance: "Sensibilidad Moderada",
-                    color: "#FFD700",
-                    anatomy: "Piel firme con tensión lumbar natural al estar recostado.",
-                    protocol: "Protocolo Confort: Soporte bajo rodillas para liberar tensión en la columna."
-                },
-                "Espalda Completa (Full Back)": {
-                    score: 7,
-                    tag: "OBRA MAESTRA DE AUTOR",
-                    tolerance: "Sensibilidad Elevada",
-                    color: "#FF8800",
-                    anatomy: "El lienzo más emblemático y de mayor proyección artística del cuerpo.",
-                    protocol: "Protocolo Confort: Plan integral por etapas con bio-regeneración acelerada."
-                }
-            }
-        },
-        "cuello": {
-            "default": {
-                score: 7,
-                tag: "ZONA DE ALTA SENSIBILIDAD",
-                tolerance: "Sensibilidad Elevada",
-                color: "#FF8800",
-                anatomy: "Piel fina y flexible con gran vascularización y cercanía articular.",
-                protocol: "Protocolo Confort: Soporte de cabeza clínico, anestésico tópico y trazo ultra-fino."
-            },
-            "subzones": {
-                "Garganta / Frontal": {
-                    score: 8,
-                    tag: "ZONA DELICADA",
-                    tolerance: "Sensibilidad Alta",
-                    color: "#FF8800",
-                    anatomy: "Tejido muy delgado sobre tráquea y vasos sanguíneos mayores.",
-                    protocol: "Protocolo Confort: Técnica de apoyo suave con pausas continuas para tragar y respirar."
-                },
-                "Lateral Derecho": {
-                    score: 7,
-                    tag: "SENSIBILIDAD ELEVADA",
-                    tolerance: "Sensibilidad Elevada",
-                    color: "#FF8800",
-                    anatomy: "Músculo esternocleidomastoideo con notable sensibilidad vibratoria.",
-                    protocol: "Protocolo Confort: Inclinación cervical protegida y descansos frecuentes."
-                },
-                "Lateral Izquierdo": {
-                    score: 7,
-                    tag: "SENSIBILIDAD ELEVADA",
-                    tolerance: "Sensibilidad Elevada",
-                    color: "#FF8800",
-                    anatomy: "Músculo esternocleidomastoideo con notable sensibilidad vibratoria.",
-                    protocol: "Protocolo Confort: Inclinación cervical protegida y descansos frecuentes."
-                },
-                "Nuca / Posterior": {
-                    score: 6,
-                    tag: "SENSIBILIDAD MEDIA",
-                    tolerance: "Sensibilidad Moderada",
-                    color: "#FFD700",
-                    anatomy: "Base del cráneo y vértebras cervicales con buena tolerancia dérmica.",
-                    protocol: "Protocolo Confort: Almohadilla anatómica de descarga cervical."
-                },
-                "Cuello Completo": {
-                    score: 8,
-                    tag: "UMBRAL PARA COLECCIONISTAS",
-                    tolerance: "Sensibilidad Alta",
-                    color: "#FF8800",
-                    anatomy: "Composición 360° que rodea toda la arquitectura del cuello.",
-                    protocol: "Protocolo Confort: Sesiones fragmentadas con máxima atención ergonómica."
-                }
-            }
-        }
+    // Base de datos de Criterio Anatómico de Autor por Zona (Reemplaza Pain-o-Meter)
+    const ANATOMICAL_CRITERIA_DB = {
+        "brazo": "El brazo es la zona recomendada para un primer tatuaje de realismo o proyectos narrativos visibles gracias a su óptima cicatrización y baja deformación dérmica.",
+        "pierna": "Tatuarse las piernas ofrece una superficie amplia y uniforme ideal para piezas de gran formato a color o sombras que buscan discreción laboral y fácil cobertura.",
+        "torso": "El tatuaje en el torso y costillas destaca por su fuerte impacto estético frontal, recomendado para coleccionistas con experiencia previa debido a su nivel de sensibilidad ósea.",
+        "pecho": "El tatuaje en el torso y costillas destaca por su fuerte impacto estético frontal, recomendado para coleccionistas con experiencia previa debido a su nivel de sensibilidad ósea.",
+        "espalda": "La espalda es el área idónea para obras maestras y tatuajes de gran escala, ofreciendo la mayor durabilidad y fidelidad dérmica del pigmento a lo largo de los años."
     };
 
-    // Base de datos de Hotspots Táctiles por perspectiva
+    // Base de datos de Hotspots Táctiles por perspectiva para Maniquí de Cuerpo Completo
     const MANNEQUIN_HOTSPOTS_DB = {
         "front": [
-            { macro: "cuello", subzone: "Garganta / Frontal", top: "24%", left: "50%", label: "Cuello" },
-            { macro: "pecho", subzone: "Pectoral Derecho", top: "33%", left: "44%", label: "Pectoral D." },
-            { macro: "pecho", subzone: "Pectoral Izquierdo", top: "33%", left: "56%", label: "Pectoral I." },
-            { macro: "pecho", subzone: "Abdomen / Vientre", top: "42%", left: "50%", label: "Abdomen" },
-            { macro: "brazo", subzone: "Bíceps", top: "37%", left: "34%", label: "Bíceps D." },
-            { macro: "brazo", subzone: "Bíceps", top: "37%", left: "66%", label: "Bíceps I." },
-            { macro: "brazo", subzone: "Antebrazo Interno", top: "47%", left: "30%", label: "Antebrazo D." },
-            { macro: "brazo", subzone: "Antebrazo Interno", top: "47%", left: "70%", label: "Antebrazo I." },
-            { macro: "pierna", subzone: "Muslo Frontal", top: "60%", left: "43%", label: "Muslo D." },
-            { macro: "pierna", subzone: "Muslo Frontal", top: "60%", left: "57%", label: "Muslo I." },
-            { macro: "pierna", subzone: "Espinilla", top: "76%", left: "43%", label: "Espinilla D." },
-            { macro: "pierna", subzone: "Espinilla", top: "76%", left: "57%", label: "Espinilla I." }
+            { macro: "torso", subzone: "Pectorales", side: "der", top: "31%", left: "44%", label: "Pectoral D." },
+            { macro: "torso", subzone: "Pectorales", side: "izq", top: "31%", left: "56%", label: "Pectoral I." },
+            { macro: "torso", subzone: "Abdomen", top: "40%", left: "50%", label: "Abdomen" },
+            { macro: "brazo", subzone: "Bíceps", side: "der", top: "35%", left: "34%", label: "Bíceps D." },
+            { macro: "brazo", subzone: "Bíceps", side: "izq", top: "35%", left: "66%", label: "Bíceps I." },
+            { macro: "brazo", subzone: "Antebrazo", side: "der", top: "46%", left: "28%", label: "Antebrazo D." },
+            { macro: "brazo", subzone: "Antebrazo", side: "izq", top: "46%", left: "72%", label: "Antebrazo I." },
+            { macro: "pierna", subzone: "Muslo", side: "der", top: "58%", left: "43%", label: "Muslo D." },
+            { macro: "pierna", subzone: "Muslo", side: "izq", top: "58%", left: "57%", label: "Muslo I." },
+            { macro: "pierna", subzone: "Pantorrilla", side: "der", top: "74%", left: "42%", label: "Pantorrilla D." },
+            { macro: "pierna", subzone: "Pantorrilla", side: "izq", top: "74%", left: "58%", label: "Pantorrilla I." }
         ],
         "back": [
-            { macro: "cuello", subzone: "Nuca / Posterior", top: "22%", left: "50%", label: "Nuca" },
-            { macro: "espalda", subzone: "Espalda Alta / Trapecio", top: "28%", left: "50%", label: "Trapecio" },
-            { macro: "espalda", subzone: "Omóplato Derecho", top: "34%", left: "42%", label: "Omóplato D." },
-            { macro: "espalda", subzone: "Omóplato Izquierdo", top: "34%", left: "58%", label: "Omóplato I." },
-            { macro: "brazo", subzone: "Tríceps", top: "37%", left: "34%", label: "Tríceps D." },
-            { macro: "brazo", subzone: "Tríceps", top: "37%", left: "66%", label: "Tríceps I." },
-            { macro: "espalda", subzone: "Espalda Baja / Lumbar", top: "45%", left: "50%", label: "Lumbar" },
-            { macro: "pierna", subzone: "Muslo Trasero", top: "60%", left: "43%", label: "Muslo D." },
-            { macro: "pierna", subzone: "Muslo Trasero", top: "60%", left: "57%", label: "Muslo I." },
-            { macro: "pierna", subzone: "Gemelo / Pantorrilla", top: "76%", left: "43%", label: "Gemelo D." },
-            { macro: "pierna", subzone: "Gemelo / Pantorrilla", top: "76%", left: "57%", label: "Gemelo I." }
+            { macro: "espalda", subzone: "Espalda Alta", top: "28%", left: "50%", label: "Espalda Alta" },
+            { macro: "espalda", subzone: "Espalda Baja", top: "42%", left: "50%", label: "Espalda Baja" },
+            { macro: "espalda", subzone: "Espalda Completa", top: "35%", left: "50%", label: "Espalda Completa" },
+            { macro: "brazo", subzone: "Brazo Completo", side: "der", top: "38%", left: "33%", label: "Brazo D." },
+            { macro: "brazo", subzone: "Brazo Completo", side: "izq", top: "38%", left: "67%", label: "Brazo I." },
+            { macro: "pierna", subzone: "Muslo", side: "der", top: "58%", left: "43%", label: "Muslo D." },
+            { macro: "pierna", subzone: "Muslo", side: "izq", top: "58%", left: "57%", label: "Muslo I." },
+            { macro: "pierna", subzone: "Pantorrilla", side: "der", top: "74%", left: "42%", label: "Pantorrilla D." },
+            { macro: "pierna", subzone: "Pantorrilla", side: "izq", top: "74%", left: "58%", label: "Pantorrilla I." }
         ],
         "right": [
-            { macro: "cuello", subzone: "Lateral Derecho", top: "24%", left: "50%", label: "Lateral Cuello" },
-            { macro: "brazo", subzone: "Hombro Derecho", top: "29%", left: "48%", label: "Hombro Der." },
-            { macro: "brazo", subzone: "Media Manga Superior", top: "37%", left: "48%", label: "Brazo Der." },
-            { macro: "brazo", subzone: "Antebrazo Externo", top: "48%", left: "48%", label: "Antebrazo" },
-            { macro: "pierna", subzone: "Muslo Lateral", top: "60%", left: "50%", label: "Muslo Lateral" },
-            { macro: "pierna", subzone: "Media Pierna Inferior", top: "76%", left: "50%", label: "Pantorrilla" }
+            { macro: "brazo", subzone: "Bíceps", side: "der", top: "35%", left: "50%", label: "Bíceps Der." },
+            { macro: "brazo", subzone: "Antebrazo", side: "der", top: "46%", left: "50%", label: "Antebrazo Der." },
+            { macro: "pierna", subzone: "Muslo", side: "der", top: "58%", left: "50%", label: "Muslo Der." },
+            { macro: "pierna", subzone: "Pantorrilla", side: "der", top: "74%", left: "50%", label: "Pantorrilla Der." },
+            { macro: "torso", subzone: "Pectorales", side: "der", top: "32%", left: "44%", label: "Torso / Pectoral" },
+            { macro: "espalda", subzone: "Espalda Alta", top: "30%", left: "56%", label: "Espalda Alta" }
         ],
         "left": [
-            { macro: "cuello", subzone: "Lateral Izquierdo", top: "24%", left: "50%", label: "Lateral Cuello" },
-            { macro: "brazo", subzone: "Hombro Izquierdo", top: "29%", left: "52%", label: "Hombro Izq." },
-            { macro: "brazo", subzone: "Media Manga Superior", top: "37%", left: "52%", label: "Brazo Izq." },
-            { macro: "brazo", subzone: "Antebrazo Externo", top: "48%", left: "52%", label: "Antebrazo" },
-            { macro: "pierna", subzone: "Muslo Lateral", top: "60%", left: "50%", label: "Muslo Lateral" },
-            { macro: "pierna", subzone: "Media Pierna Inferior", top: "76%", left: "50%", label: "Pantorrilla" }
+            { macro: "brazo", subzone: "Bíceps", side: "izq", top: "35%", left: "50%", label: "Bíceps Izq." },
+            { macro: "brazo", subzone: "Antebrazo", side: "izq", top: "46%", left: "50%", label: "Antebrazo Izq." },
+            { macro: "pierna", subzone: "Muslo", side: "izq", top: "58%", left: "50%", label: "Muslo Izq." },
+            { macro: "pierna", subzone: "Pantorrilla", side: "izq", top: "74%", left: "50%", label: "Pantorrilla Izq." },
+            { macro: "torso", subzone: "Pectorales", side: "izq", top: "32%", left: "56%", label: "Torso / Pectoral" },
+            { macro: "espalda", subzone: "Espalda Alta", top: "30%", left: "44%", label: "Espalda Alta" }
         ]
     };
 
-    // Actualizador en Tiempo Real del HUD Pain-o-Meter
-    function updatePainOMeter(macroKey, subzoneName) {
+    // Actualizador en Tiempo Real del Criterio Anatómico de Autor
+    function updateAnatomicalCriteria(macroKey) {
         const macro = macroKey || gameState.focusedMacro || gameState.zone || 'brazo';
-        const macroData = ANATOMICAL_PAIN_DB[macro];
-        let painInfo = macroData ? macroData.default : null;
-
-        if (macroData && subzoneName && macroData.subzones && macroData.subzones[subzoneName]) {
-            painInfo = macroData.subzones[subzoneName];
-        }
-
-        if (!painInfo) return;
-
-        gameState.painScore = painInfo.score;
-        gameState.painTag = painInfo.tag;
-        gameState.painTolerance = painInfo.tolerance;
-        gameState.painColor = painInfo.color;
-        gameState.painAnatomy = painInfo.anatomy;
-        gameState.painProtocol = painInfo.protocol;
-
-        const scoreVal = document.getElementById('pain-score-val');
-        const barFill = document.getElementById('pain-meter-bar-fill');
-        const tagEl = document.getElementById('pain-meter-tag');
-        const tolEl = document.getElementById('pain-meter-tolerance');
-        const anatEl = document.getElementById('pain-diagnosis-anatomy');
-        const protoEl = document.getElementById('pain-diagnosis-protocol');
-        const scoreBadge = document.getElementById('pain-score-badge');
-
-        if (scoreVal) scoreVal.textContent = painInfo.score;
-        if (barFill) {
-            barFill.style.width = (painInfo.score * 10) + '%';
-            barFill.style.backgroundColor = painInfo.color;
-            barFill.style.boxShadow = `0 0 14px ${painInfo.color}`;
-        }
-        if (scoreBadge) {
-            scoreBadge.style.borderColor = painInfo.color;
-            scoreBadge.style.boxShadow = `0 0 10px ${painInfo.color}40`;
-        }
-        if (tagEl) {
-            tagEl.textContent = painInfo.tag;
-            tagEl.style.color = painInfo.color;
-        }
-        if (tolEl) {
-            tolEl.textContent = painInfo.tolerance;
-        }
-        if (anatEl) {
-            anatEl.innerHTML = `<i class="fa-solid fa-dna" style="color: ${painInfo.color};"></i> <span>${painInfo.anatomy}</span>`;
-        }
-        if (protoEl) {
-            protoEl.innerHTML = `<i class="fa-solid fa-shield-halved" style="color: ${painInfo.color};"></i> <span><strong>Protocolo Confort:</strong> ${painInfo.protocol.replace('Protocolo Confort: ', '')}</span>`;
+        const textEl = document.getElementById('anatomical-criteria-text');
+        if (textEl && ANATOMICAL_CRITERIA_DB[macro]) {
+            textEl.textContent = ANATOMICAL_CRITERIA_DB[macro];
         }
     }
-    window.updatePainOMeter = updatePainOMeter;
+    window.updateAnatomicalCriteria = updateAnatomicalCriteria;
+
+    // Actualizador de Insignia y Resumen Inferior
+    function updateZoneBadgeAndSummary() {
+        const macro = gameState.focusedMacro || gameState.zone || 'brazo';
+        const data = MACRO_ZONES[macro] || { name: 'Brazos' };
+        const sub = gameState.subzone || (data.subzones ? data.subzones[0] : '');
+        const side = gameState.side || 'der';
+        
+        let sideLabel = '';
+        if (macro === 'brazo' || (macro === 'torso' && sub === 'Pectorales')) {
+            sideLabel = (side === 'izq' ? 'Izquierdo' : 'Derecho');
+        } else if (macro === 'pierna') {
+            sideLabel = (side === 'izq' ? 'Izquierda' : 'Derecha');
+        }
+
+        const sideSuffix = sideLabel ? ` (${sideLabel})` : '';
+
+        // Update Badge on 360 Mannequin
+        const badgeZoneText = document.getElementById('badge-zone-text');
+        if (badgeZoneText) {
+            badgeZoneText.textContent = `ZONA: ${data.name.toUpperCase()}${sideSuffix.toUpperCase()} // ${sub.toUpperCase()}`;
+        }
+
+        // Update Confirmation Summary
+        const summaryMainZone = document.getElementById('summary-main-zone');
+        const summaryDivider = document.getElementById('summary-divider');
+        const summarySubZone = document.getElementById('summary-sub-zone');
+
+        if (summaryMainZone) summaryMainZone.textContent = `${data.name}${sideSuffix}`;
+        if (summaryDivider) summaryDivider.style.display = 'inline';
+        if (summarySubZone) {
+            summarySubZone.textContent = sub;
+            summarySubZone.style.color = '#00FF88';
+        }
+    }
 
     // Renderizador de Hotspots Táctiles sobre el Maniquí 3D
     function renderMannequinHotspots() {
@@ -2490,7 +2083,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.style.left = h.left;
             btn.setAttribute('aria-label', `${h.macro} - ${h.subzone}`);
 
-            const isCurrent = (gameState.focusedMacro === h.macro && gameState.subzone === h.subzone);
+            const isCurrent = (gameState.focusedMacro === h.macro && gameState.subzone === h.subzone && (!h.side || gameState.side === h.side));
             if (isCurrent) btn.classList.add('active');
 
             btn.innerHTML = `
@@ -2501,18 +2094,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
             btn.onclick = (e) => {
                 e.stopPropagation();
+                if (h.side) {
+                    gameState.side = h.side;
+                }
                 if (gameState.focusedMacro !== h.macro) {
                     selectMacroZone(h.macro);
                 }
                 selectCleanSubzone(h.macro, h.subzone);
+                if (h.side) {
+                    selectSide(h.side);
+                }
             };
 
             btn.onmouseenter = () => {
-                updatePainOMeter(h.macro, h.subzone);
+                updateAnatomicalCriteria(h.macro);
             };
             btn.onmouseleave = () => {
-                if (gameState.focusedMacro && gameState.subzone) {
-                    updatePainOMeter(gameState.focusedMacro, gameState.subzone);
+                if (gameState.focusedMacro) {
+                    updateAnatomicalCriteria(gameState.focusedMacro);
                 }
             };
 
@@ -2525,13 +2124,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const highlightImg = document.getElementById('mannequin-highlight-img');
         const g = gameState.gender || 'male';
         const v = gameState.view || 'front';
+        const side = gameState.side || 'der';
         
         if (mannequinImg) {
             mannequinImg.style.opacity = '0.3';
             setTimeout(() => {
                 mannequinImg.src = 'images/mannequins/' + g + '/mannequin-' + g + '-' + v + '.webp';
                 mannequinImg.style.opacity = '1';
-            }, 60);
+            }, 50);
         }
 
         if (highlightImg) {
@@ -2540,10 +2140,20 @@ document.addEventListener('DOMContentLoaded', () => {
             let overlayFilename = null;
 
             if (ANATOMICAL_PART_MAPPING[macro]) {
-                if (sub && ANATOMICAL_PART_MAPPING[macro].subzones && ANATOMICAL_PART_MAPPING[macro].subzones[sub]) {
-                    overlayFilename = ANATOMICAL_PART_MAPPING[macro].subzones[sub][v] || ANATOMICAL_PART_MAPPING[macro].subzones[sub].front;
-                } else if (ANATOMICAL_PART_MAPPING[macro].default) {
-                    overlayFilename = ANATOMICAL_PART_MAPPING[macro].default[v] || ANATOMICAL_PART_MAPPING[macro].default.front;
+                const mapData = ANATOMICAL_PART_MAPPING[macro];
+                if (sub && mapData.subzones && mapData.subzones[sub]) {
+                    const subData = mapData.subzones[sub];
+                    if (subData[side]) {
+                        overlayFilename = subData[side][v] || subData[side].front;
+                    } else {
+                        overlayFilename = subData[v] || subData.front;
+                    }
+                } else if (mapData.default) {
+                    if (mapData.default[side]) {
+                        overlayFilename = mapData.default[side][v] || mapData.default[side].front;
+                    } else {
+                        overlayFilename = mapData.default[v] || mapData.default.front;
+                    }
                 }
             }
 
@@ -2553,7 +2163,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     highlightImg.src = 'images/mannequins/' + g + '/green/' + overlayFilename;
                     highlightImg.classList.add('active');
                     highlightImg.style.opacity = '1';
-                }, 60);
+                }, 50);
             } else {
                 highlightImg.classList.remove('active');
                 highlightImg.style.opacity = '0';
@@ -2665,7 +2275,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Direct Macro Zone Selector (Brazos, Piernas, Pecho, Espalda, Cuello)
+    // Direct Macro Zone Selector (Brazos, Piernas, Torso, Espalda)
     function selectMacroZone(macroKey) {
         if (!macroKey || !MACRO_ZONES[macroKey]) return;
         const data = MACRO_ZONES[macroKey];
@@ -2674,6 +2284,9 @@ document.addEventListener('DOMContentLoaded', () => {
         gameState.zone = macroKey;
         gameState.zoneName = data.name;
         gameState.subzone = null;
+        if (!gameState.side) {
+            gameState.side = 'der';
+        }
 
         // 1. Highlight active macro pill
         document.querySelectorAll('.clean-macro-pill').forEach(btn => {
@@ -2684,29 +2297,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // 2. Camera Rig Zoom & Enfoque Inteligente por Zona
-        const cameraRig = document.getElementById('clean-mannequin-camera-rig');
-        if (cameraRig) {
-            cameraRig.className = 'clean-mannequin-camera-rig camera-focus-' + macroKey;
-        }
-
-        // 3. Activar barrido de escaneo láser biométrico
+        // 2. Activar barrido de escaneo láser biométrico
         triggerBiometricLaserScan();
 
-        // 4. Auto-rotate mannequin to the best perspective if needed
+        // 3. Auto-rotate mannequin to the best perspective if needed
         if (data.defaultView && gameState.view !== data.defaultView) {
             changeMannequinView(data.defaultView);
         } else {
             update360MannequinView();
         }
 
-        // 5. Update Badge
-        const badgeZoneText = document.getElementById('badge-zone-text');
-        if (badgeZoneText) {
-            badgeZoneText.textContent = 'ZONA: ' + data.name.toUpperCase();
-        }
-
-        // 6. Render sub-zone pills
+        // 4. Render sub-zone pills & Update Side Selector
         const container = document.getElementById('clean-subzones-container');
         if (container) {
             container.innerHTML = '';
@@ -2720,12 +2321,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // 7. Update Confirmation Summary
-        const summaryMainZone = document.getElementById('summary-main-zone');
-        if (summaryMainZone) summaryMainZone.textContent = data.name;
-        
-        // 8. Actualizar HUD de Sensibilidad Anatómica (Pain-o-Meter)
-        updatePainOMeter(macroKey, null);
+        // 5. Actualizar Criterio Anatómico de Autor
+        updateAnatomicalCriteria(macroKey);
 
         // Auto-select first subzone for frictionless experience
         if (data.subzones && data.subzones.length > 0) {
@@ -2733,6 +2330,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     window.selectMacroZone = selectMacroZone;
+
+    // Selector de Lateralidad (Izquierda / Derecha)
+    function selectSide(side) {
+        if (!side) return;
+        gameState.side = side;
+
+        document.querySelectorAll('.clean-side-pill').forEach(btn => {
+            if (btn.getAttribute('data-side') === side) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+
+        triggerBiometricLaserScan();
+        update360MannequinView();
+        updateZoneBadgeAndSummary();
+        validatePhase2();
+    }
+    window.selectSide = selectSide;
 
     // Direct Subzone Selector
     function selectCleanSubzone(macroKey, subzoneName) {
@@ -2743,6 +2360,9 @@ document.addEventListener('DOMContentLoaded', () => {
         gameState.zone = macroKey;
         gameState.zoneName = data.name;
         gameState.subzone = subzoneName;
+        if (!gameState.side) {
+            gameState.side = 'der';
+        }
 
         // Highlight selected chip
         document.querySelectorAll('.clean-subzone-chip').forEach(chip => {
@@ -2753,47 +2373,41 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Actualizar visibilidad del selector de lateralidad (Brazos, Piernas y Pectorales)
+        const sideSelector = document.getElementById('clean-side-selector');
+        if (sideSelector) {
+            const supportsSide = (macroKey === 'brazo' || macroKey === 'pierna' || (macroKey === 'torso' && subzoneName === 'Pectorales') || (macroKey === 'pecho' && subzoneName === 'Pectorales'));
+            if (supportsSide) {
+                sideSelector.style.display = 'inline-flex';
+                // Adjust labels according to gender or anatomy if helpful
+                const btnDer = sideSelector.querySelector('[data-side="der"]');
+                const btnIzq = sideSelector.querySelector('[data-side="izq"]');
+                if (macroKey === 'pierna') {
+                    if (btnDer) btnDer.textContent = 'Derecha';
+                    if (btnIzq) btnIzq.textContent = 'Izquierda';
+                } else {
+                    if (btnDer) btnDer.textContent = 'Derecho';
+                    if (btnIzq) btnIzq.textContent = 'Izquierdo';
+                }
+            } else {
+                sideSelector.style.display = 'none';
+            }
+        }
+
         // Activar láser al seleccionar subzona
         triggerBiometricLaserScan();
 
-        // Actualizar HUD Sensor de Sensibilidad (Pain-o-Meter)
-        updatePainOMeter(macroKey, subzoneName);
+        // Actualizar Criterio Anatómico de Autor
+        updateAnatomicalCriteria(macroKey);
 
-        // Auto-rotate if subzone has a specialized perspective (ej. gemelo/tríceps a espalda)
+        // Actualizar Badge y Resumen
+        updateZoneBadgeAndSummary();
+
+        // Auto-rotate if subzone has a specialized perspective
         if (ANATOMICAL_PART_MAPPING[macroKey] && ANATOMICAL_PART_MAPPING[macroKey].subzones && ANATOMICAL_PART_MAPPING[macroKey].subzones[subzoneName]) {
             const subData = ANATOMICAL_PART_MAPPING[macroKey].subzones[subzoneName];
             if (subData.defaultView && gameState.view !== subData.defaultView) {
                 changeMannequinView(subData.defaultView);
-            } else {
-                update360MannequinView();
-            }
-        } else {
-            update360MannequinView();
-        }
-
-        // Update Badge
-        const badgeZoneText = document.getElementById('badge-zone-text');
-        if (badgeZoneText) {
-            badgeZoneText.textContent = data.name.toUpperCase() + ' // ' + subzoneName.toUpperCase();
-        }
-
-        // Update Confirmation Summary
-        const summaryMainZone = document.getElementById('summary-main-zone');
-        const summaryDivider = document.getElementById('summary-divider');
-        const summarySubZone = document.getElementById('summary-sub-zone');
-
-        if (summaryMainZone) summaryMainZone.textContent = data.name;
-        if (summaryDivider) summaryDivider.style.display = 'inline';
-        if (summarySubZone) {
-            summarySubZone.textContent = subzoneName;
-            summarySubZone.style.color = '#00FF88';
-        }
-
-        // Auto-rotate perspective if subzone hints at a specific angle
-        if (ANATOMICAL_PART_MAPPING[macroKey] && ANATOMICAL_PART_MAPPING[macroKey].subzones && ANATOMICAL_PART_MAPPING[macroKey].subzones[subzoneName]) {
-            const defV = ANATOMICAL_PART_MAPPING[macroKey].subzones[subzoneName].defaultView;
-            if (defV && gameState.view !== defV) {
-                changeMannequinView(defV);
             } else {
                 update360MannequinView();
             }

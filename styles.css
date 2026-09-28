@@ -5097,6 +5097,8 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
 .clean-macro-pills-row {
     display: flex;
     flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 6px;
     width: 100%;
 }
@@ -5106,18 +5108,17 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     border: 1px solid rgba(255, 255, 255, 0.12);
     color: #CCCCCC;
     font-family: var(--font-heading);
-    font-size: 0.74rem;
-    letter-spacing: 1.1px;
+    font-size: clamp(0.65rem, 1.8vw, 0.72rem);
+    letter-spacing: 0.8px;
     text-transform: uppercase;
     font-weight: 600;
-    padding: 7px 14px;
+    padding: 7px 6px;
     border-radius: 18px;
     cursor: pointer;
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     outline: none;
-    flex: 1 1 auto;
     text-align: center;
-    min-width: 85px;
+    white-space: nowrap;
 }
 
 .clean-macro-pill:hover {
@@ -5156,7 +5157,7 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
 .clean-view-nav {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 3px;
     background: #121212;
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 3px;
@@ -5167,10 +5168,10 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
 
 .clean-view-btn {
     flex: 1 1 0;
-    padding: 5px 3px;
-    font-size: 0.68rem;
+    padding: 5px 2px;
+    font-size: clamp(0.58rem, 1.8vw, 0.66rem);
     font-family: var(--font-heading);
-    letter-spacing: 0.6px;
+    letter-spacing: 0.4px;
     color: #888888;
     border-radius: 12px;
     cursor: pointer;
@@ -5197,7 +5198,7 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
 .clean-mannequin-box {
     position: relative;
     width: 100%;
-    height: clamp(260px, 35vh, 320px);
+    height: clamp(250px, 34vh, 310px);
     background: radial-gradient(circle at 50% 50%, rgba(0, 255, 136, 0.04) 0%, rgba(8, 8, 8, 0.98) 85%);
     border: 1px solid rgba(255, 255, 255, 0.09);
     border-radius: 14px;
@@ -5208,7 +5209,7 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
 }
 
-/* Camera Rig con Enfoque Dinámico por Zona */
+/* Camera Rig Maniquí Cuerpo Completo (Sin zoom exagerado) */
 .clean-mannequin-camera-rig {
     position: relative;
     width: 100%;
@@ -5216,28 +5217,7 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-    transform-origin: center center;
-}
-
-.clean-mannequin-camera-rig.camera-focus-brazo {
-    transform: scale(1.36) translateY(-4%) translateX(-2%);
-}
-
-.clean-mannequin-camera-rig.camera-focus-pierna {
-    transform: scale(1.30) translateY(-18%);
-}
-
-.clean-mannequin-camera-rig.camera-focus-pecho {
-    transform: scale(1.38) translateY(10%);
-}
-
-.clean-mannequin-camera-rig.camera-focus-espalda {
-    transform: scale(1.35) translateY(10%);
-}
-
-.clean-mannequin-camera-rig.camera-focus-cuello {
-    transform: scale(1.65) translateY(24%);
+    transform: none !important;
 }
 
 /* Escáner Láser Biométrico */
@@ -5344,7 +5324,7 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     background: #0E0E0E;
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 14px;
-    padding: 12px 16px;
+    padding: 12px 14px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -5358,6 +5338,51 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     width: 100%;
 }
 
+.clean-subzone-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.clean-side-selector {
+    display: inline-flex;
+    align-items: center;
+    background: #141414;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 2px;
+    border-radius: 12px;
+    gap: 2px;
+}
+
+.clean-side-pill {
+    background: transparent;
+    border: none;
+    color: #888888;
+    font-family: var(--font-heading);
+    font-size: 0.62rem;
+    letter-spacing: 0.5px;
+    padding: 3px 8px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    outline: none;
+    white-space: nowrap;
+}
+
+.clean-side-pill:hover {
+    color: #FFFFFF;
+}
+
+.clean-side-pill.active {
+    background: #00FF88 !important;
+    color: #050505 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 0 8px rgba(0, 255, 136, 0.3) !important;
+}
+
 .clean-section-tag {
     display: block;
     font-family: var(--font-heading);
@@ -5366,14 +5391,14 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     color: #D4A5A5;
     text-transform: uppercase;
     font-weight: 700;
-    margin-bottom: 5px;
+    margin-bottom: 0;
 }
 
 .clean-subzones-flex {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
-    max-height: clamp(95px, 13vh, 120px);
+    max-height: clamp(90px, 12vh, 115px);
     overflow-y: auto;
     padding-right: 4px;
 }
@@ -5576,9 +5601,9 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
 }
 
 /* ==========================================================================
-   PAIN-O-METER HUD (SENSOR DE SENSIBILIDAD & PROTOCOLO CONFORT)
+   CUADRO DE CRITERIO ANATÓMICO DE AUTOR (FASE 2)
    ========================================================================== */
-.pain-hud-block {
+.anatomical-criteria-block {
     background: rgba(18, 18, 18, 0.7);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 10px;
@@ -5586,137 +5611,50 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     box-sizing: border-box;
 }
 
-.pain-hud-header {
+.criteria-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 6px;
+    margin-bottom: 5px;
 }
 
-.pain-hud-header .clean-section-tag {
+.criteria-header .clean-section-tag {
     margin-bottom: 0;
     font-size: 0.58rem;
     color: #E2C2C2;
-}
-
-.pain-score-badge {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 2px;
-    background: rgba(0, 0, 0, 0.6);
-    border: 1px solid #00FF88;
-    padding: 2px 8px;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-}
-
-.pain-score-val {
-    font-family: var(--font-heading);
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: #FFFFFF;
-}
-
-.pain-score-max {
-    font-family: var(--font-heading);
-    font-size: 0.60rem;
-    color: #888888;
-}
-
-.pain-meter-card {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.pain-meter-bar-wrapper {
-    position: relative;
-    width: 100%;
-    height: 8px;
-    background: #0A0A0A;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 6px;
-    overflow: hidden;
-}
-
-.pain-meter-bar-fill {
-    height: 100%;
-    width: 30%;
-    background: #00FF88;
-    border-radius: 6px;
-    box-shadow: 0 0 12px #00FF88;
-    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease, box-shadow 0.4s ease;
-}
-
-.pain-meter-notches {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    justify-content: space-between;
-    pointer-events: none;
-    padding: 0 2px;
-}
-
-.pain-meter-notches span {
-    width: 1px;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.15);
-}
-
-.pain-meter-info-row {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    font-family: var(--font-heading);
+    gap: 5px;
 }
 
-.pain-meter-tag {
-    font-size: 0.64rem;
-    font-weight: 700;
-    letter-spacing: 0.6px;
-    color: #00FF88;
-    text-transform: uppercase;
-    transition: color 0.3s ease;
-}
-
-.pain-meter-tolerance {
-    font-size: 0.60rem;
-    color: #AAAAAA;
-    letter-spacing: 0.3px;
-}
-
-.pain-diagnosis-box {
-    background: rgba(0, 0, 0, 0.45);
-    border-radius: 7px;
-    padding: 6px 8px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    border: 1px solid rgba(255, 255, 255, 0.04);
-}
-
-.pain-diagnosis-anatomy,
-.pain-diagnosis-protocol {
-    font-size: 0.62rem;
-    line-height: 1.35;
-    color: #CCCCCC;
+.anatomical-criteria-card {
     display: flex;
     align-items: flex-start;
-    gap: 6px;
+    gap: 9px;
+    background: rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(0, 255, 136, 0.18);
+    border-left: 3px solid #00FF88;
+    border-radius: 7px;
+    padding: 7px 10px;
 }
 
-.pain-diagnosis-anatomy i,
-.pain-diagnosis-protocol i {
-    font-size: 0.68rem;
+.criteria-icon-col {
+    font-size: 0.88rem;
+    color: #00FF88;
     margin-top: 1px;
     flex-shrink: 0;
 }
 
-.pain-diagnosis-protocol strong {
-    color: #FFFFFF;
+.criteria-content-col {
+    flex: 1 1 auto;
+}
+
+.criteria-text {
+    color: #D4D4D4;
+    font-family: var(--font-body);
+    font-size: clamp(0.70rem, 1.7vw, 0.76rem);
+    line-height: 1.4;
+    margin: 0;
 }
 
 /* Resumen Inferior */
@@ -7265,22 +7203,32 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
         height: 200px;
     }
     .clean-macro-pills-row {
-        gap: 6px;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 4px;
     }
     .clean-macro-pill {
-        padding: 8px 12px;
-        font-size: 0.72rem;
-        min-width: 75px;
+        padding: 7px 2px;
+        font-size: clamp(0.60rem, 2.4vw, 0.68rem);
+        min-width: 0;
+    }
+    .clean-view-nav {
+        padding: 2px;
+        gap: 2px;
+    }
+    .clean-view-btn {
+        padding: 4px 2px;
+        font-size: clamp(0.55rem, 2vw, 0.62rem);
     }
     .clean-anatomical-grid {
         grid-template-columns: 1fr;
-        gap: 14px;
+        gap: 10px;
     }
     .clean-mannequin-box {
-        height: 330px;
+        height: clamp(230px, 32vh, 275px);
     }
     .clean-controls-col {
-        padding: 16px 14px;
+        padding: 12px 10px;
+        gap: 8px;
     }
     .phase3-desktop-grid {
         grid-template-columns: 1fr;
