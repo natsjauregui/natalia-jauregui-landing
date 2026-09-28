@@ -1704,6 +1704,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "name": "Torso",
             "defaultView": "front",
             "subzones": [
+                "Torso Completo",
                 "Pectorales",
                 "Abdomen"
             ]
@@ -1712,6 +1713,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "name": "Torso",
             "defaultView": "front",
             "subzones": [
+                "Torso Completo",
                 "Pectorales",
                 "Abdomen"
             ]
@@ -1769,10 +1771,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         "right": "brazo-der-biceps-external.webp"
                     },
                     "izq": {
-                        "front": "brazo-izq-superior-front.webp",
-                        "back": "brazo-izq-superior-back.webp",
-                        "left": "brazo-izq-superior-external.webp",
-                        "right": "brazo-izq-superior-internal.webp"
+                        "front": "brazo-izq-biceps-front.webp",
+                        "back": "brazo-izq-biceps-back.webp",
+                        "left": "brazo-izq-biceps-external.webp",
+                        "right": "brazo-izq-biceps-internal.webp"
                     },
                     "defaultView": "front"
                 },
@@ -1859,19 +1861,26 @@ document.addEventListener('DOMContentLoaded', () => {
         "torso": {
             "default": {
                 "der": {
-                    "front": "torso-pecho.webp",
+                    "front": "torso.webp",
                     "back": "torso.webp",
                     "left": "torso-costilla-izq.webp",
                     "right": "torso-costilla-der.webp"
                 },
                 "izq": {
-                    "front": "torso-pecho.webp",
+                    "front": "torso.webp",
                     "back": "torso.webp",
                     "left": "torso-costilla-izq.webp",
                     "right": "torso-costilla-der.webp"
                 }
             },
             "subzones": {
+                "Torso Completo": {
+                    "front": "torso.webp",
+                    "back": "torso.webp",
+                    "left": "torso.webp",
+                    "right": "torso.webp",
+                    "defaultView": "front"
+                },
                 "Pectorales": {
                     "der": {
                         "front": "torso-pectoral-der.webp",
@@ -1899,19 +1908,26 @@ document.addEventListener('DOMContentLoaded', () => {
         "pecho": {
             "default": {
                 "der": {
-                    "front": "torso-pecho.webp",
+                    "front": "torso.webp",
                     "back": "torso.webp",
                     "left": "torso-costilla-izq.webp",
                     "right": "torso-costilla-der.webp"
                 },
                 "izq": {
-                    "front": "torso-pecho.webp",
+                    "front": "torso.webp",
                     "back": "torso.webp",
                     "left": "torso-costilla-izq.webp",
                     "right": "torso-costilla-der.webp"
                 }
             },
             "subzones": {
+                "Torso Completo": {
+                    "front": "torso.webp",
+                    "back": "torso.webp",
+                    "left": "torso.webp",
+                    "right": "torso.webp",
+                    "defaultView": "front"
+                },
                 "Pectorales": {
                     "der": {
                         "front": "torso-pectoral-der.webp",
@@ -1981,46 +1997,53 @@ document.addEventListener('DOMContentLoaded', () => {
     // Base de datos de Hotspots Táctiles por perspectiva para Maniquí de Cuerpo Completo (Calibración 1:1)
     const MANNEQUIN_HOTSPOTS_DB = {
         "front": [
-            { macro: "torso", subzone: "Pectorales", side: "der", top: "20.1%", left: "42.8%", label: "Pectoral D." },
-            { macro: "torso", subzone: "Pectorales", side: "izq", top: "20.2%", left: "57.3%", label: "Pectoral I." },
-            { macro: "torso", subzone: "Abdomen", top: "32.3%", left: "50.0%", label: "Abdomen" },
-            { macro: "brazo", subzone: "Bíceps", side: "der", top: "24.8%", left: "33.6%", label: "Bíceps D." },
-            { macro: "brazo", subzone: "Bíceps", side: "izq", top: "24.9%", left: "66.5%", label: "Bíceps I." },
-            { macro: "brazo", subzone: "Antebrazo", side: "der", top: "35.8%", left: "29.5%", label: "Antebrazo D." },
-            { macro: "brazo", subzone: "Antebrazo", side: "izq", top: "35.8%", left: "70.5%", label: "Antebrazo I." },
-            { macro: "pierna", subzone: "Muslo", side: "der", top: "52.5%", left: "42.1%", label: "Muslo D." },
-            { macro: "pierna", subzone: "Muslo", side: "izq", top: "52.5%", left: "57.8%", label: "Muslo I." },
-            { macro: "pierna", subzone: "Pantorrilla", side: "der", top: "74.6%", left: "39.0%", label: "Pantorrilla D." },
-            { macro: "pierna", subzone: "Pantorrilla", side: "izq", top: "74.5%", left: "62.6%", label: "Pantorrilla I." }
+            // Torso
+            { macro: "torso", subzone: "Pectorales", side: "der", top: "20.5%", left: "42.8%", label: "Pectoral D." },
+            { macro: "torso", subzone: "Pectorales", side: "izq", top: "20.5%", left: "57.3%", label: "Pectoral I." },
+            { macro: "torso", subzone: "Torso Completo", top: "26.5%", left: "50.0%", label: "Torso" },
+            { macro: "torso", subzone: "Abdomen", top: "33.5%", left: "50.0%", label: "Abdomen" },
+            // Brazos (Calibración precisa: Bíceps en el vientre muscular y Antebrazo entre codo y muñeca)
+            { macro: "brazo", subzone: "Bíceps", side: "der", top: "26.0%", left: "33.6%", label: "Bíceps D." },
+            { macro: "brazo", subzone: "Bíceps", side: "izq", top: "26.0%", left: "66.5%", label: "Bíceps I." },
+            { macro: "brazo", subzone: "Antebrazo", side: "der", top: "42.5%", left: "27.5%", label: "Antebrazo D." },
+            { macro: "brazo", subzone: "Antebrazo", side: "izq", top: "42.5%", left: "72.5%", label: "Antebrazo I." },
+            // Piernas (Calibración precisa: Muslo centrado en cuádriceps y Pantorrilla centrada en gemelos)
+            { macro: "pierna", subzone: "Muslo", side: "der", top: "56.5%", left: "42.1%", label: "Muslo D." },
+            { macro: "pierna", subzone: "Muslo", side: "izq", top: "56.5%", left: "57.8%", label: "Muslo I." },
+            { macro: "pierna", subzone: "Pantorrilla", side: "der", top: "76.5%", left: "39.0%", label: "Pantorrilla D." },
+            { macro: "pierna", subzone: "Pantorrilla", side: "izq", top: "76.5%", left: "61.0%", label: "Pantorrilla I." }
         ],
         "back": [
-            { macro: "espalda", subzone: "Espalda Alta", top: "17.8%", left: "49.9%", label: "Espalda Alta" },
-            { macro: "espalda", subzone: "Espalda Completa", top: "27.7%", left: "50.0%", label: "Espalda Completa" },
-            { macro: "espalda", subzone: "Espalda Baja", top: "34.4%", left: "50.0%", label: "Espalda Baja" },
-            { macro: "brazo", subzone: "Bíceps", side: "der", top: "25.5%", left: "66.4%", label: "Tríceps D." },
-            { macro: "brazo", subzone: "Bíceps", side: "izq", top: "25.4%", left: "33.5%", label: "Tríceps I." },
-            { macro: "brazo", subzone: "Antebrazo", side: "der", top: "35.7%", left: "70.2%", label: "Antebrazo D." },
-            { macro: "brazo", subzone: "Antebrazo", side: "izq", top: "35.7%", left: "29.8%", label: "Antebrazo I." },
-            { macro: "pierna", subzone: "Muslo", side: "der", top: "52.6%", left: "57.8%", label: "Muslo D." },
-            { macro: "pierna", subzone: "Muslo", side: "izq", top: "52.7%", left: "42.4%", label: "Muslo I." },
-            { macro: "pierna", subzone: "Pantorrilla", side: "der", top: "75.0%", left: "61.3%", label: "Pantorrilla D." },
-            { macro: "pierna", subzone: "Pantorrilla", side: "izq", top: "74.7%", left: "37.8%", label: "Pantorrilla I." }
+            // Espalda
+            { macro: "espalda", subzone: "Espalda Alta", top: "18.0%", left: "50.0%", label: "Espalda Alta" },
+            { macro: "espalda", subzone: "Espalda Completa", top: "27.5%", left: "50.0%", label: "Espalda Completa" },
+            { macro: "espalda", subzone: "Espalda Baja", top: "34.5%", left: "50.0%", label: "Espalda Baja" },
+            // Brazos (Tríceps y Antebrazo dorsal)
+            { macro: "brazo", subzone: "Bíceps", side: "der", top: "26.0%", left: "66.4%", label: "Tríceps D." },
+            { macro: "brazo", subzone: "Bíceps", side: "izq", top: "26.0%", left: "33.5%", label: "Tríceps I." },
+            { macro: "brazo", subzone: "Antebrazo", side: "der", top: "42.5%", left: "72.5%", label: "Antebrazo D." },
+            { macro: "brazo", subzone: "Antebrazo", side: "izq", top: "42.5%", left: "27.5%", label: "Antebrazo I." },
+            // Piernas (Muslo posterior e Isquiotibiales, Pantorrilla posterior)
+            { macro: "pierna", subzone: "Muslo", side: "der", top: "56.5%", left: "57.8%", label: "Muslo D." },
+            { macro: "pierna", subzone: "Muslo", side: "izq", top: "56.5%", left: "42.4%", label: "Muslo I." },
+            { macro: "pierna", subzone: "Pantorrilla", side: "der", top: "76.5%", left: "61.3%", label: "Pantorrilla D." },
+            { macro: "pierna", subzone: "Pantorrilla", side: "izq", top: "76.5%", left: "38.7%", label: "Pantorrilla I." }
         ],
         "right": [
-            { macro: "brazo", subzone: "Bíceps", side: "der", top: "23.1%", left: "48.3%", label: "Bíceps Der." },
-            { macro: "brazo", subzone: "Antebrazo", side: "der", top: "35.7%", left: "50.0%", label: "Antebrazo Der." },
-            { macro: "torso", subzone: "Pectorales", side: "der", top: "24.7%", left: "56.3%", label: "Costilla / Pectoral" },
-            { macro: "espalda", subzone: "Espalda Alta", top: "22.1%", left: "43.1%", label: "Espalda Alta" },
-            { macro: "pierna", subzone: "Muslo", side: "der", top: "51.9%", left: "50.6%", label: "Muslo Der." },
-            { macro: "pierna", subzone: "Pantorrilla", side: "der", top: "75.0%", left: "46.4%", label: "Pantorrilla Der." }
+            { macro: "brazo", subzone: "Bíceps", side: "der", top: "25.0%", left: "48.3%", label: "Bíceps Der." },
+            { macro: "brazo", subzone: "Antebrazo", side: "der", top: "42.5%", left: "50.0%", label: "Antebrazo Der." },
+            { macro: "torso", subzone: "Pectorales", side: "der", top: "24.5%", left: "56.3%", label: "Costilla / Pectoral" },
+            { macro: "espalda", subzone: "Espalda Alta", top: "22.0%", left: "43.1%", label: "Espalda Alta" },
+            { macro: "pierna", subzone: "Muslo", side: "der", top: "56.5%", left: "50.6%", label: "Muslo Der." },
+            { macro: "pierna", subzone: "Pantorrilla", side: "der", top: "76.5%", left: "46.4%", label: "Pantorrilla Der." }
         ],
         "left": [
-            { macro: "brazo", subzone: "Bíceps", side: "izq", top: "23.1%", left: "51.6%", label: "Bíceps Izq." },
-            { macro: "brazo", subzone: "Antebrazo", side: "izq", top: "35.6%", left: "49.6%", label: "Antebrazo Izq." },
-            { macro: "torso", subzone: "Pectorales", side: "izq", top: "24.7%", left: "43.8%", label: "Costilla / Pectoral" },
-            { macro: "espalda", subzone: "Espalda Alta", top: "22.1%", left: "56.9%", label: "Espalda Alta" },
-            { macro: "pierna", subzone: "Muslo", side: "izq", top: "51.9%", left: "49.6%", label: "Muslo Izq." },
-            { macro: "pierna", subzone: "Pantorrilla", side: "izq", top: "75.0%", left: "53.8%", label: "Pantorrilla Izq." }
+            { macro: "brazo", subzone: "Bíceps", side: "izq", top: "25.0%", left: "51.6%", label: "Bíceps Izq." },
+            { macro: "brazo", subzone: "Antebrazo", side: "izq", top: "42.5%", left: "50.0%", label: "Antebrazo Izq." },
+            { macro: "torso", subzone: "Pectorales", side: "izq", top: "24.5%", left: "43.8%", label: "Costilla / Pectoral" },
+            { macro: "espalda", subzone: "Espalda Alta", top: "22.0%", left: "56.9%", label: "Espalda Alta" },
+            { macro: "pierna", subzone: "Muslo", side: "izq", top: "56.5%", left: "49.6%", label: "Muslo Izq." },
+            { macro: "pierna", subzone: "Pantorrilla", side: "izq", top: "76.5%", left: "53.8%", label: "Pantorrilla Izq." }
         ]
     };
 

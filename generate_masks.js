@@ -11,124 +11,165 @@ const SUBZONE_SPECS = [
   {
     name: 'brazo-der-front.webp',
     view: 'front',
-    box: { minX: 180, maxX: 320, minY: 160, maxY: 560 }
+    box: { minX: 180, maxX: 330, minY: 170, maxY: 575 }
   },
   {
     name: 'brazo-der-back.webp',
     view: 'back',
-    box: { minX: 480, maxX: 620, minY: 160, maxY: 560 }
+    box: { minX: 470, maxX: 620, minY: 170, maxY: 575 }
   },
   {
     name: 'brazo-der-external.webp',
     view: 'right',
-    box: { minX: 300, maxX: 500, minY: 160, maxY: 560 }
+    box: { minX: 300, maxX: 500, minY: 170, maxY: 575 }
   },
   {
     name: 'brazo-der-internal.webp',
     view: 'left',
-    box: { minX: 300, maxX: 500, minY: 160, maxY: 560 }
+    box: { minX: 300, maxX: 500, minY: 170, maxY: 575 }
   },
   {
     name: 'brazo-izq-front.webp',
     view: 'front',
-    box: { minX: 480, maxX: 620, minY: 160, maxY: 560 }
+    box: { minX: 470, maxX: 620, minY: 170, maxY: 575 }
   },
   {
     name: 'brazo-izq-back.webp',
     view: 'back',
-    box: { minX: 180, maxX: 320, minY: 160, maxY: 560 }
+    box: { minX: 180, maxX: 330, minY: 170, maxY: 575 }
   },
   {
     name: 'brazo-izq-external.webp',
     view: 'left',
-    box: { minX: 300, maxX: 500, minY: 160, maxY: 560 }
+    box: { minX: 300, maxX: 500, minY: 170, maxY: 575 }
   },
   {
     name: 'brazo-izq-internal.webp',
     view: 'right',
-    box: { minX: 300, maxX: 500, minY: 160, maxY: 560 }
+    box: { minX: 300, maxX: 500, minY: 170, maxY: 575 }
   },
-  // Media Manga Superior (Hombro + Bíceps/Tríceps)
+  // Bíceps / Brazo Superior (Hombro + Bíceps + Tríceps hasta el codo)
   {
     name: 'brazo-der-superior-front.webp',
     view: 'front',
-    box: { minX: 180, maxX: 330, minY: 160, maxY: 360 }
+    box: { minX: 180, maxX: 330, minY: 170, maxY: 360 }
   },
   {
     name: 'brazo-der-superior-back.webp',
     view: 'back',
-    box: { minX: 470, maxX: 620, minY: 160, maxY: 360 }
+    box: { minX: 470, maxX: 620, minY: 170, maxY: 360 }
   },
   {
     name: 'brazo-der-superior-external.webp',
     view: 'right',
-    box: { minX: 300, maxX: 500, minY: 160, maxY: 360 }
+    box: { minX: 300, maxX: 500, minY: 170, maxY: 360 }
   },
   {
     name: 'brazo-der-superior-internal.webp',
     view: 'left',
-    box: { minX: 300, maxX: 500, minY: 160, maxY: 360 }
+    box: { minX: 300, maxX: 500, minY: 170, maxY: 360 }
   },
   {
     name: 'brazo-izq-superior-front.webp',
     view: 'front',
-    box: { minX: 470, maxX: 620, minY: 160, maxY: 360 }
+    box: { minX: 470, maxX: 620, minY: 170, maxY: 360 }
   },
   {
     name: 'brazo-izq-superior-back.webp',
     view: 'back',
-    box: { minX: 180, maxX: 330, minY: 160, maxY: 360 }
+    box: { minX: 180, maxX: 330, minY: 170, maxY: 360 }
   },
   {
     name: 'brazo-izq-superior-external.webp',
     view: 'left',
-    box: { minX: 300, maxX: 500, minY: 160, maxY: 360 }
+    box: { minX: 300, maxX: 500, minY: 170, maxY: 360 }
   },
   {
     name: 'brazo-izq-superior-internal.webp',
     view: 'right',
-    box: { minX: 300, maxX: 500, minY: 160, maxY: 360 }
+    box: { minX: 300, maxX: 500, minY: 170, maxY: 360 }
   },
-  // Media Manga Inferior (Antebrazo)
+  // Bíceps aliases
+  {
+    name: 'brazo-der-biceps-front.webp',
+    view: 'front',
+    box: { minX: 180, maxX: 330, minY: 170, maxY: 360 }
+  },
+  {
+    name: 'brazo-der-biceps-back.webp',
+    view: 'back',
+    box: { minX: 470, maxX: 620, minY: 170, maxY: 360 }
+  },
+  {
+    name: 'brazo-der-biceps-external.webp',
+    view: 'right',
+    box: { minX: 300, maxX: 500, minY: 170, maxY: 360 }
+  },
+  {
+    name: 'brazo-der-biceps-internal.webp',
+    view: 'left',
+    box: { minX: 300, maxX: 500, minY: 170, maxY: 360 }
+  },
+  {
+    name: 'brazo-izq-biceps-front.webp',
+    view: 'front',
+    box: { minX: 470, maxX: 620, minY: 170, maxY: 360 }
+  },
+  {
+    name: 'brazo-izq-biceps-back.webp',
+    view: 'back',
+    box: { minX: 180, maxX: 330, minY: 170, maxY: 360 }
+  },
+  {
+    name: 'brazo-izq-biceps-external.webp',
+    view: 'left',
+    box: { minX: 300, maxX: 500, minY: 170, maxY: 360 }
+  },
+  {
+    name: 'brazo-izq-biceps-internal.webp',
+    view: 'right',
+    box: { minX: 300, maxX: 500, minY: 170, maxY: 360 }
+  },
+  // Antebrazo (Desde debajo del codo hasta la muñeca y mano completa)
   {
     name: 'brazo-der-antebrazo-front.webp',
     view: 'front',
-    box: { minX: 180, maxX: 310, minY: 330, maxY: 495 }
+    box: { minX: 180, maxX: 320, minY: 355, maxY: 575 }
   },
   {
     name: 'brazo-der-antebrazo-back.webp',
     view: 'back',
-    box: { minX: 490, maxX: 620, minY: 330, maxY: 495 }
+    box: { minX: 470, maxX: 620, minY: 355, maxY: 575 }
   },
   {
     name: 'brazo-der-antebrazo-external.webp',
     view: 'right',
-    box: { minX: 300, maxX: 500, minY: 330, maxY: 495 }
+    box: { minX: 300, maxX: 500, minY: 355, maxY: 575 }
   },
   {
     name: 'brazo-der-antebrazo-internal.webp',
     view: 'left',
-    box: { minX: 300, maxX: 500, minY: 330, maxY: 495 }
+    box: { minX: 300, maxX: 500, minY: 355, maxY: 575 }
   },
   {
     name: 'brazo-izq-antebrazo-front.webp',
     view: 'front',
-    box: { minX: 490, maxX: 620, minY: 330, maxY: 495 }
+    box: { minX: 470, maxX: 620, minY: 355, maxY: 575 }
   },
   {
     name: 'brazo-izq-antebrazo-back.webp',
     view: 'back',
-    box: { minX: 180, maxX: 310, minY: 330, maxY: 495 }
+    box: { minX: 180, maxX: 320, minY: 355, maxY: 575 }
   },
   {
     name: 'brazo-izq-antebrazo-external.webp',
     view: 'left',
-    box: { minX: 300, maxX: 500, minY: 330, maxY: 495 }
+    box: { minX: 300, maxX: 500, minY: 355, maxY: 575 }
   },
   {
     name: 'brazo-izq-antebrazo-internal.webp',
     view: 'right',
-    box: { minX: 300, maxX: 500, minY: 330, maxY: 495 }
+    box: { minX: 300, maxX: 500, minY: 355, maxY: 575 }
   },
   // Mano (Estrictamente Muñeca y Mano)
   {
@@ -328,94 +369,94 @@ const SUBZONE_SPECS = [
   {
     name: 'pierna-der-muslo-front.webp',
     view: 'front',
-    box: { minX: 240, maxX: 400, minY: 470, maxY: 740 }
+    box: { minX: 240, maxX: 400, minY: 480, maxY: 705 }
   },
   {
     name: 'pierna-der-muslo-back.webp',
     view: 'back',
-    box: { minX: 400, maxX: 560, minY: 470, maxY: 740 }
+    box: { minX: 400, maxX: 560, minY: 480, maxY: 705 }
   },
   {
     name: 'pierna-der-muslo-external.webp',
     view: 'right',
-    box: { minX: 300, maxX: 500, minY: 470, maxY: 740 }
+    box: { minX: 300, maxX: 500, minY: 480, maxY: 705 }
   },
   {
     name: 'pierna-der-muslo-internal.webp',
     view: 'left',
-    box: { minX: 300, maxX: 500, minY: 470, maxY: 740 }
+    box: { minX: 300, maxX: 500, minY: 480, maxY: 705 }
   },
   {
     name: 'pierna-izq-muslo-front.webp',
     view: 'front',
-    box: { minX: 400, maxX: 560, minY: 470, maxY: 740 }
+    box: { minX: 400, maxX: 560, minY: 480, maxY: 705 }
   },
   {
     name: 'pierna-izq-muslo-back.webp',
     view: 'back',
-    box: { minX: 240, maxX: 400, minY: 470, maxY: 740 }
+    box: { minX: 240, maxX: 400, minY: 480, maxY: 705 }
   },
   {
     name: 'pierna-izq-muslo-external.webp',
     view: 'left',
-    box: { minX: 300, maxX: 500, minY: 470, maxY: 740 }
+    box: { minX: 300, maxX: 500, minY: 480, maxY: 705 }
   },
   {
     name: 'pierna-izq-muslo-internal.webp',
     view: 'right',
-    box: { minX: 300, maxX: 500, minY: 470, maxY: 740 }
+    box: { minX: 300, maxX: 500, minY: 480, maxY: 705 }
   },
-  // Pantorrilla / Gemelos / Espinilla
+  // Pantorrilla / Gemelos / Espinilla (Desde la rodilla hasta el pie)
   {
     name: 'pierna-der-pantorrilla-front.webp',
     view: 'front',
-    box: { minX: 250, maxX: 395, minY: 730, maxY: 1000 }
+    box: { minX: 240, maxX: 400, minY: 700, maxY: 1115 }
   },
   {
     name: 'pierna-der-pantorrilla-back.webp',
     view: 'back',
-    box: { minX: 405, maxX: 550, minY: 730, maxY: 1000 }
+    box: { minX: 400, maxX: 560, minY: 700, maxY: 1115 }
   },
   {
     name: 'pierna-der-pantorrilla-external.webp',
     view: 'right',
-    box: { minX: 300, maxX: 500, minY: 730, maxY: 1000 }
+    box: { minX: 300, maxX: 500, minY: 700, maxY: 1115 }
   },
   {
     name: 'pierna-der-pantorrilla-internal.webp',
     view: 'left',
-    box: { minX: 300, maxX: 500, minY: 730, maxY: 1000 }
+    box: { minX: 300, maxX: 500, minY: 700, maxY: 1115 }
   },
   {
     name: 'pierna-izq-pantorrilla-front.webp',
     view: 'front',
-    box: { minX: 405, maxX: 550, minY: 730, maxY: 1000 }
+    box: { minX: 400, maxX: 560, minY: 700, maxY: 1115 }
   },
   {
     name: 'pierna-izq-pantorrilla-back.webp',
     view: 'back',
-    box: { minX: 250, maxX: 395, minY: 730, maxY: 1000 }
+    box: { minX: 240, maxX: 400, minY: 700, maxY: 1115 }
   },
   {
     name: 'pierna-izq-pantorrilla-external.webp',
     view: 'left',
-    box: { minX: 300, maxX: 500, minY: 730, maxY: 1000 }
+    box: { minX: 300, maxX: 500, minY: 700, maxY: 1115 }
   },
   {
     name: 'pierna-izq-pantorrilla-internal.webp',
     view: 'right',
-    box: { minX: 300, maxX: 500, minY: 730, maxY: 1000 }
+    box: { minX: 300, maxX: 500, minY: 700, maxY: 1115 }
   },
   // Pies
   {
     name: 'pierna-der-pie-front.webp',
     view: 'front',
-    box: { minX: 250, maxX: 395, minY: 980, maxY: 1115 }
+    box: { minX: 240, maxX: 400, minY: 980, maxY: 1115 }
   },
   {
     name: 'pierna-der-pie-back.webp',
     view: 'back',
-    box: { minX: 405, maxX: 550, minY: 980, maxY: 1115 }
+    box: { minX: 400, maxX: 560, minY: 980, maxY: 1115 }
   },
   {
     name: 'pierna-der-pie-external.webp',
@@ -430,12 +471,12 @@ const SUBZONE_SPECS = [
   {
     name: 'pierna-izq-pie-front.webp',
     view: 'front',
-    box: { minX: 405, maxX: 550, minY: 980, maxY: 1115 }
+    box: { minX: 400, maxX: 560, minY: 980, maxY: 1115 }
   },
   {
     name: 'pierna-izq-pie-back.webp',
     view: 'back',
-    box: { minX: 250, maxX: 395, minY: 980, maxY: 1115 }
+    box: { minX: 240, maxX: 400, minY: 980, maxY: 1115 }
   },
   {
     name: 'pierna-izq-pie-external.webp',
