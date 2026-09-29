@@ -488,143 +488,178 @@
                         </div>
                     </div>
                     
-                    <!-- PANTALLA 5 (Fase 4): Protocolo de Confort & Ficha Técnica -->
+                    <!-- PANTALLA 5 (Fase 4): Protocolo de Confort & Experiencia -->
                     <div class="phase-card" data-phase="4">
                         <div class="atelier-header-center">
-                            <h3 class="atelier-step-title">Confort &amp; Oficialización</h3>
-                            <p class="atelier-step-subtitle">Selecciona tu nivel de confort y completa tus datos para oficializar tu proyecto.</p>
+                            <div class="avatar-creation-badge"><i class="fa-solid fa-shield-halved"></i> PROTOCOLO DE CONFORT // SESIÓN</div>
+                            <h3 class="atelier-step-title">Confort &amp; Experiencia</h3>
+                            <p class="atelier-step-subtitle">Elige el protocolo de confort y bioseguridad para el desarrollo de tu obra en sesión.</p>
                         </div>
 
                         <div class="phase-form">
-                            <div class="phase4-desktop-grid">
-                                <!-- Columna Izquierda: Protocolo de Confort & Datos -->
-                                <div class="phase4-left-col">
-                                    <div class="option-section">
-                                        <span class="section-label-game">1. PROTOCOLO DE EXPERIENCIA EN SESIÓN</span>
-                                        <div class="grid-options-pain">
-                                            <div class="opt-btn-pain active" data-pain="sin-dolor" onclick="selectPainMode('sin-dolor')">
-                                                <i class="fa-solid fa-shield-halved"></i>
-                                                <div class="opt-text-wrap">
-                                                    <strong>Tecnología Sin Dolor</strong>
-                                                    <span>Infusión continua &amp; confort máximo</span>
-                                                </div>
-                                            </div>
-                                            <div class="opt-btn-pain" data-pain="clasico" onclick="selectPainMode('clasico')">
-                                                <i class="fa-solid fa-feather"></i>
-                                                <div class="opt-text-wrap">
-                                                    <strong>Sesión Tradicional</strong>
-                                                    <span>Ritmo habitual de sesión</span>
-                                                </div>
+                            <div class="phase4-comfort-container" style="max-width: 800px; margin: 0 auto;">
+                                <div class="option-section">
+                                    <span class="section-label-game">1. PROTOCOLO DE EXPERIENCIA EN SESIÓN</span>
+                                    <div class="grid-options-pain">
+                                        <div class="opt-btn-pain active" data-pain="sin-dolor" onclick="selectPainMode('sin-dolor')">
+                                            <i class="fa-solid fa-shield-halved"></i>
+                                            <div class="opt-text-wrap">
+                                                <strong>Tecnología Sin Dolor</strong>
+                                                <span>Infusión continua &amp; confort máximo</span>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <div class="option-section" style="margin-top: 18px;">
-                                        <span class="section-label-game">2. DATOS PARA TU FICHA TÉCNICA</span>
-                                        <div class="form-grid">
-                                            <div class="form-group-game">
-                                                <label for="game-name"><i class="fa-solid fa-user"></i> Nombre Completo *</label>
-                                                <input type="text" id="game-name" placeholder="Tu nombre y apellido" required>
-                                            </div>
-                                            <div class="form-group-game">
-                                                <label for="game-phone"><i class="fa-brands fa-whatsapp"></i> WhatsApp *</label>
-                                                <input type="tel" id="game-phone" placeholder="Ej: +57 310 123 4567" required>
-                                            </div>
-                                            <div class="form-group-game">
-                                                <label for="game-instagram"><i class="fa-brands fa-instagram"></i> Instagram (@usuario)</label>
-                                                <input type="text" id="game-instagram" placeholder="Ej: @tu_usuario">
-                                            </div>
-                                            <div class="form-group-game">
-                                                <label for="game-email"><i class="fa-solid fa-envelope"></i> Correo Electrónico *</label>
-                                                <input type="email" id="game-email" placeholder="Ej: tu_nombre@correo.com" required>
+                                        <div class="opt-btn-pain" data-pain="clasico" onclick="selectPainMode('clasico')">
+                                            <i class="fa-solid fa-feather"></i>
+                                            <div class="opt-text-wrap">
+                                                <strong>Sesión Tradicional</strong>
+                                                <span>Ritmo habitual y orgánico de sesión</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- Columna Derecha: Habeas Data & Autorizaciones Legales -->
-                                <div class="phase4-right-col">
-                                    <!-- Paso 3: Autorizaciones Legales y Tratamiento de Datos (Ley 1581 de 2012) -->
-                                    <div class="option-section habeas-data-section">
-                                        <span class="section-label-game">3. AUTORIZACIÓN DE DATOS (LEY 1581 DE 2012)</span>
-                                        <div class="consent-checkbox-group">
-                                            
-                                            <!-- Punto 1: Tratamiento de Datos Requerido -->
-                                            <div class="consent-row-item">
-                                                <label class="consent-checkbox-label" for="consent-habeas-data">
-                                                    <input type="checkbox" id="consent-habeas-data" class="consent-custom-checkbox" required>
-                                                    <span class="custom-checkbox-visual"><i class="fa-solid fa-check"></i></span>
-                                                </label>
-                                                <div class="consent-text-block" id="consent-block-1">
-                                                    <div class="consent-header-line">
-                                                        <label for="consent-habeas-data" class="consent-clickable-title">
-                                                            <strong class="consent-title-strong">Autorización de Tratamiento de Datos (Requerido) *:</strong>
-                                                        </label>
-                                                        <button type="button" class="btn-consent-toggle" id="btn-toggle-consent-1" onclick="toggleConsentDetails(event, 'consent-details-1', 'btn-toggle-consent-1')">
-                                                            <span class="toggle-label">Leer más</span>
-                                                            <i class="fa-solid fa-chevron-down"></i>
-                                                        </button>
-                                                    </div>
-                                                    <div class="consent-expandable-content" id="consent-details-1">
-                                                        <p class="consent-full-desc">
-                                                            Autorizo a Natalia Jauregui Studio el tratamiento de mis datos personales de acuerdo con la Ley 1581 de 2012 y la <a href="javascript:void(0)" class="legal-link-trigger" onclick="openPrivacyModal(event)">Política de Privacidad</a> exclusivamente para la gestión de mi cita, asesoría personalizada y conceptualización de mi proyecto de autor.
-                                                        </p>
-                                                        <button type="button" class="btn-consent-collapse" onclick="collapseConsentDetails(event, 'consent-details-1', 'btn-toggle-consent-1')">
-                                                            <span>Leer menos</span>
-                                                            <i class="fa-solid fa-chevron-up"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <!-- Punto 2: Comunicaciones Prioritarias Opcionales -->
-                                            <div class="consent-row-item">
-                                                <label class="consent-checkbox-label" for="consent-marketing">
-                                                    <input type="checkbox" id="consent-marketing" class="consent-custom-checkbox">
-                                                    <span class="custom-checkbox-visual"><i class="fa-solid fa-check"></i></span>
-                                                </label>
-                                                <div class="consent-text-block" id="consent-block-2">
-                                                    <div class="consent-header-line">
-                                                        <label for="consent-marketing" class="consent-clickable-title">
-                                                            <strong class="consent-title-strong">Comunicaciones Prioritarias &amp; Agenda VIP (Opcional):</strong>
-                                                        </label>
-                                                        <button type="button" class="btn-consent-toggle" id="btn-toggle-consent-2" onclick="toggleConsentDetails(event, 'consent-details-2', 'btn-toggle-consent-2')">
-                                                            <span class="toggle-label">Leer más</span>
-                                                            <i class="fa-solid fa-chevron-down"></i>
-                                                        </button>
-                                                    </div>
-                                                    <div class="consent-expandable-content" id="consent-details-2">
-                                                        <p class="consent-full-desc">
-                                                            Deseo recibir comunicados prioritarios, aperturas exclusivas de agenda, eventos privados y novedades de autor a través de WhatsApp, correo electrónico e Instagram.
-                                                        </p>
-                                                        <button type="button" class="btn-consent-collapse" onclick="collapseConsentDetails(event, 'consent-details-2', 'btn-toggle-consent-2')">
-                                                            <span>Leer menos</span>
-                                                            <i class="fa-solid fa-chevron-up"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
+                                <!-- Tarjeta de Respaldo y Bioseguridad (Mentor / Protector) -->
+                                <div class="comfort-guarantee-card" style="margin-top: 20px;">
+                                    <div class="guarantee-icon-box">
+                                        <i class="fa-solid fa-hand-holding-medical"></i>
+                                    </div>
+                                    <div class="guarantee-text-box">
+                                        <h4 class="guarantee-title">Compromiso de Autor &amp; Cuidado de la Piel</h4>
+                                        <p class="guarantee-desc">
+                                            Cada pieza se ejecuta bajo rigurosos estándares de bioseguridad y ergonomía dérmica. Diseñamos la experiencia para que disfrutes plenamente la creación de tu obra con total serenidad y certeza.
+                                        </p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="phase-actions-row">
+                            <div class="phase-actions-row split-actions" style="margin-top: 24px; display: flex; justify-content: space-between;">
                                 <button type="button" class="btn btn-outline phase-prev-btn" onclick="showPhase(3)"><i class="fa-solid fa-arrow-left"></i> Atrás</button>
-                                <button type="button" class="btn btn-gold-filled phase-next" id="btn-phase4-next" onclick="submitGamifiedFicha()" disabled>Oficializar y Agendar <i class="fa-solid fa-arrow-right"></i></button>
+                                <button type="button" class="btn btn-gold-filled phase-next" id="btn-phase4-next" onclick="startPhase5TransitionVideo()">Continuar a Ficha de Datos <i class="fa-solid fa-arrow-right"></i></button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- PANTALLA 6 (Fase 5): Misión Cumplida y Agendamiento -->
+                    <!-- PANTALLA 6 (Fase 5): Ficha de Datos & Agendamiento -->
                     <div class="phase-card" data-phase="5">
+                        
+                        <!-- Estado 1: Formulario de Datos Técnicos y Autorizaciones Legales -->
+                        <div id="phase5-form-panel">
+                            <div class="atelier-header-center">
+                                <div class="avatar-creation-badge"><i class="fa-solid fa-id-card-clip"></i> OFICIALIZACIÓN // LEY 1581 DE 2012</div>
+                                <h3 class="atelier-step-title">Ficha de Datos &amp; Agendamiento</h3>
+                                <p class="atelier-step-subtitle">Completa tus datos de contacto y autorizaciones para consolidar tu proyecto y elegir tu horario de asesoría.</p>
+                            </div>
+
+                            <div class="phase-form">
+                                <div class="phase4-desktop-grid">
+                                    <!-- Columna Izquierda: Datos de Contacto -->
+                                    <div class="phase4-left-col">
+                                        <div class="option-section">
+                                            <span class="section-label-game">1. DATOS PARA TU FICHA TÉCNICA</span>
+                                            <div class="form-grid">
+                                                <div class="form-group-game">
+                                                    <label for="game-name"><i class="fa-solid fa-user"></i> Nombre Completo *</label>
+                                                    <input type="text" id="game-name" placeholder="Tu nombre y apellido" required>
+                                                </div>
+                                                <div class="form-group-game">
+                                                    <label for="game-phone"><i class="fa-brands fa-whatsapp"></i> WhatsApp *</label>
+                                                    <input type="tel" id="game-phone" placeholder="Ej: +57 310 123 4567" required>
+                                                </div>
+                                                <div class="form-group-game">
+                                                    <label for="game-instagram"><i class="fa-brands fa-instagram"></i> Instagram (@usuario)</label>
+                                                    <input type="text" id="game-instagram" placeholder="Ej: @tu_usuario">
+                                                </div>
+                                                <div class="form-group-game">
+                                                    <label for="game-email"><i class="fa-solid fa-envelope"></i> Correo Electrónico *</label>
+                                                    <input type="email" id="game-email" placeholder="Ej: tu_nombre@correo.com" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Columna Derecha: Habeas Data & Autorizaciones Legales -->
+                                    <div class="phase4-right-col">
+                                        <!-- Paso 2: Autorizaciones Legales y Tratamiento de Datos (Ley 1581 de 2012) -->
+                                        <div class="option-section habeas-data-section">
+                                            <span class="section-label-game">2. AUTORIZACIÓN DE DATOS (LEY 1581 DE 2012)</span>
+                                            <div class="consent-checkbox-group">
+                                                
+                                                <!-- Punto 1: Tratamiento de Datos Requerido -->
+                                                <div class="consent-row-item">
+                                                    <label class="consent-checkbox-label" for="consent-habeas-data">
+                                                        <input type="checkbox" id="consent-habeas-data" class="consent-custom-checkbox" required>
+                                                        <span class="custom-checkbox-visual"><i class="fa-solid fa-check"></i></span>
+                                                    </label>
+                                                    <div class="consent-text-block" id="consent-block-1">
+                                                        <div class="consent-header-line">
+                                                            <label for="consent-habeas-data" class="consent-clickable-title">
+                                                                <strong class="consent-title-strong">Autorización de Tratamiento de Datos (Requerido) *:</strong>
+                                                            </label>
+                                                            <button type="button" class="btn-consent-toggle" id="btn-toggle-consent-1" onclick="toggleConsentDetails(event, 'consent-details-1', 'btn-toggle-consent-1')">
+                                                                <span class="toggle-label">Leer más</span>
+                                                                <i class="fa-solid fa-chevron-down"></i>
+                                                            </button>
+                                                        </div>
+                                                        <div class="consent-expandable-content" id="consent-details-1">
+                                                            <p class="consent-full-desc">
+                                                                Autorizo a Natalia Jauregui Studio el tratamiento de mis datos personales de acuerdo con la Ley 1581 de 2012 y la <a href="javascript:void(0)" class="legal-link-trigger" onclick="openPrivacyModal(event)">Política de Privacidad</a> exclusivamente para la gestión de mi cita, asesoría personalizada y conceptualización de mi proyecto de autor.
+                                                            </p>
+                                                            <button type="button" class="btn-consent-collapse" onclick="collapseConsentDetails(event, 'consent-details-1', 'btn-toggle-consent-1')">
+                                                                <span>Leer menos</span>
+                                                                <i class="fa-solid fa-chevron-up"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <!-- Punto 2: Comunicaciones Prioritarias Opcionales -->
+                                                <div class="consent-row-item">
+                                                    <label class="consent-checkbox-label" for="consent-marketing">
+                                                        <input type="checkbox" id="consent-marketing" class="consent-custom-checkbox">
+                                                        <span class="custom-checkbox-visual"><i class="fa-solid fa-check"></i></span>
+                                                    </label>
+                                                    <div class="consent-text-block" id="consent-block-2">
+                                                        <div class="consent-header-line">
+                                                            <label for="consent-marketing" class="consent-clickable-title">
+                                                                <strong class="consent-title-strong">Comunicaciones Prioritarias &amp; Agenda VIP (Opcional):</strong>
+                                                            </label>
+                                                            <button type="button" class="btn-consent-toggle" id="btn-toggle-consent-2" onclick="toggleConsentDetails(event, 'consent-details-2', 'btn-toggle-consent-2')">
+                                                                <span class="toggle-label">Leer más</span>
+                                                                <i class="fa-solid fa-chevron-down"></i>
+                                                            </button>
+                                                        </div>
+                                                        <div class="consent-expandable-content" id="consent-details-2">
+                                                            <p class="consent-full-desc">
+                                                                Deseo recibir comunicados prioritarios, aperturas exclusivas de agenda, eventos privados y novedades de autor a través de WhatsApp, correo electrónico e Instagram.
+                                                            </p>
+                                                            <button type="button" class="btn-consent-collapse" onclick="collapseConsentDetails(event, 'consent-details-2', 'btn-toggle-consent-2')">
+                                                                <span>Leer menos</span>
+                                                                <i class="fa-solid fa-chevron-up"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="phase-actions-row split-actions" style="margin-top: 20px; display: flex; justify-content: space-between;">
+                                    <button type="button" class="btn btn-outline phase-prev-btn" onclick="showPhase(4)"><i class="fa-solid fa-arrow-left"></i> Atrás</button>
+                                    <button type="button" class="btn btn-gold-filled phase-next" id="btn-phase5-submit" onclick="submitGamifiedFicha()" disabled>Oficializar Ficha y Elegir Horario <i class="fa-solid fa-arrow-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Estado 2: Consolidando -->
                         <div class="wizard-game-status" id="game-wizard-status" style="display: none;">
                             <div class="spinner"></div>
                             <h3>Consolidando tu Ficha Técnica...</h3>
                         </div>
                         
-                        <div id="game-success-panel">
+                        <!-- Estado 3: Agendamiento Calendly -->
+                        <div id="game-success-panel" style="display: none;">
                             <div class="phase-form text-center">
                                 <h3 class="phase-title">¡Ficha Registrada con Éxito!</h3>
                                 <p class="phase-subtitle" style="color: #A0A0A0; font-size: 0.85rem; margin-top: -6px; margin-bottom: 16px;">Selecciona la fecha y hora para tu sesión de asesoría digital con Natalia:</p>

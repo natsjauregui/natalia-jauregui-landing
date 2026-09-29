@@ -1587,8 +1587,8 @@ document.addEventListener('DOMContentLoaded', () => {
         1: "FASE 1 // LIENZO BASE",
         2: "FASE 2 // COORDENADA ANATÓMICA",
         3: "FASE 3 // ATELIER DE ESTILOS & CONCEPTO",
-        4: "FASE 4 // PROTOCOLO DE CONFORT & DATOS",
-        5: "FASE 5 // OFICIALIZAR FICHA"
+        4: "FASE 4 // PROTOCOLO DE CONFORT",
+        5: "FASE 5 // FICHA DE DATOS & AGENDAMIENTO"
     };
 
     function showPhase(phaseNum) {
@@ -1617,6 +1617,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (phaseNum === 4) {
             if (typeof validatePhase4 === 'function') validatePhase4();
+        }
+
+        if (phaseNum === 5) {
+            if (typeof validatePhase5 === 'function') validatePhase5();
         }
 
         // Stop all videos currently playing to free mobile hardware decoders and RAM
@@ -2671,9 +2675,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     window.finishPhase4IntroVideo = finishPhase4IntroVideo;
 
-    // Fullscreen Video Transition between Phase 4 and Phase 5 (Cierre & Agendamiento con Natalia)
+    // Fullscreen Video Transition between Phase 4 and Phase 5 (Ficha de Datos & Agendamiento)
     function startPhase5TransitionVideo() {
-        console.log("Iniciando video de transición pantalla completa a Fase 5 (Cierre & Agendamiento)...");
+        console.log("Iniciando video de transición pantalla completa a Fase 5 (Ficha de Datos & Agendamiento)...");
         const videoOverlay = document.getElementById('phase5-intro-video-overlay');
         const video = document.getElementById('phase5-fullscreen-video');
 
@@ -2699,7 +2703,6 @@ document.addEventListener('DOMContentLoaded', () => {
             };
         } else {
             showPhase(5);
-            initPhase5Calendly();
         }
     }
     window.startPhase5TransitionVideo = startPhase5TransitionVideo;
@@ -2719,11 +2722,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 videoOverlay.style.display = 'none';
                 videoOverlay.classList.remove('overlay-fade-out');
                 showPhase(5);
-                initPhase5Calendly();
             }, 450);
         } else {
             showPhase(5);
-            initPhase5Calendly();
         }
     }
     window.finishPhase5IntroVideo = finishPhase5IntroVideo;
@@ -2731,6 +2732,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function initPhase5Calendly() {
         const successPanel = document.getElementById('game-success-panel');
         const loadingOverlay = document.getElementById('game-wizard-status');
+        const formPanel = document.getElementById('phase5-form-panel');
+        if (formPanel) formPanel.style.display = 'none';
         if (loadingOverlay) loadingOverlay.style.display = 'none';
         if (successPanel) successPanel.style.display = 'block';
 
@@ -3004,9 +3007,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     window.closePrivacyModal = closePrivacyModal;
 
-    // Real-time strict validation for Phase 4
+    // Real-time validation for Phase 4 (Protocolo de Confort)
     function validatePhase4() {
         const btnPhase4Next = document.getElementById('btn-phase4-next');
+        if (btnPhase4Next) {
+            btnPhase4Next.disabled = false;
+        }
+        return true;
+    }
+    window.validatePhase4 = validatePhase4;
+
+    // Real-time strict validation for Phase 5 (Ficha de Datos & Agendamiento)
+    function validatePhase5() {
+        const btnPhase5Submit = document.getElementById('btn-phase5-submit');
         const nameVal = document.getElementById('game-name')?.value?.trim() || '';
         const phoneVal = document.getElementById('game-phone')?.value?.trim() || '';
         const emailVal = document.getElementById('game-email')?.value?.trim() || '';
@@ -3015,28 +3028,28 @@ document.addEventListener('DOMContentLoaded', () => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const isValid = (nameVal.length >= 3) && (phoneVal.length >= 7) && emailRegex.test(emailVal) && habeasChecked;
 
-        if (btnPhase4Next) {
-            btnPhase4Next.disabled = !isValid;
+        if (btnPhase5Submit) {
+            btnPhase5Submit.disabled = !isValid;
         }
         return isValid;
     }
-    window.validatePhase4 = validatePhase4;
+    window.validatePhase5 = validatePhase5;
 
-    // Attach listeners for real-time validation
+    // Attach listeners for real-time validation in Phase 5
     ['game-name', 'game-phone', 'game-email'].forEach(id => {
         const inputEl = document.getElementById(id);
         if (inputEl) {
-            inputEl.addEventListener('input', validatePhase4);
-            inputEl.addEventListener('change', validatePhase4);
+            inputEl.addEventListener('input', validatePhase5);
+            inputEl.addEventListener('change', validatePhase5);
         }
     });
 
     const habeasInput = document.getElementById('consent-habeas-data');
     if (habeasInput) {
-        habeasInput.addEventListener('change', validatePhase4);
+        habeasInput.addEventListener('change', validatePhase5);
     }
 
-    // Submit consolidated gamified ficha data
+    // Submit consolidated gamified ficha data in Phase 5
     function submitGamifiedFicha() {
         const nameInput = document.getElementById('game-name');
         const phoneInput = document.getElementById('game-phone');
@@ -3067,6 +3080,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         gameState.habeasConsent = true;
         gameState.marketingConsent = marketingCheckbox ? marketingCheckbox.checked : false;
+
+        // Mostrar estado de carga
+        const formPanel = document.getElementById('phase5-form-panel');
+        const loadingStatus = document.getElementById('game-wizard-status');
+        if (formPanel) formPanel.style.display = 'none';
+        if (loadingStatus) loadingStatus.style.display = 'flex';
 
         // Prep data payload mapping gamification details to Apps Script schema
         const refNames = (gameState.references || []).map((r, i) => `Ref ${i+1}: ${r.name} (${r.compressedSizeKb}KB)`).join(', ');
@@ -3112,10 +3131,13 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(err => {
             console.warn("Background sheet sync note:", err);
+        })
+        .finally(() => {
+            // Mostrar interfaz de Agendamiento Calendly con los datos del usuario
+            setTimeout(() => {
+                initPhase5Calendly();
+            }, 500);
         });
-
-        // Trigger Fullscreen Video Transition to Phase 5 immediately
-        startPhase5TransitionVideo();
     }
     window.submitGamifiedFicha = submitGamifiedFicha;
 

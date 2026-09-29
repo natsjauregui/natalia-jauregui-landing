@@ -5922,7 +5922,50 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
 .grid-options-pain {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    gap: 12px;
+}
+
+.comfort-guarantee-card {
+    background: #0E0E0E;
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    border-radius: 14px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.comfort-guarantee-card .guarantee-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(0, 255, 136, 0.08);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.comfort-guarantee-card .guarantee-icon-box i {
+    font-size: 1.3rem;
+    color: #00FF88;
+}
+
+.comfort-guarantee-card .guarantee-title {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    color: #FFFFFF;
+    margin: 0 0 4px 0;
+    letter-spacing: 0.5px;
+}
+
+.comfort-guarantee-card .guarantee-desc {
+    font-size: 0.82rem;
+    color: #A0A0A0;
+    line-height: 1.45;
+    margin: 0;
 }
 
 .opt-btn-pain {
@@ -7629,3 +7672,84 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
         height: 210px;
     }
 }
+
+/* ==========================================================================
+   FASE 4 // PROTOCOLO DE CONFORT & RESPALDO DE BIOSEGURIDAD
+   ========================================================================== */
+.phase4-comfort-container {
+    max-width: 860px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.comfort-guarantee-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.04) 0%, rgba(18, 18, 18, 0.95) 100%);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    border-radius: 14px;
+    padding: 16px 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.comfort-guarantee-card:hover {
+    border-color: rgba(0, 255, 136, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 255, 136, 0.08);
+}
+
+.guarantee-icon-box {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #00FF88;
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+}
+
+.guarantee-text-box {
+    flex: 1;
+}
+
+.guarantee-title {
+    font-family: var(--font-heading, sans-serif);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+    margin: 0 0 4px 0;
+    text-transform: uppercase;
+}
+
+.guarantee-desc {
+    font-size: 0.82rem;
+    line-height: 1.45;
+    color: #B0B0B0;
+    margin: 0;
+}
+
+@media (max-width: 600px) {
+    .comfort-guarantee-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+        padding: 14px;
+    }
+    .guarantee-title {
+        font-size: 0.88rem;
+    }
+    .guarantee-desc {
+        font-size: 0.76rem;
+    }
+}
+
