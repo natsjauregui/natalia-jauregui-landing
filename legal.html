@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro Legal, Privacidad & Términos | NATALIA JAUREGUI</title>
+    <meta name="description" content="Términos y condiciones, política de privacidad Ley 1581 de 2012, política de reservas y cookies de Natalia Jauregui Studio.">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css?v=139">
+
+    <style>
+        body {
+            background-color: #070707;
+            color: #E0E0E0;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.65;
+            margin: 0;
+            padding: 0;
+        }
+
+        .legal-page-header {
+            background: radial-gradient(circle at 50% 0%, rgba(20, 20, 20, 0.95) 0%, rgba(7, 7, 7, 1) 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 30px 20px 24px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+        }
+
+        .legal-header-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .legal-brand-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #FFFFFF;
+        }
+
+        .legal-brand-logo {
+            height: 38px;
+            width: auto;
+        }
+
+        .legal-brand-text {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .btn-back-atelier {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 18px;
+            background: rgba(0, 255, 136, 0.08);
+            border: 1px solid rgba(0, 255, 136, 0.35);
+            border-radius: 25px;
+            color: #00FF88;
+            text-decoration: none;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .btn-back-atelier:hover {
+            background: #00FF88;
+            color: #070707;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .legal-hero {
+            padding: 60px 20px 40px 20px;
+            text-align: center;
+            background: radial-gradient(circle at 50% 30%, rgba(0, 255, 136, 0.04) 0%, transparent 70%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .legal-badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 14px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #C5A059;
+            margin-bottom: 16px;
+        }
+
+        .legal-hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            color: #FFFFFF;
+            letter-spacing: 2px;
+            margin: 0 0 14px 0;
+        }
+
+        .legal-hero-subtitle {
+            font-size: 0.95rem;
+            color: #A0A0A0;
+            max-width: 680px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .legal-main-layout {
+            max-width: 1100px;
+            margin: 40px auto 80px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        /* Sticky Navigation Sidebar */
+        .legal-sidebar {
+            position: sticky;
+            top: 110px;
+            background: rgba(14, 14, 14, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 18px 14px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .legal-nav-title {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #888888;
+            text-transform: uppercase;
+            margin: 0 0 12px 8px;
+        }
+
+        .legal-nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .legal-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            color: #BBBBBB;
+            text-decoration: none;
+            font-size: 0.82rem;
+            border-radius: 8px;
+            transition: all 0.25s ease;
+            border-left: 2px solid transparent;
+        }
+
+        .legal-nav-link:hover, .legal-nav-link.active {
+            color: #00FF88;
+            background: rgba(0, 255, 136, 0.06);
+            border-left-color: #00FF88;
+        }
+
+        .legal-nav-link i {
+            font-size: 0.9rem;
+            width: 16px;
+            text-align: center;
+        }
+
+        /* Content Sections */
+        .legal-content-card {
+            background: #0E0E0E;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: clamp(24px, 4vw, 40px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+        }
+
+        .legal-section-block {
+            scroll-margin-top: 130px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding-bottom: 40px;
+        }
+
+        .legal-section-block:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .legal-section-tag {
+            display: inline-block;
+            font-size: 0.68rem;
+            font-family: monospace;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #00FF88;
+            background: rgba(0, 255, 136, 0.08);
+            padding: 3px 10px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+
+        .legal-section-heading {
+            font-family: 'Cinzel', serif;
+            font-size: 1.45rem;
+            color: #FFFFFF;
+            letter-spacing: 1px;
+            margin: 0 0 16px 0;
+        }
+
+        .legal-text {
+            color: #C0C0C0;
+            font-size: 0.88rem;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .legal-text strong {
+            color: #FFFFFF;
+        }
+
+        .legal-article-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 16px 0;
+        }
+
+        .legal-article-title {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: #E5C07B;
+            margin: 0 0 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .legal-list {
+            margin: 10px 0 16px 20px;
+            padding: 0;
+            color: #B0B0B0;
+            font-size: 0.85rem;
+        }
+
+        .legal-list li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .legal-contact-callout {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.06) 0%, rgba(18, 18, 18, 0.95) 100%);
+            border: 1px solid rgba(0, 255, 136, 0.25);
+            border-radius: 14px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .contact-callout-icon {
+            font-size: 1.8rem;
+            color: #00FF88;
+        }
+
+        .contact-callout-text h5 {
+            margin: 0 0 4px 0;
+            font-size: 0.92rem;
+            color: #FFFFFF;
+        }
+
+        .contact-callout-text p {
+            margin: 0;
+            font-size: 0.82rem;
+            color: #A0A0A0;
+        }
+
+        .legal-footer {
+            background: #040404;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .legal-footer-copy {
+            font-size: 0.78rem;
+            color: #666666;
+            margin: 0;
+        }
+
+        @media (max-width: 900px) {
+            .legal-main-layout {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .legal-sidebar {
+                position: relative;
+                top: 0;
+            }
+            .legal-nav-list {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .legal-nav-link {
+                font-size: 0.74rem;
+                padding: 6px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Fijo de Navegación -->
+    <header class="legal-page-header">
+        <div class="legal-header-container">
+            <a href="index.html" class="legal-brand-link" aria-label="Volver al inicio de Natalia Jauregui">
+                <img src="images/logo.png" alt="Natalia Jauregui Logo" class="legal-brand-logo">
+                <span class="legal-brand-text">NATALIA JAUREGUI</span>
+            </a>
+            <a href="index.html" class="btn-back-atelier">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Volver al Atelier</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero de Bienvenida Legal -->
+    <section class="legal-hero">
+        <div class="legal-badge-pill">
+            <i class="fa-solid fa-scale-balanced"></i>
+            <span>TRANSPARENCIA &amp; BLINDAJE NORMATIVO</span>
+        </div>
+        <h1 class="legal-hero-title">Centro Legal &amp; Políticas de Autor</h1>
+        <p class="legal-hero-subtitle">
+            Lineamientos normativos, protección de datos personales, garantías de bioseguridad y términos de co-creación de Natalia Jauregui Studio.
+        </p>
+    </section>
+
+    <!-- Layout Principal -->
+    <main class="legal-main-layout">
+        
+        <!-- Barra de Navegación Rápida -->
+        <nav class="legal-sidebar" aria-label="Índice de secciones legales">
+            <div class="legal-nav-title">Documentos Normativos</div>
+            <ul class="legal-nav-list">
+                <li><a href="#privacidad" class="legal-nav-link active"><i class="fa-solid fa-shield-halved"></i> Privacidad &amp; Habeas Data</a></li>
+                <li><a href="#terminos" class="legal-nav-link"><i class="fa-solid fa-file-contract"></i> Términos de Servicio</a></li>
+                <li><a href="#reembolsos" class="legal-nav-link"><i class="fa-solid fa-calendar-check"></i> Reservas &amp; Reembolsos</a></li>
+                <li><a href="#cookies" class="legal-nav-link"><i class="fa-solid fa-cookie-bite"></i> Política de Cookies</a></li>
+                <li><a href="#propiedad-intelectual" class="legal-nav-link"><i class="fa-solid fa-signature"></i> Propiedad Intelectual</a></li>
+                <li><a href="#bioseguridad" class="legal-nav-link"><i class="fa-solid fa-heart-pulse"></i> Bioseguridad &amp; Salud</a></li>
+            </ul>
+        </nav>
+
+        <!-- Tarjeta de Contenido Legal -->
+        <div class="legal-content-card">
+            
+            <!-- SECCIÓN 1: POLÍTICA DE PRIVACIDAD & HABEAS DATA -->
+            <section id="privacidad" class="legal-section-block">
+                <span class="legal-section-tag">DOCUMENTO 01 // LEY 1581 DE 2012</span>
+                <h2 class="legal-section-heading">Política de Privacidad y Tratamiento de Datos Personales</h2>
+                <p class="legal-text">
+                    En cumplimiento de la <strong>Ley Estatutaria 1581 de 2012</strong>, el <strong>Decreto 1377 de 2013</strong> de la República de Colombia y las normas internacionales sobre privacidad digital (incluido el RGPD en lo aplicable), <strong>Natalia Jauregui Studio</strong> informa a todos los usuarios y clientes sobre los protocolos que rigen la recolección, uso, almacenamiento y protección de su información personal.
+                </p>
+
+                <div class="legal-article-box">
+                    <h4 class="legal-article-title"><i class="fa-solid fa-circle-info"></i> Responsable del Tratamiento</h4>
+                    <p class="legal-text" style="margin-bottom: 0;">
+                        <strong>Razón Social / Artista:</strong> Natalia Jauregui Studio<br>
+                        <strong>Sede Principal:</strong> Bucaramanga, Santander, Colombia.<br>
+                        <strong>Canales Oficiales de Privacidad:</strong> Correo electrónico registrado y línea directa de WhatsApp oficial.
+                    </p>
+                </div>
+
+                <div class="legal-article-box">
+                    <h4 class="legal-article-title"><i class="fa-solid fa-bullseye"></i> Principio de Minimización y Finalidades Autorizadas</h4>
+                    <p class="legal-text">
+                        Recolectamos estrictamente los datos necesarios (Nombre, Teléfono/WhatsApp, Correo Electrónico, Instagram opcional e historial anatómico/referencias visuales) para los siguientes propósitos exclusivos:
+                    </p>
+                    <ul class="legal-list">
+                        <li><strong>Gestión de Citas y Asesoría:</strong> Coordinar y confirmar la agenda digital o presencial para la conceptualización de tu obra.</li>
+                        <li><strong>Arquitectura Corporal:</strong> Analizar la coordenada anatómica, escala y estilo gráfico seleccionado en el Atelier.</li>
+                        <li><strong>Comunicaciones Prioritarias (Opt-in):</strong> Remitir avisos exclusivos de apertura de agenda y contenidos de autor únicamente cuando el usuario lo autorice de forma expresa.</li>
+                    </ul>
+                </div>
+
+                <div class="legal-article-box">
+                    <h4 class="legal-article-title"><i class="fa-solid fa-user-shield"></i> Derechos del Titular (Derechos ARCO)</h4>
+                    <p class="legal-text">
+                        Conforme al artículo 8 de la Ley 1581 de 2012, el titular podrá ejercer en cualquier momento sus derechos de <strong>Acceso, Rectificación, Cancelación y Oposición</strong> enviando su solicitud a través de nuestros canales oficiales. Natalia Jauregui Studio garantiza el procesamiento de su solicitud en un plazo máximo de cinco (5) días hábiles.
+                    </p>
+                </div>
+
+                <div class="legal-article-box">
+                    <h4 class="legal-article-title"><i class="fa-solid fa-lock"></i> Compromiso Anti-Spam y No Cesión de Datos</h4>
+                    <p class="legal-text" style="margin-bottom: 0;">
+                        Garantizamos bajo estándares de autor que su información personal <strong>jamás será vendida, cedida, alquilada ni transferida</strong> a terceros con fines comerciales o de publicidad masiva.
+                    </p>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 2: TÉRMINOS Y CONDICIONES DE SERVICIO -->
+            <section id="terminos" class="legal-section-block">
+                <span class="legal-section-tag">DOCUMENTO 02 // ESTATUTO DEL CONSUMIDOR</span>
+                <h2 class="legal-section-heading">Términos y Condiciones Generales de Autor</h2>
+                <p class="legal-text">
+                    La navegación en este sitio y el uso del Atelier interactivo suponen la aceptación libre, informada e incondicional de los presentes Términos de Servicio.
+                </p>
+
+                <div class="legal-article-box">
+                    <h4 class="legal-article-title"><i class="fa-solid fa-id-card"></i> 1. Mayoría de Edad Obligatoria</h4>
+                    <p class="legal-text" style="margin-bottom: 0;">
+                        Los servicios de tatuaje artístico y asesoría personalizada son exclusivos para personas <strong>mayores de dieciocho (18) años</strong>. Será requisito indispensable presentar documento de identidad original y vigente previo al inicio de la sesión en cabina.
+                    </p>
+                </div>
+
+                <div class="legal-article-box">
+                    <h4 class="legal-article-title"><i class="fa-solid fa-palette"></i> 2. Naturaleza de la Obra de Autor</h4>
+                    <p class="legal-text" style="margin-bottom: 0;">
+                        Cada tatuaje realizado por Natalia Jauregui constituye una <strong>pieza original y exclusiva de autor</strong>. Los bocetos generados durante el proceso de co-creación están protegidos y no podrán ser transferidos ni ejecutados por terceros sin consentimiento expreso y por escrito.
+                    </p>
+                </div>
+
+                <div class="legal-article-box">
+                    <h4 class="legal-article-title"><i class="fa-solid fa-clock"></i> 3. Puntualidad y Desarrollo de la Sesión</h4>
+                    <p class="legal-text" style="margin-bottom: 0;">
+                        Se exige un margen máximo de tolerancia de 15 minutos para la cita acordada. El tiempo en cabina se planifica de forma meticulosa para garantizar la ergonomía y bioseguridad del cliente.
+                    </p>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 3: RESERVAS, REEMBOLSOS Y CANCELACIONES -->
+            <section id="reembolsos" class="legal-section-block">
+                <span class="legal-section-tag">DOCUMENTO 03 // LEY 1480 DE 2011 ART. 47</span>
+                <h2 class="legal-section-heading">Política de Reservas, Anticipos y Reembolsos</h2>
+                <p class="legal-text">
+                    Para asegurar un servicio de alta exclusividad y dedicar el tiempo necesario a la conceptualización y diseño previo de cada pieza, aplicamos las siguientes directrices:
+                </p>
+
+                <div class="legal-article-box">
+                    <h4 class="legal-article-title"><i class="fa-solid fa-handshake"></i> 1. Depósito de Reserva de Agenda</h4>
+                    <p class="legal-text" style="margin-bottom: 0;">
+                        Para formalizar la fecha de la sesión se requiere un anticipo. Este depósito cubre el bloqueo exclusivo de la agenda del estudio y el tiempo dedicado a la conceptualización artística, investigación anatómica y bocetaje digital.
+                    </p>
+                </div>
+
+                <div class="legal-article-box">
+                    <h4 class="legal-article-title"><i class="fa-solid fa-rotate-left"></i> 2. Reprogramaciones de Citas</h4>
+                    <p class="legal-text" style="margin-bottom: 0;">
+                        El cliente podrá solicitar la reprogramación de su cita con una anticipación mínima de <strong>cuarenta y ocho (48) horas hábiles</strong>, conservando el 100% de su depósito para una nueva fecha dentro de los 60 días calendario siguientes.
+                    </p>
+                </div>
+
+                <div class="legal-article-box">
+                    <h4 class="legal-article-title"><i class="fa-solid fa-ban"></i> 3. Excepción Legal de No Reembolso</h4>
+                    <p class="legal-text" style="margin-bottom: 0;">
+                        Conforme al <strong>Artículo 47, numeral 3 de la Ley 1480 de 2011 (Estatuto del Consumidor de Colombia)</strong>, el derecho de retracto y reembolso no aplica para bienes o servicios elaborados conforme a las especificaciones personalizadas del consumidor. Una vez iniciado el trabajo de diseño, el depósito no será reembolsable en caso de cancelación injustificada o inasistencia sin previo aviso.
+                    </p>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 4: POLÍTICA DE COOKIES -->
+            <section id="cookies" class="legal-section-block">
+                <span class="legal-section-tag">DOCUMENTO 04 // PRIVACIDAD DIGITAL</span>
+                <h2 class="legal-section-heading">Política de Cookies y Almacenamiento Local</h2>
+                <p class="legal-text">
+                    Nuestra plataforma utiliza tecnologías de almacenamiento local para garantizar el funcionamiento óptimo de la experiencia interactiva:
+                </p>
+
+                <div class="legal-article-box">
+                    <h4 class="legal-article-title"><i class="fa-solid fa-gear"></i> 1. Cookies Técnicas y Almacenamiento Local Esencial</h4>
+                    <p class="legal-text" style="margin-bottom: 0;">
+                        Utilizamos el almacenamiento local del navegador (<code>localStorage</code>) para guardar la configuración del maniquí anatómico 360°, la escala y el estilo seleccionado, evitando que pierdas tu progreso al recargar la página. Estas tecnologías son estrictamente necesarias para el servicio.
+                    </p>
+                </div>
+
+                <div class="legal-article-box">
+                    <h4 class="legal-article-title"><i class="fa-solid fa-chart-line"></i> 2. Servicios de Terceros y Analítica</h4>
+                    <p class="legal-text" style="margin-bottom: 0;">
+                        Integramos herramientas como <strong>Calendly</strong> para la gestión de horarios y recursos tipográficos de <strong>Google Fonts</strong>. Estas plataformas pueden utilizar cookies técnicas bajo sus propios términos de privacidad y seguridad internacional.
+                    </p>
+                </div>
+
+                <div class="legal-article-box">
+                    <h4 class="legal-article-title"><i class="fa-solid fa-sliders"></i> 3. Control y Desactivación</h4>
+                    <p class="legal-text" style="margin-bottom: 0;">
+                        Puedes limpiar o bloquear las cookies y el almacenamiento local en cualquier momento a través del menú de configuración de privacidad de tu navegador web.
+                    </p>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 5: PROPIEDAD INTELECTUAL -->
+            <section id="propiedad-intelectual" class="legal-section-block">
+                <span class="legal-section-tag">DOCUMENTO 05 // DERECHOS DE AUTOR</span>
+                <h2 class="legal-section-heading">Propiedad Intelectual y Derechos de Autor</h2>
+                <p class="legal-text">
+                    Todos los contenidos gráficos, renders 3D, videos de transición, fotografías de obras realizadas, código fuente y elementos de marca exhibidos en esta plataforma son propiedad exclusiva de <strong>Natalia Jauregui Studio</strong>, amparados por la <strong>Ley 23 de 1982</strong> de la República de Colombia y los convenios internacionales de la OMPI.
+                </p>
+                <p class="legal-text">
+                    Queda estrictamente prohibida la reproducción total o parcial, extracción de bocetos o comercialización no autorizada de cualquiera de las obras o elementos visuales sin autorización previa y expresa por escrito.
+                </p>
+            </section>
+
+            <!-- SECCIÓN 6: BIOSEGURIDAD Y SALUD DÉRMICA -->
+            <section id="bioseguridad" class="legal-section-block">
+                <span class="legal-section-tag">DOCUMENTO 06 // PROTOCOLO SANITARIO</span>
+                <h2 class="legal-section-heading">Compromiso de Bioseguridad y Consentimiento Informado</h2>
+                <p class="legal-text">
+                    La integridad dérmica de cada cliente es un valor fundamental de nuestra práctica artística:
+                </p>
+                <ul class="legal-list">
+                    <li><strong>Materiales 100% Desechables:</strong> Agujas estériles de un solo uso abiertas en presencia del cliente, tintas veganas certificadas y barreras asépticas de grado clínico.</li>
+                    <li><strong>Consentimiento Informado en Cabina:</strong> Previo a la sesión presencial se diligenciará el formato oficial de consentimiento informado y anamnesis dérmica según la normativa del Ministerio de Salud y Protección Social.</li>
+                    <li><strong>Acompañamiento Post-Sesión:</strong> Cada obra incluye una guía técnica personalizada de cuidado y cicatrización dérmica para garantizar la longevidad y fidelidad del pigmento.</li>
+                </ul>
+            </section>
+
+            <!-- Caja de Contacto Legal -->
+            <div class="legal-contact-callout">
+                <i class="fa-solid fa-shield-halved contact-callout-icon"></i>
+                <div class="contact-callout-text">
+                    <h5>¿Tienes alguna duda sobre tus datos o la reserva?</h5>
+                    <p>Contáctanos directamente por nuestros canales oficiales para resolver cualquier inquietud con total transparencia.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer Legal -->
+    <footer class="legal-footer">
+        <p class="legal-footer-copy">
+            &copy; 2026 NATALIA JAUREGUI STUDIO. Todos los derechos reservados. Arquitectura Corporal &amp; Custom Art.
+        </p>
+    </footer>
+
+    <!-- Script para Navegación Suave y Resaltado -->
+    <script>
+        document.querySelectorAll('.legal-nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                document.querySelectorAll('.legal-nav-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Resaltar sección al hacer scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.legal-section-block');
+            const navLinks = document.querySelectorAll('.legal-nav-link');
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

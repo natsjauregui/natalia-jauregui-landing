@@ -561,19 +561,19 @@
                                             <div class="form-grid">
                                                 <div class="form-group-game">
                                                     <label for="game-name"><i class="fa-solid fa-user"></i> Nombre Completo *</label>
-                                                    <input type="text" id="game-name" placeholder="Tu nombre y apellido" required>
+                                                    <input type="text" id="game-name" placeholder="Tu nombre y apellido" autocomplete="name" aria-required="true" aria-label="Nombre Completo" required>
                                                 </div>
                                                 <div class="form-group-game">
                                                     <label for="game-phone"><i class="fa-brands fa-whatsapp"></i> WhatsApp *</label>
-                                                    <input type="tel" id="game-phone" placeholder="Ej: +57 310 123 4567" required>
+                                                    <input type="tel" id="game-phone" placeholder="Ej: +57 310 123 4567" autocomplete="tel" inputmode="tel" aria-required="true" aria-label="Número de WhatsApp" required>
                                                 </div>
                                                 <div class="form-group-game">
                                                     <label for="game-instagram"><i class="fa-brands fa-instagram"></i> Instagram (@usuario)</label>
-                                                    <input type="text" id="game-instagram" placeholder="Ej: @tu_usuario">
+                                                    <input type="text" id="game-instagram" placeholder="Ej: @tu_usuario" autocomplete="off" inputmode="text" aria-label="Usuario de Instagram">
                                                 </div>
                                                 <div class="form-group-game">
                                                     <label for="game-email"><i class="fa-solid fa-envelope"></i> Correo Electrónico *</label>
-                                                    <input type="email" id="game-email" placeholder="Ej: tu_nombre@correo.com" required>
+                                                    <input type="email" id="game-email" placeholder="Ej: tu_nombre@correo.com" autocomplete="email" inputmode="email" aria-required="true" aria-label="Correo Electrónico" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -589,7 +589,7 @@
                                                 <!-- Punto 1: Tratamiento de Datos Requerido -->
                                                 <div class="consent-row-item">
                                                     <label class="consent-checkbox-label" for="consent-habeas-data">
-                                                        <input type="checkbox" id="consent-habeas-data" class="consent-custom-checkbox" required>
+                                                        <input type="checkbox" id="consent-habeas-data" class="consent-custom-checkbox" aria-required="true" required>
                                                         <span class="custom-checkbox-visual"><i class="fa-solid fa-check"></i></span>
                                                     </label>
                                                     <div class="consent-text-block" id="consent-block-1">
@@ -597,14 +597,14 @@
                                                             <label for="consent-habeas-data" class="consent-clickable-title">
                                                                 <strong class="consent-title-strong">Autorización de Tratamiento de Datos (Requerido) *:</strong>
                                                             </label>
-                                                            <button type="button" class="btn-consent-toggle" id="btn-toggle-consent-1" onclick="toggleConsentDetails(event, 'consent-details-1', 'btn-toggle-consent-1')">
+                                                            <button type="button" class="btn-consent-toggle" id="btn-toggle-consent-1" onclick="toggleConsentDetails(event, 'consent-details-1', 'btn-toggle-consent-1')" aria-label="Leer más sobre la autorización de datos">
                                                                 <span class="toggle-label">Leer más</span>
                                                                 <i class="fa-solid fa-chevron-down"></i>
                                                             </button>
                                                         </div>
                                                         <div class="consent-expandable-content" id="consent-details-1">
                                                             <p class="consent-full-desc">
-                                                                Autorizo a Natalia Jauregui Studio el tratamiento de mis datos personales de acuerdo con la Ley 1581 de 2012 y la <a href="javascript:void(0)" class="legal-link-trigger" onclick="openPrivacyModal(event)">Política de Privacidad</a> exclusivamente para la gestión de mi cita, asesoría personalizada y conceptualización de mi proyecto de autor.
+                                                                Autorizo a Natalia Jauregui Studio el tratamiento de mis datos personales de acuerdo con la Ley 1581 de 2012, la <a href="javascript:void(0)" class="legal-link-trigger" onclick="openPrivacyModal(event, 'privacidad')">Política de Privacidad</a> y los <a href="javascript:void(0)" class="legal-link-trigger" onclick="openPrivacyModal(event, 'terminos')">Términos de Servicio</a> exclusivamente para la gestión de mi cita, asesoría personalizada y conceptualización de mi proyecto de autor.
                                                             </p>
                                                             <button type="button" class="btn-consent-collapse" onclick="collapseConsentDetails(event, 'consent-details-1', 'btn-toggle-consent-1')">
                                                                 <span>Leer menos</span>
@@ -2013,62 +2013,184 @@
         </div>
     </div>
 
-    <!-- Modal de Política de Privacidad y Tratamiento de Datos (Ley 1581 de 2012) -->
-    <div class="privacy-modal" id="privacy-policy-modal" style="display: none;">
+    <!-- Modal Multitestaña de Centro Legal & Normativo de Autor (Ley 1581 / Ley 1480 / Cookies) -->
+    <div class="privacy-modal" id="privacy-policy-modal" style="display: none;" role="dialog" aria-labelledby="legal-modal-title" aria-modal="true">
         <div class="privacy-modal-backdrop" onclick="closePrivacyModal()"></div>
         <div class="privacy-modal-container">
             <div class="privacy-modal-header">
                 <div class="privacy-header-badge">
                     <i class="fa-solid fa-shield-halved"></i>
-                    <span>PROTECCIÓN DE DATOS // LEY 1581 DE 2012</span>
+                    <span>CENTRO LEGAL &amp; TRANSPARENCIA NORMATIVA</span>
                 </div>
-                <button type="button" class="privacy-modal-close" onclick="closePrivacyModal()" aria-label="Cerrar política">&times;</button>
+                <button type="button" class="privacy-modal-close" onclick="closePrivacyModal()" aria-label="Cerrar modal legal">&times;</button>
+            </div>
+
+            <!-- Selector de Pestañas Legales -->
+            <div class="legal-modal-tabs-nav" role="tablist" aria-label="Pestañas de documentos legales">
+                <button type="button" class="legal-tab-btn active" data-tab="privacidad" onclick="switchLegalTab('privacidad')" role="tab" aria-selected="true" aria-controls="legal-tab-privacidad">
+                    <i class="fa-solid fa-shield-halved"></i> <span>Privacidad &amp; Datos</span>
+                </button>
+                <button type="button" class="legal-tab-btn" data-tab="terminos" onclick="switchLegalTab('terminos')" role="tab" aria-selected="false" aria-controls="legal-tab-terminos">
+                    <i class="fa-solid fa-file-contract"></i> <span>Términos de Autor</span>
+                </button>
+                <button type="button" class="legal-tab-btn" data-tab="reembolsos" onclick="switchLegalTab('reembolsos')" role="tab" aria-selected="false" aria-controls="legal-tab-reembolsos">
+                    <i class="fa-solid fa-calendar-check"></i> <span>Reservas &amp; Reembolsos</span>
+                </button>
+                <button type="button" class="legal-tab-btn" data-tab="cookies" onclick="switchLegalTab('cookies')" role="tab" aria-selected="false" aria-controls="legal-tab-cookies">
+                    <i class="fa-solid fa-cookie-bite"></i> <span>Cookies &amp; Almacenamiento</span>
+                </button>
+                <button type="button" class="legal-tab-btn" data-tab="derechos" onclick="switchLegalTab('derechos')" role="tab" aria-selected="false" aria-controls="legal-tab-derechos">
+                    <i class="fa-solid fa-signature"></i> <span>Derechos de Autor</span>
+                </button>
             </div>
             
             <div class="privacy-modal-body">
-                <h3 class="privacy-title">POLÍTICA DE PRIVACIDAD &amp; HABEAS DATA</h3>
-                <p class="privacy-intro">En cumplimiento de la Ley Estatutaria 1581 de 2012 y el Decreto 1377 de 2013 de la República de Colombia, <strong>Natalia Jauregui Studio</strong> informa a los titulares de la información sobre las directrices que rigen el tratamiento de sus datos personales recolectados a través de esta experiencia interactiva.</p>
+                
+                <!-- Pestaña 1: Privacidad & Habeas Data -->
+                <div class="legal-tab-pane active" id="legal-tab-privacidad" role="tabpanel">
+                    <h3 class="privacy-title" id="legal-modal-title">POLÍTICA DE PRIVACIDAD &amp; HABEAS DATA</h3>
+                    <p class="privacy-intro">En cumplimiento de la Ley Estatutaria 1581 de 2012 y el Decreto 1377 de 2013 de la República de Colombia, <strong>Natalia Jauregui Studio</strong> informa las directrices que rigen el tratamiento de sus datos personales recolectados a través de esta experiencia interactiva.</p>
 
-                <div class="privacy-sections-list">
-                    <div class="privacy-item">
-                        <span class="privacy-item-tag">1. RESPONSABLE DEL TRATAMIENTO</span>
-                        <p>Natalia Jauregui Studio, con sede en Bucaramanga, Santander, Colombia. Canal oficial de atención y privacidad: WhatsApp oficial y correo electrónico registrado.</p>
-                    </div>
+                    <div class="privacy-sections-list">
+                        <div class="privacy-item">
+                            <span class="privacy-item-tag">1. RESPONSABLE DEL TRATAMIENTO</span>
+                            <p>Natalia Jauregui Studio, con sede en Bucaramanga, Santander, Colombia. Canal oficial de atención y privacidad: WhatsApp oficial y correo de contacto verificado.</p>
+                        </div>
 
-                    <div class="privacy-item">
-                        <span class="privacy-item-tag">2. FINALIDADES DEL TRATAMIENTO</span>
-                        <p>Los datos personales básicos recolectados (Nombre, Teléfono/WhatsApp, Instagram y Correo Electrónico) serán utilizados exclusivamente para:</p>
-                        <ul>
-                            <li>Gestionar, coordinar y confirmar la cita de asesoría artística personalizada.</li>
-                            <li>Conceptualizar la arquitectura corporal, estilos y referencias técnicas del proyecto de autor.</li>
-                            <li>Contactar al titular mediante canales directos respecto al estado de su ficha técnica oficializada.</li>
-                            <li>En caso de autorización expresa del titular, remitir comunicados prioritarios sobre aperturas exclusivas de agenda, eventos privados y contenidos de autor.</li>
-                        </ul>
-                    </div>
+                        <div class="privacy-item">
+                            <span class="privacy-item-tag">2. FINALIDADES EXCLUSIVAS (MINIMIZACIÓN DE DATOS)</span>
+                            <p>Los datos recolectados (Nombre, Teléfono/WhatsApp, Instagram opcional, Correo Electrónico y bocetos anatómicos) serán utilizados exclusivamente para:</p>
+                            <ul>
+                                <li>Gestionar, coordinar y confirmar la cita de asesoría artística y co-creación de autor.</li>
+                                <li>Conceptualizar la arquitectura corporal, estilos y referencias técnicas del proyecto.</li>
+                                <li>Contactar al titular mediante canales directos respecto al estado de su ficha técnica.</li>
+                                <li>Remitir comunicados prioritarios de agenda VIP solo si el titular lo autoriza expresamente.</li>
+                            </ul>
+                        </div>
 
-                    <div class="privacy-item">
-                        <span class="privacy-item-tag">3. DERECHOS DEL TITULAR (HABEAS DATA)</span>
-                        <p>Como titular de sus datos personales, usted tiene derecho a:</p>
-                        <ul>
-                            <li>Conocer, actualizar y rectificar sus datos personales en cualquier momento.</li>
-                            <li>Solicitar prueba de la autorización otorgada.</li>
-                            <li>Revocar la autorización y/o solicitar la supresión de sus datos cuando no exista un deber legal o contractual de permanecer en la base de datos.</li>
-                            <li>Acceder de forma gratuita a sus datos personales objeto de tratamiento.</li>
-                        </ul>
-                    </div>
+                        <div class="privacy-item">
+                            <span class="privacy-item-tag">3. DERECHOS DEL TITULAR (HABEAS DATA)</span>
+                            <p>Usted puede conocer, actualizar, rectificar y solicitar la supresión de sus datos personales en cualquier momento ejerciendo sus derechos ARCO mediante nuestros canales oficiales.</p>
+                        </div>
 
-                    <div class="privacy-item">
-                        <span class="privacy-item-tag">4. COMPROMISO ANTI-SPAM Y NO CESIÓN</span>
-                        <p>Natalia Jauregui Studio se compromete de manera estricta a no vender, ceder ni compartir sus datos personales con terceros con fines comerciales masivos. Su información es tratada bajo rigurosos principios de confidencialidad y bioseguridad digital.</p>
+                        <div class="privacy-item">
+                            <span class="privacy-item-tag">4. COMPROMISO ANTI-SPAM Y NO CESIÓN</span>
+                            <p>Garantizamos que su información jamás será vendida, cedida ni compartida con terceros con fines comerciales masivos. Su privacidad se protege bajo estrictos estándares de confidencialidad.</p>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Pestaña 2: Términos de Servicio -->
+                <div class="legal-tab-pane" id="legal-tab-terminos" role="tabpanel" style="display: none;">
+                    <h3 class="privacy-title">TÉRMINOS Y CONDICIONES DE SERVICIO DE AUTOR</h3>
+                    <p class="privacy-intro">El uso del Atelier y la formalización de proyectos de tatuaje artístico se rigen bajo los siguientes términos profesionales:</p>
+
+                    <div class="privacy-sections-list">
+                        <div class="privacy-item">
+                            <span class="privacy-item-tag">1. REQUISITO DE MAYORÍA DE EDAD (+18)</span>
+                            <p>El servicio de tatuaje artístico se presta de forma exclusiva a personas mayores de 18 años, requiriendo documento de identidad original vigente antes del inicio de la sesión.</p>
+                        </div>
+
+                        <div class="privacy-item">
+                            <span class="privacy-item-tag">2. PROCESO DE CO-CREACIÓN Y AUTORÍA</span>
+                            <p>Cada obra es concebida como una pieza de autor exclusiva. Los diseños se adaptan a la anatomía y flujo corporal del cliente, requiriendo su validación y aprobación técnica.</p>
+                        </div>
+
+                        <div class="privacy-item">
+                            <span class="privacy-item-tag">3. PUNTUALIDAD Y CONDICIONES DE SESIÓN</span>
+                            <p>La puntualidad es indispensable para respetar el tiempo de preparación dérmica y aséptica de la cabina. Se otorga una tolerancia máxima de 15 minutos.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pestaña 3: Reservas & Reembolsos -->
+                <div class="legal-tab-pane" id="legal-tab-reembolsos" role="tabpanel" style="display: none;">
+                    <h3 class="privacy-title">POLÍTICA DE RESERVAS, DEPÓSITOS Y REEMBOLSOS</h3>
+                    <p class="privacy-intro">Directrices transparentes conforme al Estatuto del Consumidor (Ley 1480 de 2011) sobre servicios artísticos personalizados:</p>
+
+                    <div class="privacy-sections-list">
+                        <div class="privacy-item">
+                            <span class="privacy-item-tag">1. DEPÓSITO DE RESERVA Y CONCEPTUALIZACIÓN</span>
+                            <p>El anticipo para apartar fecha cubre el bloqueo exclusivo de la agenda de Natalia y las horas de conceptualización, estudio anatómico y diseño digital previo a la sesión.</p>
+                        </div>
+
+                        <div class="privacy-item">
+                            <span class="privacy-item-tag">2. REPROGRAMACIÓN CON PREAVISO (48 HORAS)</span>
+                            <p>Es posible reprogramar la cita conservando el 100% del depósito notificando con al menos 48 horas hábiles de anticipación.</p>
+                        </div>
+
+                        <div class="privacy-item">
+                            <span class="privacy-item-tag">3. EXCEPCIÓN LEGAL DE NO REEMBOLSO (ART. 47 LEY 1480)</span>
+                            <p>Por tratarse de un servicio de autor con diseño elaborado a la medida del cliente, el anticipo no es reembolsable si el cliente cancela sin causa justificada o inasiste tras haberse iniciado el trabajo creativo.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pestaña 4: Cookies & Almacenamiento -->
+                <div class="legal-tab-pane" id="legal-tab-cookies" role="tabpanel" style="display: none;">
+                    <h3 class="privacy-title">POLÍTICA DE COOKIES Y ALMACENAMIENTO LOCAL</h3>
+                    <p class="privacy-intro">Información clara sobre el uso de almacenamiento digital en tu navegador:</p>
+
+                    <div class="privacy-sections-list">
+                        <div class="privacy-item">
+                            <span class="privacy-item-tag">1. ALMACENAMIENTO LOCAL ESENCIAL</span>
+                            <p>Utilizamos <code>localStorage</code> para recordar la posición del maniquí 360°, la escala y el estilo seleccionado, permitiendo que navegues entre fases sin perder tu configuración.</p>
+                        </div>
+
+                        <div class="privacy-item">
+                            <span class="privacy-item-tag">2. COOKIES DE TERCEROS (CALENDLY &amp; FUENTES)</span>
+                            <p>El módulo de agendamiento Calendly y Google Fonts utilizan cookies técnicas para procesar la disponibilidad de horarios y cargar la tipografía de autor.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pestaña 5: Derechos de Autor -->
+                <div class="legal-tab-pane" id="legal-tab-derechos" role="tabpanel" style="display: none;">
+                    <h3 class="privacy-title">PROPIEDAD INTELECTUAL &amp; DERECHOS DE AUTOR</h3>
+                    <p class="privacy-intro">Protección artística bajo la Ley 23 de 1982 de Colombia y convenios internacionales:</p>
+
+                    <div class="privacy-sections-list">
+                        <div class="privacy-item">
+                            <span class="privacy-item-tag">1. TITULARIDAD DE LA OBRA Y BOCETOS</span>
+                            <p>Todos los bocetos, ilustraciones, fotografías y renders 3D creados por Natalia Jauregui son creaciones protegidas por derechos de autor. Queda prohibida su reproducción o copia por otros estudios o artistas.</p>
+                        </div>
+
+                        <div class="privacy-item">
+                            <span class="privacy-item-tag">2. ESTÁNDARES DE BIOSEGURIDAD</span>
+                            <p>Toda sesión se ejecuta con insumos estériles desechables de grado médico y tintas certificadas, respaldando la salud y la perfecta cicatrización de la piel.</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-            <div class="privacy-modal-footer">
-                <button type="button" class="btn-atelier-primary" onclick="closePrivacyModal()">
-                    <i class="fa-solid fa-check"></i>
-                    <span>Entendido y Cerrar</span>
+            <div class="privacy-modal-footer" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                <a href="legal.html" target="_blank" rel="noopener noreferrer" class="btn-open-full-legal" aria-label="Abrir Centro Legal Completo en nueva pestaña">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Ver Página Legal Completa
+                </a>
+                <button type="button" class="btn-atelier-primary" onclick="closePrivacyModal()" aria-label="Entendido y cerrar modal legal">
+                    <i class="fa-solid fa-check"></i> <span>Entendido y Cerrar</span>
                 </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Banner Flotante de Consentimiento de Cookies & Privacidad -->
+    <div id="cookie-consent-banner" class="cookie-consent-banner" style="display: none;" role="dialog" aria-live="polite" aria-label="Consentimiento de Cookies y Privacidad">
+        <div class="cookie-banner-content">
+            <div class="cookie-icon-wrapper">
+                <i class="fa-solid fa-cookie-bite"></i>
+            </div>
+            <div class="cookie-text-wrapper">
+                <h4 class="cookie-banner-title">Privacidad &amp; Experiencia de Autor</h4>
+                <p class="cookie-banner-desc">
+                    Utilizamos almacenamiento local esencial para recordar tu lienzo anatómico 3D y cookies técnicas de agendamiento. Conoce nuestra <a href="legal.html" target="_blank" rel="noopener noreferrer" class="cookie-legal-link">Política de Privacidad y Cookies</a>.
+                </p>
+            </div>
+            <div class="cookie-actions-wrapper">
+                <button type="button" class="btn-cookie-btn btn-cookie-accept" onclick="acceptAllCookies()" aria-label="Aceptar todas las cookies">Aceptar Todo</button>
+                <button type="button" class="btn-cookie-btn btn-cookie-essential" onclick="acceptEssentialCookies()" aria-label="Aceptar solo cookies esenciales">Solo Esenciales</button>
+                <button type="button" class="btn-cookie-btn btn-cookie-details" onclick="openPrivacyModal(event, 'cookies')" aria-label="Ver detalles y configuración de cookies">Ver Política</button>
             </div>
         </div>
     </div>
@@ -2076,6 +2198,6 @@
     <!-- Calendly Widget JS -->
     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
     <!-- Custom JS -->
-    <script src="script.js?v=138"></script>
+    <script src="script.js?v=139"></script>
 </body>
 </html>

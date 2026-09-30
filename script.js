@@ -2980,8 +2980,34 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Privacy Policy Modal Handlers (Ley 1581 de 2012)
-    function openPrivacyModal(event) {
+    // Legal Center Modal Tabs & Handlers (Ley 1581 / Ley 1480 / Cookies)
+    function switchLegalTab(tabId) {
+        if (!tabId) return;
+        // Update tab buttons
+        document.querySelectorAll('.legal-tab-btn').forEach(btn => {
+            if (btn.getAttribute('data-tab') === tabId) {
+                btn.classList.add('active');
+                btn.setAttribute('aria-selected', 'true');
+            } else {
+                btn.classList.remove('active');
+                btn.setAttribute('aria-selected', 'false');
+            }
+        });
+
+        // Update tab content panes
+        document.querySelectorAll('.legal-tab-pane').forEach(pane => {
+            if (pane.id === `legal-tab-${tabId}`) {
+                pane.style.display = 'block';
+                pane.classList.add('active');
+            } else {
+                pane.style.display = 'none';
+                pane.classList.remove('active');
+            }
+        });
+    }
+    window.switchLegalTab = switchLegalTab;
+
+    function openPrivacyModal(event, targetTab = 'privacidad') {
         if (event) {
             event.stopPropagation();
             event.preventDefault();
@@ -2990,6 +3016,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (modal) {
             modal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
+            if (targetTab) {
+                switchLegalTab(targetTab);
+            }
         }
     }
     window.openPrivacyModal = openPrivacyModal;
@@ -3006,6 +3035,44 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     window.closePrivacyModal = closePrivacyModal;
+
+    // Cookie & Privacy Consent Banner Handlers
+    function checkCookieConsent() {
+        const consent = localStorage.getItem('nj_cookie_consent');
+        const banner = document.getElementById('cookie-consent-banner');
+        if (!consent && banner) {
+            setTimeout(() => {
+                banner.style.display = 'block';
+            }, 1200);
+        }
+    }
+
+    function acceptAllCookies() {
+        localStorage.setItem('nj_cookie_consent', 'all');
+        hideCookieBanner();
+    }
+    window.acceptAllCookies = acceptAllCookies;
+
+    function acceptEssentialCookies() {
+        localStorage.setItem('nj_cookie_consent', 'essential');
+        hideCookieBanner();
+    }
+    window.acceptEssentialCookies = acceptEssentialCookies;
+
+    function hideCookieBanner() {
+        const banner = document.getElementById('cookie-consent-banner');
+        if (banner) {
+            banner.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            banner.style.opacity = '0';
+            banner.style.transform = 'translate(-50%, 20px)';
+            setTimeout(() => {
+                banner.style.display = 'none';
+            }, 300);
+        }
+    }
+
+    // Run Cookie check on load
+    checkCookieConsent();
 
     // Real-time validation for Phase 4 (Protocolo de Confort)
     function validatePhase4() {

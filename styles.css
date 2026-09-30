@@ -7753,3 +7753,244 @@ html, body, .gamified-experience, .gamified-container, .gamified-wizard, .phase-
     }
 }
 
+/* ==========================================================================
+   CENTRO LEGAL & MODAL TABS STYLING (LEY 1581 / LEY 1480 / PRIVACIDAD)
+   ========================================================================== */
+.legal-modal-tabs-nav {
+    display: flex;
+    gap: 8px;
+    padding: 12px 24px;
+    background: rgba(0, 0, 0, 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    overflow-x: auto;
+    scrollbar-width: thin;
+    white-space: nowrap;
+}
+
+.legal-tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    color: #A0A0A0;
+    font-size: 0.76rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    flex-shrink: 0;
+}
+
+.legal-tab-btn:hover {
+    color: #FFFFFF;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.18);
+}
+
+.legal-tab-btn.active {
+    color: #00FF88;
+    background: rgba(0, 255, 136, 0.1);
+    border-color: rgba(0, 255, 136, 0.4);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.15);
+}
+
+.legal-tab-btn i {
+    font-size: 0.8rem;
+}
+
+.legal-tab-pane {
+    animation: fadeInLegalTab 0.3s ease;
+}
+
+@keyframes fadeInLegalTab {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.btn-open-full-legal {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #00FF88;
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.25s ease;
+    padding: 6px 12px;
+    border-radius: 6px;
+    background: rgba(0, 255, 136, 0.05);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+}
+
+.btn-open-full-legal:hover {
+    background: rgba(0, 255, 136, 0.12);
+    border-color: #00FF88;
+    color: #FFFFFF;
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.25);
+}
+
+/* ==========================================================================
+   BANNER FLOTANTE DE CONSENTIMIENTO DE COOKIES & PRIVACIDAD
+   ========================================================================== */
+.cookie-consent-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 32px);
+    max-width: 860px;
+    background: rgba(12, 12, 12, 0.94);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    border-radius: 18px;
+    padding: 16px 20px;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.85), 0 0 25px rgba(0, 255, 136, 0.1);
+    backdrop-filter: blur(16px);
+    z-index: 9999;
+    animation: slideUpCookieBanner 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUpCookieBanner {
+    from { opacity: 0; transform: translate(-50%, 30px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+.cookie-banner-content {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.cookie-icon-wrapper {
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid rgba(0, 255, 136, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    color: #00FF88;
+}
+
+.cookie-text-wrapper {
+    flex: 1;
+    min-width: 260px;
+}
+
+.cookie-banner-title {
+    font-family: var(--font-heading, sans-serif);
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+    margin: 0 0 4px 0;
+    text-transform: uppercase;
+}
+
+.cookie-banner-desc {
+    font-size: 0.78rem;
+    line-height: 1.45;
+    color: #B8B8B8;
+    margin: 0;
+}
+
+.cookie-legal-link {
+    color: #00FF88;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 500;
+}
+
+.cookie-legal-link:hover {
+    color: #FFFFFF;
+}
+
+.cookie-actions-wrapper {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.btn-cookie-btn {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border: 1px solid transparent;
+}
+
+.btn-cookie-accept {
+    background: #00FF88;
+    color: #050505;
+    font-weight: 700;
+}
+
+.btn-cookie-accept:hover {
+    background: #00CC6A;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+    transform: translateY(-1px);
+}
+
+.btn-cookie-essential {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
+    color: #E0E0E0;
+}
+
+.btn-cookie-essential:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #FFFFFF;
+}
+
+.btn-cookie-details {
+    background: transparent;
+    border-color: rgba(0, 255, 136, 0.25);
+    color: #00FF88;
+}
+
+.btn-cookie-details:hover {
+    background: rgba(0, 255, 136, 0.08);
+    border-color: #00FF88;
+}
+
+@media (max-width: 768px) {
+    .cookie-banner-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    .cookie-actions-wrapper {
+        width: 100%;
+        justify-content: flex-end;
+    }
+    .btn-cookie-btn {
+        flex: 1;
+        text-align: center;
+    }
+}
+
+/* ==========================================================================
+   ACCESIBILIDAD UNIVERSAL & FOCO DE TECLADO (WCAG 2.1 AA)
+   ========================================================================== */
+:focus-visible {
+    outline: 2px solid #00FF88 !important;
+    outline-offset: 3px !important;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.5) !important;
+}
+
+input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline: 2px solid #C5A059 !important;
+    outline-offset: 2px !important;
+    border-color: #C5A059 !important;
+}
+
+
