@@ -7993,4 +7993,130 @@ input:focus-visible, textarea:focus-visible, select:focus-visible {
     border-color: #C5A059 !important;
 }
 
+/* ==========================================================================
+   PORTAL DE BIENVENIDA // LEGAL GATE OBLIGATORIO DE ULTRA-LUJO
+   ========================================================================== */
+.welcome-legal-gate-box {
+    margin: 18px auto 22px auto;
+    max-width: 480px;
+    width: 90%;
+    background: rgba(15, 15, 15, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 10px 14px;
+    backdrop-filter: blur(12px);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+.welcome-legal-gate-box:hover {
+    border-color: rgba(0, 255, 136, 0.35);
+    background: rgba(18, 18, 18, 0.85);
+}
+
+.welcome-legal-gate-box.gate-shake-alert {
+    animation: luxuryShakeAlert 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    border-color: #FF5555 !important;
+    box-shadow: 0 0 25px rgba(255, 85, 85, 0.35) !important;
+}
+
+@keyframes luxuryShakeAlert {
+    10%, 90% { transform: translate3d(-2px, 0, 0); }
+    20%, 80% { transform: translate3d(4px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+    40%, 60% { transform: translate3d(6px, 0, 0); }
+}
+
+.welcome-legal-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+    text-align: left;
+}
+
+.welcome-custom-checkbox {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+.welcome-checkbox-custom-visual {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    border-radius: 5px;
+    background: #141414;
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: transparent;
+    font-size: 0.65rem;
+    transition: all 0.25s ease;
+}
+
+.welcome-legal-label:hover .welcome-checkbox-custom-visual {
+    border-color: #00FF88;
+}
+
+.welcome-custom-checkbox:checked + .welcome-checkbox-custom-visual {
+    background: #00FF88;
+    border-color: #00FF88;
+    color: #050505;
+    box-shadow: 0 0 12px rgba(0, 255, 136, 0.5);
+}
+
+.welcome-legal-caption {
+    font-size: clamp(0.70rem, 1.8vw, 0.78rem);
+    line-height: 1.35;
+    color: #BBBBBB;
+    letter-spacing: 0.2px;
+}
+
+.welcome-legal-link {
+    color: #00FF88;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.welcome-legal-link:hover {
+    color: #FFFFFF;
+}
+
+.welcome-legal-warning {
+    margin-top: 8px;
+    font-size: 0.72rem;
+    color: #FF6B6B;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.3px;
+    animation: fadeInWarning 0.3s ease;
+}
+
+@keyframes fadeInWarning {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.btn-bugatti-cta.btn-locked {
+    opacity: 0.55;
+    filter: grayscale(0.6);
+    cursor: not-allowed;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-bugatti-cta:not(.btn-locked) {
+    opacity: 1;
+    filter: none;
+    cursor: pointer;
+}
+
+
 

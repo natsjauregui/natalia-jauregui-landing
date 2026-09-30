@@ -50,8 +50,23 @@
                 <span class="statement-main">UNA HISTORIA DE PROPORCIÓN ÉPICA</span>
                 <span class="statement-sub">ARQUITECTURA CORPORAL.</span>
             </div>
+
+            <!-- Consentimiento Previo Obligatorio: Centro Legal & Normativo de Autor -->
+            <div class="welcome-legal-gate-box" id="welcome-legal-gate-box">
+                <label class="welcome-legal-label" for="welcome-legal-consent-checkbox">
+                    <input type="checkbox" id="welcome-legal-consent-checkbox" class="welcome-custom-checkbox" aria-required="true">
+                    <span class="welcome-checkbox-custom-visual"><i class="fa-solid fa-check"></i></span>
+                    <span class="welcome-legal-caption">
+                        He leído y acepto el <a href="javascript:void(0)" onclick="openPrivacyModal(event, 'privacidad')" class="welcome-legal-link">Centro Legal, Normativo y de Privacidad</a> (Ley 1581 / Ley 1480).
+                    </span>
+                </label>
+                <div class="welcome-legal-warning" id="welcome-legal-warning" style="display: none;">
+                    <i class="fa-solid fa-circle-exclamation"></i> Para vivir la experiencia, es necesario aceptar los términos y directrices normativas.
+                </div>
+            </div>
+
             <div class="welcome-cta-wrapper">
-                <button class="btn-bugatti-cta" id="btn-enter-experience" onclick="launchExperience(event)">
+                <button class="btn-bugatti-cta btn-locked" id="btn-enter-experience" onclick="launchExperience(event)" aria-label="Vivir la experiencia del Atelier">
                     <span class="cta-label">VIVIR LA EXPERIENCIA</span>
                     <span class="cta-underline"></span>
                 </button>
