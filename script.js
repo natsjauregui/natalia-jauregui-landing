@@ -1446,7 +1446,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // 1. Update Hero Title
         const heroTitle = document.querySelector('.hero-title');
         if (heroTitle) {
-            heroTitle.innerHTML = 'Tu lienzo está configurado.<br>Conoce cómo transformamos tu historia en una obra irrepetible.';
+            heroTitle.innerHTML = 'TU HISTORIA.<br>UNA OBRA DE AUTOR.';
+        const heroSubtitle = document.querySelector('.hero-subtitle');
+        if (heroSubtitle) heroSubtitle.textContent = 'Descubre la arquitectura, técnica y bioseguridad detrás de tu pieza.';
+        const heroCta = document.querySelector('.hero-actions .btn-gold-filled');
+        if (heroCta) { heroCta.textContent = 'Explorar Obras de Autor'; heroCta.setAttribute('href', '#galeria'); }
         }
 
         // 2. Show status banner
@@ -3106,10 +3110,25 @@ document.addEventListener('DOMContentLoaded', () => {
     ['game-name', 'game-phone', 'game-email'].forEach(id => {
         const inputEl = document.getElementById(id);
         if (inputEl) {
-            inputEl.addEventListener('input', validatePhase5);
-            inputEl.addEventListener('change', validatePhase5);
+            inputEl.addEventListener('input', () => {
+                inputEl.classList.remove('input-field-error');
+                validatePhase5(false);
+            });
+            inputEl.addEventListener('change', () => {
+                inputEl.classList.remove('input-field-error');
+                validatePhase5(false);
+            });
         }
     });
+
+    const habeasBox = document.getElementById('consent-habeas-data');
+    if (habeasBox) {
+        habeasBox.addEventListener('change', () => {
+            const habeasBlock = document.getElementById('consent-block-1');
+            if (habeasBlock) habeasBlock.classList.remove('consent-error-highlight');
+            validatePhase5(false);
+        });
+    }
 
     const habeasInput = document.getElementById('consent-habeas-data');
     if (habeasInput) {
@@ -3118,6 +3137,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Submit consolidated gamified ficha data in Phase 5
     function submitGamifiedFicha() {
+        // Run full interactive validation with immediate feedback
+        const isValid = validatePhase5(true);
+        if (!isValid) return;
+
         const nameInput = document.getElementById('game-name');
         const phoneInput = document.getElementById('game-phone');
         const emailInput = document.getElementById('game-email');

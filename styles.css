@@ -8010,3 +8010,52 @@ input:focus-visible, textarea:focus-visible, select:focus-visible {
 
 
 
+
+/* Phase 5 Interactive Feedback & Validation Styles */
+.input-field-error {
+    border-color: #ff5252 !important;
+    box-shadow: 0 0 12px rgba(255, 82, 82, 0.4) !important;
+    animation: shakeInput 0.4s ease-in-out;
+}
+.consent-error-highlight {
+    border: 1px solid rgba(255, 82, 82, 0.6) !important;
+    background: rgba(255, 82, 82, 0.08) !important;
+    border-radius: 8px;
+    padding: 8px;
+    animation: shakeInput 0.4s ease-in-out;
+}
+@keyframes shakeInput {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-6px); }
+    40%, 80% { transform: translateX(6px); }
+}
+.phase5-feedback-toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: rgba(20, 18, 16, 0.95);
+    border: 1px solid var(--accent);
+    color: #fff;
+    padding: 14px 24px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7), 0 0 20px rgba(226, 209, 187, 0.2);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.phase5-feedback-toast.active {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+.phase5-feedback-toast i {
+    color: var(--accent);
+    font-size: 1.1rem;
+}
